@@ -30,3 +30,4 @@ Route::get('user/{id}', function ($id) {
 // });
 
 // Route::get('aboutus', 'AboutUsController@about');
+  
