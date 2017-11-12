@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'travelers',
     ],
 
     /*
@@ -38,12 +38,22 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'travelers',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'travelers',
+        ],
+
+        'agents' => [
+            'driver' => 'session',
+            'provider' => 'agents',
+        ],
+
+        'agents-api' => [
+            'driver' => 'token',
+            'provider' => 'agents',
         ],
     ],
 
@@ -65,15 +75,19 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'travelers' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Travelers::class,
         ],
+        'agents' => [
+            'driver' => 'eloquent',
+            'model' => App\Agents::class,
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        ],
     ],
 
     /*
@@ -92,11 +106,16 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'travelers' => [
+            'provider' => 'travelers',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+
+        'agents' => [
+            'provider' => 'agents',
             'table' => 'password_resets',
             'expire' => 60,
         ],
     ],
-
 ];

@@ -37,6 +37,8 @@ We would like to extend our thanks to the following sponsors for helping fund on
 - **[Styde](https://styde.net)**
 - [Fragrantica](https://www.fragrantica.com)
 - [SOFTonSOFA](https://softonsofa.com/)
+- [User10](https://user10.com)
+- [Soumettre.fr](https://soumettre.fr/)
 
 ## Contributing
 
@@ -49,4 +51,3 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
-# traventure

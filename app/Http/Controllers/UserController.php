@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $list = [
+        $names = [
             'names' => [
                 'Janzen Guzman',
                 'Leo Tan'
@@ -23,6 +23,6 @@ class UserController extends Controller
         ];
         // return view('user.profile', ['user' => User::findOrFail($id)]);
         // return 'Hello World ' . $id;
-        return view('greeting', $list);
+        return view('greeting', $names);
     }
 }
