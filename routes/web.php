@@ -22,4 +22,3 @@ Route::post('/agentsRegister', 'Auth\AgentsRegisterController@create') -> name('
 Auth::routes();
 Route::get('/travelers', 'TravelersController@index') -> name('travelers');
 Route::get('/agentsHomePage', 'Auth\AgentsController@showHomePage') -> name('agentsHomePage');
-
