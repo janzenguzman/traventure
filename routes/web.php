@@ -19,14 +19,14 @@ Route::get('foo', function () {
     return 'Hello World';
 });
 
-// Route::get('user/{id}', function ($id) {
-//     return 'User '.$id;
-// });
-
-Route::get('user/{id}', 'UserController@show');
-
-Route::get('/', function () {
-    return view('greeting', ['name' => 'Janzen']);
+Route::get('user/{id}', function ($id) {
+    return 'User '.$id;
 });
 
-Route::get('aboutus', 'AboutUsController@about'); 
+// Route::get('user/{id}', 'UserController@show');
+
+// Route::get('/', function () {
+//     return view('greeting', ['name' => 'Janzen']);
+// });
+
+// Route::get('aboutus', 'AboutUsController@about');
