@@ -15,18 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('foo', function () {
-    return 'Hello World';
-});
+Route::get('/agentsRegister', function() {
+    return view('auth/agentsRegister');
+}); 
+Route::post('/agentsRegister', 'Auth\AgentsRegisterController@create') -> name('agentsRegister');
+Auth::routes();
+Route::get('/travelers', 'TravelersController@index') -> name('travelers');
+Route::get('/agentsHomePage', 'Auth\AgentsController@showHomePage') -> name('agentsHomePage');
 
-// Route::get('user/{id}', function ($id) {
-//     return 'User '.$id;
-// });
-
-Route::get('user/{id}', 'UserController@show');
-
-Route::get('/', function () {
-    return view('greeting', ['name' => 'Janzen']);
-});
-
-Route::get('aboutus', 'AboutUsController@about'); 
