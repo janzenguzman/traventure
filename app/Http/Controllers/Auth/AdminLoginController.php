@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use Auth;
-use App\Travelers;
-use App\Agents;
+use App\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
-class LoginController extends Controller
+class AdminLoginController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -41,20 +40,9 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request){
-            if(Auth::attempt([
-                'email' => $request->email,
-                'password' => $request->password
-            ])){   
-                if(Agents::where('email', $request->email)->first()){
-                    return redirect()->route('agentHomePage');
-                }else if(Travelers::where('email', $request->email)->first()){
-                    return redirect()->route('travelers');
-                }   
-            }
-            else{
-                return redirect()->route('login');
-            }
+    public function showLoginForm(){
+        return view('auth/admin-login');
     }
+
     
 }

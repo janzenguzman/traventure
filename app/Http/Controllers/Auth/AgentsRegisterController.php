@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;  
+
 use App\Agents;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Requests; 
 
 class AgentsRegisterController extends Controller
 {
@@ -36,7 +39,7 @@ class AgentsRegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:agents');
+        $this->middleware('auth:agents');
     }
 
     /**
@@ -49,7 +52,7 @@ class AgentsRegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:agents',
+            'email' => 'required|string|email|max:255|unique:travelers',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -68,8 +71,9 @@ class AgentsRegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-
+       
     }
 
     
+ 
 }
