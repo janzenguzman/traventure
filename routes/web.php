@@ -23,7 +23,10 @@ Route::get('/admin-login', 'Auth\AdminLoginController@showLoginForm')->name('adm
 
 Auth::routes();
 Route::get('/travelers', 'TravelersController@index') -> name('travelers');
+
 Route::post('/agents-register', 'Auth\AgentsRegisterController@register') -> name('agents-register');
 Route::post('/register', 'Auth\RegisterController@register') -> name('register');
 Route::get('/agentsHomePage', 'AgentsController@showHomePage') -> name('agentsHomePage');
 Route::post('/custom-login', 'Auth\LoginController@login') -> name('custom-login');
+
+Route::get('/agentsHomePage', 'Auth\AgentsController@showHomePage') -> name('agentsHomePage');
