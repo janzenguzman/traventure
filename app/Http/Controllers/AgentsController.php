@@ -21,12 +21,8 @@ class AgentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('agents');
-    }
 
-    protected function showHomePage(){
+    public function showHomePage(){
         return view ('agentsHomePage');
     }
 }
