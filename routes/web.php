@@ -19,8 +19,6 @@ Route::get('/agentsRegister', function() {
     return view('auth/agentsRegister');
 }); 
 
-
-
 Auth::routes();
 
 Route::post('/agents-register', 'Auth\AgentsRegisterController@register') -> name('agents-register');
