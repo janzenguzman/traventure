@@ -23,6 +23,6 @@ class AgentsController extends Controller
      */
 
     public function showHomePage(){
-        return view ('agentsHomePage');
+        return view ('\Agent\HomePage');
     }
 }

@@ -15,7 +15,7 @@ class Travelers extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'fname', 'lname', 'gender', 'username', 'email', 'password', 'birthday', 'photo',
     ];
 
     /**

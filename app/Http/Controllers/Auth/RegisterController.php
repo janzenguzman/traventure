@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;  
 
+use Illuminate\Support\Facades\Input;
 use App\Travelers;
+use App\Users;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -30,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/travelers';
+    protected $redirectTo = '/Traveler/HomePage';
 
     /**
      * Create a new controller instance.
@@ -51,9 +53,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'fname' => 'required|string|max:50',
+            'lname' => 'required|string|max:50',
+            'gender' => 'required|string|max:150',
+            'username' => 'required|string|max:20',
             'email' => 'required|string|email|max:255|unique:travelers',
             'password' => 'required|string|min:6|confirmed',
+            'birthday' => 'required|date',
+            //'photo' => 'required|string|max:191',
         ]);
     }
 
@@ -65,14 +72,33 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
-        return Travelers::create([
-            'name' => $data['name'],
+        $fileName = 'null';
+        if (Input::file('photo')->isValid()) {
+            $destinationPath = public_path('public/uploads/files/');
+            $extension = Input::file('photo')->getClientOriginalExtension();
+            $fileName = uniqid().'.'.$extension;
+    
+            Input::file('photo')->move($destinationPath, $fileName);
+        }
+        
+        $traveler = Travelers::create([
+            'fname' => $data['fname'],
+            'lname' => $data['lname'], 
+            'gender' => $data['gender'],
+            'username' => $data['username'],           
             'email' => $data['email'],
-            'password' => bcrypt($data['password'])
+            'password' => bcrypt($data['password']),
+            'birthday' => $data['birthday'],
+            'photo' => $fileName,
         ]);
 
-        
+        users::create([
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+            'userType' => 'traveler',
+        ]);
+
+        return $traveler;
     }
 
     

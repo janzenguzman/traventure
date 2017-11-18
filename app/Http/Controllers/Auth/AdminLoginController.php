@@ -28,7 +28,7 @@ class AdminLoginController extends Controller
      *
      * @var string
      */
-    //protected $redirectTo = '/foo';
+    protected $redirectTo = '/Admin/HomePage';
 
     /**
      * Create a new controller instance.
@@ -37,11 +37,32 @@ class AdminLoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
     }
 
-    public function showLoginForm(){
-        return view('auth/admin-login');
+    public function showLoginForm()
+    {
+        return view('\Admin\Login');
+    }
+    
+    public function login(Request $request)
+    {
+        //Validate the form data
+        $this->validate($request,[
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+        
+        //Attempt to log the user in
+        if(Auth::guard('admin')->attempt(['email' => $request->email,
+                'password' => $request->password], $request->remember))
+        {
+            //if successful to the intended location
+            return redirect()->intended(route('Admin.HomePage'));
+        }
+        
+        //if unsuccessful redirect back to the login form
+        return redirect()->back()->withInputs($request->only('email', 'remember'));
     }
 
     
