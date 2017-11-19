@@ -17,10 +17,22 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/foo');
-        }
-
-        return $next($request);
-    }
+        switch ($guard) {
+            case 'admin':
+              if (Auth::guard($guard)->check()) {
+                return redirect()->route('Admin.HomePage');
+              }
+              break;
+            case 'travelers':
+              if (Auth::guard($guard)->check()) {
+                return redirect()->route('Traveler.HomePage');
+              }
+              break;
+            case 'agents':
+            if (Auth::guard($guard)->check()) {
+              return redirect()->route('Agent.HomePage');
+            }
+          }
+          return $next($request);
+        }  
 }

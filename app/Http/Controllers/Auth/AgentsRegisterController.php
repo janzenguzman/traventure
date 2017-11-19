@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;  
 
 use App\Agents;
+use App\Users;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -30,7 +31,7 @@ class AgentsRegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/agentsHomePage';
+    protected $redirectTo = '/Agent/HomePage';
 
     /**
      * Create a new controller instance.
@@ -39,7 +40,7 @@ class AgentsRegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:agents');
+        $this->middleware('guest:agents'); 
     }
 
     /**
@@ -66,12 +67,19 @@ class AgentsRegisterController extends Controller
     protected function create(array $data)
     {
 
-        return Agents::create([
+        $agents = Agents::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-       
+
+        users::create([
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+            'userType' => 'travel agent',
+        ]);
+        
+        return $agents;
     }
 
     

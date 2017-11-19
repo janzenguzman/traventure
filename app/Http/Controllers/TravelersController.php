@@ -23,6 +23,6 @@ class TravelersController extends Controller
      */
     public function index()
     {
-        return view('travelers');
+        return view('Traveler/HomePage');
     }
 }
