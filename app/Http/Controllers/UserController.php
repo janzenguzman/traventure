@@ -13,12 +13,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show()
     {
         $names = [
             'names' => [
                 'Janzen Guzman',
-                'Leo Tan'
+                'Ariel Leonado',
+                'Alexander Ramas'
             ]
         ];
         // return view('user.profile', ['user' => User::findOrFail($id)]);
