@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/sample', 'UserController@show');
+
 Route::get('/agentsRegister', function() {
     return view('auth/agentsRegister');
 }); 
@@ -27,6 +29,9 @@ Route::post('/custom-login', 'Auth\LoginController@login') -> name('custom-login
 
 Route::prefix('Traveler')->group(function(){
     Route::get('/HomePage', 'TravelersController@index') -> name('Traveler.HomePage');
+    Route::get('/TourPackage/{package}', 'TravelersController@showPackages') -> name('Traveler.TourPackage');
+    Route::get('/ContactNow', 'TravelersController@showContactNow') -> name('Traveler.ContactNow');
+    // Route::resource('packages', 'PackagesController');
 });
 
 Route::prefix('Admin')->group(function(){
