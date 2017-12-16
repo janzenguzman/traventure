@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAgentsTable extends Migration
+class CreateDeletedAgentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,18 @@ class CreateAgentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('agents', function (Blueprint $table) {
+        Schema::create('deleted_agents', function (Blueprint $table) {
             $table->increments('id');
             $table->string('company_name');
             $table->string('fname');
             $table->string('lname');
             $table->string('job_position');
             $table->string('contact_no');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password');
             $table->string('status');
             $table->rememberToken();
             $table->timestamps();
-            $table->timestamps('last_signed_in');
         });
     }
 
@@ -36,6 +35,6 @@ class CreateAgentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('agents');
+        Schema::dropIfExists('deleted_agents');
     }
 }
