@@ -65,8 +65,11 @@ class Handler extends ExceptionHandler
             $login = 'Admin.Login';
             break;
 
+            case 'agents':
+            $login = 'AgentLogin';
+
             default:
-            $login = 'login';
+            $login = 'TravelerLogin';
             break;
         }
         return redirect()->guest(route($login));

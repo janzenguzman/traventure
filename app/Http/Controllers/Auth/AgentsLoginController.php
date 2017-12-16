@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use Auth;
-use App\Admin;
+use App\Travelers;
+use App\Agents;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 
-class AdminLoginController extends Controller
+class AgentsLoginController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ class AdminLoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/Admin/HomePage';
+    protected $redirectTo = '/Agents/HomePage';
 
     /**
      * Create a new controller instance.
@@ -38,14 +39,9 @@ class AdminLoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:admin')->except('logout');
+        $this->middleware('guest:agents')->except('logout');
     }
 
-    public function showLoginForm()
-    {
-        return view('\Admin\Login');
-    }
-    
     public function login(Request $request)
     {
         //Validate the form data
@@ -55,27 +51,31 @@ class AdminLoginController extends Controller
         ]);
         
         //Attempt to log the user in
-        if(Auth::guard('admin')->attempt(['email' => $request->email,
-                'password' => $request->password], $request->remember))
+        if(Auth::guard('agents')->attempt(['email' => $request->email,
+                'password' => $request->password, 'status' => 'Accepted'], $request->remember))
         {
+            
             //if successful to the intended location
-            return redirect()->intended(route('Admin.HomePage'));
+            return redirect()->route('Agent.HomePage');
+        }else{
+            return $request->expectsJson()
+                ? response()->json(['message' => $exception->getMessage()], 401)
+                : redirect()->guest(route('auth/AgentLogin'));
         }
         
         //if unsuccessful redirect back to the login form
         //return redirect()->back()->withInputs($request->only('email', 'remember'));
-        throw ValidationException::withMessages([
-            $this->username() => [trans('auth.failed')],
-        ]);
+        // throw ValidationException::withMessages([
+        //     $this->username() => [trans('auth.failed')],
+        // ]);
     }
 
-    public function logout(Request $request)
-    {
-        Auth::guard('admin')->logout();
-
-        $request->session()->flush();
-        $request->session()->regenerate();
-        
-        return redirect()->intended(route( 'Admin.Login' ));
+    public function showRegisterForm(){
+        return view ('auth/AgentRegister');
     }
+
+    public function showLoginForm(){
+        return view ('auth/AgentLogin');
+    }
+    
 }
