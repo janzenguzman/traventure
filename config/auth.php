@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'travelers',
+        'passwords' => 'users',
     ],
 
     /*
@@ -71,7 +71,7 @@ return [
             'provider' => 'travelers',
         ],
 
-        'travelers' => [
+        'travelers-api' => [
             'driver' => 'token',
             'provider' => 'travelers',
         ],
@@ -106,12 +106,12 @@ return [
         'admin' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
-
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
-        ],
+        
     ],
 
     /*
@@ -145,7 +145,7 @@ return [
         'admin' => [
             'provider' => 'admin',
             'table' => 'password_resets',
-            'expire' => 15,
+            'expire' => 60,
         ],
     ],
 ];
