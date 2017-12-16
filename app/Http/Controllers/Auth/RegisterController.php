@@ -32,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/Traveler/HomePage';
+    protected $redirectTo = '/Traveler/Explore';
 
     /**
      * Create a new controller instance.

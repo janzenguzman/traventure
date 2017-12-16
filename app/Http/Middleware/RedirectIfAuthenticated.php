@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
               break;
             case 'travelers':
               if (Auth::guard($guard)->check()) {
-                return redirect()->route('Traveler.HomePage');
+                return redirect()->route('Traveler.Explore');
               }
               break;
             case 'agents':
