@@ -49,7 +49,7 @@ class LoginController extends Controller
                 if(Agents::where('email', $request->email)->first()){
                     return redirect()->route('Agent.HomePage');
                 }else if(Travelers::where('email', $request->email)->first()){
-                    return redirect()->route('Traveler.HomePage');
+                    return redirect()->route('Traveler.Explore');
                 }   
             }
             else{
