@@ -29,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    //protected $redirectTo = '/foo';
+    protected $redirectTo = 'Traveler/Explore';
 
     /**
      * Create a new controller instance.
@@ -41,20 +41,14 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request){
-            if(Auth::attempt([
-                'email' => $request->email,
-                'password' => $request->password
-            ])){   
-                if(Agents::where('email', $request->email)->first()){
-                    return redirect()->route('Agent.HomePage');
-                }else if(Travelers::where('email', $request->email)->first()){
-                    return redirect()->route('Traveler.HomePage');
-                }   
-            }
-            else{
-                return redirect()->route('login');
-            }
+    public function showLoginForm()
+    {
+        return view('auth.TravelerLogin');
+    }
+
+    public function showRegisterForm()
+    {
+        return view('auth.TravelerRegister');
     }
     
 }

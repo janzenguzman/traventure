@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Package;
+use Auth;
 use DB;
 
 class TravelersController extends Controller
@@ -25,14 +26,14 @@ class TravelersController extends Controller
      */
     public function index()
     {
-        // return view('Traveler/HomePage');
-        // $packages = Package::all();
-        // $packages = DB::select('SELECT * FROM packages');
-        //$packages = Package::orderBy('created_at', 'desc')->take(1)->get();
-        //$packages = Package::orderBy('created_at', 'desc')->get();
+        // return view('Traveler.Packages');
+        //     $packages = Package::all();
+        //     $packages = DB::select('SELECT * FROM packages');
+        //     $packages = Package::orderBy('created_at', 'desc')->take(1)->get();
+        //     $packages = Package::orderBy('created_at', 'desc')->get();
 
-        $packages = Package::orderBy('created_at', 'desc')->paginate(10);
-        return view('Traveler.packages')->with('packages', $packages);
+         $packages = Package::orderBy('created_at', 'desc')->paginate(10);
+         return view('Traveler.packages')->with('packages', $packages);
     }
 
     public function create()

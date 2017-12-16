@@ -7,15 +7,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Travelers extends Authenticatable
 {
+    
     use Notifiable;
-
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'fname', 'lname', 'gender', 'username', 'email', 'password', 'birthday', 'photo',
+        'fname', 'lname', 'gender', 'username', 'email', 'contact_no', 'password', 'birthday', 'photo',
     ];
 
     /**
