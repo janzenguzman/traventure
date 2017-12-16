@@ -79,6 +79,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('contact_no') ? ' has-error' : '' }}">
+                            <label for="contact_no" class="col-md-4 control-label">Contact No</label>
+
+                            <div class="col-md-6">
+                                <input id="contact_no" type="text" class="form-control" name="contact_no" value="{{ old('contact_no') }}" required>
+
+                                @if ($errors->has('contact_no'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('contact_no') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 
