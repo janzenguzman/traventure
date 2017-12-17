@@ -27,4 +27,12 @@ class Travelers extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function bookings(){
+        return $this->hasMany('App\Booking');
+    }
+
+    public function package(){
+        return $this->hasOne('App\Package');
+    }
 }

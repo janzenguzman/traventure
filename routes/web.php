@@ -13,15 +13,8 @@
 
 Route::get('/', function () {
     return view('landing');
+
 });
-
-//  Route::get('/AgentRegister', function() {
-//     return view('auth/AgentRegister');
-// }); 
-
-// Route::get('/AgentLogin', function() {
-//     return view('auth/AgentLogin');
-// }); 
 Route::get('/TravelerLogin', 'Auth\LoginController@showLoginForm')->name('TravelerLogin');
 Route::get('/TravelerRegister', 'Auth\LoginController@showRegisterForm')->name('TravelerRegister');
 Route::get('/AgentRegister', 'Auth\AgentsLoginController@showRegisterForm')->name('AgentRegister');
@@ -40,8 +33,15 @@ Route::post('Agent/HomePage', 'Auth\AgentsLoginController@login')->name('Agents.
 Route::prefix('Traveler')->group(function(){
     Route::get('/Explore', 'TravelersController@index') -> name('Traveler.Explore');
     Route::get('/TourPackage/{package}', 'TravelersController@showPackages') -> name('Traveler.TourPackage');
-    Route::get('/ContactNow', 'TravelersController@showContactNow') -> name('Traveler.ContactNow');
-    // Route::resource('packages', 'PackagesController');
+    Route::get('/TourPackage/{package}/ContactNow', 'TravelersController@showContactNow') -> name('Traveler.ContactNow');
+    Route::get('/TourPackage/{package}/Book', 'TravelersController@book') -> name('Traveler.Book');
+    Route::post('/store', 'TravelersController@store') -> name('Traveler.Store');
+    Route::get('/TourPackage/{package}/Bill', 'TravelersController@showBill') -> name('Traveler.Bill');
+    Route::get('/Bookings', 'TravelersController@showBookings')->name('Traveler.Bookings');
+    Route::delete('/Bookings/Delete/{booking}', 'TravelersController@destroyBookings')->name('Traveler.DestroyBookings');
+    Route::get('/Trips', 'TravelersController@showTrips')->name('Traveler.Trips');
+    Route::get('/Favorites', 'TravelersController@showFavorites')->name('Traveler.Favorites');
+    Route::get('/Messages', 'TravelersController@showMessages')->name('Traveler.Messages');
 });
 
 Route::prefix('Admin')->group(function(){
