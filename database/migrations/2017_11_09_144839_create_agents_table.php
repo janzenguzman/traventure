@@ -25,7 +25,6 @@ class CreateAgentsTable extends Migration
             $table->string('status');
             $table->rememberToken();
             $table->timestamps();
-            $table->timestamps('last_signed_in');
         });
     }
 

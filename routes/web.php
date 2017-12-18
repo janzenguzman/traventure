@@ -62,5 +62,4 @@ Route::prefix('Admin')->group(function(){
 
 Route::prefix('Agent')->group(function(){
     Route::get('/HomePage', 'AgentsController@showHomePage') -> name('Agent.HomePage');
-    Route::get('/HomePage', 'AgentsController@dateNow') -> name('Agent.HomePage');
 }); 

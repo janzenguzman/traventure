@@ -20,7 +20,7 @@ class Agents extends Authenticatable
      */
     protected $fillable = [
         'company_name', 'fname', 'lname', 'job_position', 'contact_no', 'email', 
-            'password', 'status', 'active', 'last_signed_in',
+            'password', 'status', 'active',
     ];
 
     /**
@@ -29,6 +29,6 @@ class Agents extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token'
     ];
 }

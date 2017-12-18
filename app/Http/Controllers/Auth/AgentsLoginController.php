@@ -60,7 +60,7 @@ class AgentsLoginController extends Controller
         }else{
             return $request->expectsJson()
                 ? response()->json(['message' => $exception->getMessage()], 401)
-                : redirect()->guest(route('auth/AgentLogin'));
+                : redirect()->guest(route('AgentLogin'));
         }
         
         //if unsuccessful redirect back to the login form
