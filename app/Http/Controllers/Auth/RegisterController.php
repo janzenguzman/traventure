@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;  
 
-use Illuminate\Support\Facades\Input;
+use Carbon\Carbon;
 use App\Travelers;
-use App\Users;
+use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -58,6 +58,7 @@ class RegisterController extends Controller
             'gender' => 'required|string|max:150',
             'username' => 'required|string|max:20',
             'email' => 'required|string|email|max:255|unique:travelers',
+            'contact_no' => 'required|string|min:11|max:11',
             'password' => 'required|string|min:6|confirmed',
             'birthday' => 'required|date',
             //'photo' => 'required|string|max:191',
@@ -81,21 +82,18 @@ class RegisterController extends Controller
             Input::file('photo')->move($destinationPath, $fileName);
         }
         
+        $last_signed_in = Carbon::now();
         $traveler = Travelers::create([
             'fname' => $data['fname'],
             'lname' => $data['lname'], 
             'gender' => $data['gender'],
             'username' => $data['username'],           
             'email' => $data['email'],
+            'contact_no' => $data['contact_no'],
             'password' => bcrypt($data['password']),
             'birthday' => $data['birthday'],
             'photo' => $fileName,
-        ]);
-
-        users::create([
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'userType' => 'traveler',
+            'last_signed_in' => $last_signed_in,
         ]);
 
         return $traveler;

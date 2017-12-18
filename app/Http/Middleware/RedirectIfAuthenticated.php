@@ -22,16 +22,16 @@ class RedirectIfAuthenticated
               if (Auth::guard($guard)->check()) {
                 return redirect()->route('Admin.HomePage');
               }
-              break;
-            case 'travelers':
+            case 'agents':
               if (Auth::guard($guard)->check()) {
+
                 return redirect()->route('Traveler.Explore');
               }
               break;
-            case 'agents':
-            if (Auth::guard($guard)->check()) {
-              return redirect()->route('Agent.HomePage');
-            }
+            default:
+              if(Auth::guard($guard)->check()){
+                return redirect()->route('Traveler.Explore');
+              }
           }
           return $next($request);
         }  

@@ -35,8 +35,8 @@ class TravelersController extends Controller
         // $packages = Package::orderBy('created_at', 'desc')->take(1)->get();
         // $packages = Package::orderBy('created_at', 'desc')->get();
 
-        $packages = Package::orderBy('created_at', 'desc')->paginate(10);
-        return view('Traveler.packages')->with('packages', $packages);
+         $packages = Package::orderBy('created_at', 'desc')->paginate(10);
+         return view('Traveler.packages')->with('packages', $packages);
     }
 
     public function create()
