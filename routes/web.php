@@ -39,7 +39,7 @@ Route::prefix('Traveler')->group(function(){
     Route::get('/Bill', 'TravelersController@showBill') -> name('Traveler.Bill');
     Route::get('/Bookings', 'TravelersController@showBookings')->name('Traveler.Bookings');
     Route::delete('/Bookings/Delete/{booking}', 'TravelersController@destroyBookings')->name('Traveler.DestroyBookings');
-    Route::get('/Trips', 'TravelersController@showTrips')->name('Traveler.Trips');
+    Route::post('/Trips', 'TravelersController@showTrips')->name('Traveler.Trips');
     Route::get('/Favorites', 'TravelersController@showFavorites')->name('Traveler.Favorites');
     Route::post('/UpdateProfile', 'TravelersController@updateProfile')->name('Traveler.UpdateProfile');
 
@@ -55,6 +55,9 @@ Route::prefix('Traveler')->group(function(){
     Route::post('/Bookings', 'TravelersController@showBookings')->name('Traveler.SearchPname');
     Route::post('/Voucher', 'TravelersController@confirmRequest')->name('Traveler.ConfirmRequest');
     Route::get('/AddToFavorite', 'TravelersController@addToFavorites')->name('Traveler.AddToFavorites');
+    Route::get('/Bookings', 'TravelersController@showBookings')->name('Traveler.Bookings');
+    Route::get('/Trips', 'TravelersController@showTrips')->name('Traveler.Trips');
+    Route::post('/favorite', 'TravelersController@favoritePackage')->name('Traveler.Favorite');
 });
 
 Route::prefix('Admin')->group(function(){

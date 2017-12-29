@@ -9,6 +9,7 @@ use App\Booking;
 use App\Travelers;
 use App\Trips;
 use Carbon\Carbon;
+use App\Favorites;
 use DB;
 use Auth;
 
@@ -32,11 +33,8 @@ class TravelersController extends Controller
     public function index()
     {
         // return view('Traveler/HomePage');
-        // $packages = Package::all();
+        $packages = Package::all();
         // $packages = DB::select('SELECT * FROM packages');
-        // $packages = Package::orderBy('created_at', 'desc')->take(1)->get();
-        // $packages = Package::orderBy('created_at', 'desc')->get();
-
          $packages = Package::orderBy('created_at', 'desc')->paginate(8);
          return view('Traveler.packages')->with('packages', $packages);
     }
@@ -66,6 +64,7 @@ class TravelersController extends Controller
         $booking->traveler_id = auth()->user()->id;
         $booking->status = 'Pending';
         $booking->package_id = $request->input('package_id');
+        $booking->expired = 0;
         $booking->save();
 
         return redirect('/Traveler/Bill');
@@ -89,7 +88,28 @@ class TravelersController extends Controller
 
     public function destroyBookings($booking_id)
     {
-        //
+        // $bookings = Booking::find($booking_id);
+        $bookings = DB::table('bookings')->where('booking_id', $booking_id)->get();
+            foreach($bookings as $booking){
+                DB::table('cancelled_bookings')->insert([
+                    'booking_id'=> $booking->booking_id,
+                    'date_from' => $booking->date_from,
+                    'date_to' => $booking->date_to,
+                    'client_fname' => $booking->client_fname,
+                    'client_lname' => $booking->client_lname,
+                    'contact_num' => $booking->contact_num,
+                    'client_email' => $booking->client_email,
+                    'adult' => $booking->adult,
+                    'child' => $booking->child,
+                    'infant' =>$booking->infant,
+                    'note' => $booking->note,
+                    'created_at' => $booking->created_at,
+                    'updated_at' => $booking->updated_at,
+                ]);
+            }
+        // $bookings->delete();
+        DB::table('bookings')->where('booking_id', $booking_id)->delete();
+        return redirect('/Traveler/Bookings')->with('success', 'Booking Cancelled!');
     }
 
     public function book($package_id)
@@ -121,7 +141,7 @@ class TravelersController extends Controller
             ->join('packages', 'bookings.package_id', '=', 'packages.package_id')
             ->where([['traveler_id', $id], ['bookings.status', '!=', 'Pending'], 
                     ['bookings.status', '!=', 'Cancelled'],
-                    ['bookings.status', 'like', $requested]])
+                    ['bookings.status', 'like', $requested],])
             ->orderBy('bookings.created_at', 'desc')->paginate(5);
         }elseif($accepted){
             $bookings = DB::table('bookings')
@@ -135,22 +155,92 @@ class TravelersController extends Controller
             ->join('packages', 'bookings.package_id', '=', 'packages.package_id')
             ->where([['traveler_id', $id], ['bookings.status', '!=', 'Pending'], 
                     ['bookings.status', '!=', 'Cancelled'],
-                    ['packages.package_name', 'like', '%'.$pname_search.'%']])
+                    ['packages.package_name', 'like', '%'.$pname_search.'%'],
+                    ['bookings.expired', '0']])
             ->orderBy('bookings.created_at', 'desc')->paginate(5);
         }
-            return view('Traveler.Bookings')->with('bookings', $bookings);
+            // return view('Traveler.Bookings')->with('bookings', $bookings);
+
+        foreach($bookings as $booking){
+            $now = Carbon::now();
+            $date_to  = new Carbon($booking->date_to);
+            $diff = $date_to->diffInDays($now);
+            $trips = DB::table('trips')->where('booking_id', $booking->booking_id)->first();
+
+            if($now > $date_to){
+                DB::table('bookings')->where('booking_id', $booking->booking_id)->update(['expired' => 1]); 
+            }
+            if($booking->expired == 1 && $trips === NULL){
+                DB::table('trips')->insert([
+                    'booking_id' => $booking->booking_id,
+                    'traveler_id' => $id,
+                    'package_id' => $booking->package_id,
+                ]);
+            }
+        }
+        // return view('Traveler.Bookings')->with('bookings', $bookings);
+        return view('Traveler.Bookings', compact('bookings'));
     }
 
-    public function showTrips()
+    public function showTrips(Request $request)
     {
-        
-        return view('Traveler.Trips');
+        $id = auth()->user()->id;
+        $pname_search = $request->input('search_pname');
+
+        $trips = DB::table('trips')
+            ->join('bookings', 'trips.booking_id', '=', 'bookings.booking_id')
+            ->join('packages', 'trips.package_id', '=', 'packages.package_id')
+            ->where([['trips.traveler_id', $id],
+                    ['packages.package_name', 'like', '%'.$pname_search.'%']])
+            ->orderBy('trips_id')->paginate(5);
+        return view('Traveler.Trips')->with('trips', $trips);
     }
 
     public function showFavorites()
     {
-        // $packages = Package::find($package_id);
-        return view('Traveler.Favorites');
+        $id = auth()->user()->id;
+        $favorites = DB::table('favorites')
+            ->join('packages', 'favorites.package_id', '=', 'favorites.package_id')
+            ->where('traveler_id', $id)->get();
+        return view('Traveler.Favorites')->with('favorites', $favorites);
+    }
+
+    public function favoritePackage(Request $request)
+    {
+        $id = $request['packageId'];
+        $is_Fave = $request['isFave'] === 'true';
+        $update = false;
+        $package = Package::find($id);
+        if(!$package){
+            return null;
+        }
+        $traveler = Auth::user();
+        $faves = $traveler->favorites()->where('package_id', $id)->first(); // already favorited a package
+        // DB::table('favorites')->insert([
+        //     'traveler_id' => $traveler->id,
+        //     'package_id' => $id,
+        //     'favorited' => $is_Fave,
+        // ]);
+        if($faves){
+            $already_favorite = $faves->favorited;
+            $update = true;
+            if($already_favorite == $is_Fave){
+                $faves->delete();
+                return null;
+            }
+        }else{
+            $faves = new Favorites();
+        }
+        $faves->traveler_id = $traveler->id;
+        $faves->package_id = $id;
+        $faves->favorited = $is_Fave;
+        if($update){
+            $faves->update();
+
+        }else{
+            $faves->save();
+        }
+        return null;
     }
 
     public function updateProfile(Request $request){
