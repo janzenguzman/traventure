@@ -36,12 +36,13 @@ Route::prefix('Traveler')->group(function(){
     Route::get('/TourPackage/{package}/ContactNow', 'TravelersController@showContactNow') -> name('Traveler.ContactNow');
     Route::get('/TourPackage/{package}/Book', 'TravelersController@book') -> name('Traveler.Book');
     Route::post('/store', 'TravelersController@store') -> name('Traveler.Store');
-    Route::get('/TourPackage/{package}/Bill', 'TravelersController@showBill') -> name('Traveler.Bill');
+    Route::get('/Bill/{package}', 'TravelersController@showBill') -> name('Traveler.Bill');
     Route::get('/Bookings', 'TravelersController@showBookings')->name('Traveler.Bookings');
     Route::delete('/Bookings/Delete/{booking}', 'TravelersController@destroyBookings')->name('Traveler.DestroyBookings');
     Route::get('/Trips', 'TravelersController@showTrips')->name('Traveler.Trips');
-    Route::get('/Favorites', 'TravelersController@showFavorites')->name('Traveler.Favorites');
+    Route::get('/Favorites', 'TravelersController@showFavorites')->name('Traveler.MyFavorites');
     Route::get('/Messages', 'TravelersController@showMessages')->name('Traveler.Messages');
+    Route::post('/favorite', 'TravelersController@favoritePackage')->name('Traveler.Favorite');
 });
 
 Route::prefix('Admin')->group(function(){
