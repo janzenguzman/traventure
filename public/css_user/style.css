@@ -100,9 +100,9 @@
     width: 70%;
 }
 
-.nav-mini-wrapper {
+/* .nav-mini-wrapper {
     width: 15%;
-}
+} */
 
 .nav.navbar-nav {
     text-align: center;
@@ -129,7 +129,6 @@
     -ms-transition: all 0.3s ease-in-out 0s;
     -o-transition: all 0.3s ease-in-out 0s;
     transition: all 0.3s ease-in-out 0s;
-    text-transform: uppercase;
     letter-spacing: 1.5px;
     padding-left: 14px;
     color: #FFF;
@@ -287,7 +286,7 @@
     display: none;
 }
 
-ul.nav-mini {
+/* ul.nav-mini {
     float: right;
 }
 
@@ -311,7 +310,7 @@ ul.nav-mini li a {
 ul.nav-mini li i {
     font-size: 15px;
     font-weight: 700;
-}
+} */
 
 @media only screen and (max-width: 1199px) {}
 
@@ -322,9 +321,9 @@ ul.nav-mini li i {
     .navbar-nav-wrapper {
         width: 0%;
     }
-    .nav-mini-wrapper {
+    /* .nav-mini-wrapper {
         width: 50%;
-    }
+    } */
     .navbar {
         margin: 0;
         padding: 0;
@@ -390,8 +389,6 @@ ul.nav-mini li i {
 .navbar-sticky .navbar-nav > li.mega-menu ul {
     top: 44px;
 }
-
-.navbar-sticky .logo-wrapper .logo {}
 
 .transparent-header .navbar-sticky {
     padding: 10px 0 8px;
@@ -475,7 +472,7 @@ ul.nav-mini li i {
 }
 
 .hero .form-group .btn:hover {
-    color: #FA9623;
+    color: rgb(28, 139, 212);
 }
 
 .hero .form-group .form-control {
@@ -523,7 +520,7 @@ ul.nav-mini li i {
 }
 
 .top-search a:hover {
-    background: #E37900;
+    background: rgb(28, 139, 212);
 }
 
 .post-hero {
@@ -541,8 +538,6 @@ ul.nav-mini li i {
     padding: 4px 10px;
     margin-right: 10px;
 }
-
-.post-hero-item {}
 
 .post-hero-item a {
     color: #939393;
@@ -686,7 +681,7 @@ ul.footer-menu li + li {
 }
 
 .bottom-footer a:hover {
-    color: #E37900;
+    color: rgb(28, 139, 212);
 }
 
 ul.bottom-footer-menu {
@@ -804,7 +799,6 @@ ul.bottom-footer-menu.for-social li:after {
 .login-box-wrapper .modal-title {
     line-height: 1;
     margin: 0;
-    text-transform: lowercase;
     font-weight: 700
 }
 
@@ -1158,8 +1152,6 @@ ul.bottom-footer-menu.for-social li:after {
   border-radius: 50%;
 }
 
-.pager-wrappper.text-left {}
-
 @media only screen and (max-width: 1199px) {}
 
 @media only screen and (max-width: 991px) {
@@ -1323,7 +1315,6 @@ ul.bottom-footer-menu.for-social li:after {
         border: 1px solid rgb(28, 139, 212);
         margin: 5px 0;
     }
-    .filter-full-width-wrapper {}
 }
 
 @media (max-width: 479px) {
@@ -1760,7 +1751,7 @@ ul.featured-list-with-h.no-last-bb li:last-child {
 }
 
 .top-destination-item .image:hover {
-    -webkit-transform: rotate(-2deg) scale(1.105);
+    -transform: rotate(-2deg) scale(1.105);
 }
 
 .top-destination-item h4 {
@@ -1828,7 +1819,7 @@ ul.featured-list-with-h.no-last-bb li:last-child {
 }
 
 .top-destination-item-02 .image:hover {
-    -webkit-transform: rotate(-2deg) scale(1.105);
+    -transform: rotate(-2deg) scale(1.105);
 }
 
 .top-destination-item-02 .content {
@@ -1970,8 +1961,6 @@ ul.featured-list-with-h.no-last-bb li:last-child {
     padding-top: 5px;
 }
 
-.trip-list-wrapper {}
-
 .trip-list-item {
     position: relative;
     padding-left: 65px;
@@ -2087,8 +2076,6 @@ ul.featured-list-with-h.no-last-bb li:last-child {
     border-bottom: 0;
     padding-bottom: 0;
 }
-
-.wanted-trip-wrapper {}
 
 .wanted-trip-item {
     border: 1px solid #E6E6E6;
@@ -2224,7 +2211,7 @@ ul.featured-list-with-h.no-last-bb li:last-child {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(254, 136, 0, 0.85);
+    background: rgb(28, 139, 212);
 }
 
 .user-item-01 .user-item-inner {
@@ -2433,8 +2420,6 @@ ul.featured-list-with-h.no-last-bb li:last-child {
     -moz-box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.28);
     box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.28);
 }
-
-.user-long-sm-item {}
 
 .user-long-sm-item .image {
     width: 100px;
@@ -2690,8 +2675,6 @@ ul.featured-list-with-h.no-last-bb li:last-child {
     margin-bottom: 0;
     padding-bottom: 0;
 }
-
-.with-date .itinerary-list-item {}
 
 .with-date .itinerary-list-item .content {
     padding-left: 75px;
@@ -3348,8 +3331,6 @@ ul.availabily-list li.availabily-content.sold-out > div.date-from:after {
  * Review
  */
 
-.review-wrapper {}
-
 .review-wrapper .review-rating {
     line-height: 1.1;
 }
@@ -3464,7 +3445,7 @@ ul.review-list li .review-replied-header {
 }
 
 a.review-load-more {
-    background: rgba(254, 136, 0, 0.6);
+    background: rgb(28, 139, 212);
     color: #FFF;
     text-align: center;
     display: block;
@@ -3478,7 +3459,7 @@ a.review-load-more {
 }
 
 a.review-load-more:hover {
-    background: rgba(254, 136, 0, 1);
+    background: rgb(28, 139, 212);
 }
 
 @media only screen and (max-width: 1199px) {}
@@ -3497,8 +3478,6 @@ a.review-load-more:hover {
 /**
  * User Profile
  */
-
-.user-profile-wrapper {}
 
 .user-header {
     position: relative;
@@ -3708,7 +3687,6 @@ ul.user-header-menu li > a:hover > span {
  * Payment and Confirmation page
  */
 
-.user-profile-wrapper {}
 
 .payment-header {
     position: relative;
@@ -3769,9 +3747,6 @@ ul.price-summary-list li.total-price {
     margin: 25px -19px -29px;
     padding: 20px 19px
 }
-
-.confirmation-wrapper {}
-
 .confirmation-inner {
     background: #FFF;
     padding: 40px;
@@ -3974,7 +3949,7 @@ ul.sidebar-post li h6 {
 }
 
 ul.sidebar-post li a:hover h6 {
-    color: #FE8800
+    color: #2991A2
 }
 
 ul.sidebar-post li .image {
@@ -4031,7 +4006,7 @@ ul.sidebar-post li .recent-post-sm-meta {
 .tag-cloud a:hover {
     background: rgb(28, 139, 212);
     color: #FFF!important;
-    border-color: #FE8800
+    color: #2991A2
 }
 
 .tag-cloud-wrapper {
@@ -4240,12 +4215,12 @@ ul.sidebar-menu > li > a:after {
 ul.sidebar-menu > li.active > a {
     font-weight: 600;
     padding-left: 20px;
-    color: #FE8800
+    color: #2991A2
 }
 
 ul.sidebar-menu > li.active > a:after {
     left: 0;
-    color: #FE8800
+    color: #2991A2
 }
 
 ul.sidebar-menu > li > a:hover {
@@ -4290,12 +4265,12 @@ ul.sidebar-menu > li ul li:before {
 
 ul.sidebar-menu > li ul li.active a {
     font-weight: 600;
-    color: #FE8800
+    color: #2991A2
 }
 
 ul.sidebar-menu > li ul li.active:before {
     border-top: 1px dotted rgb(28, 139, 212);
-    border-bottom: 1px dotted #FE8800
+    border-bottom: 1px dotted #2991A2
 }
 
 h4.sidebar-menu-title {
@@ -4344,7 +4319,7 @@ ul.common-menu-list li a:after {
     border-style: solid;
     border-width: 5px 0 5px 6px;
     border-color: transparent transparent transparent transparent;
-    o-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
     -ms-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
     -webkit-transition: all 0.3s ease-out;
@@ -4399,7 +4374,7 @@ ul.common-menu-list.common-menu-list-shadow {
 }
 
 .sidebar-booking-header > div {
-    display: inline-block;
+    /* display: inline-block; */
     vertical-align: bottom;
     float: right;
 }
@@ -4750,7 +4725,7 @@ ul.common-menu-list.common-menu-list-shadow {
 
 .blog-content h3 a:hover,
 .blog-content h4 a:hover {
-    color: #FE8800
+    color: #2991A2
 }
 
 .blog-entry {
@@ -4965,7 +4940,7 @@ ul.comment-item ul {
 .comment-item a.comment-reply:hover {
     color: #FFF;
     border-color: rgb(28, 139, 212);
-    background: #FE8800
+    background: #2991A2
 }
 
 .comment-form .form-control:-moz-placeholder {
@@ -5102,8 +5077,8 @@ ul.comment-item ul {
 }
 
 .create-tour-inner .form-spin-group .btn:hover {
-    background: #E37900;
-    border-color: #E37900;
+    background: #2991A2;
+    border-color: #2991A2;
 }
 
 .create-done-wrapper {
@@ -5535,8 +5510,6 @@ ul.address-list li > i {
  * Gallery
  */
 
-.gallery-wrapper {}
-
 .gallery-wrapper .gallery-item {
     margin: 0;
     margin-bottom: -8px;
@@ -5597,8 +5570,8 @@ ul.address-list li > i {
     line-height: 80px;
     border-radius: 50%;
     text-align: center;
-    color: #FA9623;
-    border: 2px solid #FA9623;
+    color: rgb(28, 139, 212);
+    border: 2px solid rgb(28, 139, 212);
     float: left;
     font-size: 28px;
     margin: 5px 0 0;
@@ -5759,8 +5732,6 @@ a.hash-tag:hover {
     margin-bottom: 0;
 }
 
-.read-more-less {}
-
 .morectnt span {
     display: none;
 }
@@ -5778,9 +5749,9 @@ a.hash-tag:hover {
 
 ul.social-share-sm {
     position: relative;
-    display: inline-block;
+    /* display: inline-block; */
     line-height: 1;
-    float: left
+    float: left;
 }
 
 ul.social-share-sm li {
@@ -5839,7 +5810,7 @@ ul.social-share-sm li a {
 }
 
 ul.social-share-sm li a:hover {
-    color: #FE8800
+    color: #2991A2
 }
 
 ul.social-share-sm.for-useful {

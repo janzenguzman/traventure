@@ -15,13 +15,13 @@ Route::get('/', function () {
     return view('landing');
 
 });
+
+Auth::routes();
+
 Route::get('/TravelerLogin', 'Auth\LoginController@showLoginForm')->name('TravelerLogin');
 Route::get('/TravelerRegister', 'Auth\LoginController@showRegisterForm')->name('TravelerRegister');
 Route::get('/AgentRegister', 'Auth\AgentsLoginController@showRegisterForm')->name('AgentRegister');
 Route::get('/AgentLogin', 'Auth\AgentsLoginController@showLoginForm')->name('AgentLogin');
-
-
-Auth::routes();
 
 Route::post('/agents-register', 'Auth\AgentsRegisterController@register') -> name('agents-register');
 Route::post('/register', 'Auth\RegisterController@register') -> name('register');
@@ -33,16 +33,31 @@ Route::post('Agent/HomePage', 'Auth\AgentsLoginController@login')->name('Agents.
 Route::prefix('Traveler')->group(function(){
     Route::get('/Explore', 'TravelersController@index') -> name('Traveler.Explore');
     Route::get('/TourPackage/{package}', 'TravelersController@showPackages') -> name('Traveler.TourPackage');
-    Route::get('/TourPackage/{package}/ContactNow', 'TravelersController@showContactNow') -> name('Traveler.ContactNow');
-    Route::get('/TourPackage/{package}/Book', 'TravelersController@book') -> name('Traveler.Book');
     Route::post('/store', 'TravelersController@store') -> name('Traveler.Store');
-    Route::get('/Bill/{package}', 'TravelersController@showBill') -> name('Traveler.Bill');
+    Route::get('/Bill', 'TravelersController@showBill') -> name('Traveler.Bill');
     Route::get('/Bookings', 'TravelersController@showBookings')->name('Traveler.Bookings');
     Route::delete('/Bookings/Delete/{booking}', 'TravelersController@destroyBookings')->name('Traveler.DestroyBookings');
+    Route::post('/Trips', 'TravelersController@showTrips')->name('Traveler.Trips');
+    Route::get('/Favorites', 'TravelersController@showFavorites')->name('Traveler.Favorites');
+    Route::post('/UpdateProfile', 'TravelersController@updateProfile')->name('Traveler.UpdateProfile');
+
+    //Added by Ariel
+    Route::get('/Messages', 'TravelersController@showMessages')->name('Traveler.ShowMessages');
+    Route::get('/SentMessages', 'TravelersController@showSentMessages')->name('Traveler.SentMessages');
+    Route::post('/SendMessage', 'TravelersController@sendMessage')->name('Traveler.SendMessage');
+    Route::post('/ReplyMessage', 'TravelersController@replyMessage')->name('Traveler.ReplyMessage');
+    Route::post('/DeleteMessage', 'TravelersController@deleteMessage')->name('Traveler.DeleteMessage');
+    Route::post('/CancelRequest', 'TravelersController@cancelRequest')->name('Traveler.CancelRequest');
+    Route::get('/Bookings/{package}/{booking}', 'TravelersController@showVoucher')->name('Traveler.Voucher');
+    Route::get('/Trips/{package}/{booking}', 'TravelersController@showVoucher')->name('Traveler.Voucher');
+    Route::get('/Bookings/Cancel/{booking}', 'TravelersController@cancelBooking')->name('Traveler.CancelBooking');
+    Route::post('/Bookings', 'TravelersController@showBookings')->name('Traveler.SearchPname');
+    Route::post('/Voucher', 'TravelersController@confirmRequest')->name('Traveler.ConfirmRequest');
+    Route::get('/Bookings', 'TravelersController@showBookings')->name('Traveler.Bookings');
     Route::get('/Trips', 'TravelersController@showTrips')->name('Traveler.Trips');
-    Route::get('/Favorites', 'TravelersController@showFavorites')->name('Traveler.MyFavorites');
-    Route::get('/Messages', 'TravelersController@showMessages')->name('Traveler.Messages');
-    Route::post('/favorite', 'TravelersController@favoritePackage')->name('Traveler.Favorite');
+    // Route::post('/favorite', 'TravelersController@favoritePackage')->name('Traveler.Favorite');
+    Route::post('/Trips/CommentInsert', 'TravelersController@storeComment');
+    Route::post('/Explore/AddToFavorite', 'TravelersController@addToFavorites');
 });
 
 Route::prefix('Admin')->group(function(){
@@ -62,6 +77,14 @@ Route::prefix('Admin')->group(function(){
 }); 
 
 Route::prefix('Agent')->group(function(){
+
+    Route::get('/Packages', 'AgentsController@showHomePage') -> name('Agent.HomePage');
+    Route::get('/Bookings', 'AgentsController@showBookings') -> name('Agent.Bookings');
+    Route::get('/Messages', 'AgentsController@showMessages') -> name('Agent.ShowMessages');
+    Route::get('/SentMessages', 'AgentsController@showSentMessages') -> name('Agent.SentMessages');
+    Route::post('/ReplyMessage', 'AgentsController@replyMessage')->name('Agent.ReplyMessage');
+    Route::post('/DeleteMessage', 'AgentsController@deleteMessage')->name('Agent.DeleteMessage');
+    Route::post('/UpdateProfile', 'AgentsController@updateProfile')->name('Agent.UpdateProfile');
     Route::get('/Packages', 'AgentsController@showPackages') -> name('Agent.Packages');
     Route::get('/Bookings', 'AgentsController@showBookings') -> name('Agent.Bookings');
     Route::get('/Messages', 'AgentsController@showMessages') -> name('Agent.Messages');
@@ -90,9 +113,6 @@ Route::prefix('Agent')->group(function(){
     // Route::match(['put', 'patch'], '/Packages/Update/{package_id}','AgentsController@update');
     Route::post('/Packages/Update/{package_id}','AgentsController@updatePackage');
 
-    //Show Agents
-    Route::get('/Agents', 'AgentsController@showAgents') -> name('Agent.Agents');
-
     //Agents View Profile
     Route::get('/ViewProfile/{id}', 'AgentsController@ViewProfile') -> name('Agent.ViewProfile');
     
@@ -116,3 +136,4 @@ Route::prefix('Agent')->group(function(){
     //Accept Booking
     Route::get('/Packages/Accept/{booking_id}', array('uses' => 'AgentsController@acceptBooking'));
 });
+

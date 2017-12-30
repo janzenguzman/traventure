@@ -19,13 +19,8 @@ class Agents extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'companyName', 
-        'name', 
-        'position', 
-        'contactNo', 
-        'email', 
-        'password',
-        'agentPhoto'
+        'company_name', 'fname', 'lname', 'job_position', 'contact_no', 'email', 
+            'password', 'status', 'active', 'photo',
     ];
 
     /**

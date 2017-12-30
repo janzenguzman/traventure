@@ -987,7 +987,8 @@ window.Vue = __webpack_require__(35);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', __webpack_require__(38));
+// Vue.component('example', require('./components/Example.vue'));
+Vue.component('favorite', __webpack_require__(38));
 
 var app = new Vue({
   el: '#app'
@@ -42693,7 +42694,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\Example.vue"
+Component.options.__file = "resources\\assets\\js\\components\\Favorite.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -42703,9 +42704,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b6ebd97a", Component.options)
+    hotAPI.createRecord("data-v-13fbc213", Component.options)
   } else {
-    hotAPI.reload("data-v-b6ebd97a", Component.options)
+    hotAPI.reload("data-v-13fbc213", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -42826,32 +42827,9 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 /* 40 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
-});
+throw new Error("Module build failed: SyntaxError: C:/xampp/htdocs/traventure/resources/assets/js/components/Favorite.vue: package is a reserved word in strict mode (34:36)\n\n\u001b[0m \u001b[90m 32 | \u001b[39m    methods\u001b[33m:\u001b[39m {\n \u001b[90m 33 | \u001b[39m        favorite(post) {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 34 | \u001b[39m            axios\u001b[33m.\u001b[39mpost(\u001b[32m'/favorite/'\u001b[39m\u001b[33m+\u001b[39mpackage)\n \u001b[90m    | \u001b[39m                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 35 | \u001b[39m                \u001b[33m.\u001b[39mthen(response \u001b[33m=>\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39misFavorited \u001b[33m=\u001b[39m \u001b[36mtrue\u001b[39m)\n \u001b[90m 36 | \u001b[39m                \u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(response \u001b[33m=>\u001b[39m console\u001b[33m.\u001b[39mlog(response\u001b[33m.\u001b[39mdata))\u001b[33m;\u001b[39m\n \u001b[90m 37 | \u001b[39m        }\u001b[33m,\u001b[39m\u001b[0m\n");
 
 /***/ }),
 /* 41 */
@@ -42861,38 +42839,43 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0, false, false)
+  return _c("span", [
+    _vm.isFavorited
+      ? _c(
+          "a",
+          {
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.unFavorite(_vm.package)
+              }
+            }
+          },
+          [_c("i", { staticClass: "fa fa-heart" })]
+        )
+      : _c(
+          "a",
+          {
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.favorite(_vm.package)
+              }
+            }
+          },
+          [_c("i", { staticClass: "fa fa-heart-o" })]
+        )
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-heading" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _vm._v(
-                "\n                    I'm an example component!\n                "
-              )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-b6ebd97a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-13fbc213", module.exports)
   }
 }
 

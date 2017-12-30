@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;  
-
 use Carbon\Carbon;
 use App\Travelers;
 use Illuminate\Support\Facades\Input;
@@ -91,7 +90,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'contact_no' => $data['contact_no'],
             'password' => bcrypt($data['password']),
-            'birthday' => $data['birthday'],
+            'birthday' => ($data['birthday']),
             'photo' => $fileName,
             'last_signed_in' => $last_signed_in,
         ]);
