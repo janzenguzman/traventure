@@ -39,7 +39,7 @@ class AgentsLoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:agents')->except('logout');
+        $this->middleware('guest')->except('logout');
     }
 
     public function login(Request $request)
@@ -54,13 +54,21 @@ class AgentsLoginController extends Controller
         if(Auth::guard('agents')->attempt(['email' => $request->email,
                 'password' => $request->password, 'status' => 'Accepted'], $request->remember))
         {
-            
             //if successful to the intended location
             return redirect()->route('Agent.HomePage');
+        }elseif(Auth::guard('agents')->attempt(['email' => $request->email,
+                    'password' => $request->password, 'status' => 'Pending'], $request->remember)){
+
+                //if status is pending
+                return redirect()->guest(route('AgentLogin'))->with('pending_status', 'Your sign up request is still pending. Please
+                        wait for the admins email.');
         }else{
-            return $request->expectsJson()
-                ? response()->json(['message' => $exception->getMessage()], 401)
-                : redirect()->guest(route('AgentLogin'));
+            // return $request->expectsJson()
+            //     ? response()->json(['message' => $exception->getMessage()], 401)
+            //     : redirect()->guest(route('AgentLogin'));
+            throw ValidationException::withMessages([
+                $this->username() => [trans('auth.failed')],
+            ]);
         }
         
         //if unsuccessful redirect back to the login form
@@ -71,11 +79,11 @@ class AgentsLoginController extends Controller
     }
 
     public function showRegisterForm(){
-        return view ('auth/AgentRegister');
+        return view ('auth.AgentRegister');
     }
 
     public function showLoginForm(){
-        return view ('auth/AgentLogin');
+        return view ('auth.AgentLogin');
     }
     
 }

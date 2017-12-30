@@ -8,6 +8,7 @@ use App\Package;
 use App\Booking;
 use App\Travelers;
 use App\Trips;
+use App\Comment;
 use Carbon\Carbon;
 use App\Favorites;
 use DB;
@@ -70,10 +71,24 @@ class TravelersController extends Controller
         return redirect('/Traveler/Bill');
     }
 
+    //DONT TOUCH
     public function showPackages($package_id)
     {
+        $comments=DB::table('comments')
+                    ->join('packages', 'comments.package_id', '=', 'packages.package_id')
+                    ->where('comments.package_id', $package_id)
+                    ->get();
         $packages = Package::find($package_id);
-        return view('Traveler.show')->with('packages', $packages);
+        
+        $avg = DB::table('comments')
+                ->where('package_id', $package_id)
+                ->avg('rating');
+
+        $count = DB::table('comments')
+                ->where('package_id', $package_id)
+                ->count();
+        return view('Traveler.show')->with(['packages' => $packages, 'comments' => $comments, 
+                    'avg' => $avg, 'count' => $count]); 
     }
 
     public function edit($package_id)
@@ -191,7 +206,8 @@ class TravelersController extends Controller
             ->join('bookings', 'trips.booking_id', '=', 'bookings.booking_id')
             ->join('packages', 'trips.package_id', '=', 'packages.package_id')
             ->where([['trips.traveler_id', $id],
-                    ['packages.package_name', 'like', '%'.$pname_search.'%']])
+                    ['packages.package_name', 'like', '%'.$pname_search.'%'],
+                    ['bookings.status', 'Accepted']])
             ->orderBy('trips_id')->paginate(5);
         return view('Traveler.Trips')->with('trips', $trips);
     }
@@ -246,6 +262,14 @@ class TravelersController extends Controller
     public function updateProfile(Request $request){
 
         $user_id = Auth::user()->id;
+        $fileName = Auth::user()->photo;
+        if (Input::file('photo')) {
+            $destinationPath = public_path('public/uploads/files/');
+            $extension = Input::file('photo')->getClientOriginalExtension();
+            $fileName = uniqid().'.'.$extension;
+    
+            Input::file('photo')->move($destinationPath, $fileName);
+        }
 
         $travelers = travelers::find($user_id);
         $travelers->fname = $request->input('fname');
@@ -253,7 +277,7 @@ class TravelersController extends Controller
         $travelers->username = $request->input('username');
         $travelers->birthday = $request->input('birthday');
         $travelers->contact_no = $request->input('contact_no');
-        $travelers->email = $request->input('email');
+        $travelers->photo = $fileName;
         $travelers->save();
 
         return redirect()->back()->with('updatedProfile', 'You have successfully updated your profile!');
@@ -298,7 +322,7 @@ class TravelersController extends Controller
         $messages = DB::table('messages')
             ->join('agents', 'messages.receiver_email', '=', 'agents.email')
             ->join('packages', 'messages.package_id', '=', 'packages.package_id')
-            ->select('messages.*', 'agents.fname', 'agents.lname', 'packages.package_name')
+            ->select('messages.*', 'agents.fname', 'agents.lname', 'agents.photo','packages.package_name')
             ->where('sender_email', $traveler_email)
             ->orderBy('created_at', 'desc')->paginate(5);
 
@@ -313,7 +337,7 @@ class TravelersController extends Controller
         $messages = DB::table('messages')
             ->join('agents', 'messages.sender_email', '=', 'agents.email')
             ->join('packages', 'messages.package_id', '=', 'packages.package_id')
-            ->select('messages.*', 'agents.fname', 'agents.lname', 'packages.package_name')
+            ->select('messages.*', 'agents.fname', 'agents.lname', 'agents.photo','packages.package_name')
             ->where('receiver_email', $traveler_email)
             ->orderBy('created_at', 'desc')->paginate(5);
 
@@ -359,14 +383,23 @@ class TravelersController extends Controller
             return redirect()->route('Traveler.Bookings')->with('bookingConfirmed', 'Booking request sent!');
     }
 
-    public function showVoucher($booking_id){
-        // $bookings = Booking::with('packages')->find($booking_id);
-        // dd($bookings);
-
-        $bookings=DB::table('bookings')->where('booking_id', $booking_id)
+    public function showVoucher($package_id, $booking_id){
+        $bookings=DB::table('bookings')
                     ->join('packages', 'bookings.package_id', '=', 'packages.package_id')
+                    ->where('booking_id', $booking_id)
                     ->get();
-        return view('Traveler.Voucher')->with('bookings', $bookings);
+        $comments=DB::table('comments')
+                    ->where('package_id', $package_id)
+                    ->get();
+
+        $avg = DB::table('comments')
+                ->where('package_id', $package_id)
+                ->avg('rating');
+
+        $count = DB::table('comments')
+                ->where('package_id', $package_id)
+                ->count();
+        return view('Traveler.Voucher', ['bookings' => $bookings, 'comments' => $comments, 'avg' => $avg, 'count' => $count]);
     }
 
     public function cancelBooking($booking_id){
@@ -376,14 +409,18 @@ class TravelersController extends Controller
         return redirect()->route('Traveler.Bookings')->with('cancelledBooking', 'Booking successfully cancelled!');
     }
 
-    public function addToFavorites(Request $request, $package_id){
-        $package=$_GET['package_id'];
-        $traveler_id = auth()->user();
-        // $package = $request->package_id;
+    public function addToFavorites(Request $req){
+        if($req->ajax()){
+            $fav = Favorites::create($req->all());
+            return response()->json($fav);
+            // return response($req->all());
+        }
+    }
 
-        return $favorited = DB::table('favorites')->insert([
-            'traveler_id' => $traveler_id,
-            'package_id' => $package
-        ]);
+    public function storeComment(Request $req){
+        if($req->ajax()){     
+            $comment=Comment::create($req->all());
+            return response()->json($comment);
+        }
     }
 }

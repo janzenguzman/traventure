@@ -16,8 +16,9 @@
                             <div class="row row-in">
                                 <div class="col-xs-6 col-md-4 row-in-br">
                                     <div class="col-in row">
-                                        <div class="col-md-6 col-sm-6 col-xs-6"><i class="material-icons" style="font-size: 60px;">&#xE7F1;</i>
+                                        <div class="col-md-6 col-sm-6 col-xs-6"><i class="fa fa-building" style="font-size: 60px;"></i>
                                             <h5 class="text-muted vb">
+                                                <br><br>
                                                     @if($totalAccredited <= 1)
                                                         <p> ACCREDITED<br>COMPANY </p>
                                                     @else
@@ -36,7 +37,8 @@
                                 </div>
                                 <div class="col-xs-6 col-md-4 row-in-br  b-r-none">
                                     <div class="col-in row">
-                                        <div class="col-md-6 col-sm-6 col-xs-6"><i class="material-icons" style="font-size: 60px;">&#xE8DC;</i>
+                                        <div class="col-md-6 col-sm-6 col-xs-6"><i class="fa fa-thumbs-up" style="font-size: 60px;"></i>
+                                            <br><br>
                                             <h5 class="text-muted vb">
                                                 @if($totalActive <= 1)
                                                         <p> ACTIVE<br>COMPANY </p>
@@ -56,12 +58,13 @@
                                 </div>
                                 <div class="col-xs-6 col-md-4 b-0">
                                     <div class="col-in row">
-                                        <div class="col-md-6 col-sm-6 col-xs-6"><i class="material-icons" style="font-size: 60px;">&#xE8DB;</i>
+                                        <div class="col-md-6 col-sm-6 col-xs-6"><i class="fa fa-thumbs-down" style="font-size: 60px;"></i>
+                                            <br><br>
                                             <h5 class="text-muted vb">
                                                 @if($totalInactive <= 1)
-                                                        <p> INACTIVE<br>COMPANY </p>
+                                                    <p> INACTIVE<br>COMPANY </p>
                                                 @else
-                                                        <p> INACTIVE<br>COMPANIES </p>
+                                                    <p> INACTIVE<br>COMPANIES </p>
                                                 @endif
                                             </h5> 
                                         </div>
@@ -87,6 +90,8 @@
                                 <h3 class="box-title"></h3>
                                     {!! Charts::styles() !!}
                                     {!! $chart->html() !!}
+                                    {!! Charts::scripts() !!}
+                                    {!! $chart->script() !!}
                             </div>
                         </div>
                     </div>
@@ -95,8 +100,7 @@
                 <footer class="footer text-center"> 2017 &copy; Traventure </footer>
         </div>
         <!-- End Of Main Application -->
-        {!! Charts::scripts() !!}
-        {!! $chart->script() !!}
+        
     </body>     
 @endsection
 @extends('layouts.admin.javascriptlayout')

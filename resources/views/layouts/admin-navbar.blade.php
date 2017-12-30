@@ -1,5 +1,5 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>    
+    <title>{{ config('app.name', 'Traventure') }}</title>    
     
     <body>
     <div class="preloader">
@@ -10,7 +10,8 @@
                 <div class="navbar-header"> 
                     <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i><span class="fa fa arrow"></span></i></a>
                     <div class="top-left-part">
-                        <a class="logo" href="{{ route('Admin.HomePage') }}"><img src="{{ asset('/uploads/files/logo-navbar.png') }}"/><span style="margin-left:5%" class="hidden-xs"><b>TRAVENTURE</b></span></a>
+                        <a class="logo" href="{{ route('Admin.HomePage') }}"><img src="{{ asset('/uploads/files/navbar-logo-admin.png') }}"/>
+                            <span class="hidden-xs"><img src="{{ asset('/uploads/files/navbar-logo2-admin.png') }}" alt="home" /></span></a>
                     </div>
                     
                     <ul class="nav navbar-top-links navbar-right pull-right">
@@ -18,11 +19,11 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b><div class="username hidden-xs">{{ Auth::user()->name }}</div></b><div class="visible-xs"><i class="fa fa-user"></i></div></a>
                             <ul class="dropdown-menu dropdown-user animated flipInY">
-                                <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <li><a href="{{ route('Admin.Logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                         <i class="fa fa-power-off"></i>
                                             Logout</a>
-                                    <form id="logout-form" action="{{ 'App\Admin' == Auth::getProvider()->getModel() ?  route('Admin.Logout'): route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ 'App\Admin' == Auth::getProvider()->getModel() ?  route('Admin.Logout'): route('logout') }}" method="POST" style="display: none">
                                                 {{ csrf_field() }}
                                     </form>
                                 </li>

@@ -18,8 +18,8 @@
 						
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 							
-								<h2>Traventure</h2>
-								<p>Celebrated no he decisively thoroughly.</p>
+								<center><img src="{{ asset('uploads/files/logo-white.png') }}" style="width:300px">
+								<p>Book. Chill. Venture</p></center>
 						
 							</div>
 							
@@ -60,8 +60,8 @@
 										</div>
 										
 										<h4 class="section-title">Login As Travel Agent</h4>
+										@include('layouts.user.alerts')
 										<div class="row">
-										
 										    <form method="POST" action="{{ route('Agents.Login.Submit') }}">
                                                 {{ csrf_field() }}
 

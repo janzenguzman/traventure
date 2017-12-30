@@ -139,7 +139,8 @@
 															
 															<div class="GridLex-col-3_sm-6_xs-5_xss-12">
 																<div class="GridLex-inner text-right text-left-xss dropdown">
-																		<a href="/Traveler/Bookings/{{$booking->booking_id}}" class="btn btn-info btn-sm">View</a>
+																		{{--  <a href="/Traveler/Bookings/{{$booking->booking_id}}" class="btn btn-info btn-sm">View</a>  --}}
+																		<a href="/Traveler/Bookings/{{$booking->package_id}}/{{$booking->booking_id}}" class="btn btn-info btn-sm">View</a>
 																	@if($booking->status == 'Confirmed')
 																		<a href="/Traveler/Bookings/Cancel/{{$booking->booking_id}}" class="btn btn-danger btn-sm">Cancel</a>
 																	@endif
@@ -172,9 +173,9 @@
 								
 								</div>
 							@else
-								<h2>No records found.</h2>
-							@endif
 						</div>
+							<h2>No records found.</h2>
+							@endif
 					</div>
 
 				</div>

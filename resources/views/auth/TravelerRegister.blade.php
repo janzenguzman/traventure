@@ -18,8 +18,8 @@
 						
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 							
-								<h2>Traventure</h2>
-								<p>Celebrated no he decisively thoroughly.</p>
+								<center><img src="{{ asset('uploads/files/logo-white.png') }}" style="width:300px">
+                                <p>Book. Chill. Venture</p></center>
 						
 							</div>
 							
@@ -180,9 +180,8 @@
                                                 </div>
 
                                                 <div class="col-sm-6 col-md-6">
-                                                            <label for="photo">Profile Picture</label>
-                                                                <input id="photo" name="photo" type="file" required>
-                                                        
+                                                    <label for="photo">Profile Picture</label>
+                                                    <input id="photo" name="photo" type="file" required>
                                                 </div>
                                                 
 

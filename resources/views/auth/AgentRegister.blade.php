@@ -18,8 +18,8 @@
 						
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 							
-								<h2>Traventure</h2>
-								<p>Celebrated no he decisively thoroughly.</p>
+								<center><img src="{{ asset('uploads/files/logo-white.png') }}" style="width:300px">
+                                <p>Book. Chill. Venture</p></center>
 						
 							</div>
 							
@@ -57,19 +57,36 @@
 											<h4>Already have an account? Login now. </h4>
 											
 											<a href="{{ url('/AgentLogin') }}" class="btn btn-default">Log In</a>
-										</div>
-										
+                                        </div>
+
 										<h4 class="section-title">Sign Up As Travel Agent</h4>
+                                        @include('layouts.user.alerts')
+                                        
+                                        <h4>Reminders:</h4>
+                                            <div class="col-sm-12 col-md-12">
+                                                <ul style="list-style-type:disc">
+                                                    <li>After signing up, please wait for an email from the admin for other
+                                                        accreditation requirements.</li>
+                                                    <li>If your sign up request is accepted, you  may now access your account.</li><br>
+                                                </ul>
+                                            </div>
+                                            
+                                        <h4>Commission Payment Procedure:</h4>
+                                            <div class="col-sm-12 col-md-12">
+                                                <ul style="list-style-type:disc">
+                                                    <li>The Company must pay 15% of the total sales every 15'th of the month to Traventure.</li>
+                                                </ul>
+                                            </div>
+                                        <br><br><h4 class="section-title"></h4>
 										<div class="row">
-										
-										    <form method="POST" action="{{ route ('agents-register') }}">
+										    <form method="POST" action="{{ route ('agents-register') }}" enctype="multipart/form-data">
                                                 {{ csrf_field() }}
 
-                                                <div class="col-sm-6 col-md-6">
+                                                <div class="col-sm-12 col-md-12">
                                         
                                                     <div class="form-group{{ $errors->has('company_name') ? ' has-error' : '' }}"> 
                                                         <label>Company Name</label>
-                                                        <input id="company_namee" type="text" class="form-control" name="company_name" required autofocus>
+                                                        <input id="company_namee" type="text" class="form-control`" name="company_name" required autofocus>
 
                                                         @if ($errors->has('company_name'))
                                                             <span class="help-block">
@@ -140,7 +157,7 @@
                                                 
                                                 </div>
 
-                                                <div class="col-sm-6 col-md-6">
+                                                <div class="col-sm-12 col-md-12">
                                                 
                                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}"> 
                                                         <label>Email Address</label>
@@ -178,10 +195,16 @@
                                                     </div>
                                                 
                                                 </div>
-                                                
-                                                <center>
-                                                    <button type="submit" class="btn btn-info">Log-in</button>
-                                                </center>
+
+                                                <div class="col-sm-12 col-md-12">
+                                                    <label for="photo">Profile Picture</label>
+                                                    <input id="photo" name="photo" type="file" required>
+                                                </div>
+                                                <div class="col-sm-12 col-md-12">
+                                                    <center>
+                                                        <button type="submit" class="btn btn-info">Sign Up</button>
+                                                    </center>
+                                                </div>
                                             </div>
                                         </form>
 						            </div>
