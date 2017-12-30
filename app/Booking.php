@@ -19,7 +19,8 @@ class Booking extends Model
     }
 
     public function packages(){
-        return $this->hasMany('App\Package');
+        //return $this->hasMany('App\Package');
+        return $this->hasMany('App\Package', 'package_id');
     }
 
     public function favorites()

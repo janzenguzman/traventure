@@ -6,9 +6,8 @@
 </div>
 <section id="wrapper" class="login-register">
   <div class="login-box">
-    <center>
-        <img class="img-responsive" style = "length:150px; width:150px; margin-bottom:2%" src="/uploads/files/logo.png">
-    </center>
+    <center><img src="{{ asset('uploads/files/logo-black.png') }}" style="width:300px; margin-top:-10%">
+        <h5>Book. Chill. Venture</h5></center>
     <div class="white-box">
         <form class="form-horizontal form-material" id="loginform" role="form" method="POST" action="{{ route('Admin.Login.Submit') }}">
         {{ csrf_field() }}

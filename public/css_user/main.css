@@ -214,7 +214,7 @@ body {
     font-weight: 400;
     color: #555;
     -webkit-font-smoothing: antialiased!important;
-    font-smoothing: antialiased!important;
+    font-synthesis: antialiased!important;
     background-color: #FFF;
     letter-spacing: 0.5px;
 }
@@ -258,7 +258,7 @@ a {
 }
 
 a:hover {
-    color: #E37900;
+    color: #2991A2;
     text-decoration: none;
 }
 
@@ -1134,7 +1134,7 @@ ul.no-margin,
 }
 
 .pl-0,
-. no-pl {
+.no-pl {
     padding-left: 0 !important
 }
 
@@ -1295,7 +1295,7 @@ ul.no-margin,
 
 .no-pv,
 .pv-0 {
-    padding-pv: 0 !important;
+    padding-top: 0 !important;
     padding-bottom: 0 !important;
 }
 
@@ -1927,17 +1927,15 @@ ul.list-col-3 li {
     border: 1px solid #DFDFDF;
     position: relative;
     padding: 30px 20px 20px;
-    padding-left: 60px;
 }
 
-.list-yes-no-box:before {
-    content: "";
+.contact-now {
     position: absolute;
-    top: 0;
+    top: 15px;
     bottom: 5px;
-    left: 15px;
-    width: 25px;
-    background: rgb(28, 139, 212);
+    left: 0px;
+    width: 250px;
+    height: 25px;
 }
 
 .list-yes-no-box:after {
@@ -2816,7 +2814,7 @@ section,
 }
 
 .text-primary {
-    color: #FE8800 !important;
+    color: #2991A2 !important;
 }
 
 .text-info {
@@ -3558,7 +3556,7 @@ h5.section-title {
     font-size: 15px;
     padding-top: 6px;
     letter-spacing: 0.5px;
-    o-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
     -ms-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
     -webkit-transition: all 0.3s ease-out;
@@ -5465,7 +5463,6 @@ h5.section-title {
     padding-right: 15px;
 }
 
-.GridLex-gap-30 .GridLex-grid > div > div {}
 
 .GridLex-gap-1.mb-5,
 .GridLex-gap-2.mb-5,

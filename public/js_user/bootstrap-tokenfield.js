@@ -35,24 +35,24 @@
   * ============================== */
 
   var Tokenfield = function (element, options) {
-    var _self = this
+    var _self = this;
 
     this.$element = $(element)
     this.textDirection = this.$element.css('direction');
 
     // Extend options
-    this.options = $.extend(true, {}, $.fn.tokenfield.defaults, { tokens: this.$element.val() }, this.$element.data(), options)
+    this.options = $.extend(true, {}, $.fn.tokenfield.defaults, { tokens: this.$element.val() }, this.$element.data(), options);
 
     // Setup delimiters and trigger keys
-    this._delimiters = (typeof this.options.delimiter === 'string') ? [this.options.delimiter] : this.options.delimiter
+    this._delimiters = (typeof this.options.delimiter === 'string') ? [this.options.delimiter] : this.options.delimiter;
     this._triggerKeys = $.map(this._delimiters, function (delimiter) {
       return delimiter.charCodeAt(0);
     });
     this._firstDelimiter = this._delimiters[0];
 
     // Check for whitespace, dash and special characters
-    var whitespace = $.inArray(' ', this._delimiters)
-      , dash = $.inArray('-', this._delimiters)
+    var whitespace = $.inArray(' ', this._delimiters);
+      dash = $.inArray('-', this._delimiters);
 
     if (whitespace >= 0)
       this._delimiters[whitespace] = '\\s'
@@ -191,8 +191,8 @@
 
       args[0] = $.extend( {}, defaults, args[0] )
 
-      this.$input.typeahead.apply( this.$input, args )
-      this.typeahead = true
+      this.$input.typeahead.apply( this.$input, args );
+      this.typeahead = true;
     }
   }
 
@@ -216,20 +216,20 @@
 
       // Normalize label and value
       attrs.value = $.trim(attrs.value.toString());
-      attrs.label = attrs.label && attrs.label.length ? $.trim(attrs.label) : attrs.value
+      attrs.label = attrs.label && attrs.label.length ? $.trim(attrs.label) : attrs.value;
 
       // Bail out if has no value or label, or label is too short
-      if (!attrs.value.length || !attrs.label.length || attrs.label.length <= this.options.minLength) return
+      if (!attrs.value.length || !attrs.label.length || attrs.label.length <= this.options.minLength) return;
 
       // Bail out if maximum number of tokens is reached
-      if (this.options.limit && this.getTokens().length >= this.options.limit) return
+      if (this.options.limit && this.getTokens().length >= this.options.limit) return;
 
       // Allow changing token data before creating it
-      var createEvent = $.Event('tokenfield:createtoken', { attrs: attrs })
+      var createEvent = $.Event('tokenfield:createtoken', { attrs: attrs });
       this.$element.trigger(createEvent)
 
       // Bail out if there if attributes are empty or event was defaultPrevented
-      if (!createEvent.attrs || createEvent.isDefaultPrevented()) return
+      if (!createEvent.attrs || createEvent.isDefaultPrevented()) return;
 
       var $token = $('<div class="token" />')
             .append('<span class="token-label" />')

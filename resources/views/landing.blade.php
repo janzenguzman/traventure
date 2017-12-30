@@ -10,16 +10,11 @@
                 <div class="hero img-bg-01">
                     <div class="container">
                         <center>
-                            <img src="{{ asset('uploads/files/logo.png') }}" style = "length:200px; width:200px; margin-bottom:2%; margin-top:-10%" >
+                            <center><img src="{{ asset('uploads/files/logo-white.png') }}" style="width:350px; margin-top:-10%">
+								<p>Book. Chill. Venture</p></center>
                             <a href="{{ url('TravelerLogin') }}" class="btn btn-sm btn-info">TRAVELER</a>
                             <a href="{{ url('AgentLogin') }}" class="btn btn-sm btn-info">TRAVEL AGENT</a>
                         </center>
-                        {{--  <div class="col-lg-12">
-                            <h3>&nbsp</h3>
-                            <h3>&nbsp</h3>
-                            <h3>&nbsp</h3>
-                        </div>  --}}	
-						
 
                     </div>
                 </div>
@@ -131,8 +126,8 @@
 										
                                         <!--janzen guzman-->
 										<div class="content">
-											<h4>Alexey Barnashov</h4>
-											<p>Director Manager</p>
+											<h4>Janzen Guzman</h4>
+											<p>Backend Developer</p>
 											<ul class="social">
 												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -151,8 +146,8 @@
 										
                                         <!--ariel leonado-->
 										<div class="content">
-											<h4>Chaiyapatt Putsathit</h4>
-											<p>Human Resource</p>
+											<h4>Ariel Cates Leonado</h4>
+											<p>Backend Developer</p>
 											<ul class="social">
 												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -171,8 +166,8 @@
 										
                                         <!--alex ramas-->
 										<div class="content">
-											<h4>Khairoz Nadzri</h4>
-											<p>Accountant</p>
+											<h4>Alexander Prince Ramas</h4>
+											<p>Backend Developer</p>
 											<ul class="social">
 												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -208,154 +203,6 @@
 		<!-- end Footer Wrapper -->
 	</div>
 	<!-- end Container Wrapper -->
-
-
-    <!--LOGIN MODAL-->
-        <div id="login" class="modal fade login-box-wrapper" tabindex="-1" data-width="550" data-backdrop="static" data-keyboard="false" data-replace="true">
-
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title text-center">Sign-in into your account</h4>
-            </div>
-            
-            <div class="modal-body">
-                <div class="row gap-20">
-                
-                    <div class="col-sm-6 col-md-6">
-                        <a class="btn btn-info btn-block mb-5-xs" href="#traveler" data-toggle="tab">Log-in as Traveler</a>
-                    </div>
-                    <div class="col-sm-6 col-md-6">
-                        <a class="btn btn-info btn-block" href="#agent" data-toggle="tab">Log-in as Travel Agent</a>
-                    </div>
-                
-					<div class="col-md-12">
-						<div class="login-modal-or">
-							<div><span></span></div>
-						</div>
-					</div>
-					<div class="tab-content">
-						<div class="tab-pane fade in active" id="traveler">
-							<form method="POST" action="{{ route('login') }}">
-								{{ csrf_field() }}
-
-								<div class="col-sm-12 col-md-12">
-						
-									<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}"> 
-										<label>Email Address</label>
-										<input id="email" class="form-control" name="email" placeholder="Your Email Address" type="email" required autofocus> 
-
-										@if ($errors->has('email'))
-											<span class="help-block">
-												<strong>{{ $errors->first('email') }}</strong>
-											</span>
-										@endif
-									</div>
-								
-								</div>
-								
-								<div class="col-sm-12 col-md-12">
-								
-									<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}"> 
-										<label>Password</label>
-										<input id="password" class="form-control" name="password" placeholder="Your Password" type="password"> 
-										
-										@if ($errors->has('password'))
-											<span class="help-block">
-												<strong>{{ $errors->first('password') }}</strong>
-											</span>
-										@endif
-									</div>
-								
-								</div>
-								
-								{{--  <div class="col-sm-6 col-md-6">
-									<div class="checkbox-block"> 
-										<input id="remember_me_checkbox" name="remember_me_checkbox" class="checkbox" value="First Choice" type="checkbox"> 
-										<label class="" for="remember_me_checkbox">Remember me</label>
-									</div>
-								</div>
-								
-								<div class="col-sm-6 col-md-6">
-									<div class="login-box-link-action">
-										<a data-toggle="modal" href="#forgotPasswordModal" class="block line18 mt-1">Forgot password?</a> 
-									</div>
-								</div>
-								
-								<div class="col-sm-12 col-md-12">
-									<div class="login-box-box-action">
-										No account? <a data-toggle="modal" href="#registerModal">Register</a>
-									</div>
-								</div>  --}}
-								
-								<center>
-									<button type="submit" class="btn btn-info">Log-in</button>
-									<button type="button" data-dismiss="modal" class="btn btn-info btn-border">Close</button>
-								</center>
-							</div>
-						</form>
-						
-						<div class="tab-pane fade in" id="agent">
-							<form method="POST" action="{{ route('Agents.Login.Submit') }}">
-								<div class="col-sm-12 col-md-12">
-						
-									<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}"> 
-										<label>Email Address</label>
-										<input id="email" class="form-control" name="email" placeholder="Your Email Address" type="email" required> 
-
-										@if ($errors->has('email'))
-											<span class="help-block">
-												<strong>{{ $errors->first('email') }}</strong>
-											</span>
-										@endif
-									</div>
-								
-								</div>
-								
-								<div class="col-sm-12 col-md-12">
-								
-									<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}"> 
-										<label>Password</label>
-										<input id="password" class="form-control" name="password" placeholder="Your Password" type="password" required> 
-
-										@if ($errors->has('password'))
-											<span class="help-block">
-												<strong>{{ $errors->first('password') }}</strong>
-											</span>
-										@endif
-									</div>
-								
-								</div>
-								
-								{{--  <div class="col-sm-6 col-md-6">
-									<div class="checkbox-block"> 
-										<input id="remember_me_checkbox" name="remember_me_checkbox" class="checkbox" value="First Choice" type="checkbox"> 
-										<label class="" for="remember_me_checkbox">Remember me</label>
-									</div>
-								</div>
-								
-								<div class="col-sm-6 col-md-6">
-									<div class="login-box-link-action">
-										<a data-toggle="modal" href="#forgotPasswordModal" class="block line18 mt-1">Forgot password?</a> 
-									</div>
-								</div>
-								
-								<div class="col-sm-12 col-md-12">
-									<div class="login-box-box-action">
-										No account? <a data-toggle="modal" href="#registerModal">Register</a>
-									</div>
-								</div>  --}}
-								
-								<center>
-									<button type="submit" class="btn btn-info">Log-in</button>
-									<button type="button" data-dismiss="modal" class="btn btn-info btn-border">Close</button>
-								</center
-							</form>
-						</div>
-					</div>    
-                </div>
-            </div>
-        </div>
-        <!-- end Sign-in Modal -->
  
 <!-- start Back To Top -->
 

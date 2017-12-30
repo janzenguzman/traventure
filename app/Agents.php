@@ -20,7 +20,7 @@ class Agents extends Authenticatable
      */
     protected $fillable = [
         'company_name', 'fname', 'lname', 'job_position', 'contact_no', 'email', 
-            'password', 'status', 'active',
+            'password', 'status', 'active', 'photo',
     ];
 
     /**

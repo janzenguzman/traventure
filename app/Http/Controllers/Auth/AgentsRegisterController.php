@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Agents;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -70,6 +71,14 @@ class AgentsRegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $fileName = 'null';
+        if (Input::file('photo')->isValid()) {
+            $destinationPath = public_path('public/uploads/files/');
+            $extension = Input::file('photo')->getClientOriginalExtension();
+            $fileName = uniqid().'.'.$extension;
+    
+            Input::file('photo')->move($destinationPath, $fileName);
+        }
 
         $agent = Agents::create([
             'company_name' => $data['company_name'],
@@ -79,6 +88,7 @@ class AgentsRegisterController extends Controller
             'contact_no' => $data['contact_no'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'photo' => $fileName,
             'status' => 'Pending',
             'active' => '0',
         ]);
@@ -93,6 +103,6 @@ class AgentsRegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
         return $this->registered($request, $user)
-            ?: redirect(route('AgentLogin'));
+            ?: redirect(route('AgentRegister'))->with('successful_signup', 'Sign up request was successfully sent! Please wait for the email from the admin.');
     }
 }

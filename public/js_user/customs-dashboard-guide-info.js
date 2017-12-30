@@ -28,7 +28,7 @@ jQuery(function($) {
 	 
 	$('.tokenfield').tokenfield({
 		limit: '10',
-	})
+	});
 	
 	// Autocomplete Tagging
 	var engine = new Bloodhound({

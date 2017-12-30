@@ -10,7 +10,7 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
-                @include('Admin.alerts')
+                @include('layouts.admin.alerts')
                 <!-- /.row -->
                 <!-- /.row -->
                 <div class="row">

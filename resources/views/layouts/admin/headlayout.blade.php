@@ -38,7 +38,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/uploads/files/logo-navbar.png') }}">
+    {{--  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/uploads/files/logo-navbar.png') }}">  --}}
+    <link rel="icon" href="{{asset ('uploads/files/icon.png') }}">
     <title>Traventure</title>
     <!-- Bootstrap Core CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
