@@ -46,9 +46,20 @@ class LoginController extends Controller
         return view('auth.TravelerLogin');
     }
 
-    public function showRegisterForm()
-    {
-        return view('auth.TravelerRegister');
+    public function login(Request $request){
+            if(Auth::attempt([
+                'email' => $request->email,
+                'password' => $request->password
+            ])){   
+                if(Agents::where('email', $request->email)->first()){
+                    return redirect()->route('Agent.Packages');
+                }else if(Travelers::where('email', $request->email)->first()){
+                    return redirect()->route('Traveler.HomePage');
+                }   
+            }
+            else{
+                return redirect()->route('login');
+            }
     }
     
 }
