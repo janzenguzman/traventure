@@ -47,7 +47,7 @@ class LoginController extends Controller
                 'password' => $request->password
             ])){   
                 if(Agents::where('email', $request->email)->first()){
-                    return redirect()->route('Agent.HomePage');
+                    return redirect()->route('Agent.Packages');
                 }else if(Travelers::where('email', $request->email)->first()){
                     return redirect()->route('Traveler.HomePage');
                 }   
