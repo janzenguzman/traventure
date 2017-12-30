@@ -43,6 +43,7 @@ Route::prefix('Traveler')->group(function(){
     Route::get('/Favorites', 'TravelersController@showFavorites')->name('Traveler.MyFavorites');
     Route::get('/Messages', 'TravelersController@showMessages')->name('Traveler.Messages');
     Route::post('/favorite', 'TravelersController@favoritePackage')->name('Traveler.Favorite');
+    Route::post('/unfavorite', 'TravelersController@unfavoritePackage')->name('Traveler.unFavorite');
 });
 
 Route::prefix('Admin')->group(function(){
