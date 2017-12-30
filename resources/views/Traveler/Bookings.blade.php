@@ -17,7 +17,7 @@
                             <th>Date</th>
                             <th>Expired</th>
                             <th></th>
-                            <th>Favorite</th>
+                            <th></th>
                         </tr>
                         @foreach($bookings as $booking)
                             @if($booking->expired == 0)
@@ -39,20 +39,23 @@
                                         <td>Expired</td>
                                     @endif
                                     <td>
-                                        <a href="/Traveler/TourPackage/{{$booking->package_id}}/ContactNow">Contact Now</a><br>
                                         {!!Form::open(['action' => ['TravelersController@destroyBookings', $booking->booking_id], 'method' => 'POST'])!!}
                                             {{Form::hidden('_method', 'DELETE')}}
                                             {{Form::submit('Cancel Booking', ['class' => "btn btn-danger"])}}
                                         {!!Form::close()!!}
+                                        <a href="/Traveler/TourPackage/{{$booking->package_id}}/ContactNow">Contact Now</a><br>
                                     </td>
                                     <td>
-                                        <a href="#" class="fave">Favorite</a>
-                                        {{--  @if (Auth::check())  --}}
-                                        {{--  <favorite
-                                            :booking={{ $booking->booking_id }}
-                                            :favorited={{ $booking->favorited() ? 'true' : 'false' }}
-                                        ></favorite>  --}}
-                                        {{--  @endif  --}}
+                                        <span id="fave" data-id="{{ $booking->package_id }}">
+                                            <button href="#" class="fave btn btn-danger">
+                                                {{	Auth::user()->favorites()->where('package_id', $booking->package_id)->first() ? 
+                                                    Auth::user()->favorites()->where('package_id', $booking->package_id)->first()->favorited == 1 ? 
+                                                    'Unfavorited' : 'Favorite' : 'Favorite'}}
+                                            </button>
+                                            {{--  <i class="fa fa-heart-o"></i> --}}
+                                            {{--  <a href="#" class="fave">Unfavorite</a>  --}}
+                                            {{--  <i class="fa fa-heart"></i>  --}}
+                                        </span>
                                     </td>
                                 </tr>
                             @endif  
@@ -66,4 +69,50 @@
         </div>
     </div>
 </div>
+
+<script>
+    var token = '{{ Session::token() }}';
+    var urlFave = '{{ route('Traveler.Favorite') }}';
+</script>
+@endsection
+    
+@section('js')
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
+        }
+        });
+</script>
+<script type="text/javascript">
+    (function($) {
+    //console.log("HELLO WORLD");
+        $(".fave").on('click', function(event){
+            event.preventDefault();
+            packageId = event.target.parentNode.dataset['id'];
+            console.log(packageId);
+            var $t = $(this);
+            $.ajax({
+                method: 'POST',
+                url: urlFave,
+                data: { packageId: packageId, token: token },
+                success: function(data){
+                    console.log(data);
+                    if (data == 'Favorite') {
+                        $t.text('Unfavorite');
+                        //$t.append('<button class="btn btn-danger">Unfavorite</button>')
+                    }else{
+                        $t.text('Favorite');
+                    }
+                },
+                error: function (jqXHR, exception) {
+                    alert("ERROR ERROR");
+                }
+            })
+                .done(function(){
+                    //alert("HELLO HELLO HELLO");
+                });
+        });
+    }(jQuery));
+</script>
 @endsection
