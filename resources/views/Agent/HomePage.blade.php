@@ -1,4 +1,4 @@
-@extends('layouts.admin-navbar')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -13,10 +13,17 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    Last Signed in at {{ Auth::guard('agents')->user()->last_signed_in }}<br><br> 
                     You are logged in as a Travel Agent!
+                    <br>
 
-                    
+                    {{$diffHours}} hour.
+
+                    @if($diffHours <= 1)
+                        <p>ACTIVE USER</p>
+                    @else
+                        <p>INACTIVE</p>
+                    @endif
                 </div>
             </div>
         </div>

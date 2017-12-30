@@ -9,6 +9,8 @@ class Agents extends Authenticatable
 {
     use Notifiable;
 
+    protected $table = 'agents';
+    public $primaryKey = 'id';
     protected $guard = 'agents';
 
     /**
@@ -32,6 +34,6 @@ class Agents extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token'
     ];
 }

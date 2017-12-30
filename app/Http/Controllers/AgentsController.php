@@ -13,10 +13,14 @@ use App\Travels;
 use App\Agents as Agents;
 use DB;
 use View;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Auth;
+
 
 class AgentsController extends Controller
 {
-    /**
+/**
      * Create a new controller instance.
      *
      * @return void
@@ -512,5 +516,23 @@ class AgentsController extends Controller
         $slots->save();
         
         return redirect('Agent/Packages')->with('packages', $packages);
+    }
+  
+    public function showHomePage(){
+
+        $lastSignedIn = new Carbon(Auth::guard('agents')->user()->last_signed_in);
+        $now = Carbon::now();
+        $diffHours = $lastSignedIn->diffInHours($now);
+
+        if($diffHours <= 1){
+            DB::table('agents')->where('id', auth()->user()->id)->update(['active' => '1']);
+        }else{
+            DB::table('agents')->where('id', auth()->user()->id)->update(['active' => '0']);
+        }
+        return view('\Agent\HomePage', compact('diffHours'));
+    }
+
+    public function showRegisterForm(){
+        return view ('agentsRegister');
     }
 }

@@ -7,15 +7,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Travelers extends Authenticatable
 {
+    
     use Notifiable;
-
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'fname', 'lname', 'gender', 'username', 'email', 'password', 'birthday', 'photo',
+        'fname', 'lname', 'gender', 'username', 'email', 'contact_no', 'password', 'birthday', 'photo',
     ];
 
     /**
@@ -26,4 +27,12 @@ class Travelers extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function bookings(){
+        return $this->hasMany('App\Booking');
+    }
+
+    public function package(){
+        return $this->hasOne('App\Package');
+    }
 }

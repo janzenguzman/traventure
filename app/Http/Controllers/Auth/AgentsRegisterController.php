@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;  
 
 use App\Agents;
-use App\Users;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Requests; 
 
@@ -52,8 +52,12 @@ class AgentsRegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:travelers',
+            'company_name' => 'required|string|max:255',
+            'fname' => 'required|string|max:255',
+            'lname' => 'required|string|max:255',
+            'job_position' => 'required|string|max:255',
+            'contact_no' => 'required|string|min:11|max:11',
+            'email' => 'required|string|email|max:255|unique:agents',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -67,21 +71,28 @@ class AgentsRegisterController extends Controller
     protected function create(array $data)
     {
 
-        $agents = Agents::create([
-            'name' => $data['name'],
+        $agent = Agents::create([
+            'company_name' => $data['company_name'],
+            'fname' => $data['fname'],
+            'lname' => $data['lname'],
+            'job_position' => $data['job_position'],
+            'contact_no' => $data['contact_no'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
-
-        users::create([
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'userType' => 'travel agent',
+            'status' => 'Pending',
+            'active' => '0',
         ]);
         
-        return $agents;
+        return $agent;
     }
 
-    
- 
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        return $this->registered($request, $user)
+            ?: redirect(route('AgentLogin'));
+    }
 }

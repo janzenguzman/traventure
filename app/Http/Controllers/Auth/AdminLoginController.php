@@ -6,6 +6,7 @@ use Auth;
 use App\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 
 class AdminLoginController extends Controller
@@ -62,8 +63,19 @@ class AdminLoginController extends Controller
         }
         
         //if unsuccessful redirect back to the login form
-        return redirect()->back()->withInputs($request->only('email', 'remember'));
+        //return redirect()->back()->withInputs($request->only('email', 'remember'));
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth.failed')],
+        ]);
     }
 
-    
+    public function logout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+
+        $request->session()->flush();
+        $request->session()->regenerate();
+        
+        return redirect()->intended(route( 'Admin.Login' ));
+    }
 }

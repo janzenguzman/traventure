@@ -30,7 +30,7 @@ class AdminRegisterController extends Controller
      *
      * @var string
      */
-    //protected $redirectTo = '/Admin/HomePage';
+    protected $redirectTo = '/Admin/HomePage';
 
     /**
      * Create a new controller instance.
