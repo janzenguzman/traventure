@@ -55,6 +55,10 @@ Route::prefix('Traveler')->group(function(){
     Route::post('/Voucher', 'TravelersController@confirmRequest')->name('Traveler.ConfirmRequest');
     Route::get('/Bookings', 'TravelersController@showBookings')->name('Traveler.Bookings');
     Route::get('/Trips', 'TravelersController@showTrips')->name('Traveler.Trips');
+    Route::get('/Favorites', 'TravelersController@showFavorites')->name('Traveler.MyFavorites');
+    Route::get('/Messages', 'TravelersController@showMessages')->name('Traveler.Messages');
+    Route::post('/favorite', 'TravelersController@favoritePackage')->name('Traveler.Favorite');
+    Route::post('/unfavorite', 'TravelersController@unfavoritePackage')->name('Traveler.unFavorite');
     // Route::post('/favorite', 'TravelersController@favoritePackage')->name('Traveler.Favorite');
     Route::post('/Trips/CommentInsert', 'TravelersController@storeComment');
     Route::post('/Explore/AddToFavorite', 'TravelersController@addToFavorites');

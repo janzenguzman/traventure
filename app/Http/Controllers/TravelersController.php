@@ -216,47 +216,45 @@ class TravelersController extends Controller
     {
         $id = auth()->user()->id;
         $favorites = DB::table('favorites')
-            ->join('packages', 'favorites.package_id', '=', 'favorites.package_id')
-            ->where('traveler_id', $id)->get();
+            ->join('packages', 'packages.package_id', '=', 'favorites.package_id')
+            ->where('traveler_id', $id)
+            ->orderBy('favorite_id', 'desc')->paginate(19);
         return view('Traveler.Favorites')->with('favorites', $favorites);
     }
 
     public function favoritePackage(Request $request)
     {
-        $id = $request['packageId'];
-        $is_Fave = $request['isFave'] === 'true';
-        $update = false;
-        $package = Package::find($id);
-        if(!$package){
-            return null;
-        }
-        $traveler = Auth::user();
-        $faves = $traveler->favorites()->where('package_id', $id)->first(); // already favorited a package
-        // DB::table('favorites')->insert([
-        //     'traveler_id' => $traveler->id,
-        //     'package_id' => $id,
-        //     'favorited' => $is_Fave,
-        // ]);
-        if($faves){
-            $already_favorite = $faves->favorited;
-            $update = true;
-            if($already_favorite == $is_Fave){
-                $faves->delete();
+        if($request->ajax()){
+            $id = $request['packageId'];
+            $package = Package::find($id);
+            if(!$package){
                 return null;
             }
-        }else{
-            $faves = new Favorites();
+            $traveler = Auth::user();
+            $faves = $traveler->favorites()->where('package_id', $id)->first();
+            if($faves){
+                $faves->delete();
+                // return 'Unfavorite';
+                return response()->json($faves);
+            }else{
+                $faves = new Favorites;
+                $faves->favorited = 1;
+                $faves->traveler_id = $traveler->id;
+                $faves->package_id = $id;
+                $faves->save();
+                return 'Favorite';
+            }   
         }
-        $faves->traveler_id = $traveler->id;
-        $faves->package_id = $id;
-        $faves->favorited = $is_Fave;
-        if($update){
-            $faves->update();
+    }
 
-        }else{
-            $faves->save();
+    public function unfavoritePackage(Request $request)
+    {
+        if($request->ajax()){
+            $getId = $request['deleteFave'];
+            $fave = Favorites::find($getId);
+            $fave->delete();
+            return response()->json($fave);
         }
-        return null;
     }
 
     public function updateProfile(Request $request){

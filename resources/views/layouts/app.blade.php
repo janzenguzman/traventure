@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Traventure') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}"> 
+
 </head>
 <body>
-    <div id="app">
+    {{--  <div id="app">  --}}
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -28,15 +29,30 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
+                    @guest
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                    @else
+                        <a class="navbar-brand" href="{{ url('/Traveler/Explore') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                    @endguest
+                    
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        @guest
+                            &nbsp;
+                        @else
+                            <li><a href="/Traveler/Explore">Explore</a></li>
+                            <li><a href="/Traveler/Bookings">Bookings</a></li>
+                            <li><a href="/Traveler/Trips">Trips</a></li>
+                            <li><a href="/Traveler/Favorites">Favorites</a></li>
+                            <li><a href="/Traveler/Messages">Messages</a></li>
+                        @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -70,13 +86,18 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-
+        </nav> 
+    {{--  </div>  --}}
+    
+    <div class="container">
         @yield('content')
     </div>
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    @yield('script')
+    <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+    {{--  <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>  --}}
+    @yield('js')
     </scipt>
 </body>
-</html>
+</html
