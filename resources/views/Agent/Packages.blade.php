@@ -25,7 +25,7 @@
                         <a href="Messages">Messages</a>
                     </div>
                 </div>
-                <form action="/Agent/Packages/Create">
+                <form action="/Agent/Packages/CreatePackage">
                         <input type="submit" value="Create a package"/>
                 </form>
                 <div>
@@ -45,10 +45,10 @@
                                 <td>{{$package->package_name}}</td>
                                 <td>{{$package->type}}</td>
                                 <td>{{$package->reminders}}</td>
-                                <td><a href="/Agent/Packages/Delete/{{ $package->package_id }}"><button>Delete</button></a>
+                                <td><a href="/Agent/Packages/DeletePackage/{{ $package->package_id }}"><button>Delete</button></a>
                                     {{--  <a href="{{ route('Agent.EditSlots', $packages->package_id) }}"><button>Slots</button></a>  --}}
                                     <a href="/Agent/Packages/AddSlots/{{ $package->package_id }}"><button>Add Slots</button></a>
-                                    <a href="/Agent/Packages/Details/{{ $package->package_id }}"><button>View More</button></a></td>
+                                    <a href="/Agent/Packages/PackageDetails/{{ $package->package_id }}"><button>View More</button></a></td>
                             </tr>
                                     @endforeach
                                  @else
