@@ -43,4 +43,9 @@
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         {{ session('cancelledBooking')}}
     </div>
+@elseif(session('BookingFailed'))
+    <div class="alert alert-danger alert-dismissable fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ session('BookingFailed')}}
+    </div>
 @endif

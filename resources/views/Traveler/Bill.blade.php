@@ -46,7 +46,7 @@
 							<div class="trip-list-item no-border">
 								<div class="image-absolute">
 									<div class="image image-object-fit image-object-fit-cover">
-										<img src="images/trip/01.jpg" alt="image" >
+										<img src="{{asset('images/trip/01.jpg')}}" alt="image" >
 									</div>
 								</div>
 								<div class="content">
@@ -59,22 +59,28 @@
 												
 												<div class="GridLex-inner">
 													<h6>{{ $bookingRequest->package_name}}</h6>
-													<span class="font-italic font14">5 days 4 nights</span>
+													<span class="font-italic font14">
+
+														@if($bookingRequest->days == 1)
+															{{$bookingRequest->days}} Day Tour
+														@else
+															{{$bookingRequest->days}} Days
+														@endif
+
+														@if(($nights = $bookingRequest->days - 1) != 0)
+															@if($nights <= 1)
+																{{$nights}} Night 
+															@else
+																{{$nights}} Nights
+															@endif
+														@endif
+													</span>
 												</div>
 												
 											</div>
 											
 											<div class="GridLex-col-3_sm-6_xs-7_xss-12 pull-right">
 												
-											</div>
-											
-											<div class="GridLex-col-3_sm-6_xs-5_xss-12">
-												<div class="GridLex-inner line-1 font14 text-center text-left-sm text-muted spacing-1">
-													<div class="rating-item rating-item-lg  mt-10-xs">
-														<input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="4.5"/>
-														<div class="rating-text">Based on <a href="#">32 reviews</a></div>
-													</div>
-												</div>
 											</div>
 											
 										</div>
@@ -116,6 +122,7 @@
                                                     <div class="row gap-5">
                                                         <div class="col-xs-5 col-sm-5">
 															<input type="hidden" name="booking_id" class="form-control" value="{{ $bookingRequest->booking_id }}">
+															<input type="hidden" name="slot_id" class="form-control" value="{{ $bookingRequest->slot_id }}">
                                                             <input type="text" name="date_from" class="form-control" value="{{ Carbon\Carbon::parse($bookingRequest->date_from)->toFormattedDateString() }}" readonly>
                                                         </div>
                                                         <div class="col-xs-2 col-sm-2">
@@ -182,49 +189,91 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-horizontal">
-                                                <div class="form-group select2-input-hide">
-                                                    <label class="col-sm-3 col-md-2 control-label">Adult:</label>
-                                                    <div class="col-sm-8 col-md-5">
-                                                        
-                                                        <div class="row gap-5">
-                                                            <div class="col-xs-3 col-sm-3">
-                                                                <input type="text" name="adult" class="form-control" value="{{ $bookingRequest->adult }}" readonly>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
+										@if($bookingRequest->service == 'Joined')
+											<div class="form-horizontal">
+												<div class="form-group select2-input-hide">
+													<label class="col-sm-3 col-md-2 control-label">Adult:</label>
+													<div class="col-sm-8 col-md-5">
+														
+														<div class="row gap-5">
+															<div class="col-xs-3 col-sm-3">
+																<input type="text" name="adult" class="form-control" value="{{ $bookingRequest->adult }}" readonly>
+															</div>
+														</div>
+														
+													</div>
+												</div>
+											</div>
 
-                                        <div class="form-horizontal">
-                                            <div class="form-group select2-input-hide">
-                                                <label class="col-sm-3 col-md-2 control-label">Child:</label>
-                                                <div class="col-sm-8 col-md-5">
-                                                    
-                                                    <div class="row gap-5">
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <input type="text" name="child" class="form-control" value="{{ $bookingRequest->child }}" readonly>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-horizontal">
-                                            <div class="form-group select2-input-hide">
-                                                <label class="col-sm-3 col-md-2 control-label">Infant:</label>
-                                                <div class="col-sm-8 col-md-5">
-                                                    
-                                                    <div class="row gap-5">
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <input type="text" name="infant" class="form-control" value="{{ $bookingRequest->infant }}" readonly>
-                                                        </div>
-                                                    </div>
-                                                    <input type="hidden" name="total_payment" class="form-control" value="{{ ($bookingRequest->price) * ($bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant) }}" readonly>
-                                                </div>
-                                            </div>
-                                        </div>
+											<div class="form-horizontal">
+												<div class="form-group select2-input-hide">
+													<label class="col-sm-3 col-md-2 control-label">Child:</label>
+													<div class="col-sm-8 col-md-5">
+														
+														<div class="row gap-5">
+															<div class="col-xs-3 col-sm-3">
+																<input type="text" name="child" class="form-control" value="{{ $bookingRequest->child }}" readonly>
+															</div>
+														</div>
+														
+													</div>
+												</div>
+											</div>
+											<div class="form-horizontal">
+												<div class="form-group select2-input-hide">
+													<label class="col-sm-3 col-md-2 control-label">Infant:</label>
+													<div class="col-sm-8 col-md-5">
+														
+														<div class="row gap-5">
+															<div class="col-xs-3 col-sm-3">
+																<input type="text" name="infant" class="form-control" value="{{ $bookingRequest->infant }}" readonly>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<input type="hidden" name="total_payment" class="form-control" value="{{ ($bookingRequest->adult * $bookingRequest->adult_price) + 
+												($bookingRequest->child * $bookingRequest->child_price) + ($bookingRequest->infant * $bookingRequest->infant_price) }}">
+	
+											<input type="hidden" name="adult_price" class="form-control" value="{{ $bookingRequest->adult_price }}">
+											<input type="hidden" name="child_price" class="form-control" value="{{ $bookingRequest->child_price }}">
+											<input type="hidden" name="infant_price" class="form-control" value="{{ $bookingRequest->infant_price }}">
+										@else
+											<div class="form-horizontal">
+												<div class="form-group select2-input-hide">
+													<label class="col-sm-3 col-md-2 control-label">Excess Person:</label>
+													<div class="col-sm-8 col-md-5">
+														
+														<div class="row gap-5">
+															<div class="col-xs-3 col-sm-3">
+																<input type="text" name="infant" class="form-control" value="{{ $bookingRequest->no_of_excess }}" readonly>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											@if($bookingRequest->no_of_exclusive_traveler == $bookingRequest->pax1)
+												<input type="hidden" name="total_payment" class="form-control" value="{{ ($bookingRequest->pax1_price) + 
+													($bookingRequest->no_of_exclusive_traveler * $bookingRequest->excess_price) }}">
+													<input type="hidden" name="pax" class="form-control" value="{{ $bookingRequest->pax1 }}">
+													<input type="hidden" name="pax_price" class="form-control" value="{{ $bookingRequest->pax1_price }}">
+											@elseif($bookingRequest->no_of_exclusive_traveler == $bookingRequest->pax2)
+												<input type="hidden" name="total_payment" class="form-control" value="{{ ($bookingRequest->pax2_price) + 
+													($bookingRequest->no_of_exclusive_traveler * $bookingRequest->excess_price) }}">
+												<input type="hidden" name="pax" class="form-control" value="{{ $bookingRequest->pax2 }}">
+												<input type="hidden" name="pax_price" class="form-control" value="{{ $bookingRequest->pax2_price }}">
+											@else
+												<input type="hidden" name="total_payment" class="form-control" value="{{ ($bookingRequest->pax3_price) + 
+													($bookingRequest->no_of_exclusive_traveler * $bookingRequest->excess_price) }}">
+												<input type="hidden" name="pax" class="form-control" value="{{ $bookingRequest->pax3 }}">
+												<input type="hidden" name="pax_price" class="form-control" value="{{ $bookingRequest->pax3_price }}">
+											@endif
+
+											<input type="hidden" name="excess_price" class="form-control" value="{{ $bookingRequest->excess_price }}">
+											<input type="hidden" name="no_of_excess" class="form-control" value="{{ $bookingRequest->no_of_excess }}">
+											<input type="hidden" name="no_of_exclusive_traveler" class="form-control" value="{{ $bookingRequest->no_of_exclusive_traveler }}">
+										@endif
                                         <div class="mt-10 text-center">
                                             <p class="font-md text-muted font500 spacing-2">You won't be charged on this booking. Payments will be made physically.</p>
                                         </div>
@@ -268,46 +317,101 @@
 												<h6>Meeting time</h6>
 												<p class="text-muted">09:00 am</p>
 											</li>
-											
-											<li>
-												<h6>Travellers</h6>
-                                                <p class="text-muted"> {{ $bookingRequest->adult }} Adult/s</p>
-                                                @if($bookingRequest->child == 1)
-                                                    <p class="text-muted"> {{ $bookingRequest->child }} Child</p>
-                                                @else
-                                                    <p class="text-muted"> {{ $bookingRequest->child }} Children</p>
-                                                @endif
-                                                <p class="text-muted"> {{ $bookingRequest->infant }} Infant/s</p>
-											</li>
-											
-											<li class="divider"></li>
-											
-											<li>
-												<h6 class="heading mt-20 mb-5 text-primary uppercase">Price per person</h6>
-												<div class="row gap-10 mt-10">
-													<div class="col-xs-7 col-sm-7">
-														Tour Package Price
+
+											@if($bookingRequest->type=='Joined')
+												<li>
+													<h6>Travelers:</h6><br>
+														<p class="text-muted"> {{ $bookingRequest->adult }} Adult/s</p>
+														@if($bookingRequest->child == 1)
+															<p class="text-muted"> {{ $bookingRequest->child }} Child</p>
+														@else
+															<p class="text-muted"> {{ $bookingRequest->child }} Children</p>
+														@endif
+														<p class="text-muted"> {{ $bookingRequest->infant }} Infant/s</p>
+													
+												</li>
+												
+												<li class="divider"></li>
+												
+												<li>
+													<h6 class="heading mt-20 mb-5 text-primary uppercase">Price per person</h6>
+													<div class="row gap-10 mt-10">
+														<div class="col-xs-7 col-sm-7">
+															Adult Price <br>
+															Child Price <br>
+															Infant Price
+														</div>
+														<div class="col-xs-5 col-sm-5 text-right">
+															PHP {{ $bookingRequest->adult_price }} <br>
+															PHP {{ $bookingRequest->child_price }} <br>
+															PHP {{ $bookingRequest->infant_price }}
+														</div>
 													</div>
-													<div class="col-xs-5 col-sm-5 text-right">
-														PHP {{ $bookingRequest->price }}
+												</li>
+												
+												<li class="divider"></li>
+												
+												<li>
+													<div class="row gap-10 mt-10">
+														<div class="col-xs-7 col-sm-7">
+															<span class="font600">Total </span>
+														</div>
+														<div class="col-xs-5 col-sm-5 text-right">
+																PHP {{ $bookingRequest->adult_price }} x {{ $bookingRequest->adult }} <br>
+																PHP {{ $bookingRequest->child_price }} x {{ $bookingRequest->child }} <br>
+																PHP {{ $bookingRequest->infant_price }} x {{ $bookingRequest->infant }}
+															<h4 class="font600 font24 block text-primary mt-5">
+																PHP {{ ($bookingRequest->adult * $bookingRequest->adult_price) + 
+																	($bookingRequest->child * $bookingRequest->child_price) + ($bookingRequest->infant * $bookingRequest->infant_price) }}</h4>
+														</div>
 													</div>
-												</div>
-											</li>
-											
-											<li class="divider"></li>
-											
-											<li>
-												<div class="row gap-10 mt-10">
-													<div class="col-xs-7 col-sm-7">
-														<span class="font600">Total </span>
+												</li>
+											@else
+												<li>
+													<h6>Travelers:</h6><br>
+														<p class="text-muted"> {{ $bookingRequest->no_of_exclusive_traveler }} Pax</p>
+														<p class="text-muted"> {{ $bookingRequest->no_of_excess }} Excess Person</p>
+												</li>
+												
+												<li class="divider"></li>
+												
+												<li>
+													<h6 class="heading mt-20 mb-5 text-primary uppercase">Exclusive Tour Price</h6>
+													<div class="row gap-10 mt-10">
+														<div class="col-xs-7 col-sm-7">
+															For {{ $bookingRequest->no_of_exclusive_traveler }} Pax <br>
+															Excess Person Price 
+														</div>
+														<div class="col-xs-5 col-sm-5 text-right">
+															@if($bookingRequest->no_of_exclusive_traveler == $bookingRequest->pax1)
+																PHP {{ $price = $bookingRequest->pax1_price }} <br>
+															@elseif($bookingRequest->no_of_exclusive_traveler == $bookingRequest->pax2)
+																PHP {{ $price = $bookingRequest->pax2_price }} <br>
+															@else
+																PHP {{ $price = $bookingRequest->pax2_price }} <br>
+															@endif
+															PHP {{ $bookingRequest->excess_price }} 
+														</div>
 													</div>
-													<div class="col-xs-5 col-sm-5 text-right">
-                                                            PHP {{ $bookingRequest->price }} x {{ $bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant }}
-														<h4 class="font600 font24 block text-primary mt-5">
-                                                            PHP {{ ($bookingRequest->price) * ($bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant) }}</h4>
+												</li>
+												
+												<li class="divider"></li>
+												
+												<li>
+													<div class="row gap-10 mt-10">
+														<div class="col-xs-7 col-sm-7">
+															<span class="font600">Total </span>
+														</div>
+														<div class="col-xs-5 col-sm-5 text-right">
+																PHP {{ $price }} <br>
+																PHP {{ $bookingRequest->no_of_exclusive_traveler }} x {{ $bookingRequest->excess_price }}
+															<h4 class="font600 font24 block text-primary mt-5">
+																PHP {{ ($price) + 
+																	($bookingRequest->no_of_exclusive_traveler * $bookingRequest->excess_price) }}</h4>
+														</div>
 													</div>
-												</div>
-											</li>
+												</li>
+											@endif
 											
 										</ul>
 										

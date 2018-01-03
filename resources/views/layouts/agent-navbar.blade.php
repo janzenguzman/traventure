@@ -35,7 +35,7 @@
 								</ul>
 							</li>
 							<li>
-								<a href="{{ route('Agent.HomePage') }}">PACKAGES</a>
+								<a href="{{ route('Agent.Packages') }}">PACKAGES</a>
 							</li>
 							
 							<li>

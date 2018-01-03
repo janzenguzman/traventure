@@ -233,59 +233,59 @@
 	
 	<!-- end Container Wrapper -->
 
-			<div id="myModal" class="modal fade login-box-wrapper" role="dialog">
-			  <!-- Modal content-->
-			  <div class="modal-content">
-				<div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal">×</button>
-				  <div class="title-reply">
-				  <center><text class="modal-title fname"></text><text class="modal-title lname"></text></center>
-				  </div>
+		<div id="myModal" class="modal fade login-box-wrapper" role="dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<div class="title-reply">
+				<center><text class="modal-title fname"></text><text class="modal-title lname"></text></center>
+				</div>
 
-				  	<div class="title-delete">
-						<text class="modal-title">Delete</text>
-					</div>
+				<div class="title-delete">
+					<text class="modal-title">Delete</text>
 				</div>
-				<div class="modal-body">
-				  <form method="POST" action="{{ route('Traveler.ReplyMessage') }}" class="form-horizontal">
-						{{ csrf_field() }}
-					<div class="form-group">
-						<div class="col-sm-12">
-							<input type="hidden" name="message_id" class="text-primary message_id">
-							<input type="hidden" class="text-primary receiver_email" name="sender_email">
-							<input type="hidden" class="text-primary sender_email" name="receiver_email">
-							<input type="hidden" class="text-primary package_id" name="package_id">
-							<small style="font-weight:bold" class="pull-right created_at"></small>
-							<small style="font-weight:bold;" class="pull-right"> Received: </small><br>
-							<span style="font-weight:bold">MESSAGE:</span><br>
-							<text type="text" class="message" style="font-size:15px"></text><br><br>
-							<textarea id="form_message" name="message" class="form-control col-sm-12 col-md-12" required></textarea>
-						</div>
-					</div>
-				</div>
-					<div class="modal-footer footer-reply">
-						<button type="button" data-dismiss="modal" class="btn btn-success">Close</button>
-						<button type="submit" class="btn btn-info">Reply<button>
-					</div>
-				</form>
-				
-				<form method="POST" action="{{ route('Traveler.DeleteMessage')}}" class="form-delete">
-						{{ csrf_field() }}
-				  <div class="deleteContent" style="padding-left:5%; padding-bottom:5%">
-					<h4 class="center">Are you Sure you want to delete this message?</h4>
-					<input type="hidden" name="id" class="text-primary message_id"></h4>
-					<input type="hidden" class="text-primary receiver_email" name="receiver_email">
-					<input type="hidden" class="text-primary sender_email" name="sender_email">
-					<input type="hidden" class="text-primary package_id" name="package_id">
-					<input type="hidden" class="text-primary message" name="message">
-					<input type="hidden" class="text-primary created_at" name="created_at">
-				  </div>
-					<div class="modal-footer footer-delete">
-						<button type="button" data-dismiss="modal" class="btn btn-success">Close</button>
-						<button type="submit" class="btn btn-danger">Delete</button>
-					</div>
-				</form>
 			</div>
+			<div class="modal-body">
+				<form method="POST" action="{{ route('Traveler.ReplyMessage') }}" class="form-horizontal">
+					{{ csrf_field() }}
+				<div class="form-group">
+					<div class="col-sm-12">
+						<input type="hidden" name="message_id" class="text-primary message_id">
+						<input type="hidden" class="text-primary receiver_email" name="sender_email">
+						<input type="hidden" class="text-primary sender_email" name="receiver_email">
+						<input type="hidden" class="text-primary package_id" name="package_id">
+						<small style="font-weight:bold" class="pull-right created_at"></small>
+						<small style="font-weight:bold;" class="pull-right"> Received: </small><br>
+						<span style="font-weight:bold">MESSAGE:</span><br>
+						<text type="text" class="message" style="font-size:15px"></text><br><br>
+						<textarea id="form_message" name="message" class="form-control col-sm-12 col-md-12" required></textarea>
+					</div>
+				</div>
+			</div>
+				<div class="modal-footer footer-reply">
+					<button type="button" data-dismiss="modal" class="btn btn-success">Close</button>
+					<button type="submit" class="btn btn-info">Reply</button>
+				</div>
+			</form>
+			
+			<form method="POST" action="{{ route('Traveler.DeleteMessage')}}" class="form-delete">
+					{{ csrf_field() }}
+				<div class="deleteContent" style="padding-left:5%; padding-bottom:5%">
+				<h4 class="center">Are you Sure you want to delete this message?</h4>
+				<input type="hidden" name="id" class="text-primary message_id"></h4>
+				<input type="hidden" class="text-primary receiver_email" name="receiver_email">
+				<input type="hidden" class="text-primary sender_email" name="sender_email">
+				<input type="hidden" class="text-primary package_id" name="package_id">
+				<input type="hidden" class="text-primary message" name="message">
+				<input type="hidden" class="text-primary created_at" name="created_at">
+				</div>
+				<div class="modal-footer footer-delete">
+					<button type="button" data-dismiss="modal" class="btn btn-success">Close</button>
+					<button type="submit" class="btn btn-danger">Delete</button>
+				</div>
+			</form>
+		</div>
  
  
 <!-- start Back To Top -->

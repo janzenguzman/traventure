@@ -19,7 +19,12 @@ class Bookings extends Model
         'traveler_id',
         'status',
         'p_id',
-        'expired'
+        'expired',
+        'service',
+        'slot_id',
+        'no_of_excess',
+        'excess_price',
+        'no_of_excess_traveler'
     ];
 
     protected $primaryKey = 'package_id';

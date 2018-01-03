@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTotalPaymentToBooking extends Migration
+class AddNoOfExcessToBills extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddTotalPaymentToBooking extends Migration
      */
     public function up()
     {
-        Schema::table('bookings', function($table){
-            $table->decimal('total_payment',10,2)->nullable();
+        Schema::table('bills', function($table){
+            $table->integer('no_of_excess')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddTotalPaymentToBooking extends Migration
      */
     public function down()
     {
-        Schema::table('bookings', function($table){
-            $table->dropColumn('total_payment');
+        Schema::table('bills', function($table){
+            $table->dropColumn('no_of_excess');
         });
     }
 }

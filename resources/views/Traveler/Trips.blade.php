@@ -116,7 +116,7 @@
 							<form method="post" action="{{ route('Traveler.Trips')}}">
 								{{ csrf_field() }}	
 								<div class="row">
-									<div class="col-lg-6">
+									<div class="col-lg-6 col-md-5 col-xs-5">
 										<div class="input-group">
 											<input type="text" name="search_pname" class="form-control"  placeholder="Search package name" >
 											<span class="input-group-btn">
@@ -127,7 +127,7 @@
 							</form>
 							<div class="col-lg-1" style="margin-right:3.5%">
 								<form>
-									<a href="{{ route('Traveler.Trips') }}" class="btn btn-sm btn-info">All Trips</a>
+									<a href="{{ route('Traveler.Trips') }}" class="btn btn-sm btn-info">Show All</a>
 								</form>
 							</div>
 							@if(count($trips) > 0)

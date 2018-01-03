@@ -133,32 +133,32 @@
 							<form method="post" action="{{ route('Traveler.Bookings')}}">
 								{{ csrf_field() }}	
 								<div class="row">
-									<div class="col-lg-6">
+									<div class="col-lg-6 col-md-5 col-xs-5">
 										<div class="input-group">
 											<input type="text" name="search_pname" class="form-control"  placeholder="Search package name" >
 											<span class="input-group-btn">
-												<button class="btn btn-default" type="submit">Search</button>
+													<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 											</span>
 										</div><br>
 									</div>
 							</form>
-							<div class="col-lg-1" style="margin-right:3.5%">
+							<div class="col-lg-1" style="margin-right:1%">
 								<form>
-									<a href="{{ route('Traveler.Bookings') }}" class="btn btn-sm btn-info">All Bookings</a>
+									<a href="{{ route('Traveler.Bookings') }}" class="btn btn-sm btn-default">Show All</a>
 								</form>
 							</div>
 							<div class="col-lg-1">
 								<form method="post" action="{{ route('Traveler.Bookings')}}">
 									{{ csrf_field() }}	
 									<input type="hidden" name="accepted" class="form-control" value="Accepted">
-									<button type="submit" class="btn btn-sm btn-success">Booked</button>
+									<button type="submit" class="btn btn-sm btn-default">Booked</button>
 								</form>
 							</div>
 							<div class="col-lg-1">
 								<form method="post" action="{{ route('Traveler.Bookings')}}">
 									{{ csrf_field() }}	
 									<input type="hidden" name="requested" class="form-control" value="Confirmed">
-									<button type="submit" class="btn btn-sm btn-warning">Requested</button>
+									<button type="submit" class="btn btn-sm btn-default">Requested</button>
 								<form>
 							</div>
                             @if(count($bookings) > 0)
@@ -181,25 +181,43 @@
 															<div class="GridLex-col-6_sm-12_xs-12_xss-12">
 																
 																<div class="GridLex-inner">
-																	<h6>{{$booking->package_name}}</h6>
+																	<h6>{{$booking->package_name}}</h6><p class="text-muted font-sm">{{$booking->service}} Tour </p>
 																	@if($booking->status== 'Confirmed')
-																		<span class="label label-warning">Requested</span>
+																		<span class="label label-warning" style="margin-right: 2px">Requested</span>
 																	@elseif($booking->status=='Accepted')
 																		<span class="label label-success">Booked</span>
 																	@endif
-																	<span class="font-italic font14">5 days 4 nights</span>
+																	<span class="font-italic font14">
+																		@if($booking->days == 1)
+																			{{$booking->days}} Day Tour
+																		@else
+																			{{$booking->days}} Days
+																		@endif
+				
+																		@if(($nights = $booking->days - 1) != 0)
+																			@if($nights <= 1)
+																				{{$nights}} Night 
+																			@else
+																				{{$nights}} Nights
+																			@endif
+																		@endif
+																	</span>
 																</div>
 																
 															</div>
 															
 															<div class="GridLex-col-3_sm-6_xs-7_xss-12">
 																<div class="GridLex-inner line-1 font14 text-muted spacing-1">
+																	Booking ID: {{ $booking->booking_id}}
+																	
+																	<br>
+																	<br>
 																	Travel date
 																	<span class="block text-primary font16 font700 mt-1">
-																		{{ Carbon\Carbon::parse($booking->date_from)->toFormattedDateString() }}-
-																		{{ Carbon\Carbon::parse($booking->date_to)->toFormattedDateString() }}</span>
+																		{{ Carbon\Carbon::parse($booking->date_from)->toFormattedDateString() }} -
+																		{{ Carbon\Carbon::parse($booking->date_to)->toFormattedDateString() }} 
+																	</span>
 																</div>
-																
 															</div>
 															
 															<div class="GridLex-col-3_sm-6_xs-5_xss-12">
@@ -207,7 +225,7 @@
 																		{{--  <a href="/Traveler/Bookings/{{$booking->booking_id}}" class="btn btn-info btn-sm">View</a>  --}}
 																		<a href="/Traveler/Bookings/{{$booking->package_id}}/{{$booking->booking_id}}" class="btn btn-info btn-sm">View</a>
 																	@if($booking->status == 'Confirmed')
-																		<a href="/Traveler/Bookings/Cancel/{{$booking->booking_id}}" class="btn btn-danger btn-sm">Cancel</a>
+																		<a href="/Traveler/Cancel/{{$booking->booking_id}}" class="btn btn-danger btn-sm">Cancel</a>
 																	@endif
 																</div>
 															</div>
@@ -220,10 +238,11 @@
 											</div>
 										
 										</div>
+										
 									@endif
 								@endforeach
 								
-								<div class="pager-wrappper text-left clearfix bt mt-0 pt-20 col-lg-12">
+								<div class="pager-wrappper text-left clearfix col-lg-12">
 									<div class="pager-innner">
 											
 											<div class="clearfix">
@@ -244,7 +263,6 @@
 					</div>
 
 				</div>
->>>>>>> develop
 			</div>
 
         <div class="footer-wrapper scrollspy-footer">

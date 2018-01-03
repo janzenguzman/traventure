@@ -10,7 +10,6 @@ use App\Itineraries;
 use App\Slots;
 use App\Bookings;
 use App\Travels;
-use App\Agents as Agents;
 use DB;
 use View;
 use Carbon\Carbon;
@@ -27,7 +26,7 @@ class AgentsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth:agents');
     }
 
     /**
@@ -36,17 +35,43 @@ class AgentsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function showBookings(){
-        $bookings = DB::table('bookings')
+    public function showBookings(Request $request){
+        $requested = $request->input('requested'); 
+        $accepted = $request->input('accepted');
+        $pname_search = $request->input('search_pname');
+        $id = Auth::user()->id;
+
+        if($requested){
+            $bookings = DB::table('bookings')
+                ->join('packages', 'bookings.package_id', '=', 'packages.package_id')
+                ->join('travelers', 'bookings.traveler_id', '=', 'travelers.id')
+                ->where([['packages.agent_id', $id],
+                        ['bookings.status', '!=', 'Declined'], ['bookings.status', '!=', 'Pending'], 
+                        ['bookings.status', '!=', 'Cancelled'], ['bookings.status', '=', $requested]])
+                ->orderBy('bookings.created_at', 'desc')
+                ->paginate(5);
+        }elseif($accepted){
+            $bookings = DB::table('bookings')
+                ->join('packages', 'bookings.package_id', '=', 'packages.package_id')
+                ->join('travelers', 'bookings.traveler_id', '=', 'travelers.id')
+                ->where([['packages.agent_id', $id],
+                        ['bookings.status', '!=', 'Declined'], ['bookings.status', '!=', 'Pending'],
+                        ['bookings.status', '!=', 'Cancelled'],['bookings.status', '=', $accepted]])
+                ->orderBy('bookings.created_at', 'desc')
+                ->paginate(5);
+        }else{
+            $bookings = DB::table('bookings')
             ->join('packages', 'bookings.package_id', '=', 'packages.package_id')
+            ->join('travelers', 'bookings.traveler_id', '=', 'travelers.id')
+            ->where([['packages.agent_id', $id], ['bookings.status', '!=', 'Pending'],
+                    ['bookings.status', '!=', 'Declined'], ['bookings.status', '!=', 'Cancelled'],
+                    ['packages.package_name', 'like', '%'.$pname_search.'%']])
             ->orderBy('bookings.created_at', 'desc')
-            ->get();
+            ->paginate(5);
+        }
+        
 
         return view('\Agent\Bookings')->with('bookings', $bookings);
-    }
-
-    public function showMessages(){
-        return view ('\Agent\Messages');
     }
 
     public function storePackage(Request $request){
@@ -536,10 +561,6 @@ class AgentsController extends Controller
     //     return view ('agentsRegister');
     // }
 
-    public function showBookings(){
-        return view ('\Agent\Bookings');
-    }
-
     public function showMessages(){
         $agent_email = Auth::user()->email;
         $messages = DB::table('messages')
@@ -573,7 +594,6 @@ class AgentsController extends Controller
     public function deleteMessage(Request $request){
         
         $inserted = DB::table('deleted_messages')->insert([
-            'id' => $request->input('id'),
             'sender_email' => $request->input('sender_email'),
             'receiver_email' => $request->input('receiver_email'),
             'package_id' => $request->input('package_id'),
@@ -625,5 +645,17 @@ class AgentsController extends Controller
         $agents->save();
 
         return redirect()->back()->with('updatedProfile', 'You have successfully updated your profile!');
+    }
+
+    public function openBooking($booking_id, $package_id){
+
+        $bookings = DB::table('bookings')
+                    ->join('packages', 'bookings.package_id', '=', 'packages.package_id')
+                    ->join('bills', 'bookings.booking_id', '=', 'bills.booking_id')
+                    ->where([['bookings.booking_id', $booking_id],
+                            ['bookings.package_id', $package_id]])
+                    ->get();
+
+        return view ('Agent.OpenBooking')->with('bookings', $bookings);
     }
 }
