@@ -77,7 +77,7 @@
 			<div class="breadcrumb-wrapper">
 				<div class="container">
 					<ol class="breadcrumb">
-						<li><a href="{{ route('Agent.HomePage') }}">Packages</a></li>
+						<li><a href="{{ route('Agent.Packages') }}">Packages</a></li>
 						<li>Messages</li>
 						<li class="active">Inbox</li>
 					</ol>
@@ -295,7 +295,7 @@
 			  </div>
 				  <div class="modal-footer footer-reply">
 					  <button type="button" data-dismiss="modal" class="btn btn-success">Close</button>
-					  <button type="submit" class="btn btn-info">Reply<button>
+					  <button type="submit" class="btn btn-info">Reply</button>
 				  </div>
 			  </form>
 			  

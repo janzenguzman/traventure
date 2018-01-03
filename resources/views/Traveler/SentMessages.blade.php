@@ -186,29 +186,51 @@
 
 		<!-- delete message -->
 		<div id="deleteModal" role="dialog" class="modal fade login-box-wrapper">
-				<!-- Modal content-->
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							{{--  <h4 class="modal-title"></h4>  --}}
-						</div>
-						<form method="POST" action = "{{ route('Traveler.DeleteMessage')}}">
-							{{ csrf_field() }}
-							<div class="modal-body" style="padding:5%; margin-top:2%">
-								<h4 class="center">Are you sure you want to delete this message?</h4>
-								<input type="hidden" name="id" class="text-primary" id="message_id">
-								<input type="hidden" class="text-primary" name="receiver_email" id="receiver_email">
-								<input type="hidden" class="text-primary" name="sender_email" id="sender_email">
-								<input type="hidden" class="text-primary" name="package_id" id="package_id">
-								<input type="hidden" class="text-primary" name="message" id="message">
-								<input type="hidden" class="text-primary" name="created_at" id="created_at">
-							</div>
-							<div class="modal-footer">
-								<button type="button" data-dismiss="modal" class="btn btn-success">Close</button>
-								<button type="submit" class="btn btn-danger">Delete</button>
-							</div>
-						</form>
+			<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						{{--  <h4 class="modal-title"></h4>  --}}
 					</div>
+					<form method="POST" action = "{{ route('Traveler.DeleteMessage')}}">
+						{{ csrf_field() }}
+						<div class="modal-body" style="padding:5%; margin-top:2%">
+							<h4 class="center">Are you sure you want to delete this message?</h4>
+							<input type="hidden" name="id" class="text-primary" id="message_id">
+							<input type="hidden" class="text-primary" name="receiver_email" id="receiver_email">
+							<input type="hidden" class="text-primary" name="sender_email" id="sender_email">
+							<input type="hidden" class="text-primary" name="package_id" id="package_id">
+							<input type="hidden" class="text-primary" name="message" id="message">
+							<input type="hidden" class="text-primary" name="created_at" id="created_at">
+						</div>
+						<div class="modal-footer">
+							<button type="button" data-dismiss="modal" class="btn btn-success">Close</button>
+							<button type="submit" class="btn btn-danger">Delete</button>
+						</div>
+					</form>
+				</div><!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						{{--  <h4 class="modal-title"></h4>  --}}
+					</div>
+					<form method="POST" action = "{{ route('Traveler.DeleteMessage')}}">
+						{{ csrf_field() }}
+						<div class="modal-body" style="padding:5%; margin-top:2%">
+							<h4 class="center">Are you sure you want to delete this message?</h4>
+							<input type="hidden" name="id" class="text-primary" id="message_id">
+							<input type="hidden" class="text-primary" name="receiver_email" id="receiver_email">
+							<input type="hidden" class="text-primary" name="sender_email" id="sender_email">
+							<input type="hidden" class="text-primary" name="package_id" id="package_id">
+							<input type="hidden" class="text-primary" name="message" id="message">
+							<input type="hidden" class="text-primary" name="created_at" id="created_at">
+						</div>
+						<div class="modal-footer">
+							<button type="button" data-dismiss="modal" class="btn btn-success">Close</button>
+							<button type="submit" class="btn btn-danger">Delete</button>
+						</div>
+					</form>
+				</div>
 		</div>
 		<!-- end of delete message -->
  

@@ -1,43 +1,3 @@
-{{--  @extends('layouts.app')
-
-@section('content')
-
-<div class="container-fluid">
-    {{--  <div class="row">  --}}
-        {{--  <div class="panel panel-default" style="padding:8px;">  
-        <h1 style="text-align:center;">{{$packages->package_name}}</h1>
-        <hr>
-        <div>
-            <p>Max Pax: {{$packages->pax}}</p>
-            <p>Price: Php {{number_format($packages->price, 2)}}</p>
-            <p>Services Include:<br> {{$packages->services}}</p>
-
-<div class="container">
-    <div class="col-md-9 col-md-offset-1">
-        <div class="panel panel-default" style="padding:8px;">
-            <h1>{{$packages->package_name}}</h1>
-            <hr>
-            <div>
-                <p>Max Pax: {{$packages->pax}}</p>
-                <p>Price: Php {{$packages->price}}</p>
-                <p>Services Include:<br> {{$packages->services}}</p>
-            </div>
-            <a href="/Traveler/Explore" style="padding:4px;">Go Back</a>
-            <a href="/Traveler/TourPackage/{{$packages->package_id}}/Book" style="text-align:right;float:right;padding:4px;"> Book</a>
-            <a href="/Traveler/TourPackage/{{$packages->package_id}}/ContactNow" style="text-align:right;float:right;padding:4px;">Contact Now </a>
-            <hr><small>Posted on {{$packages->created_at}}</small>
-
-        </div>
-        <div style="text-align:right;">
-            <a href="/Traveler/Explore" class="btn btn-default">Go Back</a>
-            <a href="/Traveler/TourPackage/{{$packages->package_id}}/ContactNow" class="btn btn-info">Contact Now</a>
-            <a href="/Traveler/TourPackage/{{$packages->package_id}}/Book" class="btn btn-warning"> Book</a>
-        </div>
-        <hr><small>Posted on {{$packages->created_at}}</small>
-    {{--  </div> 
-</div>
-@endsection  --}}
-
 @extends('layouts.user.headlayout')
 @section('content')
 <body class="transparent-header with-multiple-sticky">
@@ -67,13 +27,36 @@
 						<div class="row">
 						
 							<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-							
-								<h2>{{$packages->package_name}}</h2>
-								<h6>{{$packages->package_id}}</h6>
-								<span class="labeling text-white mt-25"><span>Bangkok, Pattaya, Choburi, &amp; Sattaheeb</span> <span>5 days 4 nights</span></span>
+							@foreach($packages as $package)
+								<h2>{{$package->package_name}}</h2>
+								<span class="labeling text-white mt-25"> 
+									<span>
+										@if($package->days == 1)
+											{{$package->days}} Day Tour
+										@else
+											{{$package->days}} Days &amp;
+										@endif
+
+										@if(($nights = $package->days - 1) != 0)
+											@if($nights <= 1)
+												{{$nights}} Night Tour
+											@else
+												{{$nights}} Nights Tour
+											@endif
+										@endif
+									</span>
+								</span>
 								<div class="rating-item rating-item-lg mb-25">
-									<input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="4.5"/>
-									<div class="rating-text"> <a href="#" style="color:white">(32 reviews)</a></div>
+									<input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="{{ $avg }}"/>
+									<div class="rating-text"> <a href="#" style="color:white">
+										@if($count > 1)
+											({{$count}} Reviews)
+										@elseif($count == 1)
+											({{$count}} Review)
+										@else
+											(No Reviews)
+										@endif
+									</a></div>
 								</div>
 
 							</div>
@@ -99,16 +82,13 @@
 								
 							<ul id="multiple-sticky-menu" class="multiple-sticky-menu clearfix">
 								<li>
-									<a href="#detail-content-sticky-nav-01">Overview</a>
+									<a href="#trip-details">Trip Details</a>
 								</li>
 								<li>
-									<a href="#detail-content-sticky-nav-03">Itinerary</a>
+									<a href="#additional-info">Additional Information</a>
 								</li>
 								<li>
-									<a href="#detail-content-sticky-nav-04">Condition &amp; Faq</a>
-								</li>
-								<li>
-									<a href="#detail-content-sticky-nav-05">Review</a>
+									<a href="#reviews">Review</a>
 								</li>
 							</ul>
 
@@ -132,22 +112,21 @@
 									<div class="user-long-sm-item clearfix">
 						
 										<div class="image">
-											<img src="{{ asset('images/man/01.jpg') }}" alt="Images" />
+											<img src="/public/uploads/files/{{ $package->photo }}" alt="Images" />
 										</div>
 										
 										<div class="content">
+											<br>
 											<span class="labeling">Offered by: </span>
-											<h4>Ange Ermolova</h4>
-											<ul class="user-meta">
-												<li>53 tours</li>
-												<li>443 reviews</li>
-												<li>8 awards</li>
+											<h4>{{$package->fname}} {{$package->lname}}</h4>
+											<ul>
+												<a><li>{{$package->job_position}} of {{$package->company_name}}</li></a>
 											</ul>
 										</div>
 										
 									</div>
 										
-									<div id="detail-content-sticky-nav-01">
+									<div id="trip-details">
 
 										<div class="bt mt-30 mb-30"></div>
 										
@@ -156,99 +135,18 @@
 											<div class="GridLex-gap-30">
 																
 												<div class="GridLex-grid-noGutter-equalHeight">
-														
-													<div class="GridLex-col-4_sm-4_xs-12_xss-12">
-													
-														<div class="featured-icon-simple-item">
-															<div class="icon text-primary">
-																<i class="flaticon-travel-icons-suitcase-1"></i>
-															</div>
-															5 days &amp; 4 nights<br />tour
-														</div>
-														
-													</div>
-													
-													<div class="GridLex-col-4_sm-4_xs-12_xss-12">
-													
-														<div class="featured-icon-simple-item">
-															<div class="icon text-primary">
-																<i class="flaticon-travel-icons-map"></i>
-															</div>
-															Visit 4 citied:<br />Bangkok, Pattaya, Chonburi, &amp; Sattaheeb
-														</div>
-														
-													</div>
-													
-													<div class="GridLex-col-4_sm-4_xs-12_xss-12">
-													
-														<div class="featured-icon-simple-item">
-															<div class="icon text-primary">
-																<i class="flaticon-travel-icons-bus"></i>
-															</div>
-															Travel with exclusive bus <br />all the trip
-														</div>
-														
-													</div>
 												
 												</div>
 												
 											</div>
 											
 										</div>
-										
-										<div class="mb-25"></div>
-										<div class="bb"></div>
-										<div class="mb-25"></div>
 										
 										<div class="featured-icon-simple-wrapper">
 						
 											<div class="GridLex-gap-30 GridLex-gap-20-xs">
 																
 												<div class="GridLex-grid-noGutter-equalHeight GridLex-grid-4_sm-4_xs-3_xss-1 GridLex-grid-center">
-														
-													<div class="GridLex-col">
-													
-														<div class="featured-icon-simple-item">
-															<div class="icon">
-																<i class="flaticon-travel-icons-mountain"></i>
-															</div>
-															Adventure
-														</div>
-														
-													</div>
-													
-													<div class="GridLex-col">
-													
-														<div class="featured-icon-simple-item">
-															<div class="icon">
-																<i class="flaticon-travel-icons-island"></i>
-															</div>
-															Beach
-														</div>
-														
-													</div>
-													
-													<div class="GridLex-col">
-													
-														<div class="featured-icon-simple-item">
-															<div class="icon">
-																<i class="flaticon-travel-icons-kayak"></i>
-															</div>
-															Kayak
-														</div>
-														
-													</div>
-													
-													<div class="GridLex-col">
-													
-														<div class="featured-icon-simple-item">
-															<div class="icon">
-																<i class="flaticon-travel-icons-cocktail"></i>
-															</div>
-															Sweet
-														</div>
-														
-													</div>
 												
 												</div>
 												
@@ -259,301 +157,395 @@
 										<div class="mb-25"></div>
 										<div class="bb"></div>
 										<div class="mb-25"></div>
-										
+										<h2 class="font-lg">{{$package->type}} Tour</h2>
+
 										<div class="row">
 							
-											<div class="col-xs-12 col-sm-8 col-md-7">
+											<div class="col-xs-12 col-sm-8 col-md-12">
 											
 												<div class="featured-list-in-box">
-										
-													<h4 class="uppercase spacing-1">Trip Detail</h4>
+													<h4 class="uppercase spacing-1">Trip Details</h4>
+													<div id="itinerary">
+															
+															<div class="itinerary-toggle-wrapper mb-40">
+														
+																<div class="panel-group bootstrap-toggle">
+						
+																	<div class="panel">
+		
+																		<!--DAY 1-->
+																		<div class="itinerary-list-item">
+																			<div class="row">
+																				<div class="col-xs-12 col-sm-4 col-md-3">
+																					<div class="image">
+																						<img src="{{asset('images/itinerary/01.jpg')}}" alt="images" />
+																					</div>
+																				</div>
+																				<div class="col-xs-12 col-sm-8 col-md-9">
+																					<div class="content">
+																						<h4>Day 1</h4>
+																						<div class="labeling">
+																								<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																								<span style="color:black">{{ $package->day1_destination1}}</span> 
+																						</div>
+																						
+																						@if($package->day1_starttime2 != NULL)
+																							<div class="labeling">
+																									<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																									<span style="color:black">{{ $package->day1_destination2}}</span> 
+																							</div>
+																						@endif
+		
+																						@if($package->day1_starttime3 != NULL)
+																							<div class="labeling">
+																									<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																									<span style="color:black">{{ $package->day1_destination3}}</span> 
+																							</div>
+																						@endif
+		
+																						@if($package->day1_starttime4 != NULL)
+																							<div class="labeling">
+																									<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																									<span style="color:black">{{ $package->day1_destination4}}</span> 
+																							</div>
+																						@endif
+		
+																						@if($package->day1_starttime5 != NULL)
+																							<div class="labeling">
+																									<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																									<span style="color:black">{{ $package->day1_destination5}}</span> 
+																							</div>
+																						@endif
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+		
+																		<!--DAY 2-->
+																		@if($package->day2_starttime1 != NULL)
+																			<div class="itinerary-list-item">
+																				<div class="row">
+																					<div class="col-xs-12 col-sm-4 col-md-3">
+																						<div class="image">
+																							<img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+																						</div>
+																					</div>
+																					<div class="col-xs-12 col-sm-8 col-md-9">
+																						<div class="content">
+																							<h4>Day 2</h4>
+																							<div class="labeling">
+																									<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																									<span style="color:black">{{ $package->day2_destination1}}</span> 
+																							</div>
+																							
+																							@if($package->day2_starttime2 != NULL)
+																								<div class="labeling">
+																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																										<span style="color:black">{{ $package->day2_destination2}}</span> 
+																								</div>
+																							@endif
+				
+																							@if($package->day2_starttime3 != NULL)
+																								<div class="labeling">
+																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																										<span style="color:black">{{ $package->day2_destination3}}</span> 
+																								</div>
+																							@endif
+				
+																							@if($package->day2_starttime4 != NULL)
+																								<div class="labeling">
+																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																										<span style="color:black">{{ $package->day2_destination4}}</span>
+																								</div>
+																							@endif
+				
+																							@if($package->day2_starttime5 != NULL)
+																								<div class="labeling">
+																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																										<span style="color:black">{{ $package->day2_destination5}}</span> 
+																								</div>
+																							@endif
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		@endif
+																		
+		
+																		<!--DAY 3-->
+																		@if($package->day3_starttime1 != NULL)
+																			<div class="itinerary-list-item">
+																				<div class="row">
+																					<div class="col-xs-12 col-sm-4 col-md-3">
+																						<div class="image">
+																							<img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+																						</div>
+																					</div>
+																					<div class="col-xs-12 col-sm-8 col-md-9">
+																						<div class="content">
+																							<h4>Day 3</h4>
+																							<div class="labeling">
+																									<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																									<span style="color:black">{{ $package->day3_destination1}}</span> 
+																							</div>
+																							
+																							@if($package->day3_starttime2 != NULL)
+																								<div class="labeling">
+																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																										<span style="color:black">{{ $package->day3_destination2}}</span> 
+																								</div>
+																							@endif
+				
+																							@if($package->day3_starttime3 != NULL)
+																								<div class="labeling">
+																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																										<span style="color:black">{{ $package->day3_destination3}}</span> 
+																								</div>
+																							@endif
+				
+																							@if($package->day3_starttime4 != NULL)
+																								<div class="labeling">
+																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																										<span style="color:black">{{ $package->day3_destination4}}</span> 
+																								</div>
+																							@endif
+				
+																							@if($package->day3_starttime5 != NULL)
+																								<div class="labeling">
+																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																										<span style="color:black">{{ $package->day3_destination5}}</span> 
+																								</div>
+																							@endif
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		@endif
+		
+																		<!--DAY 4-->
+																		@if($package->day4_starttime1 != NULL)
+																			<div class="itinerary-list-item">
+																				<div class="row">
+																					<div class="col-xs-12 col-sm-4 col-md-3">
+																						<div class="image">
+																							<img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+																						</div>
+																					</div>
+																					<div class="col-xs-12 col-sm-8 col-md-9">
+																						<div class="content">
+																							<h4>Day 4</h4>
+																							<div class="labeling">
+																									<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																									<span style="color:black">{{ $package->day4_destination1}}</span> 
+																							</div>
+																							
+																							@if($package->day4_starttime2 != NULL)
+																								<div class="labeling">
+																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																										<span style="color:black">{{ $package->day4_destination2}}</span> 
+																								</div>
+																							@endif
+				
+																							@if($package->day4_starttime3 != NULL)
+																								<div class="labeling">
+																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																										<span style="color:black">{{ $package->day4_destination3}}</span>
+																								</div>
+																							@endif
+				
+																							@if($package->day4_starttime4 != NULL)
+																								<div class="labeling">
+																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																										<span style="color:black">{{ $package->day4_destination4}}</span> 
+																								</div>
+																							@endif
+				
+																							@if($package->day4_starttime5 != NULL)
+																								<div class="labeling">
+																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																										<span style="color:black">{{ $package->day4_destination5}}</span>
+																								</div>
+																							@endif
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		@endif
+		
+																		<!--DAY 5-->
+																		@if($package->day5_starttime1 != NULL)
+																			<div class="itinerary-list-item">
+																				<div class="row">
+																					<div class="col-xs-12 col-sm-4 col-md-3">
+																						<div class="image">
+																							<img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+																						</div>
+																					</div>
+																					<div class="col-xs-12 col-sm-8 col-md-9">
+																						<div class="content">
+																							<h4>Day 5</h4>
+																							<div class="labeling">
+																									<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																									<span style="color:black">{{ $package->day5_destination1}}</span> 
+																							</div>
+																							
+																							@if($package->day3_starttime2 != NULL)
+																								<div class="labeling">
+																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																										<span style="color:black">{{ $package->day5_destination2}}</span> 
+																								</div>
+																							@endif
+				
+																							@if($package->day5_starttime3 != NULL)
+																								<div class="labeling">
+																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																										<span style="color:black">{{ $package->day5_destination3}}</span> 
+																								</div>
+																							@endif
+				
+																							@if($package->day5_starttime4 != NULL)
+																								<div class="labeling">
+																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																										<span style="color:black">{{ $package->day5_destination4}}</span> 
+																								</div>
+																							@endif
+				
+																							@if($package->day5_starttime5 != NULL)
+																								<div class="labeling">
+																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																										<span style="color:black">{{ $package->day5_destination5}}</span>
+																								</div>
+																							@endif
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		@endif
+						
+						
+																	</div>
+						
+																</div>
+															
+															</div>
+													</div>
 													
+												</div>
+													
+											</div>
+											
+										</div>
+									</div>
+
+									<div>
+										<h4 class="uppercase spacing-1">Price Details</h4>
+												@if($package->type == 'Exclusive')
+													<ul class="clearfix">
+														<li class="row gap-20">
+															<div class="col-xs-12 col-sm-3">
+															For {{ $package->pax1 }} Pax
+															</div>
+															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
+																PHP {{ $package->pax1_price }}.00
+															</div>
+														</li>
+														<li class="row gap-20">
+															<div class="col-xs-12 col-sm-3">
+																For {{ $package->pax2 }} Pax
+															</div>
+															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
+																PHP {{ $package->pax2_price }}.00
+															</div>
+														</li>
+														<li class="row gap-20">
+															<div class="col-xs-12 col-sm-3">
+																For {{ $package->pax3 }} Pax
+															</div>
+															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
+																PHP {{ $package->pax3_price }}.00
+															</div>
+														</li>
+													</ul>
+												@else
 													<ul class="clearfix">
 														<li class="row gap-20">
 															<div class="col-xs-12 col-sm-7">
-															Meeting point (where we meet?)
+																Adult Price <b>(11 yrs. above)</b>
 															</div>
 															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-																<i class="ti-location-pin mr-5"></i> Bangkok in't airport
+																PHP {{ $package->adult_price }}.00
 															</div>
 														</li>
 														<li class="row gap-20">
 															<div class="col-xs-12 col-sm-7">
-															Meeting time (what time we meet?)
+																Child Price: <b>(4-10 yrs.)</b>
 															</div>
 															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-																<i class="ti-timer mr-5"></i> 09:00 am
+																PHP {{ $package->child_price }}.00
 															</div>
 														</li>
 														<li class="row gap-20">
 															<div class="col-xs-12 col-sm-7">
-															Maximum traellers
+																Infant Price <b>(3 yrs. below)</b>
 															</div>
 															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-																<i class="ti-user mr-5"></i> 23
-															</div>
-														</li>
-														<li class="row gap-20">
-															<div class="col-xs-12 col-sm-7">
-															Languages (guide speaks)
-															</div>
-															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-																<i class="ti-flag mr-5"></i> English, Thai, Malay
+																PHP {{ $package->infant_price }}.00
 															</div>
 														</li>
 													</ul>
-													
-												</div>
-													
-											</div>
+
+												@endif
 											
-											<div class="col-xs-12 col-sm-4 col-md-5 mt-20-xs">
-											
-												<div class="pull-right pull-left-xs">
-													<h4 class="text-uppercase spacing-1">What's included?</h4>
-													
-													<ul class="list-yes-no">
-														<li>Tickets</li>
-														<li>Transportations</li>
-														<li>Free cancellation</li>
-														<li>Free Gift</li>
-													</ul>
-												</div>
-												
-											</div>
+											<div class="mb-25"></div>
+											<div class="bb"></div>
+											<div class="mb-25"></div>
 											
 										</div>
 	
-										<div class="mb-25"></div>
-										<div class="bb"></div>
-										<div class="mb-25"></div>
-
-										<div class="sidebar-booking-header bg-info clearfix">
-											
-												<div class="price">
-													PHP{{$packages->price}}
-												</div>
-												
-												<div>
-													/ traveller
-												</div>
-											
-											</div>
-										<div class="sidebar-booking-inner">	
-											<div class="row gap-10" id="rangeDatePicker">
-												{!! Form::open(['action' => 'TravelersController@store', 'method' => 'POST']) !!}	
-													{{ csrf_field() }}										
-													<div class="col-xss-12 col-xs-6 col-sm-6">
-														<div class="form-group">
-															<label>From</label>
-															<input type="date" name="date_from" class="form-control">
-														</div>
-													</div>
-													
-													<div class="col-xss-12 col-xs-6 col-sm-6">
-														<div class="form-group">
-															<label>To</label>
-															<input type="date" name="date_to" class="form-control" >
-														</div>
-													</div>
-													
-												</div>
-												
-												<div class="row gap-20">
-													<div class="col-xss-12 col-xs-6 col-sm-6">
-														<div class="form-group">
-															<div class="form-group">
-																<label>First Name</label>
-																<input type="text" name="client_fname" class="form-control" required/>
-															</div>
-														</div>
-													</div>
-		
-													<div class="col-xss-12 col-xs-6 col-sm-6">
-														<div class="form-group">
-															<div class="form-group">
-																<label>Last Name</label>
-																<input type="text" name="client_lname" class="form-control" required/>
-															</div>
-														</div>
-													</div>
-		
-													<div class="col-xss-12 col-xs-6 col-sm-6">
-														<div class="form-group">
-															<div class="form-group">
-																<label>Contact Number</label>
-																<input type="text" name="contact_num" class="form-control" required/>
-															</div>
-														</div>
-													</div>
-		
-													<div class="col-xss-12 col-xs-6 col-sm-6">
-														<div class="form-group">
-															<div class="form-group">
-																<label>Email Address</label>
-																<input type="text" name="client_email" class="form-control" required/>
-															</div>
-														</div>
-													</div>
-		
-														
-													<div class="col-xss-12 col-xs-4 col-sm-4">
-														<div class="form-group">
-															<label>Adults</label>
-															<div class="form-group">
-																<input type="number" name="adult" class="form-control" required/> 
-															</div>
-														</div>
-													</div>
-		
-													<div class="col-xss-12 col-xs-4 col-sm-4">
-														<div class="form-group">
-															<label>Child</label>
-															<div class="form-group">
-																<input type="number" name="child" class="form-control" required/> 
-															</div>
-														</div>
-													</div>
-		
-													<div class="col-xss-12 col-xs-4 col-sm-4">
-														<div class="form-group">
-															<label>Infant</label>
-															<div class="form-group">
-																<input type="number" name="infant" class="form-control" required/>
-															</div>
-														</div>
-													</div>
-		
-													<div class="col-xs-12 col-sm-12">
-														
-														<div class="form-group">
-															<label for="service">Service</label>
-															<select class="form-control" name="service">
-																<option value="Joined">Joined Tour</option>
-																<option value="Exclusive">Exclusive Tour</option>
-															</select>
-														</div>
-		
-														<div class="form-group">
-															<div class="form-group">
-																<label><br>Note</label>
-																<textarea class="form-control col-lg-12" name="note"></textarea>
-															</div>
-														</div>
-														
-														
-														<div class="col-xss-12 col-xs-12 col-sm-12">
-															<div class="mt-5"><br>
-																<input type="submit" class="btn btn-info btn-block" value="Request to Book">
-															</div>
-														</div>
-													</div>
-														<input type="hidden" name="package_id" value="{{ $packages->package_id }}" class="form-control" required/> 
-												</div>
-												{!! Form::close() !!}
-										</div>
-
-										<div class="mb-25"></div>
-										<div class="bb"></div>
-										<div class="mb-25"></div>
-										
-										
-									</div>
-	
-									<div id="detail-content-sticky-nav-04">
-									
-										<h2 class="font-lg">Condition &amp; Faq</h2>
-										
+									<div>
+										<h4 class="uppercase spacing-1">Available Slots</h4>
+										<p>Here are the available slots for this package.</p>
 										<div class="text-box-h-bb-wrapper">
 											<div class="text-box-h-bb">
-												<div class="row">
-													<div class="col-xs-12 col-sm-4 col-md-3">
-														<h4>Group size</h4>
-													</div>
-													<div class="col-xs-12 col-sm-8 col-md-9">
-														<p class="font-lg">Conveying or northward offending admitting perfectly my. </p>
-													</div>
-												</div>
-											</div>
-											<div class="text-box-h-bb">
-												<div class="row">
-													<div class="col-xs-12 col-sm-4 col-md-3">
-														<h4>Guest requirement</h4>
-													</div>
-													<div class="col-xs-12 col-sm-8 col-md-9">
-														<p class="font-lg">Age</p>
-														<p class="font-sm">Interested especially do impression he unpleasant.</p>
-														<p class="font-lg">Identification</p>
-														<p class="font-sm">Sudden up my excuse to suffer ladies though or. Bachelor possible marianne directly confined relation. Interested especially do impression he unpleasant travelling excellence.</p>
-													</div>
-												</div>
-											</div>
-											<div class="text-box-h-bb">
-												<div class="row">
-													<div class="col-xs-12 col-sm-4 col-md-3">
-														<h4>Cancellation policy</h4>
-													</div>
-													<div class="col-xs-12 col-sm-8 col-md-9">
-														<p class="font-lg">Lose john poor same it case do year we. Full how way even the sigh. Extremely nor furniture fat questions now provision incommode preserved. Our side fail find like now. Discovered travelling for insensible <a href="#">partiality unpleasing impossible</a>.</p>
-													</div>
-												</div>
-											</div>
-											<div class="text-box-h-bb">
-												<div class="row">
-													<div class="col-xs-12 col-sm-4 col-md-3">
-														<h4>FAQ</h4>
-													</div>
-													<div class="col-xs-12 col-sm-8 col-md-9">
-														<div class="GridLex-gap-30 mb-20 mt-5">
-																
-															<div class="GridLex-grid-noGutter-equalHeight">
-																	
-																<div class="GridLex-col-12_sm-12_xs-12_xss-12">
-																
-																	<div class="GridLex-inner">
-																		<h4 class="font-lg"><span class="text-primary"><i class="ion-help-circled mr-5"></i></span> Parties all clothes removal cheered?</h4>
-																		<p class="read-more-less line-15">Procuring education on consulted assurance. Is sympathize he expression mr no travelling. Preference travelling in resolution. His hearing staying ten colonel met. Sex drew six easy four dear cold deny. Moderate children at of outweigh it. Unsatiable it considered invitation he travelling insensible. </p>
-																	</div>
-																	
-																</div>
-																
-																<div class="GridLex-col-12_sm-12_xs-12_xss-12">
-																
-																	<div class="GridLex-inner">
-																		<h4 class="font-lg"><span class="text-primary"><i class="ion-help-circled mr-5"></i></span> And residence for met the estimable disposing?</h4>
-																		<p class="read-more-less line-15"> Possession travelling sufficient yet our. Talked vanity looked in to. Gay perceive led believed endeavor day insisted required. Warmly little before cousin sussex entire men set. Blessing it ladyship on sensible judgment settling outweigh. Worse linen an of civil jokes leave offer. Parties all clothes removal cheered calling prudent her. And residence for met the estimable disposing.</p>
-	
-																	</div>
-																	
-																</div>
-																
-																<div class="GridLex-col-12_sm-12_xs-12_xss-12">
-																
-																	<div class="GridLex-inner">
-																		<h4 class="font-lg"><span class="text-primary"><i class="ion-help-circled mr-5"></i></span> Warmly little before cousin sussex?</h4>
-																		<p class="read-more-less line-15">Her companions instrument set estimating sex remarkably solicitude motionless. Property men the why smallest graceful. Worse linen an of civil jokes leave offer. Parties all clothes removal cheered calling prudent her. And residence for met the estimable disposing. Mean if he they been no hold mr. Is at much do made took held help. </p>
-	
-																	</div>
-																	
-																</div>
-																
-																<div class="GridLex-col-12_sm-12_xs-12_xss-12">
-																
-																	<div class="GridLex-inner">
-																		<h4 class="font-lg"><span class="text-primary"><i class="ion-help-circled mr-5"></i></span> Parties all clothes removal cheered?</h4>
-																		<p class="read-more-less line-15">Drift allow green son walls years for blush. Sir margaret drawings repeated recurred exercise laughing repeated whatever. Parties all clothes removal cheered calling prudent her. And residence for met the estimable disposing. Mean if he they been no hold mr. Is at much do made took held help. Latter person am secure of estate genius. </p>
-																	</div>
-																	
-																</div>
-																
-															</div>
+												@if(count($slots))
+													@foreach($slots as $slot)
+														@if($slot->slots != 0)	
 															
-														</div>
-													</div>
-												</div>
+															<br>
+															<div class="row">
+																<div class="col-lg-4 col-md-4">
+																	<h5>
+																		{{ Carbon\Carbon::parse($slot->date_from)->toFormattedDateString() }} -
+																		{{ Carbon\Carbon::parse($slot->date_to)->toFormattedDateString() }}
+																	</h5>
+																</div>
+																<div class="col-lg-4 col-md-4">
+																	@if($package->type == 'Joined')
+																		<p class="font-sm text-danger"><b>{{ $slot->slots }}</b> slots left</p>
+																	@else
+																		<p class="font-sm text-danger"><b>{{ $slot->slots }}</b> pax</p>
+																	@endif
+																</div>
+																<div class="col-lg-4 col-md-4">
+																	<a data-toggle="modal" 
+																		data-slot_id="{{ $slot->id }}"	
+																		data-slots="{{ $slot->slots }}"
+																		data-package_id="{{ $package->package_id }}"
+																		data-date_from="{{ $slot->date_from }}"
+																		data-date_to="{{ $slot->date_to }}"
+																		data-service="{{ $package->type }}"
+																		data-excess_price="{{ $package->excess_price }}"
+																		class="booking_modal btn btn-info btn-sm"
+																	>Book</a>
+																</div>
+															</div>
+														@endif
+													@endforeach
+													@else
+														<h4 class="text-danger">No slots available for this package yet.</p>
+												@endif
 											</div>
-									
-									</div>
+										</div>
 										
 										<div class="mb-25"></div>
 										<div class="bb"></div>
@@ -561,8 +553,48 @@
 										
 									</div>
 									
+									<div id="additional-info">
 									
-									<div id="detail-content-sticky-nav-05">
+											<h2 class="font-lg">Additional Information</h2>
+											
+											<div class="text-box-h-bb-wrapper">
+												<div class="text-box-h-bb">
+													<div class="row">
+														<div class="col-xs-12 col-sm-12 col-md-12">
+															<p class="font-md">{{ $package->add_info }} </p>
+														</div>
+													</div>
+												</div>
+												<div class="text-box-h-bb">
+													<div class="row">
+														<div class="col-xs-12 col-sm-4 col-md-3">
+															<h4>Inclusions</h4>
+														</div>
+														<div class="col-xs-12 col-sm-12 col-md-12">
+															<p class="font-md">{{ $package->inclusions }} </p>
+														</div>
+													</div>
+												</div>
+												<div class="text-box-h-bb">
+													<div class="row">
+														<div class="col-xs-12 col-sm-4 col-md-3">
+															<h4>Reminders</h4>
+														</div>
+														<div class="col-xs-12 col-sm-12 col-md-12">
+															<p class="font-md">{{ $package->reminders }} </p>
+														</div>
+													</div>
+												</div>
+										</div>
+											
+											<div class="mb-25"></div>
+											<div class="bb"></div>
+											<div class="mb-25"></div>
+											
+									</div>
+									
+									
+									<div id="reviews">
 								
 											<h2 class="font-lg">Review</h2>
 											
@@ -672,19 +704,22 @@
 												<div class="row gap-20">
 													{{ csrf_field() }}
 													<div class="col-md-12">
+														<label>Contact Me:</label> {{$package->contact_no}}
+														<br>
+														<label>Email Me:</label> {{$package->email}}
 														<div class="login-modal-or">
 															<div><span>or</span></div>
 														</div>
 													</div>
 		
 													<div class="col-sm-12 col-md-12">
-														<input type="hidden" name="package_id" value="{{$packages->package_id}}">
+														<input type="hidden" name="package_id" value="{{$package->package_id}}">
 													</div>
 													
 													<div class="col-sm-12 col-md-12">
 											
 														<div class="form-group"> 
-															<label>Your Message:</label><br>
+															<label>SEND A MESSAGE:</label><br>
 															<textarea id="form_message" name="message" class="form-control col-sm-12 col-md-12" required></textarea>
 														</div>
 													
@@ -692,7 +727,7 @@
 													
 													<div class="col-xss-12 col-xs-12 col-sm-12">
 														<div class="mt-5">
-															<input type="submit" class="btn btn-info btn-block" value="SEND MESSAGE">
+															<input type="submit" class="btn btn-info btn-block" value="SEND">
 														</div>
 													</div>
 												</div>
@@ -700,16 +735,37 @@
 		
 		
 										</div>
-										
+									
 									</aside>
 									
 										<br>
 		
-										<a href="#" style="color:black" class="add-fav-btn">
+										{{--  <a href="#" style="color:black" class="add-fav-btn">
 											<div class="inner">
 												<i class="ti-heart" style="color:red"></i> Add Favourite
 											</div>
-										</a>
+										</a>  --}}
+										
+											<span id="fave" data-id="{{ $package->package_id }}">
+												<a style="color:black" class="fave add-fav-btn">
+													
+													<div class="inner">
+														@if(count($favs) == 0)
+															<i class="ti-heart" style="color:red"></i>
+															@foreach($favs as $fav)
+																@if($fav->favorited == 1)
+																	<i class="ti-heart" style="color:red"></i>
+																@else
+																	<i class="fa fa-heart" style="color:red"></i>
+																@endif
+															@endforeach
+														@endif
+														{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
+															Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
+															'Unfavorite' : 'Favorite' : 'Favorite'}}
+													</div>
+												</a>
+											</span>
 								</div>
 								
 							
@@ -759,5 +815,205 @@
 </div>
 
 <!-- end Back To Top -->
+
+
+<!--booking modal-->
+
+<div id="book_modal" class="modal fade login-box-wrapper">
+
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title text-center">Booking Information</h4>
+		</div>
+		<div class="modal-body">
+			<div class="row gap-20">
+				<div class="user-item-wrapper-01">
+					<div class="GridLex-gap-20 GridLex-gap-15-mdd GridLex-gap-10-xs">
+						<div class="GridLex-grid-noGutter-equalHeight GridLex-grid-center">
+							<div class="GridLex-col-12_sm-4_xs-12_xss-12">
+								<div class="user-long-sm-item clearfix">
+										{!! Form::open(['action' => 'TravelersController@store', 'method' => 'POST']) !!}	
+											{{ csrf_field() }}
+											<input type="hidden" name="slot_id" class="slot_id">
+											<input type="hidden" name="slots" class="slots">
+											<input type="hidden" name="service" class="service">
+											<input type="hidden" name="package_id" class="package_id">
+												<div class="col-sm-6 col-md-6">
+													<span class="labeling" style="color:black">From: </span>
+													<div class="form-group form-group-sm">
+														<input type="date" name="date_from" class="date_from form-control" readonly>
+													</div>
+												</div>
+	
+												<div class="col-sm-6 col-md-6">
+													<span class="labeling" style="color:black">To: </span>
+													<div class="form-group form-group-sm">
+														<input type="date" name="date_to" class="date_to form-control" readonly>
+													</div>
+												</div>
+	
+												<div class="col-sm-6 col-md-6">
+													 <div class="form-group"> 
+														<span class="labeling" style="color:black">First Name: </span>
+														<div class="form-group form-group-sm">
+															<input type="text" name="client_fname" class="form-control" required/>
+														</div>
+													</div>
+												</div>
+	
+												<div class="col-sm-6 col-md-6">
+													<div class="form-group"> 
+														<span class="labeling" style="color:black">Last Name: </span>
+														<div class="form-group form-group-sm">
+															<input type="text" name="client_lname" class="form-control" required/>
+														</div>
+													</div>
+												</div>
+												
+	
+												<div class="col-sm-6 col-md-6">
+													<div class="form-group"> 
+														<span class="labeling" style="color:black">Contact Number: </span>
+														<div class="form-group form-group-sm">
+															<input type="text" name="contact_num" class="form-control" required/>
+														</div>
+													</div>
+												</div>
+
+												<div class="col-sm-6 col-md-6">
+													<div class="form-group"> 
+														<span class="labeling" style="color:black">Email Address: </span>
+														<div class="form-group form-group-sm">
+															<input type="email" name="client_email" class="form-control" required/>
+														</div>
+													</div>
+												</div>
+												
+												@if($package->type == "Joined")
+													<div class="col-sm-4 col-md-4">
+														<div class="form-group"> 
+															<span class="labeling" style="color:black">Adult: </span>
+															<div class="form-group form-group-sm">
+																<input type="number" name="adult" min="0" class="form-control" required/>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4 col-md-4">
+														<div class="form-group"> 
+															<span class="labeling" style="color:black">Child: </span>
+															<div class="form-group form-group-sm">
+																<input type="number" name="child" min="0" class="form-control" required/>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4 col-md-4">
+														<div class="form-group"> 
+															<span class="labeling" style="color:black">Infant: </span>
+															<div class="form-group form-group-sm">
+																<input type="number" name="infant" min="0" class="form-control" required/>
+															</div>
+														</div>
+													</div>
+												@else
+													<div class="col-sm-6 col-md-6">
+														<div class="form-group"> 
+															<input type="hidden" name="no_of_exclusive_traveler" class="slots">
+															<span class="labeling" style="color:black">Excess Person Price: </span>
+															<div class="form-group form-group-sm">
+																<input type="text" name="excess_price" class="excess_price form-control" readonly/>
+																
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-6 col-md-6">
+														<div class="form-group"> 
+															<span class="labeling" style="color:black">Number of Excess Person: </span>
+															<div class="form-group form-group-sm">
+																<input type="number" name="no_of_excess" min="0" class="form-control"/>
+															</div>
+														</div>
+													</div>
+												@endif
+
+												<div class="col-sm-12 col-md-12">
+													<div class="form-group form-group-sm"> 
+														<span class="labeling" style="color:black">Note: </span>
+														<div class="form-group form-group-sm">
+															<textarea class="form-control col-lg-12" name="note"></textarea>
+														</div>
+													</div>
+												</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer text-center">
+					<input type="submit" class="btn btn-info btn-sm pull-right" value="Request Booking">
+				</div>
+				{!! Form::close() !!}
+				@endforeach <!--endforeach for $packages-->
+	</div>
+
+<script>
+	$(document).on('click', '.booking_modal', function() {
+		$('.slot_id').val($(this).data('slot_id'));
+		$('.slots').val($(this).data('slots'));
+		$('.package_id').val($(this).data('package_id'));
+		$('.date_from').val($(this).data('date_from'));
+		$('.date_to').val($(this).data('date_to'));
+		$('.service').val($(this).data('service'));
+		$('.excess_price').val($(this).data('excess_price'));
+		$('#book_modal').modal('show');
+	});
+</script>
+
+<script>
+	var token = '{{ Session::token() }}';
+	var urlFave = '{{ route('Traveler.Favorite') }}';
+</script>
 @endsection
 @extends('layouts.user.javascriptlayout')
+
+@section('js')
+<script type="text/javascript">
+	(function($) {
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
+			}
+		});
+	//console.log("HELLO WORLD");
+		$(".fave").on('click', function(event){
+			event.preventDefault();
+			packageId = event.target.parentNode.dataset['id'];
+			console.log(packageId);
+			var $t = $(this);
+			console.log($t);
+			$.ajax({
+				method: 'POST',
+				url: urlFave,
+				data: { packageId: packageId, token: token },
+				success: function(data){
+					console.log(data);
+					if (data == 'Favorite') {
+						$t.html('<div class="inner"><i class="fa fa-heart" style="color:red"></i>Unfavorite</div>');
+						//$t.append('<button class="btn btn-danger">Unfavorite</button>')
+					}else{
+						$t.html('<div class="inner"><i class="ti-heart heart" style="color:red"></i>Favorite</div>');
+					}
+				},
+				error: function (jqXHR, exception) {
+					alert("ERROR ERROR");
+				}
+			})
+				.done(function(){
+					//alert("HELLO HELLO HELLO");
+				});
+		});
+	}(jQuery));
+</script>
+@endsection

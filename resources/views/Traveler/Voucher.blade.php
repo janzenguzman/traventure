@@ -31,16 +31,20 @@
                                     
                                 <ul id="multiple-sticky-menu" class="multiple-sticky-menu clearfix">
                                     <li>
-                                        <a href="#detail-content-sticky-nav-01">Booking Details</a>
+                                        <a href="#booking-details">Booking Details</a>
+                                    </li>
+
+                                    @foreach($bookings as $booking)
+                                    @if($booking->status == 'Accepted')
+                                        <li>
+                                            <a href="#itinerary">Itinerary</a>
+                                        </li>
+                                    @endif
+                                    <li>
+                                        <a href="#additional-info">Additional Information</a>
                                     </li>
                                     <li>
-                                        <a href="#detail-content-sticky-nav-03">Itinerary</a>
-                                    </li>
-                                    <li>
-                                        <a href="#detail-content-sticky-nav-04">Condition &amp; Faq</a>
-                                    </li>
-                                    <li>
-                                        <a href="#detail-content-sticky-nav-05">Review</a>
+                                        <a href="#reviews">Reviews</a>
                                     </li>
                                 </ul>
     
@@ -61,25 +65,25 @@
                                     <div class="content-wrapper">
                                     
                                     <div class="user-long-sm-item clearfix">
-                        
                                         <div class="image">
-                                            <img src="http://traventure.dev/images/man/01.jpg" alt="Images" />
+                                            <img src="/public/uploads/files/{{ $booking->photo }}" alt="Images" />
                                         </div>
                                         
                                         <div class="content">
                                             <span class="labeling">Offered by: </span>
-                                        @foreach($bookings as $booking)
-                                            <h4>Ange Ermolova</h4>
-                                            @if($booking->status == 'Confirmed')
-                                                <span class="label label-warning">Requested</span>
-                                            @else
-                                                <span class="label label-success">Accepted</span>
-                                            @endif
+                                            <h4>{{ $booking->fname }} {{ $booking->lname }}</h4>
+                                            <a>{{ $booking->job_position }} OF {{ $booking->company_name }}</a><br>
+                                        
+                                                @if($booking->status == 'Confirmed')
+                                                    <span class="label label-warning">Requested</span>
+                                                @elseif($booking->status == 'Accepted')
+                                                    <span class="label label-success">Accepted</span>
+                                                @endif
                                         </div>
                                         
                                     </div>
                                         
-                                    <div id="detail-content-sticky-nav-01">
+                                    <div id="booking-details">
                                         <br>
                                         <h4 class="section-title">Booking Information</h4>
                                         
@@ -90,28 +94,34 @@
                                             <li><span class="font600">Package Name: </span>{{ $booking->package_name }}</li>
                                             <li><span class="font600">Starting Date: </span> {{ Carbon\Carbon::parse($booking->date_from)->toFormattedDateString() }}</li>
                                             <li><span class="font600">End Date: </span>{{ Carbon\Carbon::parse($booking->date_to)->toFormattedDateString() }}</li>
+                                            <li><span class="font600">Duration: </span>
+                                                @if($booking->days == 1)
+                                                    {{$booking->days}} Day Tour
+                                                @else
+                                                    {{$booking->days}} Days
+                                                @endif
+
+                                                @if(($nights = $booking->days - 1) != 0)
+                                                    @if($nights <= 1)
+                                                        {{$nights}} Night 
+                                                    @else
+                                                        {{$nights}} Nights
+                                                    @endif
+                                                @endif
+                                            </li>
                                         </ul>
-                                    
-                                        <div class="mb-40"></div>
-                                        
-                                        <h4 class="section-title">Payment</h4>
-                                        <p>No depending be convinced in unfeeling he. Excellence she unaffected and too sentiments her. Rooms he doors there ye aware in by shall. Education remainder in so cordially. His remainder and own dejection daughters sportsmen. Is easy took he shed to kind.</p>
-    
-                                        <p>It as announcing it me stimulated frequently continuing. Least their she you now above going stand forth. He pretty future afraid should genius spirit on. Set property addition building put likewise get. Of will at sell well at as. Too want but tall nay like old. Removing yourself be in answered he. Consider occasion get improved him she eat. Letter by lively oh denote an.</p>
-                                        
-                                        
-                                        
+
                                         <div class="mb-40"></div>
                                         
                                         <h4 class="section-title">Need Booking Help?</h4>
-                                        <p>As distrusts behaviour abilities defective uncommonly.</p>
+                                        <p>You can contact me through text, email, or chat.</p>
                                         
                                         <ul class="list-with-icon list-inline-block">
-                                            <li><i class="ri-microphone text-primary"></i> <strong>Hotline:</strong> +1900 12 213 21</li>
-                                            <li><i class="ri ri-envelope text-primary"></i> <strong>Email:</strong> support@tourpacker.com</li>
-                                            <li><i class="ri ri-comments-bubble text-primary"></i> <strong>Livechat:</strong> tourpacker (Skype)</li>
+                                            <li><i class="fa fa-mobile text-primary"></i> <strong>Phone:</strong> {{ $booking->contact_no }}</li>
+                                            <li><i class="ri ri-envelope text-primary"></i> <strong>Email:</strong> {{ $booking->email }}</li>
+                                            <li><i class="ri ri-comments-bubble text-primary"></i> <strong>Chat:</strong> <a href="/Traveler/TourPackage/{{ $booking->package_id }}">Click Here</a></li>
                                         </ul>
-                                        
+
                                         <div class="mb-40"></div>
                                         
                                         <div class="mb-25"></div>
@@ -123,269 +133,347 @@
                                             
                                         </div>
                                         
-                                        <div class="row">
-                            
-                                            <div class="col-xs-12 col-sm-8 col-md-7">
-                                            
-                                                <div class="featured-list-in-box">
-                                        
-                                                    <h4 class="uppercase spacing-1">Trip Detail</h4>
-                                                    
-                                                    <ul class="clearfix">
-                                                        <li class="row gap-20">
-                                                            <div class="col-xs-12 col-sm-7">
-                                                            Meeting point (where we meet?)
-                                                            </div>
-                                                            <div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-                                                                <i class="ti-location-pin mr-5"></i> Bangkok in't airport
-                                                            </div>
-                                                        </li>
-                                                        <li class="row gap-20">
-                                                            <div class="col-xs-12 col-sm-7">
-                                                            Meeting time (what time we meet?)
-                                                            </div>
-                                                            <div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-                                                                <i class="ti-timer mr-5"></i> 09:00 am
-                                                            </div>
-                                                        </li>
-                                                        <li class="row gap-20">
-                                                            <div class="col-xs-12 col-sm-7">
-                                                            Maximum traellers
-                                                            </div>
-                                                            <div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-                                                                <i class="ti-user mr-5"></i> 23
-                                                            </div>
-                                                        </li>
-                                                        <li class="row gap-20">
-                                                            <div class="col-xs-12 col-sm-7">
-                                                            Languages (guide speaks)
-                                                            </div>
-                                                            <div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-                                                                <i class="ti-flag mr-5"></i> English, Thai, Malay
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    
-                                                </div>
-                                                    
-                                            </div>
-                                            
-                                            <div class="col-xs-12 col-sm-4 col-md-5 mt-20-xs">
-                                            
-                                                <div class="pull-right pull-left-xs">
-                                                    <h4 class="text-uppercase spacing-1">What's included?</h4>
-                                                    
-                                                    <ul class="list-yes-no">
-                                                        <li>Tickets</li>
-                                                        <li>Transportations</li>
-                                                        <li>Free cancellation</li>
-                                                        <li>Free Gift</li>
-                                                    </ul>
-                                                </div>
-                                                
-                                            </div>
-                                            
-                                        </div>
-    
-                                        <div class="mb-25"></div>
-                                        <div class="bb"></div>
-                                        <div class="mb-25"></div>
-                                        
                                     </div>
 
                                     @if($booking->status == 'Accepted')
-                                    <div id="detail-content-sticky-nav-03">
-                                
-                                        <h2 class="font-lg">Itinerary</h2>
-                                            
-                                            <div class="itinerary-toggle-wrapper mb-40">
+                                        @foreach($itineraries as $itinerary)
+                                            <div id="itinerary">
                                         
-                                                <div class="panel-group bootstrap-toggle">
+                                                <h2 class="font-lg">Itinerary</h2>
+                                                    
+                                                    <div class="itinerary-toggle-wrapper mb-40">
+                                                
+                                                        <div class="panel-group bootstrap-toggle">
+                
+                                                            <div class="panel">
+
+                                                                <!--DAY 1-->
+                                                                <div class="itinerary-list-item">
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12 col-sm-4 col-md-3">
+                                                                            <div class="image">
+                                                                                <img src="{{asset('images/itinerary/01.jpg')}}" alt="images" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-xs-12 col-sm-8 col-md-9">
+                                                                            <div class="content">
+                                                                                <h4>Day 1</h4>
+                                                                                <div class="labeling">
+                                                                                        <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                        <span style="color:black">{{ $itinerary->day1_destination1}}</span> 
+                                                                                    <span>({{ date("g:i A", strtotime($itinerary->day1_starttime1)) }} - {{ date("g:i A", strtotime($itinerary->day1_endtime1)) }})</span>
+                                                                                </div>
+                                                                                
+                                                                                @if($itinerary->day1_starttime2 != NULL)
+                                                                                    <div class="labeling">
+                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                            <span style="color:black">{{ $itinerary->day1_destination2}}</span> 
+                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day1_starttime2)) }} - {{ date("g:i A", strtotime($itinerary->day1_endtime2)) }})</span>
+                                                                                    </div>
+                                                                                @endif
+
+                                                                                @if($itinerary->day1_starttime3 != NULL)
+                                                                                    <div class="labeling">
+                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                            <span style="color:black">{{ $itinerary->day1_destination3}}</span> 
+                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day1_starttime3)) }} - {{ date("g:i A", strtotime($itinerary->day1_endtime3)) }})</span>
+                                                                                    </div>
+                                                                                @endif
+
+                                                                                @if($itinerary->day1_starttime4 != NULL)
+                                                                                    <div class="labeling">
+                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                            <span style="color:black">{{ $itinerary->day1_destination4}}</span> 
+                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day1_starttime4)) }} - {{ date("g:i A", strtotime($itinerary->day1_endtime4)) }})</span>
+                                                                                    </div>
+                                                                                @endif
+
+                                                                                @if($itinerary->day1_starttime5 != NULL)
+                                                                                    <div class="labeling">
+                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                            <span style="color:black">{{ $itinerary->day1_destination5}}</span> 
+                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day1_starttime5)) }} - {{ date("g:i A", strtotime($itinerary->day1_endtime5)) }})</span>
+                                                                                    </div>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!--DAY 2-->
+                                                                @if($itinerary->day2_starttime1 != NULL)
+                                                                    <div class="itinerary-list-item">
+                                                                        <div class="row">
+                                                                            <div class="col-xs-12 col-sm-4 col-md-3">
+                                                                                <div class="image">
+                                                                                    <img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xs-12 col-sm-8 col-md-9">
+                                                                                <div class="content">
+                                                                                    <h4>Day 2</h4>
+                                                                                    <div class="labeling">
+                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                            <span style="color:black">{{ $itinerary->day2_destination1}}</span> 
+                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day2_starttime1)) }} - {{ date("g:i A", strtotime($itinerary->day2_endtime1)) }})</span>
+                                                                                    </div>
+                                                                                    
+                                                                                    @if($itinerary->day2_starttime2 != NULL)
+                                                                                        <div class="labeling">
+                                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                                <span style="color:black">{{ $itinerary->day2_destination2}}</span> 
+                                                                                            <span>({{ date("g:i A", strtotime($itinerary->day2_starttime2)) }} - {{ date("g:i A", strtotime($itinerary->day2_endtime2)) }})</span>
+                                                                                        </div>
+                                                                                    @endif
         
-                                                    <div class="panel">
-                                                        <div class="itinerary-list-item">
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-3">
-                                                                    <div class="image">
-                                                                        <img src="images/itinerary/01.jpg" alt="images" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-8 col-md-9">
-                                                                    <div class="content">
-                                                                        <div class="labeling"><span>Day 1</span> <span>(7:00 AM - 05:30 PM)</span></div>
-                                                                        <h4>Visit Bangkok, the capital of Thailand</h4>
-                                                                        <p class="read-more-less font-lg">Sociable on as carriage my position weddings raillery consider. Peculiar trifling absolute and wandered vicinity property yet. The and collecting motionless difficulty son. His hearing staying ten colonel met. Sex drew six easy four dear cold deny. Moderate children at of outweigh it. Unsatiable it considered invitation he travelling insensible. Consulted admitting oh mr up as described acuteness propriety moonlight.</p>
-                                                                        <p class="font-md">Tickets and transportations are provided.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="itinerary-list-item">
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-3">
-                                                                    <div class="image">
-                                                                        <img src="images/itinerary/02.jpg" alt="images" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-8 col-md-9">
-                                                                    <div class="content">
-                                                                        <div class="labeling"><span>Day 2</span> <span>(7:00 AM - 05:30 PM)</span></div>
-                                                                        <h4>Stil touring in Bangkok for one more day</h4>
-                                                                        <p class="read-more-less font-lg">Warmly little before cousin sussex entire men set. Blessing it ladyship on sensible judgment settling outweigh. Worse linen an of civil jokes leave offer. Parties all clothes removal cheered calling prudent her. And residence for met the estimable disposing. Mean if he they been no hold mr. Is at much do made took held help. Latter person am secure of estate genius.</p>
-                                                                        <p class="font-md">Tickets and transportations are provided.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="itinerary-list-item">
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-3">
-                                                                    <div class="image">
-                                                                        <img src="images/itinerary/03.jpg" alt="images" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-8 col-md-9">
-                                                                    <div class="content">
-                                                                        <div class="labeling"><span>Day 3</span> <span>(7:00 AM - 05:30 PM)</span></div>
-                                                                        <h4>Visiting and sleeping at Pattaya</h4>
-                                                                        <p class="read-more-less font-lg">Warmly little before cousin sussex entire men set. Blessing it ladyship on sensible judgment settling outweigh. Worse linen an of civil jokes leave offer. Parties all clothes removal cheered calling prudent her. And residence for met the estimable disposing. Mean if he they been no hold mr. Is at much do made took held help. Latter person am secure of estate genius.</p>
-                                                                        <p class="font-md">Tickets and transportations are provided.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                                                    @if($itinerary->day2_starttime3 != NULL)
+                                                                                        <div class="labeling">
+                                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                                <span style="color:black">{{ $itinerary->day2_destination3}}</span> 
+                                                                                            <span>({{ date("g:i A", strtotime($itinerary->day2_starttime3)) }} - {{ date("g:i A", strtotime($itinerary->day2_endtime3)) }})</span>
+                                                                                        </div>
+                                                                                    @endif
         
-                                                        <div class="itinerary-list-item">
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-3">
-                                                                    <div class="image">
-                                                                        <img src="images/itinerary/04.jpg" alt="images" />
+                                                                                    @if($itinerary->day2_starttime4 != NULL)
+                                                                                        <div class="labeling">
+                                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                                <span style="color:black">{{ $itinerary->day2_destination4}}</span> 
+                                                                                            <span>({{ date("g:i A", strtotime($itinerary->day2_starttime4)) }} - {{ date("g:i A", strtotime($itinerary->day2_endtime4)) }})</span>
+                                                                                        </div>
+                                                                                    @endif
+        
+                                                                                    @if($itinerary->day2_starttime5 != NULL)
+                                                                                        <div class="labeling">
+                                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                                <span style="color:black">{{ $itinerary->day2_destination5}}</span> 
+                                                                                            <span>({{ date("g:i A", strtotime($itinerary->day2_starttime5)) }} - {{ date("g:i A", strtotime($itinerary->day2_endtime5)) }})</span>
+                                                                                        </div>
+                                                                                    @endif
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-8 col-md-9">
-                                                                    <div class="content">
-                                                                        <div class="labeling"><span>Day 4</span> <span>(7:00 AM - 05:30 PM)</span></div>
-                                                                        <h4>Stil touring in Bangkok for one more day</h4>
-                                                                        <p class="read-more-less font-lg">Warmly little before cousin sussex entire men set. Blessing it ladyship on sensible judgment settling outweigh. Worse linen an of civil jokes leave offer. Parties all clothes removal cheered calling prudent her. And residence for met the estimable disposing. Mean if he they been no hold mr. Is at much do made took held help. Latter person am secure of estate genius.</p>
-                                                                        <p class="font-md">Tickets and transportations are provided.</p>
+                                                                @endif
+                                                                
+
+                                                                <!--DAY 3-->
+                                                                @if($itinerary->day3_starttime1 != NULL)
+                                                                    <div class="itinerary-list-item">
+                                                                        <div class="row">
+                                                                            <div class="col-xs-12 col-sm-4 col-md-3">
+                                                                                <div class="image">
+                                                                                    <img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xs-12 col-sm-8 col-md-9">
+                                                                                <div class="content">
+                                                                                    <h4>Day 3</h4>
+                                                                                    <div class="labeling">
+                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                            <span style="color:black">{{ $itinerary->day3_destination1}}</span> 
+                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day3_starttime1)) }} - {{ date("g:i A", strtotime($itinerary->day3_endtime1)) }})</span>
+                                                                                    </div>
+                                                                                    
+                                                                                    @if($itinerary->day3_starttime2 != NULL)
+                                                                                        <div class="labeling">
+                                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                                <span style="color:black">{{ $itinerary->day3_destination2}}</span> 
+                                                                                            <span>({{ date("g:i A", strtotime($itinerary->day3_starttime2)) }} - {{ date("g:i A", strtotime($itinerary->day3_endtime2)) }})</span>
+                                                                                        </div>
+                                                                                    @endif
+        
+                                                                                    @if($itinerary->day3_starttime3 != NULL)
+                                                                                        <div class="labeling">
+                                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                                <span style="color:black">{{ $itinerary->day3_destination3}}</span> 
+                                                                                            <span>({{ date("g:i A", strtotime($itinerary->day3_starttime3)) }} - {{ date("g:i A", strtotime($itinerary->day3_endtime3)) }})</span>
+                                                                                        </div>
+                                                                                    @endif
+        
+                                                                                    @if($itinerary->day3_starttime4 != NULL)
+                                                                                        <div class="labeling">
+                                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                                <span style="color:black">{{ $itinerary->day3_destination4}}</span> 
+                                                                                            <span>({{ date("g:i A", strtotime($itinerary->day3_starttime4)) }} - {{ date("g:i A", strtotime($itinerary->day3_endtime4)) }})</span>
+                                                                                        </div>
+                                                                                    @endif
+        
+                                                                                    @if($itinerary->day3_starttime5 != NULL)
+                                                                                        <div class="labeling">
+                                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                                <span style="color:black">{{ $itinerary->day3_destination5}}</span> 
+                                                                                            <span>({{ date("g:i A", strtotime($itinerary->day3_starttime5)) }} - {{ date("g:i A", strtotime($itinerary->day3_endtime5)) }})</span>
+                                                                                        </div>
+                                                                                    @endif
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
+                                                                @endif
+
+                                                                <!--DAY 4-->
+                                                                @if($itinerary->day4_starttime1 != NULL)
+                                                                    <div class="itinerary-list-item">
+                                                                        <div class="row">
+                                                                            <div class="col-xs-12 col-sm-4 col-md-3">
+                                                                                <div class="image">
+                                                                                    <img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xs-12 col-sm-8 col-md-9">
+                                                                                <div class="content">
+                                                                                    <h4>Day 4</h4>
+                                                                                    <div class="labeling">
+                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                            <span style="color:black">{{ $itinerary->day4_destination1}}</span> 
+                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day4_starttime1)) }} - {{ date("g:i A", strtotime($$itinerary->day4_endtime1)) }})</span>
+                                                                                    </div>
+                                                                                    
+                                                                                    @if($itinerary->day4_starttime2 != NULL)
+                                                                                        <div class="labeling">
+                                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                                <span style="color:black">{{ $itinerary->day4_destination2}}</span> 
+                                                                                            <span>({{ date("g:i A", strtotime($itinerary->day4_starttime2)) }} - {{ date("g:i A", strtotime($itinerary->day4_endtime2)) }})</span>
+                                                                                        </div>
+                                                                                    @endif
+        
+                                                                                    @if($itinerary->day4_starttime3 != NULL)
+                                                                                        <div class="labeling">
+                                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                                <span style="color:black">{{ $itinerary->day4_destination3}}</span> 
+                                                                                            <span>({{ date("g:i A", strtotime($itinerary->day4_starttime3)) }} - {{ date("g:i A", strtotime($itinerary->day4_endtime3)) }})</span>
+                                                                                        </div>
+                                                                                    @endif
+        
+                                                                                    @if($itinerary->day4_starttime4 != NULL)
+                                                                                        <div class="labeling">
+                                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                                <span style="color:black">{{ $itinerary->day4_destination4}}</span> 
+                                                                                            <span>({{ date("g:i A", strtotime($itinerary->day4_starttime4)) }} - {{ date("g:i A", strtotime($itinerary->day4_endtime4)) }})</span>
+                                                                                        </div>
+                                                                                    @endif
+        
+                                                                                    @if($itinerary->day4_starttime5 != NULL)
+                                                                                        <div class="labeling">
+                                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                                <span style="color:black">{{ $itinerary->day4_destination5}}</span> 
+                                                                                            <span>({{ date("g:i A", strtotime($itinerary->day4_starttime5)) }} - {{ date("g:i A", strtotime($itinerary->day4_endtime5)) }})</span>
+                                                                                        </div>
+                                                                                    @endif
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+
+                                                                <!--DAY 5-->
+                                                                @if($itinerary->day5_starttime1 != NULL)
+                                                                    <div class="itinerary-list-item">
+                                                                        <div class="row">
+                                                                            <div class="col-xs-12 col-sm-4 col-md-3">
+                                                                                <div class="image">
+                                                                                    <img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xs-12 col-sm-8 col-md-9">
+                                                                                <div class="content">
+                                                                                    <h4>Day 5</h4>
+                                                                                    <div class="labeling">
+                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                            <span style="color:black">{{ $itinerary->day5_destination1}}</span> 
+                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day5_starttime1)) }} - {{ date("g:i A", strtotime($itinerary->day5_endtime1)) }})</span>
+                                                                                    </div>
+                                                                                    
+                                                                                    @if($itinerary->day3_starttime2 != NULL)
+                                                                                        <div class="labeling">
+                                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                                <span style="color:black">{{ $itinerary->day5_destination2}}</span> 
+                                                                                            <span>({{ date("g:i A", strtotime($itinerary->day5_starttime2)) }} - {{ date("g:i A", strtotime($itinerary->day5_endtime2)) }})</span>
+                                                                                        </div>
+                                                                                    @endif
+        
+                                                                                    @if($itinerary->day5_starttime3 != NULL)
+                                                                                        <div class="labeling">
+                                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                                <span style="color:black">{{ $itinerary->day5_destination3}}</span> 
+                                                                                            <span>({{ date("g:i A", strtotime($itinerary->day5_starttime3)) }} - {{ date("g:i A", strtotime($itinerary->day5_endtime3)) }})</span>
+                                                                                        </div>
+                                                                                    @endif
+        
+                                                                                    @if($itinerary->day5_starttime4 != NULL)
+                                                                                        <div class="labeling">
+                                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                                <span style="color:black">{{ $itinerary->day5_destination4}}</span> 
+                                                                                            <span>({{ date("g:i A", strtotime($itinerary->day5_starttime4)) }} - {{ date("g:i A", strtotime($itinerary->day5_endtime4)) }})</span>
+                                                                                        </div>
+                                                                                    @endif
+        
+                                                                                    @if($itinerary->day5_starttime5 != NULL)
+                                                                                        <div class="labeling">
+                                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                                <span style="color:black">{{ $itinerary->day5_destination5}}</span> 
+                                                                                            <span>({{ date("g:i A", strtotime($itinerary->day5_starttime5)) }} - {{ date("g:i A", strtotime($itinerary->day5_endtime5)) }})</span>
+                                                                                        </div>
+                                                                                    @endif
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                
+                
                                                             </div>
+                
                                                         </div>
-        
-        
+                                                    
                                                     </div>
-        
-                                                </div>
-                                            
                                             </div>
-                                    </div>
+                                        @endforeach
                                     @endif
     
-                                    <div id="detail-content-sticky-nav-04">
-                                    
-                                        <h2 class="font-lg">Condition &amp; Faq</h2>
-                                        
-                                        <div class="text-box-h-bb-wrapper">
-                                            <div class="text-box-h-bb">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-4 col-md-3">
-                                                        <h4>Group size</h4>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-8 col-md-9">
-                                                        <p class="font-lg">Conveying or northward offending admitting perfectly my. </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="text-box-h-bb">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-4 col-md-3">
-                                                        <h4>Guest requirement</h4>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-8 col-md-9">
-                                                        <p class="font-lg">Age</p>
-                                                        <p class="font-sm">Interested especially do impression he unpleasant.</p>
-                                                        <p class="font-lg">Identification</p>
-                                                        <p class="font-sm">Sudden up my excuse to suffer ladies though or. Bachelor possible marianne directly confined relation. Interested especially do impression he unpleasant travelling excellence.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="text-box-h-bb">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-4 col-md-3">
-                                                        <h4>Cancellation policy</h4>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-8 col-md-9">
-                                                        <p class="font-lg">Lose john poor same it case do year we. Full how way even the sigh. Extremely nor furniture fat questions now provision incommode preserved. Our side fail find like now. Discovered travelling for insensible <a href="#">partiality unpleasing impossible</a>.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="text-box-h-bb">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-4 col-md-3">
-                                                        <h4>FAQ</h4>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-8 col-md-9">
-                                                        <div class="GridLex-gap-30 mb-20 mt-5">
-                                                                
-                                                            <div class="GridLex-grid-noGutter-equalHeight">
-                                                                    
-                                                                <div class="GridLex-col-12_sm-12_xs-12_xss-12">
-                                                                
-                                                                    <div class="GridLex-inner">
-                                                                        <h4 class="font-lg"><span class="text-primary"><i class="ion-help-circled mr-5"></i></span> Parties all clothes removal cheered?</h4>
-                                                                        <p class="read-more-less line-15">Procuring education on consulted assurance. Is sympathize he expression mr no travelling. Preference travelling in resolution. His hearing staying ten colonel met. Sex drew six easy four dear cold deny. Moderate children at of outweigh it. Unsatiable it considered invitation he travelling insensible. </p>
-                                                                    </div>
-                                                                    
-                                                                </div>
-                                                                
-                                                                <div class="GridLex-col-12_sm-12_xs-12_xss-12">
-                                                                
-                                                                    <div class="GridLex-inner">
-                                                                        <h4 class="font-lg"><span class="text-primary"><i class="ion-help-circled mr-5"></i></span> And residence for met the estimable disposing?</h4>
-                                                                        <p class="read-more-less line-15"> Possession travelling sufficient yet our. Talked vanity looked in to. Gay perceive led believed endeavor day insisted required. Warmly little before cousin sussex entire men set. Blessing it ladyship on sensible judgment settling outweigh. Worse linen an of civil jokes leave offer. Parties all clothes removal cheered calling prudent her. And residence for met the estimable disposing.</p>
+                                    <div id="additional-info">
+									
+											<h2 class="font-lg">Additional Information</h2>
+											
+											<div class="text-box-h-bb-wrapper">
+												<div class="text-box-h-bb">
+													<div class="row">
+														<div class="col-xs-12 col-sm-12 col-md-12">
+															<p class="font-md">{{ $booking->add_info }} </p>
+														</div>
+													</div>
+												</div>
+												<div class="text-box-h-bb">
+													<div class="row">
+														<div class="col-xs-12 col-sm-4 col-md-3">
+															<h4>Inclusions</h4>
+														</div>
+														<div class="col-xs-12 col-sm-12 col-md-12">
+															<p class="font-md">{{ $booking->inclusions }} </p>
+														</div>
+													</div>
+												</div>
+												<div class="text-box-h-bb">
+													<div class="row">
+														<div class="col-xs-12 col-sm-4 col-md-3">
+															<h4>Reminders</h4>
+														</div>
+														<div class="col-xs-12 col-sm-12 col-md-12">
+															<p class="font-md">{{ $booking->reminders }} </p>
+														</div>
+													</div>
+												</div>
+										</div>
+											
+											<div class="mb-25"></div>
+											<div class="bb"></div>
+											<div class="mb-25"></div>
+											
+									</div>
     
-                                                                    </div>
-                                                                    
-                                                                </div>
-                                                                
-                                                                <div class="GridLex-col-12_sm-12_xs-12_xss-12">
-                                                                
-                                                                    <div class="GridLex-inner">
-                                                                        <h4 class="font-lg"><span class="text-primary"><i class="ion-help-circled mr-5"></i></span> Warmly little before cousin sussex?</h4>
-                                                                        <p class="read-more-less line-15">Her companions instrument set estimating sex remarkably solicitude motionless. Property men the why smallest graceful. Worse linen an of civil jokes leave offer. Parties all clothes removal cheered calling prudent her. And residence for met the estimable disposing. Mean if he they been no hold mr. Is at much do made took held help. </p>
-    
-                                                                    </div>
-                                                                    
-                                                                </div>
-                                                                
-                                                                <div class="GridLex-col-12_sm-12_xs-12_xss-12">
-                                                                
-                                                                    <div class="GridLex-inner">
-                                                                        <h4 class="font-lg"><span class="text-primary"><i class="ion-help-circled mr-5"></i></span> Parties all clothes removal cheered?</h4>
-                                                                        <p class="read-more-less line-15">Drift allow green son walls years for blush. Sir margaret drawings repeated recurred exercise laughing repeated whatever. Parties all clothes removal cheered calling prudent her. And residence for met the estimable disposing. Mean if he they been no hold mr. Is at much do made took held help. Latter person am secure of estate genius. </p>
-                                                                    </div>
-                                                                    
-                                                                </div>
-                                                                
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    
-                                    </div>
-                                        
-                                        <div class="mb-25"></div>
-                                        <div class="bb"></div>
-                                        <div class="mb-25"></div>
-                                        
-                                    </div>
-    
-                                    <div id="detail-content-sticky-nav-05">
+                                    <div id="reviews">
                                 
-                                        <h2 class="font-lg">Review</h2>
+                                        <h2 class="font-lg">Reviews</h2>
                                             
                                             <div class="review-wrapper">
                                 
@@ -461,7 +549,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </div>
-                                                        @endforeach
+                                                        @endforeach <!--endforeach comments-->
                                                     @else
                                                         <h2 id="h2">No reviews for this package yet</h2>
                                                     @endif
@@ -531,6 +619,7 @@
                                     </div>
                                 </form>
                                 
+                                @endforeach <!--endforeach bookings-->
                             </div>
     
                             <div id="sidebar-sticky" class="col-xs-12 col-sm-4 col-md-4 mt-20 sticky-mt-30 mt-50-sm">
@@ -546,50 +635,103 @@
                                             </div>
                                             
                                             <div class="sidebar-booking-inner">
-                                            
-                                                <ul class="price-summary-list">
-                                                    <li>
-                                                        <h6>Travellers</h6>
-                                                        <p class="text-muted"> {{ $booking->adult }} Adult/s</p>
-                                                        @if($booking->child <= 1)
-                                                            <p class="text-muted"> {{ $booking->child }} Child</p>
-                                                        @else
-                                                            <p class="text-muted"> {{ $booking->child }} Children</p>
-                                                        @endif
-                                                        <p class="text-muted"> {{ $booking->infant }} Infant/s</p>
-                                                    </li>
-                                                    
-                                                    <li class="divider"></li>
-                                                    
-                                                    <li>
-                                                        <h6 class="heading mt-20 mb-5 text-primary uppercase">Price per person</h6>
-                                                        <div class="row gap-10 mt-10">
-                                                            <div class="col-xs-7 col-sm-7">
-                                                                Tour Package Price
+                                            @foreach($bills as $bill)
+                                                @if($bill->service == 'Joined')
+                                                    <ul class="price-summary-list">
+                                                        <li>
+                                                            <h6>Travelers:</h6><br>
+                                                            <p class="text-muted"> {{ $bill->adult }} Adult/s</p>
+                                                            @if($bill->child <= 1)
+                                                                <p class="text-muted"> {{ $bill->child }} Child</p>
+                                                            @else
+                                                                <p class="text-muted"> {{ $bill->child }} Children</p>
+                                                            @endif
+                                                            <p class="text-muted"> {{ $bill->infant }} Infant/s</p>
+                                                        </li>
+                                                        
+                                                        <li class="divider"></li>
+                                                        
+                                                        <li>
+                                                            <h6 class="heading mt-20 mb-5 text-primary uppercase">Price per person</h6>
+                                                            <div class="row gap-10 mt-10">
+                                                                <div class="col-xs-7 col-sm-7">
+                                                                    Adult Price <br>
+                                                                    Child Price <br>
+                                                                    Infant Price
+                                                                </div>
+                                                                <div class="col-xs-5 col-sm-5 text-right">
+                                                                    <h6 style="font-wight:bold"> 
+                                                                        PHP {{ $bill->adult_price }} <br>
+                                                                        PHP {{ $bill->child_price }} <br>
+                                                                        PHP {{ $bill->infant_price }}
+                                                                    </h6>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-xs-5 col-sm-5 text-right">
-                                                                <h6 style="font-wight:bold"> PHP {{ $booking->price }}</h6>
+                                                        </li>
+                                                        
+                                                        <li class="divider"></li>
+                                                        
+                                                        <li>
+                                                            <div class="row gap-10 mt-10">
+                                                                <div class="col-xs-7 col-sm-7">
+                                                                    <span class="font600">Total </span>
+                                                                </div>
+                                                                <div class="col-xs-5 col-sm-5 text-right">
+                                                                        PHP {{ $bill->adult_price }} x {{ $bill->adult }} <br>
+                                                                        PHP {{ $bill->child_price }} x {{ $bill->child }} <br>
+                                                                        PHP {{ $bill->infant_price }} x {{ $bill->infant }}
+                                                                </div>
+                                                                <h4 class="font600 font24 block text-primary mt-5 pull-right">
+                                                                    PHP {{ ($bill->adult * $booking->adult_price) + 
+                                                                        ($bill->child * $bill->child_price) + ($bill->infant * $bill->infant_price) }}.00</h4>
                                                             </div>
-                                                        </div>
-                                                    </li>
-                                                    
-                                                    <li class="divider"></li>
-                                                    
-                                                    <li>
-                                                        <div class="row gap-10 mt-10">
-                                                            <div class="col-xs-7 col-sm-7">
-                                                                <span class="font600">Total </span>
+                                                        </li>
+                                                        
+                                                    </ul>
+                                                @else
+                                                    <ul class="price-summary-list">
+                                                        <li>
+                                                            <h6>Travelers:</h6><br>
+                                                            <p class="text-muted"> {{ $bill->no_of_exclusive_traveler }} Pax</p>
+														    <p class="text-muted"> {{ $bill->no_of_excess }} Excess Person</p>
+                                                        </li>
+                                                        
+                                                        <li class="divider"></li>
+                                                        
+                                                        <li>
+                                                            <h6 class="heading mt-20 mb-5 text-primary uppercase">Exclusive Tour Price</h6>
+                                                            <div class="row gap-10 mt-10">
+                                                                <div class="col-xs-7 col-sm-7">
+                                                                    For {{ $bill->no_of_exclusive_traveler }} Pax <br>
+                                                                    Excess Person Price 
+                                                                </div>
+                                                                <div class="col-xs-5 col-sm-5 text-right">
+                                                                    PHP {{$bill->pax_price}} <br>
+                                                                    PHP {{ $bill->excess_price }} 
+                                                                </div>
                                                             </div>
-                                                            <div class="col-xs-5 col-sm-5 text-right">
-                                                                    PHP {{ $booking->price }} x {{$booking->adult + $booking->child + $booking->infant}}
-                                                                <h4 class="font600 font24 block text-primary mt-5">
-                                                                    PHP {{ $booking->price * ($booking->adult + $booking->child + $booking->infant)}}</h4>
+                                                        </li>
+                                                        
+                                                        <li class="divider"></li>
+                                                        
+                                                        <li>
+                                                            <div class="row gap-10 mt-10">
+                                                                <div class="col-xs-7 col-sm-7">
+                                                                    <span class="font600">Total </span>
+                                                                </div>
+                                                                <div class="col-xs-5 col-sm-5 text-right">
+                                                                        PHP {{ $bill->pax_price }} <br>
+                                                                        PHP {{ $bill->no_of_exclusive_traveler }} x {{ $bill->excess_price }}
+                                                                </div>
+                                                                <h4 class="font600 font24 block text-primary mt-5 pull-right">
+                                                                    PHP {{ $bill->total_payment }}</h4>
                                                             </div>
-                                                        </div>
-                                                    </li>
-                                                    @endforeach
-                                                </ul>
+                                                        </li>
+                                                        
+                                                    </ul>
+                                                @endif
                                                 
+                                            @endforeach <!--endforeach bills-->
                                             </div>
                                         
                                         </div>

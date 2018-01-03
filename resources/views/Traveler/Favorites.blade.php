@@ -92,151 +92,195 @@
 					</ol>
 				</div>
 			</div>
-			
-			
 			<!-- end Breadcrumb -->
-			<div class="pt-30 pb-50">
-			
-				<div class="container">
 
-					<div class="row">
+			<div class="filter-full-width-wrapper">
+			
+				<div class="favorite-search">
+				
+					<div class="container">
+				
+						<div class="filter-full-primary-inner">
 						
-						<div class="col-xs-12 col-sm-12 col-md-12 mt-20">
-                            <div class="trip-list-wrapper no-bb-last">
-                                    <div class="trip-list-item">
-                                            <div class="image-absolute">
-                                                <div class="image image-object-fit image-object-fit-cover">
-                                                    <img src="images/trip/01.jpg" alt="image" >
-                                                </div>
-                                            </div>
-                                            <div class="content">
-                                            
-                                                <div class="GridLex-gap-20 mb-5">
-                            
-                                                    <div class="GridLex-grid-noGutter-equalHeight GridLex-grid-middle">
-                                                    
-                                                        <div class="GridLex-col-6_sm-12_xs-12_xss-12">
-                                                            
-                                                            <div class="GridLex-inner">
-                                                                <h6>Hong Kong Best Highlight Explore</h6>
-                                                                <span class="font-italic font14">5 days 4 nights</span>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                        
-                                                        <div class="GridLex-col-3_sm-6_xs-7_xss-12">
-                                                            <div class="GridLex-inner line-1 font14 text-muted spacing-1">
-                                                                Travel date
-                                                                <span class="block text-primary font16 font700 mt-1">24th-30th, Mar 2017</span>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="GridLex-col-3_sm-6_xs-5_xss-12">
-                                                            <div class="GridLex-inner text-right text-left-xss dropdown">
-                                                                <a href="#" class="btn btn-primary btn-sm">View</a>
-                                                                <button class="btn btn-info btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</button>
-                                                                <ul class="dropdown-menu">
-                                                                    <li><a href="#">Facebook</a></li>
-                                                                    <li><a href="#">Twitter</a></li>
-                                                                    <li><a href="#">Google Plus</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                    
-                                                </div>
-                                                
-                                            </div>
-                                        </div>
-                            </div>
+							<div class="form-holder">
 							
+								<div class="row">
+								
+									<div>
+										<div class="col-lg-8 col-md-5 col-xs-5">
+											<form method="post" action="{{ route('Traveler.MyFavorites')}}">
+													{{ csrf_field() }}
+												<div class="input-group">
+													<input type="text" name="search_pname" class="form-control"  placeholder="Search package name" >
+													<span class="input-group-btn">
+														<button class="btn btn-default" type="submit">Search</button>
+													</span>
+												</div>
+											</form>
+										</div>
+
+										<div class="col-lg-1" style="margin-right:3.5%">
+											<form>
+												<a href="{{ route('Traveler.MyFavorites') }}" class="btn btn-sm btn-info">Show All</a>
+											</form>
+										</div>
+									</div>
+								</div>
+							
+							</div>
+						
 						</div>
 
 					</div>
 
 				</div>
-			
+				
 			</div>
+			<div class="pt-30 pb-50">
+			
+					<div class="container">
+						
+						<div class="trip-guide-wrapper">
+						
+							@include('layouts.user.alerts')
+							
+							<div class="GridLex-gap-20 GridLex-gap-15-mdd GridLex-gap-10-xs">
+								<div class="GridLex-grid-noGutter-equalHeight GridLex-grid">
+	
+								@if(count($favorites) > 0)
+								@foreach($favorites as $favorite)
+								<div id="fave{{$favorite->favorite_id}}" class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
+										
+										<div class="trip-guide-item bg-light-primary">
+	
+											<div class="trip-guide-image">
+												<img src="{{ asset('images/itinerary/01.jpg') }}" alt="images" />
+											</div>
+											
+											<div class="trip-guide-content bg-white">
+												<h3>{{$favorite->package_name}}</h3>
+												<span id="fav" class="pull-right">
+													<button class="btn btn-danger btn-sm del" value="{{$favorite->favorite_id}}">Unfavorite</button>
+												</span>
+												<label>{{ $favorite->type }} Tour</label>
+											</div>
+	
+											<div class="trip-guide-bottom">
+											
+												<div class="trip-guide-person bg-white clearfix">
+													<div class="image">
+														<img src="/public/uploads/files/{{ $favorite->photo }}" class="img-circle" alt="images" />
+													</div>
+													<p class="name">By: <a>{{$favorite->fname}} {{$favorite->lname}}</a></p>
+													<p>Posted on {{ Carbon\Carbon::parse($favorite->created_at)->toFormattedDateString()}}</p>
+				
+												</div>
+												
+												<div class="trip-guide-meta row gap-10">
+													<div class="col-xs-6 col-sm-6">
+														<div class="rating-item">
+															<input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-readonly value="{{ $avg }}"/>
+														</div>
+													</div>
+													<div class="col-xs-6 col-sm-6 text-right">
+														<!-- slots here-->
+													</div>
+												</div>
+												
+												<div class="row gap-10">
+													<div class="col-xs-12 col-sm-6">
+														<div class="trip-guide-price">
+															@if($favorite->days == 1)
+																{{$favorite->days}} Day Tour
+															@else
+																{{$favorite->days}} Days
+															@endif
+	
+															@if(($nights = $favorite->days - 1) != 0)
+																@if($nights <= 1)
+																	{{$nights}} Night 
+																@else
+																	{{$nights}} Nights
+																@endif
+															@endif
+	
+															@if($favorite->type == 'Joined')
+																<span class="number">PHP {{$favorite->adult_price}}</span>
+															@else
+																<span class="number">PHP {{$favorite->pax1_price}}</span>
+															@endif
+														</div>
+													</div>
+													<div class="col-xs-12 col-sm-6 text-right">
+														<a href="/Traveler/TourPackage/{{$favorite->package_id}}" class="btn btn-info btn-sm">Details</a>
+													</div>
+												</div>
+	
+											
+											</div>
+										
+										</div>
+									
+									</div>
+									@endforeach
+										
+								</div> 
+							
+							</div> 
+	
+							<div class="pager-wrappper clearfix">
+				
+									<div class="pager-innner">
+											
+											<div class="pager-wrappper clearfix">
+				
+												<div class="pager-innner">
+															
+													<div class="clearfix">
+														<nav class="pager-center">
+															<ul class="pagination">
+																	{{$favorites->links()}}
+															</ul>
+														</nav>
+													</div>
+												</div>
+													
+											</div>
+										
+									</div>
+							
+						</div>
+	
+						@else
+							<center><h2 id="NoFavorited">No Records Found.</h2></center>
+						@endif
+	
+					</div>
+				
+				</div>
 			
 
 		</div>
 		
 		<!-- end Main Wrapper -->
-		
-		<!-- start Footer Wrapper -->
-		<div class="footer-wrapper scrollspy-footer">
-			<footer class="bottom-footer">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12">
-                            <center>
-                                <p class="copy-right">&#169; 2017 Traventure - Tour and Booking System</p>
-                            <center>
-						</div>
-					</div>
-				</div>
-			</footer>
-		</div>
-		<!-- end Footer Wrapper -->
 	</div>
-	
-	<!-- end Container Wrapper -->
-
-			<div id="myModal" class="modal fade login-box-wrapper" role="dialog">
-			  <!-- Modal content-->
-			  <div class="modal-content">
-				<div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal">×</button>
-				  <div class="title-reply">
-				  <center><text class="modal-title fname"></text><text class="modal-title lname"></text></center>
-				  </div>
-
-				  	<div class="title-delete">
-						<text class="modal-title">Delete</text>
+	<!-- start Footer Wrapper -->
+	<br>
+	<div class="footer-wrapper scrollspy-footer">
+		<footer class="bottom-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<center>
+							<p class="copy-right">&#169; 2017 Traventure - Tour and Booking System</p>
+						<center>
 					</div>
 				</div>
-				<div class="modal-body">
-				  <form method="POST" action="{{ route('Traveler.ReplyMessage') }}" class="form-horizontal">
-						{{ csrf_field() }}
-					<div class="form-group">
-						<div class="col-sm-12">
-							<input type="hidden" name="message_id" class="text-primary message_id">
-							<input type="hidden" class="text-primary receiver_email" name="sender_email">
-							<input type="hidden" class="text-primary sender_email" name="receiver_email">
-							<input type="hidden" class="text-primary package_id" name="package_id">
-							<small style="font-weight:bold" class="pull-right created_at"></small>
-							<small style="font-weight:bold;" class="pull-right"> Received: </small><br>
-							<span style="font-weight:bold">MESSAGE:</span><br>
-							<text type="text" class="message" style="font-size:15px"></text><br><br>
-							<textarea id="form_message" name="message" class="form-control col-sm-12 col-md-12" required></textarea>
-						</div>
-					</div>
-				</div>
-					<div class="modal-footer footer-reply">
-						<button type="button" data-dismiss="modal" class="btn btn-success">Close</button>
-						<button type="submit" class="btn btn-info">Reply<button>
-					</div>
-				</form>
-				
-				<form method="POST" action="{{ route('Traveler.DeleteMessage')}}" class="form-delete">
-						{{ csrf_field() }}
-				  <div class="deleteContent" style="padding-left:5%; padding-bottom:5%">
-					<h4 class="center">Are you Sure you want to delete this message?</h4>
-					<input type="hidden" name="id" class="text-primary message_id"></h4>
-					<input type="hidden" class="text-primary receiver_email" name="receiver_email">
-					<input type="hidden" class="text-primary sender_email" name="sender_email">
-					<input type="hidden" class="text-primary package_id" name="package_id">
-					<input type="hidden" class="text-primary message" name="message">
-					<input type="hidden" class="text-primary created_at" name="created_at">
-				  </div>
-					<div class="modal-footer footer-delete">
-						<button type="button" data-dismiss="modal" class="btn btn-success">Close</button>
-						<button type="submit" class="btn btn-danger">Delete</button>
-					</div>
-				</form>
 			</div>
- 
+		</footer>
+	</div>
+
+	<!-- end Container Wrapper -->
  
 <!-- start Back To Top -->
 
@@ -274,8 +318,8 @@
 				data: { deleteFave: deleteFave, token: token },
 				success: function(data){
 					console.log(data,'Success na gud!');
-					$t.text('Favorite');
-					$('#fave'+ deleteFave).remove();
+					$('#fave'+ deleteFave).hide();
+					$('#NoFavorited').show(); 
 				},
 				error: function (data) {
 					console.log("ERROR!!! ERROR:", data);

@@ -1,5 +1,5 @@
 <html lang="{{ app()->getLocale() }}">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="token" content="{{ csrf_token() }}">
         <title>{{ config('app.name', 'Traventure') }}</title> 
 
             <nav class="navbar navbar-default navbar-fixed-top navbar-sticky-function navbar-arrow">
@@ -47,7 +47,7 @@
 							</li>
 							
 							<li>
-								<a href="{{ route('Traveler.Favorites') }}">FAVORITES</a>
+								<a href="{{ route('Traveler.MyFavorites') }}">FAVORITES</a>
 							</li>
 							
 							<li>
@@ -228,4 +228,4 @@
         </div>
 
         @yield('content')
-        @yield('script')
+        @yield('js')

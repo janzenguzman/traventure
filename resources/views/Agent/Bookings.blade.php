@@ -1,34 +1,6 @@
 @extends('layouts.agent-navbar')
 
 @section('content')
-{{--  <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Travel Agent Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    Last Signed in at {{ Auth::guard('agents')->user()->last_signed_in }}<br><br> 
-                    You are logged in as a Travel Agent!
-                    <br>
-
-                    {{$diffHours}} hour.
-
-                    @if($diffHours <= 1)
-                        <p>ACTIVE USER</p>
-                    @else
-                        <p>INACTIVE</p>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-</div>  --}}
 <div class="container-wrapper">
 
 		<!-- start Header -->
@@ -87,109 +59,147 @@
 		
             <div class="pt-30 pb-50">
 			
-				<div class="container">
-					
-					<div class="trip-guide-wrapper">
-					
-						@include('layouts.user.alerts')
-						
-						<div class="GridLex-gap-20 GridLex-gap-15-mdd GridLex-gap-10-xs">
-							<div class="GridLex-grid-noGutter-equalHeight GridLex-grid">
-							<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-									
-									<div class="trip-guide-item bg-light-primary">
+					<div class="container">
+	
+						<div class="row">
+							@include('layouts.user.alerts')
 
-										<div class="trip-guide-image">
-											<img src="{{ asset('images/itinerary/01.jpg') }}" alt="images" />
+							
+							<div class="col-xs-12 col-sm-8 col-md-12 mt-20">
+							
+								<h4 class="section-title">Booking Requests:</h4>
+								<form method="post" action="{{ route('Agent.Bookings')}}">
+									{{ csrf_field() }}	
+									<div class="row">
+										<div class="col-lg-6 col-md-5 col-xs-5">
+											<div class="input-group">
+												<input type="text" name="search_pname" class="form-control"  placeholder="Search package name" >
+												<span class="input-group-btn">
+													<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+												</span>
+											</div><br>
 										</div>
+								</form>
+								<div class="col-lg-1" style="margin-right:1%">
+									<form>
+										<a href="{{ route('Agent.Bookings') }}" class="btn btn-sm btn-default">Show All</a>
+									</form>
+								</div>
+								<div class="col-lg-1">
+									<form method="post" action="{{ route('Agent.Bookings')}}">
+										{{ csrf_field() }}	
+										<input type="hidden" name="accepted" class="form-control" value="Accepted">
+										<button type="submit" class="btn btn-sm btn-default">Booked</button>
+									</form>
+								</div>
+								<div class="col-lg-1">
+									<form method="post" action="{{ route('Agent.Bookings')}}">
+										{{ csrf_field() }}	
+										<input type="hidden" name="requested" class="form-control" value="Confirmed">
+										<button type="submit" class="btn btn-sm btn-default">Requested</button>
+									</form>
+								</div>
+								@if(count($bookings) > 0)
+								@foreach($bookings as $booking)
+										<div class="trip-list-wrapper col-lg-12">
 										
-										<div class="trip-guide-content bg-white">
-											<h3>SAmple package name</h3>
-										</div>
-
-										<div class="trip-guide-bottom">
-										
-											<div class="trip-guide-person bg-white clearfix">
-												<div class="image">
-													<img src="{{ asset('images/testimonial/01.jpg')}}" class="img-circle" alt="images" />
-												</div>
-												<p class="name">By: <a href="#">Robert Kalvin</a></p>
-												<p>Posted on Dec. 12, 2017</p>
-			
-											</div>
-											
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="4.5"/>
+											<div class="trip-list-item">
+												
+												<div class="image-absolute">
+													<div class="image image-object-fit image-object-fit-cover">
+														<img src="{{ asset('images/trip/01.jpg')}}" alt="image" >
 													</div>
 												</div>
-												<div class="col-xs-6 col-sm-6 text-right">
-													5 days 4 nights
-												</div>
-											</div>
-											
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at
-														<span class="number">PHP 1500</span>
+												<div class="content">
+												
+													<div class="GridLex-gap-20 mb-5">
+								
+														<div class="GridLex-grid-noGutter-equalHeight GridLex-grid-middle">
+														
+															<div class="GridLex-col-4_sm-12_xs-12_xss-12">
+																
+																<div class="GridLex-inner">
+																	<h6>{{$booking->package_name}}</h6><p class="text-muted font-sm">Client Name: {{$booking->client_fname}} {{$booking->client_lname}}</p>
+																	@if($booking->status== 'Confirmed')
+																		<span class="label label-warning">Requested</span>
+																	@elseif($booking->status=='Accepted')
+																		<span class="label label-success">Booked</span>
+																	@endif
+																	<a data-toggle="modal" id="replyButton" data-target="#replyModal(" 
+																			data-sender_email="{{ Auth::user()->id }} " 
+																			data-receiver_email="{{ $booking->email }} " 
+																			data-package_id="{{ $booking->package_id }} " 
+																	class="btn">Contact Now</a>
+																</div>
+																
+																
+															</div>
+															
+															<div class="GridLex-col-3_sm-6_xs-7_xss-12">
+																<div class="GridLex-inner line-1 font14 text-muted spacing-1">
+																	Booking ID: {{ $booking->booking_id}}
+																	
+																	<br>
+																	<br>
+																	Travel date
+																	<span class="block text-primary font16 font700 mt-1">
+																		{{ Carbon\Carbon::parse($booking->date_from)->toFormattedDateString() }} -
+																		{{ Carbon\Carbon::parse($booking->date_to)->toFormattedDateString() }} 
+																	</span>
+																</div>
+															</div>
+															
+															<div class="GridLex-col-5_sm-6_xs-5_xss-12">
+																<div class="GridLex-inner text-right text-left-xss dropdown">
+																		{{--  <a href="/Traveler/Bookings/{{$booking->booking_id}}" class="btn btn-info btn-sm">View</a>  --}}
+																	@if($booking->status == 'Confirmed')
+																		<a href="/Agent/Packages/Accept/{{ $booking->booking_id }}" class="btn btn-success btn-sm">Accept</a>
+																		<a href="/Agent/Packages/Decline/{{ $booking->booking_id }}" class="btn btn-danger btn-sm">Decline</a>
+																	@endif
+																	<a href="/Agent/Bookings/{{$booking->booking_id}}/{{$booking->package_id}}" class="btn btn-info btn-sm">View</a>
+																</div>
+															</div>
+															
+														</div>
+														
 													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-														<a href="" class="btn btn-info">Details</a>
+													
 												</div>
 											</div>
-
 										
 										</div>
-									
+								@endforeach
+								
+								<div class="pager-wrappper text-left clearfix col-lg-12">
+									<div class="pager-innner">
+											
+											<div class="clearfix">
+												<nav>
+													<ul class="pagination">
+														{{$bookings->links()}}
+													</ul>
+												</nav>
+											</div>
+										
 									</div>
 								
 								</div>
-									
-							</div> 
-						
-						</div> 
-
-						<div class="pager-wrappper clearfix">
-			
-								<div class="pager-innner">
-										
-										<div class="pager-wrappper clearfix">
-			
-											<div class="pager-innner">
-														
-												<div class="clearfix">
-													<nav class="pager-center">
-														<ul class="pagination">
-																
-														</ul>
-													</nav>
-												</div>
-											</div>
-												
-										</div>
-									
-								</div>
-						
+							@else
+						</div>
+							<h2>No records found.</h2>
+						@endif
+								
+							</div>
+							
+						</div>
+	
 					</div>
-
-					{{--  @else
-						<center><h2>No Packages Yet.</h2></center>
-					@endif  --}}
-
+				
 				</div>
-			
+	
 			</div>
-
-		</div>
-                
-            </div>
-
-        </div>
-            
-            <!-- end Main Wrapper -->
+			
+			<!-- end Main Wrapper -->
 		
 		<!-- start Footer Wrapper -->
 		<div class="footer-wrapper scrollspy-footer">
@@ -216,13 +226,50 @@
    <a href="#"><i class="ion-ios-arrow-up"></i></a>
 </div>
 
-<!-- end Back To Top -->
-	
+	<div id="replyModal" class="modal fade login-box-wrapper">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title text-center">Contact Now</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row gap-20">
+					<div class="GridLex-col-12_sm-4_xs-12_xss-12">
+						<form method="POST" action="{{ route('Agent.SendMessage') }}">
+						{{ csrf_field() }}
+						
+						<div class="content">
+							<div class="col-xs-12 col-sm-8 col-md-12 mt-20">
+								<label>Send a Message: </label>
+								<input type="hidden" class="text-primary" name="receiver_email" id="receiver_email">
+								<input type="hidden" class="text-primary" name="package_id" id="package_id">
+								<textarea id="form_message" name="message" class="form-control col-sm-12 col-md-12" required></textarea>
+								
+							</div>
+						</div>
+							
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer text-center">
+				<input type="submit" class="btn btn-info btn-sm pull-right" value="Send">
+			</div>
+			</form>
+			
+	</div>
 </div>
+
+<script>
+	$(document).on("click",'#replyButton',(function(){
+		$('#receiver_email').val($(this).data('receiver_email'));
+		$('#package_id').val($(this).data('package_id'));
+		$('#replyModal').modal('show');
+	})); 
+</script>
 @endsection
 @extends('layouts.user.javascriptlayout')
 
-//Comment out
+{{--  //Comment out
 <html>
     <style>
     .links > a {
@@ -303,5 +350,5 @@
     
 
 </div>
-@endsection
+@endsection  --}}
 

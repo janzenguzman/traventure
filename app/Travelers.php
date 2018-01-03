@@ -35,4 +35,8 @@ class Travelers extends Authenticatable
     public function package(){
         return $this->hasOne('App\Package');
     }
+
+    public function favorites(){
+        return $this->hasMany('App\Favorites', 'traveler_id');
+    }
 }

@@ -51,6 +51,11 @@ div.stars {
     font-family: FontAwesome;
   }
 
+  .favorite-search {
+    background: #FFF;
+    padding-top: 35px;
+    padding-bottom: 5px;
+}
 
 
   
