@@ -1,5 +1,5 @@
+@extends('layouts.user.headlayout')
 
-@extends('layouts.agent-navbar')
 <link href="{{asset ('css_user/messages.css') }}" type="text/css" rel="stylesheet">
 @section('content')
 {{--  <div class="container">
@@ -35,9 +35,7 @@
 		<!-- start Header -->
 		
 		<header id="header">
-
-                @extends('layouts.user.headlayout')
-
+            @extends('layouts.agent-navbar')
 		</header>
 		
 		<!-- end Header -->

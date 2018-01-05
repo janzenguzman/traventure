@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use FarhanWazir\GoogleMaps\GMaps;
 use Auth;
 use App\Travelers;
 use App\Agents;
 use App\Comment;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -39,7 +41,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:travelers')->except('logout');
     }
     
     public function showLoginForm()
@@ -47,34 +49,37 @@ class LoginController extends Controller
         return view('auth.TravelerLogin');
     }
 
-    public function login(Request $request){
-            if(Auth::attempt([
-                'email' => $request->email,
-                'password' => $request->password
-            ])){   
-                if(Agents::where('email', $request->email)->first()){
-                    return redirect()->route('Agent.Packages');
-                }else if(Travelers::where('email', $request->email)->first()){
-                    return redirect()->route('Traveler.Explore');
-                }   
-            }
-            else{
-                return redirect()->route('login');
-            }
-    }
-
-    //ajax sample
-    public function storeComment(Request $req){
-        if($req->ajax()){
-           
-            $comment = Comment::create($req->all());
-            return response($comment);
+    public function login(Request $request)
+    {
+        //Validate the form data
+        $this->validate($request,[
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+        
+        //Attempt to log the user in
+        if(Auth::guard('travelers')->attempt(['email' => $request->email,
+                'password' => $request->password], $request->remember))
+        {
+            //if successful to the intended location
+            return redirect()->route('Traveler.Explore');
+        }else{
+            // return $request->expectsJson()
+            //     ? response()->json(['message' => $exception->getMessage()], 401)
+            //     : redirect()->guest(route('AgentLogin'));
+            throw ValidationException::withMessages([
+                $this->username() => [trans('auth.failed')],
+            ]);
         }
     }
-
-    public function showAjax(){
-        $comments = Comment::all();
-        return view('auth/ajax')->with('comments',$comments);
+    public function showRegisterForm(){
+        return view ('auth.TravelerRegister');
     }
-    
+
+    public function logout(Request $request)
+    {
+        Auth::guard('travelers')->logout();
+        
+        return view('landing');
+    }
 }

@@ -243,9 +243,8 @@
 
         </div>
             
-            <!-- end Main Wrapper -->
-		
-		<!-- start Footer Wrapper -->
+			<!-- end Main Wrapper -->
+			<!-- start Footer Wrapper -->
 		<div class="footer-wrapper scrollspy-footer">
 			<footer class="bottom-footer">
 				<div class="container">
@@ -261,6 +260,7 @@
 		</div>
 		<!-- end Footer Wrapper -->
 	</div>
+	
 	
 	<!-- end Container Wrapper -->
 	<div id="myModal" class="modal fade login-box-wrapper" role="dialog">
@@ -317,6 +317,7 @@
 			  </form>
 		  </div>
 <!-- start Back To Top -->
+
 
 <div id="back-to-top">
    <a href="#"><i class="ion-ios-arrow-up"></i></a>

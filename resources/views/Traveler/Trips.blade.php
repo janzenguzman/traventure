@@ -120,7 +120,7 @@
 										<div class="input-group">
 											<input type="text" name="search_pname" class="form-control"  placeholder="Search package name" >
 											<span class="input-group-btn">
-												<button class="btn btn-default" type="submit">Search</button>
+													<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 											</span>
 										</div><br>
 									</div>
@@ -189,7 +189,7 @@
 									@endif
 								@endforeach
 								
-								<div class="pager-wrappper text-left clearfix bt mt-0 pt-20 col-lg-12">
+								<div class="pager-wrappper text-left clearfix col-lg-12">
 									<div class="pager-innner">
 											
 											<div class="clearfix">

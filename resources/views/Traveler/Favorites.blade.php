@@ -112,9 +112,9 @@
 													{{ csrf_field() }}
 												<div class="input-group">
 													<input type="text" name="search_pname" class="form-control"  placeholder="Search package name" >
-													<span class="input-group-btn">
-														<button class="btn btn-default" type="submit">Search</button>
-													</span>
+														<span class="input-group-btn">
+																<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+														</span>
 												</div>
 											</form>
 										</div>
@@ -245,6 +245,7 @@
 													</div>
 												</div>
 													
+						
 											</div>
 										
 									</div>

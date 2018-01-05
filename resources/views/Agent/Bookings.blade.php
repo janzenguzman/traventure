@@ -1,4 +1,4 @@
-@extends('layouts.agent-navbar')
+@extends('layouts.user.headlayout')
 
 @section('content')
 <div class="container-wrapper">
@@ -6,9 +6,7 @@
 		<!-- start Header -->
 		
 		<header id="header">
-
-                @extends('layouts.user.headlayout')
-
+			@extends('layouts.agent-navbar')
 		</header>
 		
 		<!-- end Header -->

@@ -28,7 +28,7 @@
 				<div class="container">
 
 					<h1>Where do you want to go?</h1>
-					<p>Discover and book your unique travel experiences offered by local experts</p>
+					<center><p>Discover and book your unique travel experiences offered by travel agents</p></center>
 				</div>
 				
 			</div>

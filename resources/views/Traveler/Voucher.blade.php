@@ -139,7 +139,7 @@
                                         @foreach($itineraries as $itinerary)
                                             <div id="itinerary">
                                         
-                                                <h2 class="font-lg">Itinerary</h2>
+                                                <h2 class="font-lg">ITINERARY</h2>
                                                     
                                                     <div class="itinerary-toggle-wrapper mb-40">
                                                 
@@ -433,7 +433,7 @@
     
                                     <div id="additional-info">
 									
-											<h2 class="font-lg">Additional Information</h2>
+											<h2 class="font-lg">ADDITIONAL INFORMATION</h2>
 											
 											<div class="text-box-h-bb-wrapper">
 												<div class="text-box-h-bb">

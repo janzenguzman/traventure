@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +27,8 @@ Route::post('/register', 'Auth\RegisterController@register') -> name('register')
 Route::post('/agentsRegister', 'Auth\RegisterController@showRegisterForm') -> name('agentsRegister');
 // Route::get('/agentsRegister', 'AgentsController@showRegisterForm') -> name('agentsRegister');
 Route::post('Agent/HomePage', 'Auth\AgentsLoginController@login')->name('Agents.Login.Submit');
+Route::post('/', 'Auth\LoginController@logout')->name('Traveler.Logout');
+Route::post('/', 'Auth\AgentsLoginController@logout')->name('Agent.Logout');
 
 
 Route::prefix('Traveler')->group(function(){
@@ -63,10 +64,11 @@ Route::prefix('Traveler')->group(function(){
     // Route::post('/favorite', 'TravelersController@favoritePackage')->name('Traveler.Favorite');
     Route::post('/Trips/CommentInsert', 'TravelersController@storeComment');
     Route::post('/Explore/AddToFavorite', 'TravelersController@addToFavorites');
+    
 });
 
 Route::prefix('Admin')->group(function(){
-    Route::get('/Packages', 'AdminController@showHomePage')->name('Admin.Packages');
+    Route::get('/HomePage', 'AdminController@showHomePage')->name('Admin.HomePage');
     Route::get('/RequestsPage', 'AdminController@showRequestsPage')->name('Admin.RequestsPage');
     Route::get('/RequestsPage/requestsDatatable', 'AdminController@requestsDatatable')->name('Admin.RequestsPage.requestsDatatable');
     Route::get('/StatusPage/accreditedDatatable', 'AdminController@accreditedDatatable')->name('Admin.StatusPage.accreditedDatatable');
@@ -94,6 +96,7 @@ Route::prefix('Agent')->group(function(){
     Route::post('/DeleteMessage', 'AgentsController@deleteMessage')->name('Agent.DeleteMessage');
     Route::post('/UpdateProfile', 'AgentsController@updateProfile')->name('Agent.UpdateProfile');
     Route::get('/Packages', 'AgentsController@showPackages') -> name('Agent.Packages');
+    
     
     Route::get('/Messages', 'AgentsController@showMessages') -> name('Agent.ShowMessages');
     // Route::get('/Itinerary', 'AgentsController@itinerary') -> name('Agent.Itinerary');
@@ -143,5 +146,7 @@ Route::prefix('Agent')->group(function(){
 
     //Accept Booking
     Route::get('/Packages/Accept/{booking_id}', array('uses' => 'AgentsController@acceptBooking'));
+    
 });
 
+Route::get('/gis', 'MapController@index');
