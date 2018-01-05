@@ -244,7 +244,6 @@
 					</div>
 
 				</div>
->>>>>>> develop
 			</div>
 
         <div class="footer-wrapper scrollspy-footer">
