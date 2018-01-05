@@ -1,38 +1,6 @@
 @extends('layouts.user.headlayout')
 
 @section('content')
-{{--  <div class="container-fluid text-center">
-	<div class="panel panel-default panel-heading"><h1>Traveler Dashboard</h1></div>
-	@if(count($packages) > 0)
-		@foreach($packages as $package)
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h2><a href="/Traveler/TourPackage/{{$package->package_id}}">{{$package->package_name}}</a></h2>
-				</div>
-				<div class="panel-body">
-					Pax: {{$package->pax}} <br>
-					Php {{number_format($package->price, 2)}} <br>
-					Services: {{$package->services}}
-				</div>
-				<span id="fave" data-id="{{ $package->package_id }}">
-					<button href="#" class="fave btn btn-danger">
-						{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
-							Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
-							'Unfavorited' : 'Favorite' : 'Favorite'}}
-					</button>
-					{{--  <i class="fa fa-heart-o"></i> --}}
-					{{--  <a href="#" class="fave">Unfavorite</a>  --}}
-					{{--  <i class="fa fa-heart"></i> 
-				</span>
-				<hr><small>Posted on {{Carbon\Carbon::parse($package->created_at)->toDayDateTimeString()}}</small>
-			</div>
-		@endforeach
-		<hr>{{$packages->links()}}
-	@else
-		<p>No Packages Yet.</p>
-	@endif
-</div>  --}}
-
 <body class="transparent-header">
 
 	<!-- start Container Wrapper -->
@@ -61,22 +29,13 @@
 
 					<h1>Where do you want to go?</h1>
 					<p>Discover and book your unique travel experiences offered by local experts</p>
-
-					<form>
-						<div class="form-group">
-							<input type="text" placeholder="eg: Cebu, Bohol, Boracay" class="form-control flexdatalist" data-data="data/countries.json" data-search-in='["name","capital"]' data-visible-properties='["capital","name","continent"]' data-group-by="continent" data-selection-required="true" data-focus-first-result="true" data-min-length="1" data-value-property="iso2" data-text-property="{capital}, {name}" data-search-contain="false" name="countries">
-							<button class="btn"><i class="icon-magnifier"></i></button>
-						</div>
-					</form>
 				</div>
 				
 			</div>
 			<!-- end hero-header -->
 			
 			<div class="filter-full-width-wrapper">
-
-				<form class="">
-				
+					
 					<div class="filter-full-primary">
 					
 						<div class="container">
@@ -86,15 +45,15 @@
 								<div class="form-holder">
 								
 									<div class="row">
-									
+									<form method="POST" method="{{ route('Traveler.Explore') }}">
+										{{ csrf_field() }}
 										<div class="col-xs-12 col-sm-12 col-md-6">
-										
 										
 											<div class="filter-item bb-sm no-bb-xss">
 											
 												<div class="input-group input-group-addon-icon no-border no-br-sm">
-													<span class="input-group-addon input-group-addon-icon bg-white"><label><i class="fa fa-map-marker"></i> Tags:</label></span>
-													<input type="text" class="form-control" id="autocompleteTagging" value="Beach, Trekking, City" placeholder="" />
+													<span class="input-group-addon input-group-addon-icon bg-white"><label><i class="fa fa-map-marker"></i> Destination:</label></span>
+													<input type="text" name="destination_search" class="form-control" required/>
 												</div>
 											
 											</div>
@@ -112,38 +71,11 @@
 														<div class="filter-item mmr">
 														
 															<div class="input-group input-group-addon-icon no-border no-br-xs">
-																<span class="input-group-addon input-group-addon-icon bg-white">
-																<label class="block-xs"><i class="fa fa-sort-amount-asc"></i> Sort by:</label></span>
-																<select class="selectpicker form-control block-xs">
-																	<option value="0"> Price</option>
-																	<option value="3"> Name</option>
-																	<option value="4"> User Rating</option>
-																	<option value="7"> Star Rating</option>
-																</select>
+																<span class="input-group-addon input-group-addon-icon bg-white"><label><i class="fa fa-calendar"></i> Date From:</label></span>
+																<input type="date" name="date_search" class="form-control" required/>
 															</div>
-														
 														</div>
-														
 													</div>
-											
-													<div class="col-xss-12 col-xs-6 col-sm-7">
-													
-														<div class="filter-item mmr">
-														
-															<div class="input-group input-group-addon-icon no-border no-br-xs">
-																<span class="input-group-addon input-group-addon-icon bg-white"><label><i class="fa fa-sort-amount-asc"></i> Trip Style:</label></span>
-																<select class="selectpicker form-control" data-live-search="false" data-selected-text-format="count > 2" data-done-button="true" data-done-button-text="OK" data-none-selected-text="All Types" multiple>
-																	<option value="0"> Adventure</option>
-																	<option value="1"> Hooneymoon</option>
-																	<option value="2"> Shopping</option>
-																	<option value="3"> History</option>
-																</select>
-															</div>
-														
-														</div>
-														
-													</div>
-												
 												</div>
 											
 											</div>
@@ -151,8 +83,11 @@
 										</div>
 
 									</div>
-								
 								</div>
+									<div>
+										<br><input type="submit" class="btn btn-info btn-wide btn-sm col-md-6 col-sm-6 col-xxs-6" value="Search" >
+									</div>
+								</form>
 								
 								<div class="btn-holder">
 									<span class="btn btn-toggle btn-refine collapsed" data-toggle="collapse" data-target="#refine-result">Advance Filter</span>
@@ -177,31 +112,15 @@
 										<div class="col-xs-12 col-sm-12 col-md-8">
 										
 											<div class="row">
-											
-												<div class="col-xss-12 col-xs-6 col-sm-6">
-													<div class="form-group">
-														<label>Input Form</label>
-														<input type="text" class="form-control" placeholder="Placeholder">
-													</div>
-												</div>
 												
 												<div class="col-xss-12 col-xs-6 col-sm-6">
 													<div class="form-group">
-														<label>No. of traveller</label>
-														<div class="form-group form-spin-group">
-															<input type="text" class="form-control form-spin" value="1" /> 
-														</div>
-													</div>
-												</div>
-												
-												<div class="col-xss-12 col-xs-6 col-sm-6">
-													<div class="form-group">
-														<label>Select</label>
+														<label>Category:</label>
 														<select class="selectpicker show-tick form-control" title="Select placeholder">
-															<option value="0">Select Option 1</option>
-															<option value="1">Select Option 2</option>
-															<option value="2">Select Option 3</option>
-															<option value="3">Select Option 4</option>
+															<option value="0">Beach</option>
+															<option value="1">Mountain Adventure</option>
+															<option value="2">Waterfalls Adventure</option>
+															<option value="3">City Tour</option>
 														</select>
 													</div>
 												</div>
@@ -209,12 +128,10 @@
 												<div class="col-xss-12 col-xs-6 col-sm-6">
 												
 													<div class="form-group">
-														<label>Select Multiply</label>
-														<select id="filter_image_type" class="selectpicker show-tick form-control" title="Select placeholder" data-selected-text-format="count > 3" data-done-button="true" data-done-button-text="OK" multiple>
-															<option value="0">Select Option 1</option>
-															<option value="1">Select Option 2</option>
-															<option value="2">Select Option 3</option>
-															<option value="3">Select Option 4</option>
+														<label>Sort By:</label>
+														<select class="selectpicker show-tick form-control" title="Select placeholder">
+															<option value="0">Price</option>
+															<option value="1">Rating</option>
 														</select>
 													</div>
 
@@ -222,99 +139,6 @@
 											
 											</div>
 										
-										</div>
-										
-										<div class="col-xs-12 col-sm-12 col-md-4">
-										
-											<div class="row">
-											
-												<div class="col-xss-12 col-xs-6 col-sm-6 col-md-12">
-												
-													<div class="form-group">
-														<label>Range Slider</label>
-														<div class="sidebar-module-inner">
-															<input id="price_range" />
-														</div>
-													</div>
-													
-												</div>
-												
-												<div class="col-xss-12 col-xs-6 col-sm-6 col-md-12">
-												
-													<div class="form-group">
-														<label>Range Slider</label>
-														<div class="sidebar-module-inner">
-															<input id="star_range" />
-														</div>
-													</div>
-													
-												</div>
-												
-											</div>
-											
-										</div>
-
-										<div class="col-xs-12 col-sm-12 mb-10">
-										
-											<div class="bb mb-20"></div>
-											
-											<label>Checkbox</label>
-											<div class="row checkbox-wrapper">
-												<div class="col-xss-12 col-xs-6 col-sm-4 col-md-3">
-													<div class="checkbox-block">
-														<input id="filter_checkbox-1" name="filter_checkbox" type="checkbox" class="checkbox"/>
-														<label class="" for="filter_checkbox-1">Checkbox One</label>
-													</div>
-												</div>
-												<div class="col-xss-12 col-xs-6 col-sm-4 col-md-3">
-													<div class="checkbox-block">
-														<input id="filter_checkbox-2" name="filter_checkbox" type="checkbox" class="checkbox"/>
-														<label class="" for="filter_checkbox-2">Checkbox Two</label>
-													</div>
-												</div>
-												<div class="col-xss-12 col-xs-6 col-sm-4 col-md-3">
-													<div class="checkbox-block">
-														<input id="filter_checkbox-3" name="filter_checkbox" type="checkbox" class="checkbox"/>
-														<label class="" for="filter_checkbox-3">Checkbox Three</label>
-													</div>
-												</div>
-												<div class="col-xss-12 col-xs-6 col-sm-4 col-md-3">
-													<div class="checkbox-block">
-														<input id="filter_checkbox-4" name="filter_checkbox" type="checkbox" class="checkbox"/>
-														<label class="" for="filter_checkbox-4">Checkbox Four</label>
-													</div>
-												</div>
-												<div class="col-xss-12 col-xs-6 col-sm-4 col-md-3">
-													<div class="checkbox-block">
-														<input id="filter_checkbox-5" name="filter_checkbox" type="checkbox" class="checkbox"/>
-														<label class="" for="filter_checkbox-5">Checkbox Five</label>
-													</div>
-												</div>
-												<div class="col-xss-12 col-xs-6 col-sm-4 col-md-3">
-													<div class="checkbox-block">
-														<input id="filter_checkbox-6" name="filter_checkbox" type="checkbox" class="checkbox"/>
-														<label class="" for="filter_checkbox-6">Checkbox Six</label>
-													</div>
-												</div>
-												<div class="col-xss-12 col-xs-6 col-sm-4 col-md-3">
-													<div class="checkbox-block">
-														<input id="filter_checkbox-7" name="filter_checkbox" type="checkbox" class="checkbox"/>
-														<label class="" for="filter_checkbox-7">Checkbox Seven</label>
-													</div>
-												</div>
-												<div class="col-xss-12 col-xs-6 col-sm-4 col-md-3">
-													<div class="checkbox-block">
-														<input id="filter_checkbox-8" name="filter_checkbox" type="checkbox" class="checkbox"/>
-														<label class="" for="filter_checkbox-8">Checkbox Eight</label>
-													</div>
-												</div>
-												<div class="col-xss-12 col-xs-6 col-sm-4 col-md-3">
-													<div class="checkbox-block">
-														<input id="filter_checkbox-9" name="filter_checkbox" type="checkbox" class="checkbox"/>
-														<label class="" for="filter_checkbox-9">Checkbox Nine</label>
-													</div>
-												</div>
-											</div>
 										</div>
 
 									</div>
@@ -326,10 +150,8 @@
 						</div>
 						
 					</div>
-
-				</form>
-				
-			</div>
+					
+				</div>
 
 			<div class="pt-30 pb-50">
 			
@@ -361,39 +183,65 @@
 														'Unfavorited' : 'Favorite' : 'Favorite'}}
 												</button>
 											</span>
+												<button class="fave btn btn-danger btn-sm pull-right">
+													{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
+														Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
+														'Unfavorite' : 'Favorite' : 'Favorite'}}
+												</button>
+											</span>
+											<label>{{ $package->type }} Tour</label>
 										</div>
 
 										<div class="trip-guide-bottom">
 										
 											<div class="trip-guide-person bg-white clearfix">
 												<div class="image">
-													<img src="{{ asset('images/testimonial/01.jpg')}}" class="img-circle" alt="images" />
+													<img src="/public/uploads/files/{{ $package->photo }}" class="img-circle" alt="images" />
 												</div>
 												<p class="name">By: <a href="#">{{$package->fname}} {{$package->lname}}</a></p>
 												{{--  <p>Posted on {{($package->created_at)->toFormattedDateString()}}</p>  --}}
+												<p class="name">By: <a>{{$package->fname}} {{$package->lname}}</a></p>
+												<p>Posted on {{ Carbon\Carbon::parse($package->created_at)->toFormattedDateString()}}</p>
 			
 											</div>
-											
 											<div class="trip-guide-meta row gap-10">
 												<div class="col-xs-6 col-sm-6">
 													<div class="rating-item">
-														<input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="4.5"/>
+														<input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-readonly value="{{ $avg }}"/>
 													</div>
 												</div>
 												<div class="col-xs-6 col-sm-6 text-right">
-													5 days 4 nights
+													<!-- slots here-->
 												</div>
 											</div>
-											
 											<div class="row gap-10">
 												<div class="col-xs-12 col-sm-6">
 													<div class="trip-guide-price">
 														Starting at
 														<span class="number">PHP 6,000{{--$package->price--}}</span>
+														@if($package->days == 1)
+															{{$package->days}} Day Tour
+														@else
+															{{$package->days}} Days
+														@endif
+
+														@if(($nights = $package->days - 1) != 0)
+															@if($nights <= 1)
+																{{$nights}} Night 
+															@else
+																{{$nights}} Nights
+															@endif
+														@endif
+
+														@if($package->type == 'Joined')
+															<span class="number">PHP {{$package->adult_price}}</span>
+														@else
+															<span class="number">PHP {{$package->pax1_price}}</span>
+														@endif
 													</div>
 												</div>
 												<div class="col-xs-12 col-sm-6 text-right">
-														<a href="/Traveler/TourPackage/{{$package->package_id}}" class="btn btn-info">Details</a>
+													<a href="/Traveler/TourPackage/{{$package->package_id}}" class="btn btn-info btn-sm">Details</a>
 												</div>
 											</div>
 
@@ -443,27 +291,25 @@
 		</div>
 		
 		<!-- end Main Wrapper -->
-		
-		<!-- start Footer Wrapper -->
-		<div class="footer-wrapper scrollspy-footer">
-			<footer class="bottom-footer">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12">
-                            <center>
-                                <p class="copy-right">&#169; 2017 Traventure - Tour and Booking System</p>
-                            <center>
-						</div>
-					</div>
-				</div>
-			</footer>
-		</div>
-		<!-- end Footer Wrapper -->
 
 	</div>
 	
 	<!-- end Container Wrapper -->
- 
+	<br>
+	<div class="footer-wrapper scrollspy-footer">
+		<footer class="bottom-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<center>
+							<p class="copy-right">&#169; 2017 Traventure - Tour and Booking System</p>
+						<center>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
  
 <!-- start Back To Top -->
 
@@ -472,13 +318,13 @@
 </div>
 
 <!-- end Back To Top -->
+
 <script>
 	var token = '{{ Session::token() }}';
 	var urlFave = '{{ route('Traveler.Favorite') }}';
 </script>
 @endsection
 @extends('layouts.user.javascriptlayout')
-	
 @section('js')
 <script type="text/javascript">
 	(function($) {
@@ -493,6 +339,7 @@
 			packageId = event.target.parentNode.dataset['id'];
 			console.log(packageId);
 			var $t = $(this);
+			console.log($t);
 			$.ajax({
 				method: 'POST',
 				url: urlFave,
@@ -517,3 +364,37 @@
 	}(jQuery));
 </script>
 @endsection
+
+
+
+{{--  <div class="container-fluid text-center">
+	<div class="panel panel-default panel-heading"><h1>Traveler Dashboard</h1></div>
+	@if(count($packages) > 0)
+		@foreach($packages as $package)
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2><a href="/Traveler/TourPackage/{{$package->package_id}}">{{$package->package_name}}</a></h2>
+				</div>
+				<div class="panel-body">
+					Pax: {{$package->pax}} <br>
+					Php {{number_format($package->price, 2)}} <br>
+					Services: {{$package->services}}
+				</div>
+				<span id="fave" data-id="{{ $package->package_id }}">
+					<button href="#" class="fave btn btn-danger">
+						{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
+							Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
+							'Unfavorited' : 'Favorite' : 'Favorite'}}
+					</button>
+					{{--  <i class="fa fa-heart-o"></i> --}}
+					{{--  <a href="#" class="fave">Unfavorite</a>  --}}
+					{{--  <i class="fa fa-heart"></i> 
+				</span>
+				<hr><small>Posted on {{Carbon\Carbon::parse($package->created_at)->toDayDateTimeString()}}</small>
+			</div>
+		@endforeach
+		<hr>{{$packages->links()}}
+	@else
+		<p>No Packages Yet.</p>
+	@endif
+</div>  --}}

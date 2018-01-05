@@ -36,8 +36,7 @@ class Travelers extends Authenticatable
         return $this->hasOne('App\Package');
     }
 
-    public function favorites()
-    {
+    public function favorites(){
         return $this->hasMany('App\Favorites', 'traveler_id');
     }
 }

@@ -61,6 +61,11 @@ div.stars {
   margin-top: 2px;
   line-height: 1.3;
 }
+.favorite-search {
+    background: #FFF;
+    padding-top: 35px;
+    padding-bottom: 5px;
+}
 
 .trip-guide-content-agent p {
   line-height: 1.35;

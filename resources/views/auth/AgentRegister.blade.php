@@ -86,7 +86,7 @@
                                         
                                                     <div class="form-group{{ $errors->has('company_name') ? ' has-error' : '' }}"> 
                                                         <label>Company Name</label>
-                                                        <input id="company_namee" type="text" class="form-control`" name="company_name" required autofocus>
+                                                        <input id="company_namee" type="text" class="form-control" name="company_name" required autofocus>
 
                                                         @if ($errors->has('company_name'))
                                                             <span class="help-block">

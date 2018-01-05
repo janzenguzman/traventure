@@ -30,7 +30,7 @@ class AgentsLoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/Agents/HomePage';
+    protected $redirectTo = '/Agents/Packages';
 
     /**
      * Create a new controller instance.
