@@ -167,7 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        FarhanWazir\GoogleMaps\GMapsServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
+        
 
     ],
 
@@ -231,6 +232,7 @@ return [
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
+        'GMaps' => FarhanWazir\GoogleMaps\Facades\GMapsFacade::class,
     ],
 
 ];
