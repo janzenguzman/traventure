@@ -32,6 +32,21 @@ class TravelersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    // MADE BY JANZEN
+
+    //  public function index()
+    // {
+    //     // return view('Traveler/HomePage');
+    //     // $packages = Package::all();
+    //     // $packages = DB::select('SELECT * FROM packages');
+    //     // $packages = Package::orderBy('created_at', 'desc')->paginate(8);
+    //     $packages = DB::table('packages')
+    //         ->join('agents', 'agents.id', 'packages.agent_id')
+    //         ->select('packages.*', 'agents.fname', 'agents.lname', 'agents.company_name')
+    //         ->orderBy('created_at', 'desc')->paginate(8);
+    //     return view('Traveler.packages')->with('packages', $packages);
+
     public function index(Request $req)
     {
         //$packages = Package::all();
@@ -188,8 +203,7 @@ class TravelersController extends Controller
 
     public function showBill()
     {
-        $traveler_id=auth()->id();
-
+        $traveler_id = auth()->id();
         $bookingRequest = DB::table('bookings')
                         ->join('packages', 'bookings.package_id', '=', 'packages.package_id')
                         ->where('traveler_id', $traveler_id)
@@ -252,8 +266,8 @@ class TravelersController extends Controller
             //     ]);
             // }
         }
-        // return view('Traveler.Bookings')->with('bookings', $bookings);
-        return view('Traveler.Bookings', compact('bookings'));
+        return view('Traveler.Bookings')->with('bookings', $bookings);
+        // return view('Traveler.Bookings', compact('bookings'));
     }
 
     public function showTrips(Request $request)
@@ -325,7 +339,9 @@ class TravelersController extends Controller
             return response()->json($fave);
         }
     }
-
+    
+    //ADDED BY ARIEL
+    
     public function updateProfile(Request $request){
 
         $user_id = Auth::user()->id;
@@ -349,8 +365,6 @@ class TravelersController extends Controller
 
         return redirect()->back()->with('updatedProfile', 'You have successfully updated your profile!');
     }
-
-    //ADDED BY ARIEL
 
     public function sendMessage(Request $request){
 

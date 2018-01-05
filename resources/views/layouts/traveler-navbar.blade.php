@@ -8,7 +8,7 @@
 					
 					<div class="logo-wrapper">
 						<div class="logo">
-							<a href="index.html"><img src="{{ asset('images/navbar-logo.png') }}" alt="Logo" /></a>
+							<a href="/Traveler/Explore"><img src="{{ asset('images/navbar-logo.png') }}" alt="Logo" /></a>
 						</div>
 					</div>
 					

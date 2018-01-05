@@ -48,7 +48,7 @@ class LoginController extends Controller
     {
         return view('auth.TravelerLogin');
     }
-
+    
     public function login(Request $request)
     {
         //Validate the form data
@@ -70,6 +70,7 @@ class LoginController extends Controller
             throw ValidationException::withMessages([
                 $this->username() => [trans('auth.failed')],
             ]);
+
         }
     }
     public function showRegisterForm(){

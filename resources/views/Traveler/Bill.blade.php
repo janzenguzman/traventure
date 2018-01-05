@@ -205,6 +205,34 @@
 												</div>
 											</div>
 
+                                        <div class="form-horizontal">
+                                            <div class="form-group select2-input-hide">
+                                                <label class="col-sm-3 col-md-2 control-label">Child:</label>
+                                                <div class="col-sm-8 col-md-5">
+                                                    
+                                                    <div class="row gap-5">
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <input type="text" name="child" class="form-control" value="{{ $bookingRequest->child }}" readonly>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-horizontal">
+                                            <div class="form-group select2-input-hide">
+                                                <label class="col-sm-3 col-md-2 control-label">Infant:</label>
+                                                <div class="col-sm-8 col-md-5">
+                                                    
+                                                    <div class="row gap-5">
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <input type="text" name="infant" class="form-control" value="{{ $bookingRequest->infant }}" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <input type="hidden" name="total_payment" class="form-control" value="{{ ($bookingRequest->total_payment) * ($bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant) }}" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
 											<div class="form-horizontal">
 												<div class="form-group select2-input-hide">
 													<label class="col-sm-3 col-md-2 control-label">Child:</label>
@@ -337,6 +365,8 @@
 															PHP {{ $bookingRequest->infant_price }}
 														</div>
 													</div>
+													<div class="col-xs-5 col-sm-5 text-right">
+														PHP {{ $bookingRequest->total_payment }}
 												</li>
 												
 												<li class="divider"></li>
@@ -383,6 +413,10 @@
 															PHP {{ $bookingRequest->excess_price }} 
 														</div>
 													</div>
+													<div class="col-xs-5 col-sm-5 text-right">
+                                                            PHP {{ $bookingRequest->total_payment }} x {{ $bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant }}
+														<h4 class="font600 font24 block text-primary mt-5">
+                                                            PHP {{ ($bookingRequest->total_payment) * ($bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant) }}</h4>
 												</li>
 												
 												<li class="divider"></li>

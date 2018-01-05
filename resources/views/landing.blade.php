@@ -10,8 +10,8 @@
                 <div class="hero img-bg-01">
                     <div class="container">
                         <center>
-                            <center><img src="{{ asset('uploads/files/logo-white.png') }}" style="width:350px; margin-top:-10%">
-								<p>Book. Chill. Venture</p></center>
+                            <center><img src="{{ asset('uploads/files/logo-white-2.png') }}" style="width:350px; margin-top:-10%">
+								<p>Book. Chill. Venture.</p></center>
                             <a href="{{ url('TravelerLogin') }}" class="btn btn-sm btn-info">TRAVELER</a>
                             <a href="{{ url('AgentLogin') }}" class="btn btn-sm btn-info">TRAVEL AGENT</a>
                         </center>

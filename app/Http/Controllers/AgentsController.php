@@ -13,7 +13,6 @@ use App\Travels;
 use DB;
 use View;
 use Carbon\Carbon;
-use App\Agents;
 use Auth;
 
 
@@ -75,29 +74,60 @@ class AgentsController extends Controller
     }
 
     public function storePackage(Request $request){
-        $categoriesString = implode(",", $request->get('categories'));
+        $this->validate($request, [
+            'photo' => 'image|nullable|max:1999',
+        ]);
+
+        //Handle file upload
+        // if($request->hasFile('photo')){
+        //     //Get the filename with the extension
+        //     $filenameWithExt = $request->file('photo')->getClientOriginalName();
+        //     //Get just filename
+        //     $justFilename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        //     //Get just ext
+        //     $ext = $request->file('photo')->getClientOriginalExtension();
+        //     //Filename to store
+        //     $fileNameToStore =$justFilename.'_'.time().'.'.$ext;
+        //     //Upload Image
+        //     $path = $request->file('photo')->storeAs('public/uploads/files/', $fileNameToStore);
+        // }else{
+        //     $fileNameToStore = 'noimage.jpg';
+        // }
+        if (Input::file('photo')->isValid()) {
+            $destinationPath = public_path('public/uploads/files/');
+            $extension = Input::file('photo')->getClientOriginalExtension();
+            $fileName = uniqid().'.'.$extension;
+    
+            Input::file('photo')->move($destinationPath, $fileName);
+        }
+
+        $agent_id = auth()->user()->id;
+        $categoriesString = implode(', ', $request->input('categories'));
         $packages = new Packages(array(
-            'package_name' => $request->get('package_name'),
-            'days' => $request->get('days'),
-            'adult_price' => $request->get('adult_price'),
-            'child_price' => $request->get('child_price'),
-            'infant_price' => $request->get('infant_price'),
-            'excess_price' => $request->get('excess_price'),
-            'type' => $request->get('type'),
-            'pax1' => $request->get('pax1'),
-            'pax1_price' => $request->get('pax1_price'),
-            'pax2' => $request->get('pax2'),
-            'pax2_price' => $request->get('pax2_price'),
-            'pax3' => $request->get('pax3'),
-            'pax3_price' => $request->get('pax3_price'),
-            'inclusions' => $request->get('inclusions'),
-            'add_info' => $request->get('add_info'),
-            'reminders' => $request->get('reminders'),
-            'categories' => $categoriesString
+            'package_name' => $request->input('package_name'),
+            'days' => $request->input('days'),
+            'adult_price' => $request->input('adult_price'),
+            'child_price' => $request->input('child_price'),
+            'infant_price' => $request->input('infant_price'),
+            'excess_price' => $request->input('excess_price'),
+            'service' => $request->get('service'),
+            'pax1' => $request->input('pax1'),
+            'pax1_price' => $request->input('pax1_price'),
+            'pax2' => $request->input('pax2'),
+            'pax2_price' => $request->input('pax2_price'),
+            'pax3' => $request->input('pax3'),
+            'pax3_price' => $request->input('pax3_price'),
+            'inclusions' => $request->input('inclusions'),
+            'add_info' => $request->input('add_info'),
+            'reminders' => $request->input('reminders'),
+            'categories' => $categoriesString,
+            'photo' => $fileName,
+            'agent_id' => $agent_id
         ));
-
+        
+        dd($packages);
         $packages->save();
-
+        
         return view('Agent.CreateItineraries')->with('packages', $packages);
     }
 
@@ -248,7 +278,7 @@ class AgentsController extends Controller
         
         $itineraries->save();
 
-        return view('\Agent\Packages')->with('packages', $packages);
+        return redirect('\Agent\Packages')->with(['packages' => $packages, 'addedPackage' => 'You have successfully made a new Package Tour!']);
     }
     
     public function showPackages(){
@@ -450,7 +480,7 @@ class AgentsController extends Controller
     public function deletePackage($package_id){
         DB::table('packages')->where('package_id', $package_id)->delete();
         DB::table('itineraries')->where('package_id', $package_id)->delete();
-        return redirect()->route('Agent.Packages');
+        return redirect()->route('Agent.Packages')->with('deletedPackage', 'Package Deleted.');
     }
 
     public function declineBooking($booking_id){
@@ -490,8 +520,28 @@ class AgentsController extends Controller
 
     public function viewPackage($package_id){
         $packages =  Packages::find($package_id);
-        $itineraries = Itineraries::find($package_id);
-        return View::make('\Agent\PackageDetails', ['packages' => $packages, 'itineraries' => $itineraries]);
+        $booking = Bookings::find($package_id);
+        // $itineraries = Itineraries::find($package_id);
+        $itineraries = DB::table('itineraries')
+                    ->join('packages', 'packages.package_id', 'itineraries.package_id')
+                    ->where('itineraries.package_id', $package_id)
+                    ->get();
+        $count = count(DB::table('packages')->where('agent_id', Auth::user()->id)->get());
+        $avg = DB::table('comments')->where('package_id', $package_id)->avg('rating');
+        $comments = DB::table('comments')
+                    ->join('packages', 'comments.package_id', '=', 'packages.package_id')
+                    ->where('comments.package_id', $package_id)
+                    ->get();
+        $countCom = DB::table('comments')
+                ->where('package_id', $package_id)
+                ->count();
+        return View::make('\Agent\PackageDetails', ['packages' => $packages, 
+                                                    'itineraries' => $itineraries, 
+                                                    'count' => $count,
+                                                    'avg' => $avg,
+                                                    'booking' => $booking,
+                                                    'comments' => $comments,
+                                                    'countCom' => $countCom]);
     }
 
     public function editAgent($id){
@@ -554,7 +604,7 @@ class AgentsController extends Controller
         }else{
             DB::table('agents')->where('id', auth()->user()->id)->update(['active' => '0']);
         }
-        return view('\Agent\HomePage', compact('diffHours'));
+        return view('Agent.Home', compact('diffHours'));
     }
 
     // public function showRegisterForm(){

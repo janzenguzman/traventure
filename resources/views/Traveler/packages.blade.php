@@ -177,6 +177,12 @@
 										<div class="trip-guide-content bg-white">
 											<h3>{{$package->package_name}}</h3>
 											<span id="fave" data-id="{{ $package->package_id }}">
+												<button href="#" class="fave btn btn-danger">
+													{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
+														Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
+														'Unfavorited' : 'Favorite' : 'Favorite'}}
+												</button>
+											</span>
 												<button class="fave btn btn-danger btn-sm pull-right">
 													{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
 														Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
@@ -192,6 +198,8 @@
 												<div class="image">
 													<img src="/public/uploads/files/{{ $package->photo }}" class="img-circle" alt="images" />
 												</div>
+												<p class="name">By: <a href="#">{{$package->fname}} {{$package->lname}}</a></p>
+												{{--  <p>Posted on {{($package->created_at)->toFormattedDateString()}}</p>  --}}
 												<p class="name">By: <a>{{$package->fname}} {{$package->lname}}</a></p>
 												<p>Posted on {{ Carbon\Carbon::parse($package->created_at)->toFormattedDateString()}}</p>
 			
@@ -209,6 +217,8 @@
 											<div class="row gap-10">
 												<div class="col-xs-12 col-sm-6">
 													<div class="trip-guide-price">
+														Starting at
+														<span class="number">PHP 6,000{{--$package->price--}}</span>
 														@if($package->days == 1)
 															{{$package->days}} Day Tour
 														@else
@@ -315,7 +325,6 @@
 </script>
 @endsection
 @extends('layouts.user.javascriptlayout')
-
 @section('js')
 <script type="text/javascript">
 	(function($) {
@@ -334,7 +343,7 @@
 			$.ajax({
 				method: 'POST',
 				url: urlFave,
-				data: { packageId: packageId, token: token },
+				data: { packageId: packageId, _token: token },
 				success: function(data){
 					console.log(data);
 					if (data == 'Favorite') {
