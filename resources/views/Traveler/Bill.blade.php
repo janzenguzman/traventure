@@ -335,16 +335,6 @@
 									<div class="sidebar-booking-inner">
 									
 										<ul class="price-summary-list">
-								
-											<li>
-												<h6>Meeting point</h6>
-												<p class="text-muted">Bangkok in't airport</p>
-											</li>
-											
-											<li>
-												<h6>Meeting time</h6>
-												<p class="text-muted">09:00 am</p>
-											</li>
 
 											@if($bookingRequest->type=='Joined')
 												<li>
@@ -438,10 +428,10 @@
 														</div>
 														<div class="col-xs-5 col-sm-5 text-right">
 																PHP {{ $price }} <br>
-																PHP {{ $bookingRequest->no_of_exclusive_traveler }} x {{ $bookingRequest->excess_price }}
+																PHP {{ $bookingRequest->no_of_excess }} x {{ $bookingRequest->excess_price }}
 															<h4 class="font600 font24 block text-primary mt-5">
 																PHP {{ ($price) + 
-																	($bookingRequest->no_of_exclusive_traveler * $bookingRequest->excess_price) }}</h4>
+																	($bookingRequest->no_of_excess * $bookingRequest->excess_price) }}</h4>
 														</div>
 													</div>
 												</li>

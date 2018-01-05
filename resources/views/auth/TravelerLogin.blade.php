@@ -112,7 +112,9 @@
                                                     <div class="login-box-box-action">
                                                         No account? <a data-toggle="modal" href="#registerModal">Register</a>
                                                     </div>
-                                                </div>  --}}
+												</div>  --}}
+												
+												
                                                 
                                                 <center>
                                                     <button type="submit" class="btn btn-info">Log-in</button>

@@ -13,6 +13,11 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}"> 
 
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTJOuFQhHjI4jec4gTSD4_x0Ke7cI3bRg"
+        type="text/javascript">
+
+        </script>
+
 </head>
 <body>
     {{--  <div id="app">  --}}
@@ -98,6 +103,8 @@
     <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
     {{--  <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>  --}}
     @yield('js')
-    </scipt>
+    {{--  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTJOuFQhHjI4jec4gTSD4_x0Ke7cI3bRg&libraries=places&sensor=false"
+        type="text/javascript"></script>
+    </scipt>  --}}
 </body>
 </html

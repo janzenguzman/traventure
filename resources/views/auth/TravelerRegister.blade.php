@@ -120,7 +120,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-6 col-md-6">
+                                                <div class="col-sm-12 col-md-12">
                                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}"> 
                                                         <label for="email">Email Address</label>
                                                             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -183,13 +183,12 @@
                                                     <label for="photo">Profile Picture</label>
                                                     <input id="photo" name="photo" type="file" required>
                                                 </div>
-                                                
-
-                                            </div>
                                                 <center>
                                                     <button type="submit" style="margin-top:2%" class="btn btn-info">Register</button>
                                                 </center>
-                                        </form>
+
+                                                
+                                            </form>
                                         </div>
 						            </div>
 								</div>

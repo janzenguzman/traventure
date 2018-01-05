@@ -21,16 +21,13 @@
 									<li>
 										<a data-toggle="modal" href="#profile_modal">User Profile</a>
 									</li>
-									<li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
+									<li><a href="{{ route('Traveler.Logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        <i class="fa fa-power-off"></i>
+                                            Logout</a>
+                                    <form id="logout-form" action="{{ 'App\Travelers' == Auth::getProvider()->getModel() ?  route('Traveler.Logout'): route('logout') }}" method="POST" style="display: none">
+                                                {{ csrf_field() }}
+                                    </form>
                                     </li>
 								</ul>
 							</li>

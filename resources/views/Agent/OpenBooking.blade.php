@@ -8,7 +8,7 @@
             <header id="header">
     
                 <!-- start Navbar (Header) -->
-                @extends('layouts.traveler-navbar')
+                @extends('layouts.agent-navbar')
                 <!-- end Navbar (Header) -->
     
             </header>
@@ -250,7 +250,7 @@
                                                                 </div>
                                                                 <div class="col-xs-5 col-sm-5 text-right">
                                                                         PHP {{ $booking->pax_price }} <br>
-                                                                        PHP {{ $booking->no_of_exclusive_traveler }} x {{ $booking->excess_price }}
+                                                                        PHP {{ $booking->no_of_excess }} x {{ $booking->excess_price }}
                                                                 </div>
                                                                 <h4 class="font600 font24 block text-primary mt-5 pull-right">
                                                                     PHP {{ $booking->total_payment }}</h4>

@@ -470,7 +470,7 @@
 													<ul class="clearfix">
 														<li class="row gap-20">
 															<div class="col-xs-12 col-sm-7">
-																Adult Price <b>(11 yrs. above)</b>
+																Adult Price <b>(11 years. above)</b>
 															</div>
 															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
 																PHP {{ $package->adult_price }}.00
@@ -478,7 +478,7 @@
 														</li>
 														<li class="row gap-20">
 															<div class="col-xs-12 col-sm-7">
-																Child Price: <b>(4-10 yrs.)</b>
+																Child Price: <b>(4-10 yesrs.)</b>
 															</div>
 															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
 																PHP {{ $package->child_price }}.00
@@ -486,7 +486,7 @@
 														</li>
 														<li class="row gap-20">
 															<div class="col-xs-12 col-sm-7">
-																Infant Price <b>(3 yrs. below)</b>
+																Infant Price <b>(3 years. below)</b>
 															</div>
 															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
 																PHP {{ $package->infant_price }}.00
@@ -751,7 +751,6 @@
 													
 													<div class="inner">
 														@if(count($favs) == 0)
-															<i class="ti-heart" style="color:red"></i>
 															@foreach($favs as $fav)
 																@if($fav->favorited == 1)
 																	<i class="ti-heart" style="color:red"></i>
@@ -841,14 +840,14 @@
 												<div class="col-sm-6 col-md-6">
 													<span class="labeling" style="color:black">From: </span>
 													<div class="form-group form-group-sm">
-														<input type="date" name="date_from" class="date_from form-control" readonly>
+														<input type="text" name="date_from" class="date_from form-control" readonly>
 													</div>
 												</div>
 	
 												<div class="col-sm-6 col-md-6">
 													<span class="labeling" style="color:black">To: </span>
 													<div class="form-group form-group-sm">
-														<input type="date" name="date_to" class="date_to form-control" readonly>
+														<input type="text" name="date_to" class="date_to form-control" readonly>
 													</div>
 												</div>
 	
@@ -891,26 +890,28 @@
 												
 												@if($package->type == "Joined")
 													<div class="col-sm-4 col-md-4">
-														<div class="form-group"> 
-															<span class="labeling" style="color:black">Adult: </span>
+														<div class="form-group form-spin-group"> 
+															<span class="labeling" style="color:black">Adult: (11 years. above)</span>
 															<div class="form-group form-group-sm">
-																<input type="number" name="adult" min="0" class="form-control" required/>
+																<input type="text" name="adult" min="0" class="form-control form-spin" required/>
 															</div>
 														</div>
 													</div>
 													<div class="col-sm-4 col-md-4">
-														<div class="form-group"> 
-															<span class="labeling" style="color:black">Child: </span>
+														<div class="form-group form-spin-group"> 
+															<span class="labeling" style="color:black">Child: (4-10 yesrs.)</span>
 															<div class="form-group form-group-sm">
-																<input type="number" name="child" min="0" class="form-control" required/>
+																<input type="text" name="child" min="0" class="form-control form-spin" required/>
 															</div>
 														</div>
 													</div>
+
+													
 													<div class="col-sm-4 col-md-4">
-														<div class="form-group"> 
-															<span class="labeling" style="color:black">Infant: </span>
+														<div class="form-group form-spin-group"> 
+															<span class="labeling" style="color:black">Infant: (3 years below)</span>
 															<div class="form-group form-group-sm">
-																<input type="number" name="infant" min="0" class="form-control" required/>
+																<input type="text" name="infant" min="0" class="form-control form-spin" required/>
 															</div>
 														</div>
 													</div>
@@ -919,17 +920,19 @@
 														<div class="form-group"> 
 															<input type="hidden" name="no_of_exclusive_traveler" class="slots">
 															<span class="labeling" style="color:black">Excess Person Price: </span>
-															<div class="form-group form-group-sm">
+															<div class="input-group form-group-sm">
+																<span class="input-group-addon">PHP</span>
 																<input type="text" name="excess_price" class="excess_price form-control" readonly/>
 																
 															</div>
 														</div>
 													</div>
+													
 													<div class="col-sm-6 col-md-6">
-														<div class="form-group"> 
+														<div class="form-group form-spin-group"> 
 															<span class="labeling" style="color:black">Number of Excess Person: </span>
 															<div class="form-group form-group-sm">
-																<input type="number" name="no_of_excess" min="0" class="form-control"/>
+																<input type="text" name="no_of_excess" min="0" class="form-control form-spin"/>
 															</div>
 														</div>
 													</div>

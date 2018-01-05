@@ -39,7 +39,7 @@ class AgentsLoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:agents')->except('logout');
     }
 
     public function login(Request $request)
@@ -86,4 +86,10 @@ class AgentsLoginController extends Controller
         return view ('auth.AgentLogin');
     }
     
+    public function logout(Request $request)
+    {
+        Auth::guard('agents')->logout();
+        
+        return view('landing');
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Package;
@@ -23,7 +24,7 @@ class TravelersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:travelers');
     }
 
     /**
@@ -66,7 +67,7 @@ class TravelersController extends Controller
                 ->paginate(8);
 
                 $avg = DB::table('comments')
-                        ->join('packages', 'comments.package_id', 'packages.package_id')
+                        ->join('packages', 'comments.package_id', '=', 'packages.package_id')
                         ->join('slots', 'packages.package_id', '=', 'slots.package_id')
                         ->where([['package_name', 'like', '%'.$destination.'%'],
                                 ['slots.date_from', 'like', $date]
@@ -81,11 +82,10 @@ class TravelersController extends Controller
                     ->paginate(8);
 
             $avg = DB::table('comments')
-                    ->join('packages', 'comments.package_id', 'packages.package_id')
+                    ->join('packages', 'comments.package_id', '=', 'packages.package_id')
+                    ->groupBy('comments.package_id')
                     ->avg('rating');
-        }
-
-        
+        }     
         
         return view('Traveler.packages')->with(['packages' => $packages, 'avg' => $avg]);
         // return view('Traveler.packages')->with('packages', $packages);

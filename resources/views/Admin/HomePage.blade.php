@@ -86,7 +86,7 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                         <div class="white-box">
-                            <div class="col-lg-12 b-0">
+                            <div class="col-lg-9 b-0">
                                 <h3 class="box-title"></h3>
                                     {!! Charts::styles() !!}
                                     {!! $chart->html() !!}
@@ -97,6 +97,7 @@
                     </div>
                 </div>
             </div>
+                
                 <footer class="footer text-center"> 2017 &copy; Traventure </footer>
         </div>
         <!-- End Of Main Application -->
