@@ -221,7 +221,7 @@
                                                             <input type="text" name="infant" class="form-control" value="{{ $bookingRequest->infant }}" readonly>
                                                         </div>
                                                     </div>
-                                                    <input type="hidden" name="total_payment" class="form-control" value="{{ ($bookingRequest->price) * ($bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant) }}" readonly>
+                                                    <input type="hidden" name="total_payment" class="form-control" value="{{ ($bookingRequest->total_payment) * ($bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant) }}" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -289,7 +289,7 @@
 														Tour Package Price
 													</div>
 													<div class="col-xs-5 col-sm-5 text-right">
-														PHP {{ $bookingRequest->price }}
+														PHP {{ $bookingRequest->total_payment }}
 													</div>
 												</div>
 											</li>
@@ -302,9 +302,9 @@
 														<span class="font600">Total </span>
 													</div>
 													<div class="col-xs-5 col-sm-5 text-right">
-                                                            PHP {{ $bookingRequest->price }} x {{ $bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant }}
+                                                            PHP {{ $bookingRequest->total_payment }} x {{ $bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant }}
 														<h4 class="font600 font24 block text-primary mt-5">
-                                                            PHP {{ ($bookingRequest->price) * ($bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant) }}</h4>
+                                                            PHP {{ ($bookingRequest->total_payment) * ($bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant) }}</h4>
 													</div>
 												</div>
 											</li>
