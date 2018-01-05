@@ -77,7 +77,7 @@
 			<div class="breadcrumb-wrapper">
 				<div class="container">
 					<ol class="breadcrumb">
-                        <li><a href="{{ route('Agent.HomePage') }}">Packages</a></li>
+                        <li><a href="{{ route('Agent.Packages') }}">Packages</a></li>
                         <li>Messages</li>
 						<li class="active">Sent</li>
 					</ol>

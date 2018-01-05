@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddActiveToAgents extends Migration
+class AddExcessPriceToBills extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddActiveToAgents extends Migration
      */
     public function up()
     {
-        Schema::table('agents', function($table){
-            $table->boolean('active');
+        Schema::table('bills', function($table){
+            $table->decimal('excess_price', 10, 2)->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddActiveToAgents extends Migration
      */
     public function down()
     {
-        Schema::table('agents', function($table){
-            $table->dropColumn('active');
+        Schema::table('bills', function($table){
+            $table->dropColumn('excess_price', 10, 2);
         });
     }
 }

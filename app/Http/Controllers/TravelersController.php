@@ -31,13 +31,64 @@ class TravelersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    
+    // MADE BY JANZEN
+
+    //  public function index()
+    // {
+    //     // return view('Traveler/HomePage');
+    //     // $packages = Package::all();
+    //     // $packages = DB::select('SELECT * FROM packages');
+    //     // $packages = Package::orderBy('created_at', 'desc')->paginate(8);
+    //     $packages = DB::table('packages')
+    //         ->join('agents', 'agents.id', 'packages.agent_id')
+    //         ->select('packages.*', 'agents.fname', 'agents.lname', 'agents.company_name')
+    //         ->orderBy('created_at', 'desc')->paginate(8);
+    //     return view('Traveler.packages')->with('packages', $packages);
+
+    public function index(Request $req)
     {
-        // return view('Traveler/HomePage');
-        $packages = Package::all();
-        // $packages = DB::select('SELECT * FROM packages');
-         $packages = Package::orderBy('created_at', 'desc')->paginate(8);
-         return view('Traveler.packages')->with('packages', $packages);
+        //$packages = Package::all();
+        ///$packages = Package::orderBy('created_at', 'desc')->paginate(8);
+
+        $destination = $req->input('destination_search');
+        $date = $req->input('date_search');
+
+        if($destination != NULL && $date != NULL){
+            $packages = DB::table('packages')
+                ->join('agents', 'packages.agent_id', '=', 'agents.id')
+                ->join('slots', 'packages.package_id', '=', 'slots.package_id')
+                ->where([['package_name', 'like', '%'.$destination.'%'],
+                        ['slots.date_from', 'like', $date]
+                ])
+                ->orderBy('packages.created_at', 'desc')
+                ->select('packages.*', 'agents.photo', 'agents.fname', 'agents.lname')
+                ->paginate(8);
+
+                $avg = DB::table('comments')
+                        ->join('packages', 'comments.package_id', 'packages.package_id')
+                        ->join('slots', 'packages.package_id', '=', 'slots.package_id')
+                        ->where([['package_name', 'like', '%'.$destination.'%'],
+                                ['slots.date_from', 'like', $date]
+                        ])
+                        ->avg('rating');
+
+        }else{
+            $packages = DB::table('packages')
+                    ->join('agents', 'packages.agent_id', '=', 'agents.id')
+                    ->orderBy('packages.created_at', 'desc')
+                    ->select('packages.*', 'agents.photo', 'agents.fname', 'agents.lname')
+                    ->paginate(8);
+
+            $avg = DB::table('comments')
+                    ->join('packages', 'comments.package_id', 'packages.package_id')
+                    ->avg('rating');
+        }
+
+        
+        
+        return view('Traveler.packages')->with(['packages' => $packages, 'avg' => $avg]);
+        // return view('Traveler.packages')->with('packages', $packages);
     }
 
     public function create()
@@ -46,85 +97,102 @@ class TravelersController extends Controller
     }
 
     public function store(Request $request)
-    {
-        // Create Post
+    {  
+        $total_payment = $request->input('total_payment');
+        $booking_id = $request->input('booking_id');
+        $slot_id = $request->input('slot_id');
+        $total_slots = ($request->input('adult') + $request->input('child') + $request->input('infant'));
+        $service = $request->input('service');
+        
+        if($service == 'Joined')
+            if($total_slots >= $request->input('slot')){
+                $booking = new Booking;
+                $booking->date_from = $request->input('date_from');
+                $booking->date_to = $request->input('date_to');
+                $booking->client_fname = $request->input('client_fname');
+                $booking->client_lname = $request->input('client_lname');
+                $booking->contact_num = $request->input('contact_num');
+                $booking->client_email = $request->input('client_email');
+                $booking->adult = $request->input('adult');
+                $booking->child = $request->input('child');
+                $booking->infant = $request->input('infant');
+                $booking->note = $request->input('note');
+                $booking->service = $request->input('service');
+                $booking->traveler_id = auth()->user()->id;
+                $booking->status = 'Pending';
+                $booking->package_id = $request->input('package_id');
+                $booking->expired = 0;
+                $booking->slot_id = $request->input('slot_id');
+                $booking->save();
 
-        // $bookingRequest = $request->all();
-        $booking = new Booking;
-        $booking->date_from = $request->input('date_from');
-        $booking->date_to = $request->input('date_to');
-        $booking->client_fname = $request->input('client_fname');
-        $booking->client_lname = $request->input('client_lname');
-        $booking->contact_num = $request->input('contact_num');
-        $booking->client_email = $request->input('client_email');
-        $booking->adult = $request->input('adult');
-        $booking->child = $request->input('child');
-        $booking->infant = $request->input('infant');
-        $booking->note = $request->input('note');
-        $booking->service = $request->get('service');
-        $booking->traveler_id = auth()->user()->id;
-        $booking->status = 'Pending';
-        $booking->package_id = $request->input('package_id');
-        $booking->expired = 0;
-        $booking->save();
+                return redirect('/Traveler/Bill');
+            }else{
+                return redirect()->back()->with('BookingFailed', 'The number of traveler you entered is more than the slots available!');
+            }
+        else{
+            $booking = new Booking;
+            $booking->date_from = $request->input('date_from');
+            $booking->date_to = $request->input('date_to');
+            $booking->client_fname = $request->input('client_fname');
+            $booking->client_lname = $request->input('client_lname');
+            $booking->contact_num = $request->input('contact_num');
+            $booking->client_email = $request->input('client_email');
+            $booking->no_of_excess = $request->input('no_of_excess');
+            $booking->excess_price = $request->input('excess_price');
+            $booking->no_of_exclusive_traveler = $request->input('no_of_exclusive_traveler');
+            $booking->note = $request->input('note');
+            $booking->service = $request->input('service');
+            $booking->traveler_id = auth()->user()->id;
+            $booking->status = 'Pending';
+            $booking->package_id = $request->input('package_id');
+            $booking->expired = 0;
+            $booking->slot_id = $request->input('slot_id');
+            $booking->save();
 
-        return redirect('/Traveler/Bill');
+            return redirect('/Traveler/Bill');
+        }
     }
 
     //DONT TOUCH
     public function showPackages($package_id)
     {
+        $packages = DB::table('packages')
+                    ->join('agents', 'packages.agent_id', '=', 'agents.id')
+                    ->join('itineraries', 'packages.package_id', '=', 'itineraries.package_id')
+                    ->where('packages.package_id', $package_id)
+                    ->get();
+
+        $now = Carbon::now(); 
+        $slots = DB::table('slots')
+                    ->join('packages', 'slots.package_id', '=', 'packages.package_id')
+                    ->where([['slots.package_id', $package_id],
+                            ['slots.slots', '!=', '0'],
+                            ['slots.date_from', '>=', $now]
+                    ])
+                    ->orderBy('slots.date_from', 'asc')
+                    ->get();
+        
+        $avg = DB::table('comments')
+                    ->where('package_id', $package_id)
+                    ->avg('rating');
+
+        $count = DB::table('comments')
+                    ->where('package_id', $package_id)
+                    ->count();
+
+        $favs = DB::table('favorites')
+                    ->where([['traveler_id', Auth::user()->id],
+                            ['package_id', $package_id]
+                    ])
+                    ->get();
+
         $comments=DB::table('comments')
                     ->join('packages', 'comments.package_id', '=', 'packages.package_id')
                     ->where('comments.package_id', $package_id)
                     ->get();
-        $packages = Package::find($package_id);
-        
-        $avg = DB::table('comments')
-                ->where('package_id', $package_id)
-                ->avg('rating');
 
-        $count = DB::table('comments')
-                ->where('package_id', $package_id)
-                ->count();
         return view('Traveler.show')->with(['packages' => $packages, 'comments' => $comments, 
-                    'avg' => $avg, 'count' => $count]); 
-    }
-
-    public function edit($package_id)
-    {
-        //
-    }
-
-    public function update(Request $request, $package_id)
-    {
-        //
-    }
-
-    public function destroyBookings($booking_id)
-    {
-        // $bookings = Booking::find($booking_id);
-        $bookings = DB::table('bookings')->where('booking_id', $booking_id)->get();
-            foreach($bookings as $booking){
-                DB::table('cancelled_bookings')->insert([
-                    'booking_id'=> $booking->booking_id,
-                    'date_from' => $booking->date_from,
-                    'date_to' => $booking->date_to,
-                    'client_fname' => $booking->client_fname,
-                    'client_lname' => $booking->client_lname,
-                    'contact_num' => $booking->contact_num,
-                    'client_email' => $booking->client_email,
-                    'adult' => $booking->adult,
-                    'child' => $booking->child,
-                    'infant' =>$booking->infant,
-                    'note' => $booking->note,
-                    'created_at' => $booking->created_at,
-                    'updated_at' => $booking->updated_at,
-                ]);
-            }
-        // $bookings->delete();
-        DB::table('bookings')->where('booking_id', $booking_id)->delete();
-        return redirect('/Traveler/Bookings')->with('success', 'Booking Cancelled!');
+                    'avg' => $avg, 'count' => $count, 'slots' => $slots, 'favs' => $favs]); 
     }
 
     public function book($package_id)
@@ -135,12 +203,12 @@ class TravelersController extends Controller
 
     public function showBill()
     {
-        $traveler_id=auth()->id();
+        $traveler_id = auth()->id();
         $bookingRequest = DB::table('bookings')
                         ->join('packages', 'bookings.package_id', '=', 'packages.package_id')
                         ->where('traveler_id', $traveler_id)
                         ->orderby('bookings.created_at', 'desc')->first();
-
+                        
         return view('Traveler/Bill')->with('bookingRequest', $bookingRequest);
     }
 
@@ -184,17 +252,22 @@ class TravelersController extends Controller
 
             if($now > $date_to){
                 DB::table('bookings')->where('booking_id', $booking->booking_id)->update(['expired' => 1]); 
-            }
-            if($booking->expired == 1 && $trips === NULL){
                 DB::table('trips')->insert([
                     'booking_id' => $booking->booking_id,
                     'traveler_id' => $id,
                     'package_id' => $booking->package_id,
                 ]);
             }
+            // if($booking->expired == 1 && $trips === NULL){
+            //     DB::table('trips')->insert([
+            //         'booking_id' => $booking->booking_id,
+            //         'traveler_id' => $id,
+            //         'package_id' => $booking->package_id,
+            //     ]);
+            // }
         }
-        // return view('Traveler.Bookings')->with('bookings', $bookings);
-        return view('Traveler.Bookings', compact('bookings'));
+        return view('Traveler.Bookings')->with('bookings', $bookings);
+        // return view('Traveler.Bookings', compact('bookings'));
     }
 
     public function showTrips(Request $request)
@@ -212,14 +285,24 @@ class TravelersController extends Controller
         return view('Traveler.Trips')->with('trips', $trips);
     }
 
-    public function showFavorites()
+    public function showFavorites(Request $request)
     {
         $id = auth()->user()->id;
+        $pname_search = $request->input('search_pname');
+
         $favorites = DB::table('favorites')
             ->join('packages', 'packages.package_id', '=', 'favorites.package_id')
-            ->where('traveler_id', $id)
-            ->orderBy('favorite_id', 'desc')->paginate(19);
-        return view('Traveler.Favorites')->with('favorites', $favorites);
+            ->join('agents', 'packages.agent_id', '=', 'agents.id')
+            ->where([['traveler_id', $id],
+                    ['packages.package_name', 'like', '%'.$pname_search.'%']])
+            ->select('favorites.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo')
+            ->orderBy('favorite_id', 'desc')->paginate(8);
+
+        $avg = DB::table('comments')
+            ->join('favorites', 'comments.package_id', 'favorites.package_id')
+            ->avg('rating');
+
+        return view('Traveler.Favorites')->with(['favorites' => $favorites, 'avg' => $avg]);
     }
 
     public function favoritePackage(Request $request)
@@ -256,7 +339,9 @@ class TravelersController extends Controller
             return response()->json($fave);
         }
     }
-
+    
+    //ADDED BY ARIEL
+    
     public function updateProfile(Request $request){
 
         $user_id = Auth::user()->id;
@@ -280,8 +365,6 @@ class TravelersController extends Controller
 
         return redirect()->back()->with('updatedProfile', 'You have successfully updated your profile!');
     }
-
-    //ADDED BY ARIEL
 
     public function sendMessage(Request $request){
 
@@ -338,7 +421,6 @@ class TravelersController extends Controller
             ->select('messages.*', 'agents.fname', 'agents.lname', 'agents.photo','packages.package_name')
             ->where('receiver_email', $traveler_email)
             ->orderBy('created_at', 'desc')->paginate(5);
-
         $messagesCount = DB::table('messages')->where([['receiver_email', $traveler_email],['status', 0]])->count();
         return view('Traveler.ShowMessages')->with(['messages' => $messages, 'messagesCount' => $messagesCount]);
         // dd($messages);
@@ -347,7 +429,6 @@ class TravelersController extends Controller
     public function deleteMessage(Request $request){
         
         $inserted = DB::table('deleted_messages')->insert([
-            'id' => $request->input('id'),
             'sender_email' => $request->input('sender_email'),
             'receiver_email' => $request->input('receiver_email'),
             'package_id' => $request->input('package_id'),
@@ -374,18 +455,80 @@ class TravelersController extends Controller
     public function confirmRequest(Request $request){
         $total_payment = $request->input('total_payment');
         $booking_id = $request->input('booking_id');
+        $slot_id = $request->input('slot_id');
+        $total_slots = ($request->input('adult') + $request->input('child') + $request->input('infant'));
+        $service = $request->input('service');
 
-         DB::table('bookings')
+        DB::table('bookings')
             ->where('booking_id', $booking_id)
-            ->update(['total_payment' => $total_payment, 'status' => 'Confirmed']);
-            return redirect()->route('Traveler.Bookings')->with('bookingConfirmed', 'Booking request sent!');
+            ->update(['status' => 'Confirmed']);
+
+        if($service == 'Joined'){
+            DB::table('slots')
+            ->where('id', $slot_id)
+            ->decrement('slots', $total_slots);
+
+            DB::table('bills')->insert([
+                'booking_id' => $booking_id,
+                'traveler_id' => Auth::user()->id,
+                'adult' => $request->input('adult'),
+                'child' => $request->input('child'),
+                'infant' => $request->input('infant'),
+                'adult_price' => $request->input('adult_price'),
+                'child_price' => $request->input('child_price'),
+                'infant_price' => $request->input('infant_price'),
+                'service' => $request->input('service'),
+                'created_at' => Carbon::now(),
+                'total_payment' => $total_payment
+            ]);
+        }else{
+
+            DB::table('slots')
+            ->where('id', $slot_id)
+            ->decrement('slots', $request->input('no_of_exclusive_traveler'));
+
+            DB::table('bills')->insert([
+                'booking_id' => $booking_id,
+                'traveler_id' => Auth::user()->id,
+                'no_of_excess' => $request->input('no_of_excess'),
+                'excess_price' => $request->input('excess_price'),
+                'no_of_exclusive_traveler' => $request->input('no_of_exclusive_traveler'),
+                'pax' => $request->input('pax'),
+                'pax_price' => $request->input('pax_price'),
+                'service' => $request->input('service'),
+                'total_payment' => $total_payment,
+                'created_at' => Carbon::now()
+            ]);
+        }
+        
+        return redirect()->route('Traveler.Bookings')->with('bookingConfirmed', 'Booking request sent!');
     }
 
     public function showVoucher($package_id, $booking_id){
         $bookings=DB::table('bookings')
                     ->join('packages', 'bookings.package_id', '=', 'packages.package_id')
-                    ->where('booking_id', $booking_id)
+                    ->join('agents', 'packages.agent_id', '=' ,'agents.id')
+                    ->select('bookings.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo',
+                        'agents.company_name', 'agents.job_position', 'agents.contact_no', 'agents.email')
+                    ->where('bookings.booking_id', $booking_id)
                     ->get();
+
+        $itineraries = DB::table('itineraries')
+                    ->join('packages', 'itineraries.package_id', '=', 'packages.package_id')
+                    ->where('itineraries.package_id', $package_id)
+                    ->get();
+
+        $bills=DB::table('bills')
+                    ->join('bookings', 'bookings.booking_id', '=', 'bills.booking_id')
+                    ->where('bills.booking_id', $booking_id)
+                    ->get();
+
+        // $agents = DB::table('packages')
+        //             ->join('agents', 'packages.agent_id', '=' ,'agents.id')
+        //             ->where('packages.package_id', $package_id)
+        //             ->select('agents.*')
+        //             ->get();
+
         $comments=DB::table('comments')
                     ->where('package_id', $package_id)
                     ->get();
@@ -397,14 +540,32 @@ class TravelersController extends Controller
         $count = DB::table('comments')
                 ->where('package_id', $package_id)
                 ->count();
-        return view('Traveler.Voucher', ['bookings' => $bookings, 'comments' => $comments, 'avg' => $avg, 'count' => $count]);
+        return view('Traveler.Voucher', ['bookings' => $bookings, 'comments' => $comments, 'avg' => $avg, 
+                    'count' => $count, 'bills' => $bills, 'itineraries' => $itineraries]);
     }
 
     public function cancelBooking($booking_id){
+        
+        $booking = Booking::find($booking_id);
+
+        if($booking->service == 'Joined'){
+            $total_traveler = $booking->adult + $booking->child + $booking->infant;
+
+            DB::table('slots')
+                ->where('id', $booking->slot_id)
+                ->increment('slots', $total_traveler);
+        }else{
+            $total_traveler = $booking->no_of_exclusive_traveler;
+
+            DB::table('slots')
+                ->where('id', $booking->slot_id)
+                ->increment('slots', $total_traveler);
+        }
+
         $cancelBooking = DB::table('bookings')
                         ->where('booking_id', $booking_id)
                         ->update(['status' => 'Cancelled']);
-        return redirect()->route('Traveler.Bookings')->with('cancelledBooking', 'Booking successfully cancelled!');
+        return redirect()->back()->with('cancelledBooking', 'Booking successfully cancelled!');
     }
 
     public function addToFavorites(Request $req){

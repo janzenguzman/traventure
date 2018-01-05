@@ -15,8 +15,8 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->increments('booking_id');
-            $table->integer('package_id')->nullable();
-            $table->integer('traveler_id')->nullable();
+            $table->integer('package_id');
+            $table->integer('traveler_id');
             $table->date('date_from')->nullable();
             $table->date('date_to')->nullable();
             $table->string('client_fname')->nullable();
@@ -30,6 +30,8 @@ class CreateBookingsTable extends Migration
             $table->string('status')->default('Pending');
             $table->string('expired')->nullable();
             $table->timestamps();
+            $table->decimal('total_payment',10,2)->nullable();
+            $table->string('service')->nullable();
         });
     }
 

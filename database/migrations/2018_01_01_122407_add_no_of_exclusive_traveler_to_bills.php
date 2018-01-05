@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddLastSignedInToAgents extends Migration
+class AddNoOfExclusiveTravelerToBills extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddLastSignedInToAgents extends Migration
      */
     public function up()
     {
-        Schema::table('agents', function($table){
-            $table->timestamp('last_signed_in')->nullable();
+        Schema::table('bills', function($table){
+            $table->integer('no_of_exclusive_traveler')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddLastSignedInToAgents extends Migration
      */
     public function down()
     {
-        Schema::table('agents', function($table){
-            $table->dropColumn('last_signed_in')->nullable();
+        Schema::table('bills', function($table){
+            $table->dropColumn('no_of_exclusive_traveler');
         });
     }
 }

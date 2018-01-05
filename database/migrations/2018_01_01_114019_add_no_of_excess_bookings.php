@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPhotoToAgentsTable extends Migration
+class AddNoOfExcessBookings extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddPhotoToAgentsTable extends Migration
      */
     public function up()
     {
-        Schema::table('agents', function($table){
-            $table->string('photo');
-        }); 
+        Schema::table('bookings', function($table){
+            $table->integer('no_of_excess')->nullable();
+        });
     }
 
     /**
@@ -25,8 +25,8 @@ class AddPhotoToAgentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('agents', function($table){
-            $table->dropColumn('photo');
+        Schema::table('bookings', function($table){
+            $table->dropColumn('no_of_excess');
         });
     }
 }

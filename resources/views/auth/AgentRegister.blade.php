@@ -18,8 +18,8 @@
 						
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 							
-								<center><img src="{{ asset('uploads/files/logo-white.png') }}" style="width:300px">
-                                <p>Book. Chill. Venture</p></center>
+								<center><img src="{{ asset('uploads/files/logo-white-2.png') }}" style="width:300px">
+                                <p>Book. Chill. Venture.</p></center>
 						
 							</div>
 							
@@ -86,7 +86,7 @@
                                         
                                                     <div class="form-group{{ $errors->has('company_name') ? ' has-error' : '' }}"> 
                                                         <label>Company Name</label>
-                                                        <input id="company_namee" type="text" class="form-control`" name="company_name" required autofocus>
+                                                        <input id="company_namee" type="text" class="form-control" name="company_name" required autofocus>
 
                                                         @if ($errors->has('company_name'))
                                                             <span class="help-block">

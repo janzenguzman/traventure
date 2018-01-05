@@ -987,17 +987,16 @@ window.Vue = __webpack_require__(37);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+<<<<<<< HEAD
 Vue.component('example', __webpack_require__(40));
 // Vue.component('example', require('./components/Example.vue'));
 
+=======
+>>>>>>> 11439575efccfcf43a547ccfecbb3e61c13e1a7b
 // const app = new Vue({
 //     el: '#app'
 // });
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
-    }
-});
+
 
 /***/ }),
 /* 11 */
@@ -42923,6 +42922,10 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
+<<<<<<< HEAD
+=======
+
+>>>>>>> 11439575efccfcf43a547ccfecbb3e61c13e1a7b
 /* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -42944,8 +42947,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+<<<<<<< HEAD
 /* 40 */
 /***/ (function(module, exports) {
+=======
+
+/* 40 */
+/***/ (function(module, exports) {
+
+
+>>>>>>> 11439575efccfcf43a547ccfecbb3e61c13e1a7b
 throw new Error("Module build failed: SyntaxError: C:/xampp/htdocs/traventure/resources/assets/js/components/Favorite.vue: package is a reserved word in strict mode (34:36)\n\n\u001b[0m \u001b[90m 32 | \u001b[39m    methods\u001b[33m:\u001b[39m {\n \u001b[90m 33 | \u001b[39m        favorite(post) {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 34 | \u001b[39m            axios\u001b[33m.\u001b[39mpost(\u001b[32m'/favorite/'\u001b[39m\u001b[33m+\u001b[39mpackage)\n \u001b[90m    | \u001b[39m                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 35 | \u001b[39m                \u001b[33m.\u001b[39mthen(response \u001b[33m=>\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39misFavorited \u001b[33m=\u001b[39m \u001b[36mtrue\u001b[39m)\n \u001b[90m 36 | \u001b[39m                \u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(response \u001b[33m=>\u001b[39m console\u001b[33m.\u001b[39mlog(response\u001b[33m.\u001b[39mdata))\u001b[33m;\u001b[39m\n \u001b[90m 37 | \u001b[39m        }\u001b[33m,\u001b[39m\u001b[0m\n");
 
 /***/ }),
@@ -42999,5 +43010,10 @@ if (false) {
 // removed by extract-text-webpack-plugin
 
 /***/ })
+<<<<<<< HEAD
 })
 /******/]);
+=======
+/*****/ }),
+]);
+>>>>>>> 11439575efccfcf43a547ccfecbb3e61c13e1a7b

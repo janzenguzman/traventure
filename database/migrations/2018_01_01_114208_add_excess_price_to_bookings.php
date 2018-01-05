@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPackageIdToTrips extends Migration
+class AddExcessPriceToBookings extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddPackageIdToTrips extends Migration
      */
     public function up()
     {
-        Schema::table('trips', function($table){
-            $table->integer('package_id');
+        Schema::table('bookings', function($table){
+            $table->decimal('excess_price', 10, 2)->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddPackageIdToTrips extends Migration
      */
     public function down()
     {
-        Schema::table('trips', function($table){
-            $table->dropColumn('package_id');
+        Schema::table('bookings', function($table){
+            $table->dropColumn('excess_price', 10, 2);
         });
     }
 }
