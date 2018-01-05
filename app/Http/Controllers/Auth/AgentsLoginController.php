@@ -55,7 +55,7 @@ class AgentsLoginController extends Controller
                 'password' => $request->password, 'status' => 'Accepted'], $request->remember))
         {
             //if successful to the intended location
-            return redirect()->route('Agent.HomePage');
+            return redirect()->route('Agent.Packages');
         }elseif(Auth::guard('agents')->attempt(['email' => $request->email,
                     'password' => $request->password, 'status' => 'Pending'], $request->remember)){
 

@@ -1,6 +1,38 @@
 @extends('layouts.user.headlayout')
 
 @section('content')
+{{--  <div class="container-fluid text-center">
+	<div class="panel panel-default panel-heading"><h1>Traveler Dashboard</h1></div>
+	@if(count($packages) > 0)
+		@foreach($packages as $package)
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2><a href="/Traveler/TourPackage/{{$package->package_id}}">{{$package->package_name}}</a></h2>
+				</div>
+				<div class="panel-body">
+					Pax: {{$package->pax}} <br>
+					Php {{number_format($package->price, 2)}} <br>
+					Services: {{$package->services}}
+				</div>
+				<span id="fave" data-id="{{ $package->package_id }}">
+					<button href="#" class="fave btn btn-danger">
+						{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
+							Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
+							'Unfavorited' : 'Favorite' : 'Favorite'}}
+					</button>
+					{{--  <i class="fa fa-heart-o"></i> --}}
+					{{--  <a href="#" class="fave">Unfavorite</a>  --}}
+					{{--  <i class="fa fa-heart"></i> 
+				</span>
+				<hr><small>Posted on {{Carbon\Carbon::parse($package->created_at)->toDayDateTimeString()}}</small>
+			</div>
+		@endforeach
+		<hr>{{$packages->links()}}
+	@else
+		<p>No Packages Yet.</p>
+	@endif
+</div>  --}}
+
 <body class="transparent-header">
 
 	<!-- start Container Wrapper -->
@@ -322,12 +354,13 @@
 										
 										<div class="trip-guide-content bg-white">
 											<h3>{{$package->package_name}}</h3>
-											<form action="{{ URL::to('Traveler/Explore/AddToFavorite') }}" id="fav" method="post">
-													{{ csrf_field() }}
-													<input type="hidden" id="traveler_id" name="traveler_id" value="{{ auth()->user()->id }}">
-												<input type="hidden" id="package_id" name="package_id" value="{{ $package->package_id }}">
-												<input type="submit" class="btn btn-danger btn-sm fav" value="Favorite">
-											<form>
+											<span id="fave" data-id="{{ $package->package_id }}">
+												<button href="#" class="fave btn btn-danger">
+													{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
+														Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
+														'Unfavorited' : 'Favorite' : 'Favorite'}}
+												</button>
+											</span>
 										</div>
 
 										<div class="trip-guide-bottom">
@@ -336,8 +369,8 @@
 												<div class="image">
 													<img src="{{ asset('images/testimonial/01.jpg')}}" class="img-circle" alt="images" />
 												</div>
-												<p class="name">By: <a href="#">Robert Kalvin</a></p>
-												<p>Posted on {{($package->created_at)->toFormattedDateString()}}</p>
+												<p class="name">By: <a href="#">{{$package->fname}} {{$package->lname}}</a></p>
+												{{--  <p>Posted on {{($package->created_at)->toFormattedDateString()}}</p>  --}}
 			
 											</div>
 											
@@ -356,7 +389,7 @@
 												<div class="col-xs-12 col-sm-6">
 													<div class="trip-guide-price">
 														Starting at
-														<span class="number">PHP {{$package->price}}</span>
+														<span class="number">PHP 6,000{{--$package->price--}}</span>
 													</div>
 												</div>
 												<div class="col-xs-12 col-sm-6 text-right">
@@ -439,32 +472,48 @@
 </div>
 
 <!-- end Back To Top -->
-<script type="text/javascript">
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $(document).on('submit', '#fav', (function(e){
-		e.preventDefault();
-
-		var traveler_id = $('input[name=traveler_id]').val();
-		var package_id = $('input[name=package_id]').val();
-
-		var url = $(this).attr('action');
-        var post = $(this).attr('method');
-        $.ajax({
-            type: post,
-            url: url,
-            data: { traveler_id, package_id},
-            dataType: 'json',
-            success: function(data){
-                console.log(data);
-                 console.log(data);
-            }
-        });
-    }));
+<script>
+	var token = '{{ Session::token() }}';
+	var urlFave = '{{ route('Traveler.Favorite') }}';
 </script>
 @endsection
 @extends('layouts.user.javascriptlayout')
+	
+@section('js')
+<script type="text/javascript">
+	(function($) {
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
+			}
+		});
+	//console.log("HELLO WORLD");
+		$(".fave").on('click', function(event){
+			event.preventDefault();
+			packageId = event.target.parentNode.dataset['id'];
+			console.log(packageId);
+			var $t = $(this);
+			$.ajax({
+				method: 'POST',
+				url: urlFave,
+				data: { packageId: packageId, _token: token },
+				success: function(data){
+					console.log(data);
+					if (data == 'Favorite') {
+						$t.text('Unfavorite');
+						//$t.append('<button class="btn btn-danger">Unfavorite</button>')
+					}else{
+						$t.text('Favorite');
+					}
+				},
+				error: function (jqXHR, exception) {
+					alert("ERROR ERROR");
+				}
+			})
+				.done(function(){
+					//alert("HELLO HELLO HELLO");
+				});
+		});
+	}(jQuery));
+</script>
+@endsection

@@ -1,5 +1,5 @@
+@extends('layouts.user.headlayout')
 
-@extends('layouts.agent-navbar')
 <link href="{{asset ('css_user/messages.css') }}" type="text/css" rel="stylesheet">
 @section('content')
 {{--  <div class="container">
@@ -36,7 +36,7 @@
 		
 		<header id="header">
 
-                @extends('layouts.user.headlayout')
+                @extends('layouts.agent-navbar')
 
 		</header>
 		
@@ -77,7 +77,7 @@
 			<div class="breadcrumb-wrapper">
 				<div class="container">
 					<ol class="breadcrumb">
-						<li><a href="{{ route('Agent.HomePage') }}">Packages</a></li>
+						<li><a href="/Agent/Packages">Home</a></li>
 						<li>Messages</li>
 						<li class="active">Inbox</li>
 					</ol>
@@ -101,7 +101,7 @@
 								
 										<ul class="common-menu-list">
 											
-											<li class="active"><a href="{{ route('Agent.ShowMessages') }}">
+											<li class="active"><a href="{{ route('Agent.Messages') }}">
 												@if($messagesCount != 0)
 												<span class="badge pull-right">
 													{{ $messagesCount }}

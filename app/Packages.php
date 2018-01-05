@@ -12,7 +12,7 @@ class Packages extends Model
         'child_price',
         'infant_price',
         'excess_price',
-        'type',
+        'service',
         'pax1',
         'pax1_price',
         'pax2',
@@ -23,6 +23,8 @@ class Packages extends Model
         'add_info',
         'reminders',
         'categories',
+        'photo',
+        'agent_id'
     ];
 
     protected $primaryKey = 'package_id';

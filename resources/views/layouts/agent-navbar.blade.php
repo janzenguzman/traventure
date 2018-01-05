@@ -1,5 +1,5 @@
 <html lang="{{ app()->getLocale() }}">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="token" content="{{ csrf_token() }}">
         <title>{{ config('app.name', 'Traventure') }}</title> 
 
             <nav class="navbar navbar-default navbar-fixed-top navbar-sticky-function navbar-arrow">
@@ -8,7 +8,7 @@
 					
 					<div class="logo-wrapper">
 						<div class="logo">
-							<a href="index.html"><img src="{{ asset('images/navbar-logo.png') }}" alt="Logo" /></a>
+							<a href="/Agent/Packages"><img src="{{ asset('images/navbar-logo.png') }}" alt="Logo" /></a>
 						</div>
 					</div>
 					
@@ -16,7 +16,7 @@
 					
 						<ul class="nav navbar-nav" id="responsive-menu">
                             <li>
-								<a><i class="fa fa-user"></i> Hi, {{ Auth::user()->fname }} {{ Auth::user()->lname }}</a>
+								<a><i class="fa fa-user"></i> Hi, {{ Auth::user()->fname }} {{ Auth::user()->lname }} </a>
 								<ul>
 									<li>
 										<a data-toggle="modal" href="#profile_modal">User Profile</a>
@@ -35,7 +35,7 @@
 								</ul>
 							</li>
 							<li>
-								<a href="{{ route('Agent.HomePage') }}">PACKAGES</a>
+								<a href="{{ route('Agent.Packages') }}">PACKAGES</a>
 							</li>
 							
 							<li>
@@ -43,7 +43,7 @@
 							</li>
 							
 							<li>
-								<a href="{{ route('Agent.ShowMessages') }}">MESSAGES</a>
+								<a href="{{ route('Agent.Messages') }}">MESSAGES</a>
 							</li>
 						</ul>
 				
