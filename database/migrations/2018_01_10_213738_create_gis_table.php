@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateItinerariesTable extends Migration
+class CreateGisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateItinerariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('itinerary', function (Blueprint $table) {
-            $table->increments('itinerary_id');
-            $table->integer('package_id');
-            $table->time('starttime')->nullable();
-            $table->time('endtime')->nullable();
-            $table->string('destination')->nullable();
+        Schema::create('gis', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('destination');
+            $table->double('lat', 20, 10);
+            $table->double('lng', 20, 10);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateItinerariesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('itineraries');
+        Schema::dropIfExists('gis');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDayIdToItineraryTable extends Migration
+class AddIdToItinerary extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddDayIdToItineraryTable extends Migration
     public function up()
     {
         Schema::table('itinerary', function($table){
-            $table->integer('day_id');
+            $table->integer('id');
         }); 
     }
 
@@ -26,7 +26,7 @@ class AddDayIdToItineraryTable extends Migration
     public function down()
     {
         Schema::table('itinerary', function($table){
-            $table->dropColumn('day_id');
-        }); 
+            $table->dropColumn('id');
+        });
     }
 }

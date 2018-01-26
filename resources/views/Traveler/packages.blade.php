@@ -168,15 +168,15 @@
 														@if($package->days == 1)
 															{{$package->days}} Day Tour
 														@else
-															{{$nights}} Nights
+															{{$package->days}} Days 
+															@if($night = $package->days - 1 == 1)
+																{{$night}} Night 
+															@else
+																{{$night}} Nights
+															@endif
 														@endif
-													@endif
 
-													@if($package->type == 'Joined')
-														<span class="number">PHP {{number_format($package->adult_price,2)}}</span>
-													@else
-														<span class="number">PHP {{number_format($package->pax1_price,2)}}</span>
-													@endif
+													
 														@if($package->type == 'Joined')
 															<span class="number" style="font-size:18px">PHP {{number_format($package->adult_price, 2)}}</span>
 														@else
@@ -189,21 +189,16 @@
 
 												</div>
 											</div>
-											<div class="col-xs-12 col-sm-5 text-right">
-												<a href="/Traveler/TourPackage/{{$package->package_id}}" class="btn btn-info btn-sm">Details</a>
-											</div>
 											
 										</div>
 										{{--  <p>tags here</p>  --}}
 									</div>
 								
 								</div>
-							
-							</div>
 							@endforeach
-									
-							</div> 
-						
+							</div>	
+							
+						</div>
 						</div> 
 
 						<div class="pager-wrappper clearfix">
@@ -326,7 +321,6 @@
 <script>
 	var token = '{{ Session::token() }}';
 	var urlFave = '{{ route('Traveler.Favorite') }}';
-	var urlSort = '{{ route('Traveler.Sort') }}'
 </script>
 @endsection
 @extends('layouts.user.javascriptlayout')

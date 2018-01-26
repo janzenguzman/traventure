@@ -107,7 +107,7 @@ Route::prefix('Agent')->group(function(){
     Route::post('/UpdateProfile', 'AgentsController@updateProfile')->name('Agent.UpdateProfile');
    
     Route::get('/Packages', 'AgentsController@showPackages') -> name('Agent.Packages');
-    Route::get('/Bookings', 'AgentsController@showBookings') -> name('Agent.Bookings')I
+    Route::get('/Bookings', 'AgentsController@showBookings') -> name('Agent.Bookings');
     Route::post('/logout', 'Auth\AgentsLoginController@logout')->name('Agent.Logout');
     // Route::get('/Messages', 'AgentsController@showMessages') -> name('Agent.Messages');
     Route::get('/Messages', 'AgentsController@showMessages') -> name('Agent.ShowMessages');

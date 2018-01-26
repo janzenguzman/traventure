@@ -38,8 +38,6 @@ class TravelersController extends Controller
 
     public function index(Request $req)
     {
-<<<<<<< feature-traveler-with-UI
-        // dd($req);
         if($req->input('destination_search') != NULL && $req->input('date_search') != NULL && $req->input('categories') != NULL){ 
             $packages = DB::table('packages')
                     ->leftJoin('comments', function($join){
@@ -57,16 +55,8 @@ class TravelersController extends Controller
                     ->where([['packages.package_name', 'like', '%'.$req->input('destination_search').'%'],
                              ['slots.date_from', '=', $req->input('date_search')], 
                              ['packages.categories', 'like', '%'.$req->input('categories').'%']])
-                    ->orderBy('packages.created_at', 'desc')
-=======
-        // $packages =DB::select('SELECT c.*, p.*, a.fname, a.lname, a.photo as agentPhoto, avg(rating)
-        //     FROM comments as c JOIN packages as p JOIN agents as a ON c.package_id=p.package_id AND p.agent_id=a.id
-        //     GROUP BY c.package_id');
-                // ->join('agents', 'packages.agent_id', '=', 'agents.id')->get();
-        // return view('Traveler.packages')->with('packages', $packages);
-        //$packages = Package::all();
-        ///$packages = Package::orderBy('created_at', 'desc')->paginate(8);
-
+                    ->orderBy('packages.created_at', 'desc');
+        }
         $destination = $req->input('destination_search');
         $date = $req->input('date_search');
 
@@ -87,15 +77,8 @@ class TravelersController extends Controller
                         ->where([['package_name', 'like', '%'.$destination.'%'],
                                 ['slots.date_from', 'like', $date]
                         ])
-                        ->avg('rating');
-
-        }else{
-            $packages = DB::table('packages')
-                    ->join('agents', 'packages.agent_id', '=', 'agents.id')
-                    ->orderBy('packages.created_at', 'desc')
-                    ->select('packages.*', 'agents.photo  as agentPhoto', 'agents.fname', 'agents.lname')
->>>>>>> develop
-                    ->paginate(8);
+                        ->avg('rating')
+                        ->paginate(8);
 
         }else if($req->input('sort') == 'rating'){
             $packages = DB::table('packages')
