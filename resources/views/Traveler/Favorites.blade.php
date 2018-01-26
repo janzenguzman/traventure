@@ -205,9 +205,9 @@
 															@endif
 	
 															@if($favorite->type == 'Joined')
-																<span class="number">PHP {{$favorite->adult_price}}</span>
+																<span class="number">PHP {{number_format($favorite->adult_price,2)}}</span>
 															@else
-																<span class="number">PHP {{$favorite->pax1_price}}</span>
+																<span class="number">PHP {{number_format($favorite->pax1_price,2)}}</span>
 															@endif
 														</div>
 													</div>

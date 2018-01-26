@@ -18,7 +18,7 @@
 						
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 							
-								<center><img src="{{ asset('uploads/files/logo-white.png') }}" style="width:300px">
+								<center><img src="{{ asset('uploads/files/logo-white-2.png') }}" style="width:300px">
 								<p>Book. Chill. Venture</p></center>
 						
 							</div>

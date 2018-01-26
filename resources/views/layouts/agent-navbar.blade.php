@@ -9,6 +9,7 @@
                     ->count();
     
 ?>  
+<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
     <meta name="token" content="{{ csrf_token() }}">
         <title>{{ config('app.name', 'Traventure') }}</title> 

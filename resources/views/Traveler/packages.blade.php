@@ -124,7 +124,7 @@
 							@foreach($packages as $package)
 								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
 									
-									<div class="trip-guide-item bg-light-primary">
+								<div class="trip-guide-item bg-light-primary">
 
 										<div class="trip-guide-image">
 											<img src="/public/uploads/files/{{ $package->photo }}" style="height: 200px" alt="images" />
@@ -168,17 +168,15 @@
 														@if($package->days == 1)
 															{{$package->days}} Day Tour
 														@else
-															{{$package->days}} Days
+															{{$nights}} Nights
 														@endif
+													@endif
 
-														@if(($nights = $package->days - 1) != 0)
-															@if($nights <= 1)
-																{{$nights}} Night 
-															@else
-																{{$nights}} Nights
-															@endif
-														@endif
-
+													@if($package->type == 'Joined')
+														<span class="number">PHP {{number_format($package->adult_price,2)}}</span>
+													@else
+														<span class="number">PHP {{number_format($package->pax1_price,2)}}</span>
+													@endif
 														@if($package->type == 'Joined')
 															<span class="number" style="font-size:18px">PHP {{number_format($package->adult_price, 2)}}</span>
 														@else
@@ -188,16 +186,21 @@
 												</div>
 												<div class="col-xs-12 col-sm-6 text-right">
 													<a href="/Traveler/TourPackage/{{$package->package_id}}" class="btn btn-info btn-sm">Details</a>
+
 												</div>
 											</div>
-
-										
+											<div class="col-xs-12 col-sm-5 text-right">
+												<a href="/Traveler/TourPackage/{{$package->package_id}}" class="btn btn-info btn-sm">Details</a>
+											</div>
+											
 										</div>
-									
+										{{--  <p>tags here</p>  --}}
 									</div>
 								
 								</div>
-								@endforeach
+							
+							</div>
+							@endforeach
 									
 							</div> 
 						
@@ -214,7 +217,7 @@
 												<div class="clearfix">
 													<nav class="pager-center">
 														<ul class="pagination">
-																{{$packages->links()}}
+															{{$packages->links()}}
 														</ul>
 													</nav>
 												</div>
@@ -366,3 +369,4 @@
 	}(jQuery));
 </script>
 @endsection
+

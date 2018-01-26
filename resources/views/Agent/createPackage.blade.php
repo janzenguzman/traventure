@@ -58,6 +58,22 @@
                                                             <label>Day/s:</label>       
                                                             <input type="text" name="days" class="form-control form-spin" placeholder="How many Days?" value="1" />
                                                             <br />
+
+                                                <div class="col-xs-12 col-sm-12 col-md-12">    
+                                                    <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Tour Package Name:</label>       
+                                                            <input type="text" name="package_name" class="form-control" placeholder="Tour Package Name" />
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="row gap-20">
+                                                        <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
+                                                            <div class="form-group form-spin-group">
+                                                                <label>Day/s:</label>       
+                                                                <input type="text" value="1" name="days" class="form-control form-spin" placeholder="How many Days?" value="1" />
+                                                            </div>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -82,6 +98,22 @@
                                                             </div>
                                                             <div class="col-xs-12 col-sm-6 col-md-6">
                                                                 <label>Price:</label>
+
+                                                <div class="col-xs-12 col-sm-12 col-md-12">
+
+                                                    <h4 class="section-title">Service Type</h4>
+
+                                                    <div id="paymentOption" class="payment-option-wrapper">
+                
+                                                        <div class="row">
+                                                        
+                                                            <div class="col-sm-12">
+                                                            
+                                                                <div class="radio-block">
+                                                                    <input id="service1" name="type" type="radio" class="radio" value="Exclusive"/>
+                                                                    <label class="" for="service1"><span>Exclusive Tour</span></label>
+                                                                </div>
+
                                                             </div>
                                                             
                                                             
@@ -147,8 +179,15 @@
                                                         
                                                     </div>
 
+
                                                     <div class="clear"></div><br />
                                                         <div class="col-xss-12 col-xs-6 col-sm-6 col-md-12">
+
+                                                                <div class="radio-block">
+                                                                    <input id="service2" name="type" type="radio" class="radio" value="Joined"/>
+                                                                    <label class="" for="service2"><span>Joined Tour</span></label>
+                                                                </div>
+
 
                                                             <div class="radio-block">
                                                                 <input id="type2" name="type" type="radio" class="radio" value="Joined"/>
@@ -253,6 +292,10 @@
                                             {{Form::submit('Submit', ['class' => "btn btn-info btn-wide pull-right" ])}}
                                             </div>
                                             {{--  <a href="requested-create-done.html" class="btn btn-primary btn-wide">Submit</a>  --}}
+
+                                            {{--  <a href="#" class="btn btn-primary btn-wide btn-border">Save as draft</a>  --}}
+                                            
+
                                         </div>
                                             {!!Form::close() !!}
                                     </div>
