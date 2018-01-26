@@ -39,7 +39,7 @@ class AgentsLoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:agents')->except('logout');
+        $this->middleware('guest')->except('logout');
     }
 
     public function login(Request $request)

@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 class Itineraries extends Model
 {
     public $fillable = [
-        'day1_starttime1',
-        'day1_endtime1',
-        'day1_destination1',
+        ['day1_starttime1'],
+        ['day1_endtime1'],
+        ['day1_destination1'],
         'day1_starttime2',
         'day1_endtime2',
         'day1_destination2',

@@ -12,7 +12,7 @@ class Packages extends Model
         'child_price',
         'infant_price',
         'excess_price',
-        'service',
+        'type',
         'pax1',
         'pax1_price',
         'pax2',

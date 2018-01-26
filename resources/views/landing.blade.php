@@ -11,7 +11,7 @@
                     <div class="container">
                         <center>
                             <center><img src="{{ asset('uploads/files/logo-white-2.png') }}" style="width:350px; margin-top:-10%">
-								<p>Book. Chill. Venture.</p></center>
+								{{--  <p>Book. Chill. Venture.</p></center>  --}}
                             <a href="{{ url('TravelerLogin') }}" class="btn btn-sm btn-info">TRAVELER</a>
                             <a href="{{ url('AgentLogin') }}" class="btn btn-sm btn-info">TRAVEL AGENT</a>
                         </center>
@@ -26,7 +26,7 @@
 					<div class="row mb-30">
 						<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 						    <div class="section-title">
-                                <h2 class="text-uppercase">ABOUT US</h2>
+                                <h2 class="text-uppercase">About Us</h2>
 								<p>Certain but she but shyness why cottage. Gay the put instrument sir entreaties affronting. Pretended exquisite see cordially the you.</p>
 							</div>
 							

@@ -6,7 +6,7 @@
 </div>
 <section id="wrapper" class="login-register">
   <div class="login-box">
-    <center><img src="{{ asset('uploads/files/logo-black.png') }}" style="width:300px; margin-top:-10%">
+    <center><img src="{{ asset('uploads/files/logo-black-2.png') }}" style="width:300px; margin-top:-10%">
         <h5>Book. Chill. Venture</h5></center>
     <div class="white-box">
         <form class="form-horizontal form-material" id="loginform" role="form" method="POST" action="{{ route('Admin.Login.Submit') }}">

@@ -48,8 +48,4 @@ class Package extends Model
     public function traveler(){
         return $this->belongTo('App\Travelers');
     }
-
-    public function favorites(){
-        return $this->hasMany('App\Favorites', 'package_id');
-    }
 }
