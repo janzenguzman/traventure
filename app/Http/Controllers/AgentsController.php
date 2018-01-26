@@ -16,7 +16,6 @@ use View;
 use Carbon\Carbon;
 use Auth;
 use Hash;
-use App\Agents;
 use App\Itinerary;
 use App\Days;
 
@@ -136,86 +135,46 @@ class AgentsController extends Controller
 
     public function storeItinerary(Request $request){
         $packages = Packages::all();
-        $this->validate($request, [
-            'day1_photo[]' => 'image|nullable|max:1999',
-        ]);
-        $day1_photo = 'null';
-        if ($day1_photo = $request->hasFile('day1_photo')) {
-            for($j = 0; $j < count($request->hasFile('day1_photo[]')); ++$j) {
-                $destinationPath = public_path('public/uploads/files/');
-                $extension = Input::file('day1_photo')->getClientOriginalExtension();
-                $day1_photo = uniqid().'.'.$extension;
-        
-                Input::file('day1_photo')->move($destinationPath, $day1_photo[$j]);
-            }
-        }
-        // $day1_photo = array();
-        // if ($day1_photo = $request->hasFile('day1_photo[]')){
+        // $this->validate($request, [
+        //     'day1_photo[]' => 'image|nullable|max:1999',
+        // ]);
+        // $day1_photo = 'null';
+        // if ($day1_photo = $request->hasFile('day1_photo')) {
         //     for($j = 0; $j < count($request->hasFile('day1_photo[]')); ++$j) {
         //         $destinationPath = public_path('public/uploads/files/');
-        //         $extension = Input::file('day1_photo[$j]')->getClientOriginalExtension();
+        //         $extension = Input::file('day1_photo')->getClientOriginalExtension();
         //         $day1_photo = uniqid().'.'.$extension;
         
-        //         Input::file('day1_photo[$j]')->move($destinationPath, $day1_photo);
+        //         Input::file('day1_photo')->move($destinationPath, $day1_photo[$j]);
         //     }
+        // {
+            $package_id = $request->input('package_id');
+            for($x = 0; $x < count($request->input('starttime')); ++$x){
+                $itinerary =  new Itinerary;
+                $itinerary->itinerary_id = $package_id;
+                $itinerary->package_id = $package_id;
+                $itinerary->starttime =  $request->input('starttime')[$x];
+                $itinerary->endtime = $request->input('endtime')[$x];
+                $itinerary->destination = $request->input('destination')[$x];
+                $itinerary->day = $request->input('day')[$x];
+                $itinerary->save();
+            }
             
-        // }
-        dd($day1_photo);
-        $package_id = $request->input('package_id');
-        //$count = $request->input('daysCount');
-        // dd($package_id);
-        // $day->save();
-        // dd($day->id);
-        for($x = 0; $x < count($request->input('starttime')); ++$x){
-            $itinerary =  new Itinerary;
-            $itinerary->package_id = $package_id;
-            $itinerary->starttime =  $request->input('starttime')[$x];
-            $itinerary->endtime = $request->input('endtime')[$x];
-            $itinerary->destination = $request->input('destination')[$x];
-            $itinerary->day = $request->input('day');
-            $itinerary->save();
+        $day = 0;
+        foreach ($request->file('day1_photo') as $media) {
+            if (!empty($media)) {
+                ++$day;
+                $destinationPath = 'public/uploads/files/';
+                $filename = $media->getClientOriginalName();
+                $media->move($destinationPath, $filename);
+                $day1_photo= DB::table('days')->insert(['photo' => $filename,
+                'days' => $day,
+                'itinerary_id' => $package_id]);
+            }
         }
         
-        $id = $itinerary->itinerary_id;
-            // dd($id);
-            // dd('HELLO');
-        for($a = 0; $a < count($id); ++$a){  
-            $day = new Days;
-            $day->itinerary_id = $id;
-            for($b = 0; $b < count($request->input('day')); ++$b){
-                $day->days = $request->input('day');
-                $day->days->save();
-            }
-            $day->photo = $day1_photo[$a];
-            // dd($day);
-            $day->save();
-        }
-        // dd($day);
-        // return "hi";
-        // return back();
         return redirect('Agent\Packages')->with('packages', $packages)
             ->with('addedPackage', 'You have successfully made a new Package Tour!');
-    }
-    
-    public function showPackages(){
-        $packages =  DB::table('packages')
-            ->where('agent_id', auth()->user()->id)
-            ->orderby('packages.created_at', 'desc')
-            ->paginate(8);
-
-        $lastSignedIn = new Carbon(Auth::guard('agents')->user()->last_signed_in);
-        $now = Carbon::now();
-        $diffHours = $lastSignedIn->diffInHours($now);
-
-        if($diffHours <= 1){
-            DB::table('agents')->where('id', auth()->user()->id)->update(['active' => '1']);
-        }else{
-            DB::table('agents')->where('id', auth()->user()->id)->update(['active' => '0']);
-        }
-        $agentPhoto = auth()->user()->photo;
-        // return view('Agent.Home', compact('diffHours'));
-      
-        return redirect('\Agent\Packages')->with(['packages' => $packages, 'addedPackage' => 'You have successfully made a new Package Tour!']);
     }
     
     public function showPackages(Request $req){
@@ -243,7 +202,7 @@ class AgentsController extends Controller
                     ->where([['packages.agent_id', auth()->user()->id], 
                             ['packages.package_name', 'like', '%'.$destination.'%']])
                     ->orderBy('packages.created_at', 'desc')
-                    ->paginate(8);   
+                    ->paginate(8);  
         return view('\Agent\Packages')->with(['packages' => $packages, 'diffHours' => $diffHours]);
     }
 
@@ -567,7 +526,7 @@ class AgentsController extends Controller
                                                     'booking' => $booking,
                                                     'comments' => $comments,
                                                     'countCom' => $countCom,
-                                                    'slots' => $slots]);
+                                                    'slots' => $slots,
                                                     'photo' => $photo,
                                                     'days' => $days]);
     }
@@ -620,8 +579,7 @@ class AgentsController extends Controller
       
         return redirect()->back()->with('slotsAdded', 'Successfully Added Slots!');
     } 
-        return redirect('Agent/Packages')->with('packages', $packages);
-    }
+       
 
     public function showMessages(){
         $agent_email = Auth::user()->email;

@@ -17,6 +17,8 @@ class CreateFavoritesTable extends Migration
             $table->increments('favorite_id');
             $table->integer('traveler_id');
             $table->integer('package_id');
+            $table->boolean('favorited');
+            $table->timestamps();
         });
     }
 

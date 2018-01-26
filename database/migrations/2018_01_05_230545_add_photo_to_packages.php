@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFavoritedToFavorites extends Migration
+class AddPhotoToPackages extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddFavoritedToFavorites extends Migration
      */
     public function up()
     {
-        Schema::table('favorites', function($table){
-            $table->boolean('favorited');
-        });
+        Schema::table('packages', function($table){
+            $table->string('photo');
+        }); 
     }
 
     /**
@@ -25,8 +25,8 @@ class AddFavoritedToFavorites extends Migration
      */
     public function down()
     {
-        Schema::table('favorites', function($table){
-            $table->dropColumn('favorited');
+        Schema::table('packages', function($table){
+            $table->dropColumn('photo');
         });
     }
 }
