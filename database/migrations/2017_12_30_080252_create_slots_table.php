@@ -17,7 +17,7 @@ class CreateSlotsTable extends Migration
             $table->increments('id');
             $table->integer('package_id');
             $table->date('date_to');
-            $table->date('date_from');
+            $table->date('date_from')->nullable();
             $table->integer('slots');
             $table->timestamps();
         });

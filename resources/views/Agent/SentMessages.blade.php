@@ -2,34 +2,7 @@
 
 <link href="{{asset ('css_user/messages.css') }}" type="text/css" rel="stylesheet">
 @section('content')
-{{--  <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Travel Agent Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    Last Signed in at {{ Auth::guard('agents')->user()->last_signed_in }}<br><br> 
-                    You are logged in as a Travel Agent!
-                    <br>
-
-                    {{$diffHours}} hour.
-
-                    @if($diffHours <= 1)
-                        <p>ACTIVE USER</p>
-                    @else
-                        <p>INACTIVE</p>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-</div>  --}}
+<body class="transparent-header">
 <div class="container-wrapper">
 
 		<!-- start Header -->
@@ -46,7 +19,7 @@
 		
 			<!-- start Breadcrumb -->
 			
-			<div class="breadcrumb-image-bg" style="background-image:url({{ asset('images/breadcrumb-bg.jpg') }});">
+			<div class="breadcrumb-image-bg" style="background-image:url({{asset('images/hero-header/osmenapeak.jpg')}});">
 				<div class="container">
                                                                                            
 					<div class="page-title">
@@ -54,7 +27,9 @@
 						<div class="row">
 						
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-								<h2>Messages</h2>
+                                <br><br>
+                                <h2>Messages</h2>
+                                <br>
 							</div>
 							
 						</div>

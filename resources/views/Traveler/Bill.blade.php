@@ -46,7 +46,7 @@
 							<div class="trip-list-item no-border">
 								<div class="image-absolute">
 									<div class="image image-object-fit image-object-fit-cover">
-										<img src="{{asset('images/trip/01.jpg')}}" alt="image" >
+										<img src="/public/uploads/files/{{ $bookingRequest->photo }}" alt="image" >
 									</div>
 								</div>
 								<div class="content">
@@ -229,37 +229,11 @@
                                                             <input type="text" name="infant" class="form-control" value="{{ $bookingRequest->infant }}" readonly>
                                                         </div>
                                                     </div>
-                                                    <input type="hidden" name="total_payment" class="form-control" value="{{ ($bookingRequest->total_payment) * ($bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant) }}" readonly>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
-											<div class="form-horizontal">
-												<div class="form-group select2-input-hide">
-													<label class="col-sm-3 col-md-2 control-label">Child:</label>
-													<div class="col-sm-8 col-md-5">
-														
-														<div class="row gap-5">
-															<div class="col-xs-3 col-sm-3">
-																<input type="text" name="child" class="form-control" value="{{ $bookingRequest->child }}" readonly>
-															</div>
-														</div>
-														
-													</div>
-												</div>
-											</div>
-											<div class="form-horizontal">
-												<div class="form-group select2-input-hide">
-													<label class="col-sm-3 col-md-2 control-label">Infant:</label>
-													<div class="col-sm-8 col-md-5">
-														
-														<div class="row gap-5">
-															<div class="col-xs-3 col-sm-3">
-																<input type="text" name="infant" class="form-control" value="{{ $bookingRequest->infant }}" readonly>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
+
 											<input type="hidden" name="total_payment" class="form-control" value="{{ ($bookingRequest->adult * $bookingRequest->adult_price) + 
 												($bookingRequest->child * $bookingRequest->child_price) + ($bookingRequest->infant * $bookingRequest->infant_price) }}">
 	
@@ -360,13 +334,12 @@
 															Infant Price
 														</div>
 														<div class="col-xs-5 col-sm-5 text-right">
-															PHP {{ $bookingRequest->adult_price }} <br>
-															PHP {{ $bookingRequest->child_price }} <br>
-															PHP {{ $bookingRequest->infant_price }}
+															PHP {{ number_format($bookingRequest->adult_price, 2) }} <br>
+															PHP {{ number_format($bookingRequest->child_price, 2) }} <br>
+															PHP {{ number_format($bookingRequest->infant_price, 2) }}
 														</div>
 													</div>
 													<div class="col-xs-5 col-sm-5 text-right">
-														PHP {{ $bookingRequest->total_payment }}
 												</li>
 												
 												<li class="divider"></li>
@@ -377,12 +350,12 @@
 															<span class="font600">Total </span>
 														</div>
 														<div class="col-xs-5 col-sm-5 text-right">
-																PHP {{ $bookingRequest->adult_price }} x {{ $bookingRequest->adult }} <br>
-																PHP {{ $bookingRequest->child_price }} x {{ $bookingRequest->child }} <br>
-																PHP {{ $bookingRequest->infant_price }} x {{ $bookingRequest->infant }}
+																PHP {{ number_format($bookingRequest->adult_price, 2) }} x {{ $bookingRequest->adult }} <br>
+																PHP {{ number_format($bookingRequest->child_price, 2) }} x {{ $bookingRequest->child }} <br>
+																PHP {{ number_format($bookingRequest->infant_price, 2) }} x {{ $bookingRequest->infant }}
 															<h4 class="font600 font24 block text-primary mt-5">
-																PHP {{ ($bookingRequest->adult * $bookingRequest->adult_price) + 
-																	($bookingRequest->child * $bookingRequest->child_price) + ($bookingRequest->infant * $bookingRequest->infant_price) }}</h4>
+																PHP {{ number_format(($bookingRequest->adult * $bookingRequest->adult_price) + 
+																	($bookingRequest->child * $bookingRequest->child_price) + ($bookingRequest->infant * $bookingRequest->infant_price), 2) }}</h4>
 														</div>
 													</div>
 												</li>
@@ -408,15 +381,15 @@
 															@elseif($bookingRequest->no_of_exclusive_traveler == $bookingRequest->pax2)
 																PHP {{ $price = $bookingRequest->pax2_price }} <br>
 															@else
-																PHP {{ $price = $bookingRequest->pax2_price }} <br>
+																PHP {{ $price = $bookingRequest->pax2_price}} <br>
 															@endif
 															PHP {{ $bookingRequest->excess_price }} 
 														</div>
 													</div>
 													<div class="col-xs-5 col-sm-5 text-right">
-                                                            PHP {{ $bookingRequest->total_payment }} x {{ $bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant }}
-														<h4 class="font600 font24 block text-primary mt-5">
-                                                            PHP {{ ($bookingRequest->total_payment) * ($bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant) }}</h4>
+                                                            {{--  PHP {{ $bookingRequest->total_payment }} x {{ $bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant }}  --}}
+														<h4 class="font600 font block text-primary mt-5">
+                                                            {{--  PHP {{ ($bookingRequest->total_payment) * ($bookingRequest->adult + $bookingRequest->child + $bookingRequest->infant) }}</h4>  --}}
 												</li>
 												
 												<li class="divider"></li>
@@ -428,9 +401,9 @@
 														</div>
 														<div class="col-xs-5 col-sm-5 text-right">
 																PHP {{ $price }} <br>
-																PHP {{ $bookingRequest->no_of_excess }} x {{ $bookingRequest->excess_price }}
+																PHP {{ number_format($bookingRequest->excess_price, 2) }} x {{ $bookingRequest->no_of_excess }}
 															<h4 class="font600 font24 block text-primary mt-5">
-																PHP {{ ($price) + 
+																PHP {{ $price + 
 																	($bookingRequest->no_of_excess * $bookingRequest->excess_price) }}</h4>
 														</div>
 													</div>

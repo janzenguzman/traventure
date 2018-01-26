@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use App\Favorites;
 use DB;
 use Auth;
+use Hash;
 
 class TravelersController extends Controller
 {
@@ -35,65 +36,87 @@ class TravelersController extends Controller
     
     // MADE BY JANZEN
 
-    //  public function index()
-    // {
-    //     // return view('Traveler/HomePage');
-    //     // $packages = Package::all();
-    //     // $packages = DB::select('SELECT * FROM packages');
-    //     // $packages = Package::orderBy('created_at', 'desc')->paginate(8);
-    //     $packages = DB::table('packages')
-    //         ->join('agents', 'agents.id', 'packages.agent_id')
-    //         ->select('packages.*', 'agents.fname', 'agents.lname', 'agents.company_name')
-    //         ->orderBy('created_at', 'desc')->paginate(8);
-    //     return view('Traveler.packages')->with('packages', $packages);
-
     public function index(Request $req)
     {
-        //$packages = Package::all();
-        ///$packages = Package::orderBy('created_at', 'desc')->paginate(8);
-
-        $destination = $req->input('destination_search');
-        $date = $req->input('date_search');
-
-        if($destination != NULL && $date != NULL){
+        // dd($req);
+        if($req->input('destination_search') != NULL && $req->input('date_search') != NULL && $req->input('categories') != NULL){ 
             $packages = DB::table('packages')
-                ->join('agents', 'packages.agent_id', '=', 'agents.id')
-                ->join('slots', 'packages.package_id', '=', 'slots.package_id')
-                ->where([['package_name', 'like', '%'.$destination.'%'],
-                        ['slots.date_from', 'like', $date]
-                ])
-                ->orderBy('packages.created_at', 'desc')
-                ->select('packages.*', 'agents.photo', 'agents.fname', 'agents.lname')
-                ->paginate(8);
-
-                $avg = DB::table('comments')
-                        ->join('packages', 'comments.package_id', '=', 'packages.package_id')
-                        ->join('slots', 'packages.package_id', '=', 'slots.package_id')
-                        ->where([['package_name', 'like', '%'.$destination.'%'],
-                                ['slots.date_from', 'like', $date]
-                        ])
-                        ->avg('rating');
-
-        }else{
-            $packages = DB::table('packages')
-                    ->join('agents', 'packages.agent_id', '=', 'agents.id')
+                    ->leftJoin('comments', function($join){
+                        $join->on('comments.package_id', '=', 'packages.package_id');
+                    })
+                    ->join('agents', function($join){
+                        $join->on('packages.agent_id', '=', 'agents.id');
+                    })
+                    ->join('slots', function($join){
+                        $join->on('slots.package_id', '=', 'packages.package_id');
+                    })
+                    ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
+                            DB::raw('AVG(rating) as ratings_average'))
+                    ->groupBy('comments.package_id')
+                    ->where([['packages.package_name', 'like', '%'.$req->input('destination_search').'%'],
+                             ['slots.date_from', '=', $req->input('date_search')], 
+                             ['packages.categories', 'like', '%'.$req->input('categories').'%']])
                     ->orderBy('packages.created_at', 'desc')
-                    ->select('packages.*', 'agents.photo', 'agents.fname', 'agents.lname')
                     ->paginate(8);
 
-            $avg = DB::table('comments')
-                    ->join('packages', 'comments.package_id', '=', 'packages.package_id')
+        }else if($req->input('sort') == 'rating'){
+            $packages = DB::table('packages')
+                    ->leftJoin('comments', function($join){
+                        $join->on('comments.package_id', '=', 'packages.package_id');
+                    })
+                    ->join('agents', function($join){
+                        $join->on('packages.agent_id', '=', 'agents.id');
+                    })
+                    ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
+                            DB::raw('AVG(rating) as ratings_average'))
                     ->groupBy('comments.package_id')
-                    ->avg('rating');
-        }     
+                    ->orderBy('comments.rating', 'desc')
+                    ->paginate(8);
+        }else if($req->input('sort') == 'joined'){
+            $packages = DB::table('packages')
+                    ->leftJoin('comments', function($join){
+                        $join->on('comments.package_id', '=', 'packages.package_id');
+                    })
+                    ->join('agents', function($join){
+                        $join->on('packages.agent_id', '=', 'agents.id');
+                    })
+                    ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
+                            DB::raw('AVG(rating) as ratings_average'))
+                    ->groupBy('comments.package_id')
+                    ->orderBy('packages.adult_price', 'asc')
+                    ->where('packages.type', 'Joined')
+                    ->paginate(8);
         
-        return view('Traveler.packages')->with(['packages' => $packages, 'avg' => $avg]);
-        // return view('Traveler.packages')->with('packages', $packages);
-    }
-
-    public function create()
-    {
-        //
+        }else if($req->input('sort') == 'exclusive'){
+            $packages = DB::table('packages')
+                    ->leftJoin('comments', function($join){
+                        $join->on('comments.package_id', '=', 'packages.package_id');
+                    })
+                    ->join('agents', function($join){
+                        $join->on('packages.agent_id', '=', 'agents.id');
+                    })
+                    ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
+                            DB::raw('AVG(rating) as ratings_average'))
+                    ->groupBy('comments.package_id')
+                    ->orderBy('packages.adult_price', 'asc')
+                    ->where('packages.type', 'Exclusive')
+                    ->paginate(8);
+        }else{
+            $packages = DB::table('packages')
+                    ->leftJoin('comments', function($join){
+                        $join->on('comments.package_id', '=', 'packages.package_id');
+                    })
+                    ->join('agents', function($join){
+                        $join->on('packages.agent_id', '=', 'agents.id');
+                    })
+                    ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
+                            DB::raw('AVG(rating) as ratings_average'))
+                    ->groupBy('comments.package_id')
+                    ->orderBy('comments.rating')
+                    ->paginate(8);
+        }
+        
+        return view('Traveler.packages')->with('packages', $packages);
     }
 
     public function store(Request $request)
@@ -159,9 +182,11 @@ class TravelersController extends Controller
         $packages = DB::table('packages')
                     ->join('agents', 'packages.agent_id', '=', 'agents.id')
                     ->join('itineraries', 'packages.package_id', '=', 'itineraries.package_id')
+                    ->select('packages.*', 'itineraries.*', 'agents.photo as agent_photo', 'agents.fname', 'agents.lname',
+                                'agents.job_position', 'agents.company_name', 'agents.email', 'agents.contact_no')
                     ->where('packages.package_id', $package_id)
                     ->get();
-
+        
         $now = Carbon::now(); 
         $slots = DB::table('slots')
                     ->join('packages', 'slots.package_id', '=', 'packages.package_id')
@@ -243,10 +268,11 @@ class TravelersController extends Controller
             ->orderBy('bookings.created_at', 'desc')->paginate(5);
         }
             // return view('Traveler.Bookings')->with('bookings', $bookings);
-
+        
         foreach($bookings as $booking){
             $now = Carbon::now();
             $date_to  = new Carbon($booking->date_to);
+            $date_from  = new Carbon($booking->date_from);
             $diff = $date_to->diffInDays($now);
             $trips = DB::table('trips')->where('booking_id', $booking->booking_id)->first();
 
@@ -257,17 +283,16 @@ class TravelersController extends Controller
                     'traveler_id' => $id,
                     'package_id' => $booking->package_id,
                 ]);
+            }else if($now > $date_from){
+                DB::table('bookings')->where('booking_id', $booking->booking_id)->update(['expired' => 1]); 
+                DB::table('trips')->insert([
+                    'booking_id' => $booking->booking_id,
+                    'traveler_id' => $id,
+                    'package_id' => $booking->package_id,
+                ]);
             }
-            // if($booking->expired == 1 && $trips === NULL){
-            //     DB::table('trips')->insert([
-            //         'booking_id' => $booking->booking_id,
-            //         'traveler_id' => $id,
-            //         'package_id' => $booking->package_id,
-            //     ]);
-            // }
         }
         return view('Traveler.Bookings')->with('bookings', $bookings);
-        // return view('Traveler.Bookings', compact('bookings'));
     }
 
     public function showTrips(Request $request)
@@ -295,7 +320,7 @@ class TravelersController extends Controller
             ->join('agents', 'packages.agent_id', '=', 'agents.id')
             ->where([['traveler_id', $id],
                     ['packages.package_name', 'like', '%'.$pname_search.'%']])
-            ->select('favorites.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo')
+            ->select('favorites.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo')
             ->orderBy('favorite_id', 'desc')->paginate(8);
 
         $avg = DB::table('comments')
@@ -367,10 +392,9 @@ class TravelersController extends Controller
     }
 
     public function sendMessage(Request $request){
-
         DB::table('messages')->insert([
                 'sender_email' => Auth::user()->email,
-                'receiver_email' => 'agentone@gmail.com',
+                'receiver_email' => $request->input('receiver_email'),
                 'package_id' => $request->input('package_id'),
                 'message' => $request->input('message'),
                 'status' => 0,
@@ -391,12 +415,23 @@ class TravelersController extends Controller
                 'created_at' => Carbon::now()
             ]);
 
-        $id = $request->input('message_id');
-        DB::table('messages')->where('id', $id)->update(['status' => 1]); 
+        // $id = $request->input('message_id');
+        // DB::table('messages')->where('id', $id)->update(['status' => 1]); 
 
         return redirect()->back()->with('messageSent', 'Message sent!');
     }
 
+    public function UpdateMsgStatus(Request $req){
+        $mId = $req->all();
+        
+        $updateMsg = DB::table('messages')
+                    ->where('id', $mId)
+                    ->update(['status' => 1]);
+        if($updateMsg){
+            echo "Succesfully updated status!";
+        }
+    }
+    
     public function showSentMessages(){
         
         $traveler_email = Auth::user()->email;
@@ -581,5 +616,30 @@ class TravelersController extends Controller
             $comment=Comment::create($req->all());
             return response()->json($comment);
         }
+    }
+
+    public function sortBy(Request $req){
+        if($req->ajax()){
+
+        }
+    }
+
+    public function changePass(Request $request){
+        if (!(Hash::check($request->get('old_pass'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("ErrorPassword","Your current password does not matches with the password you provided. Please try again.");
+        }
+ 
+        if(strcmp($request->get('confirm_pass'), $request->get('new_pass')) != 0){
+            //Current password and new password are same
+            return redirect()->back()->with("ErrorReEnteredPassword","Your new password does not match your re-entered password.");
+        }
+ 
+        //Change Password
+        $user = Auth::user();
+        $user->password = bcrypt($request->get('new_pass'));
+        $user->save();
+ 
+        return redirect()->back()->with("PasswordChanged", "Password changed successfully!");
     }
 }

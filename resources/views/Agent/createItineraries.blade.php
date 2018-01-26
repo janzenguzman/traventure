@@ -23,7 +23,7 @@
             <input type="text" name="day1_endtime1" class="form-control" placeholder="Time">
         </div>
         <div class="form-group">
-            <label>Destinations:</label>
+            <label>Destination:</label>
             <input type="text" name="day1_destination1" class="form-control" placeholder="Destination">
         </div>
         <div class="form-group">
@@ -35,7 +35,7 @@
             <input type="text" name="day1_endtime2" class="form-control" placeholder="Time">
         </div>
         <div class="form-group">
-            <label>Destinations:</label>
+            <label>Destination:</label>
             <input type="text" name="day1_destination2" class="form-control" placeholder="Destination">
         </div>
         <div class="form-group">
@@ -47,7 +47,7 @@
             <input type="text" name="day1_endtime3" class="form-control" placeholder="Time">
         </div>
         <div class="form-group">
-            <label>Destinations:</label>
+            <label>Destination:</label>
             <input type="text" name="day1_destination3" class="form-control" placeholder="Destination">
         </div>
         <div class="form-group">
@@ -59,7 +59,7 @@
             <input type="text" name="day1_endtime4" class="form-control" placeholder="Time">
         </div>
         <div class="form-group">
-            <label>Destinations:</label>
+            <label>Destination:</label>
             <input type="text" name="day1_destination4" class="form-control" placeholder="Destination">
         </div>
         <div class="form-group">
@@ -71,7 +71,7 @@
             <input type="text" name="day1_endtime5" class="form-control" placeholder="Time">
         </div>
         <div class="form-group">
-            <label>Destinations:</label>
+            <label>Destination:</label>
             <input type="text" name="day1_destination5" class="form-control" placeholder="Destination">
         </div>
         <div class="form-group">
@@ -93,7 +93,7 @@
         <input type="text" name="day1_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -105,7 +105,7 @@
         <input type="text" name="day1_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -117,7 +117,7 @@
         <input type="text" name="day1_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -129,7 +129,7 @@
         <input type="text" name="day1_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -141,7 +141,7 @@
         <input type="text" name="day1_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -160,7 +160,7 @@
         <input type="text" name="day2_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -172,7 +172,7 @@
         <input type="text" name="day2_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -184,7 +184,7 @@
         <input type="text" name="day2_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -196,7 +196,7 @@
         <input type="text" name="day2_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -208,7 +208,7 @@
         <input type="text" name="day2_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -230,7 +230,7 @@
         <input type="text" name="day1_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -242,7 +242,7 @@
         <input type="text" name="day1_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -254,7 +254,7 @@
         <input type="text" name="day1_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -266,7 +266,7 @@
         <input type="text" name="day1_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -278,7 +278,7 @@
         <input type="text" name="day1_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -297,7 +297,7 @@
         <input type="text" name="day2_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -309,7 +309,7 @@
         <input type="text" name="day2_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -321,7 +321,7 @@
         <input type="text" name="day2_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -333,7 +333,7 @@
         <input type="text" name="day2_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -345,7 +345,7 @@
         <input type="text" name="day2_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -364,7 +364,7 @@
         <input type="text" name="day3_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day3_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -376,7 +376,7 @@
         <input type="text" name="day3_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day3_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -388,7 +388,7 @@
         <input type="text" name="day3_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day3_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -400,7 +400,7 @@
         <input type="text" name="day3_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day3_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -412,7 +412,7 @@
         <input type="text" name="day3_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -435,7 +435,7 @@
         <input type="text" name="day1_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -447,7 +447,7 @@
         <input type="text" name="day1_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -459,7 +459,7 @@
         <input type="text" name="day1_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -471,7 +471,7 @@
         <input type="text" name="day1_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -483,7 +483,7 @@
         <input type="text" name="day1_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -502,7 +502,7 @@
         <input type="text" name="day2_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -514,7 +514,7 @@
         <input type="text" name="day2_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -526,7 +526,7 @@
         <input type="text" name="day2_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -538,7 +538,7 @@
         <input type="text" name="day2_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -550,7 +550,7 @@
         <input type="text" name="day2_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -569,7 +569,7 @@
         <input type="text" name="day3_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -581,7 +581,7 @@
         <input type="text" name="day3_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -593,7 +593,7 @@
         <input type="text" name="day3_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -605,7 +605,7 @@
         <input type="text" name="day3_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -617,7 +617,7 @@
         <input type="text" name="day3_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -636,7 +636,7 @@
         <input type="text" name="day4_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -648,7 +648,7 @@
         <input type="text" name="day4_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -660,7 +660,7 @@
         <input type="text" name="day4_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -672,7 +672,7 @@
         <input type="text" name="day4_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -684,7 +684,7 @@
         <input type="text" name="day4_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -708,7 +708,7 @@
         <input type="text" name="day1_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -720,7 +720,7 @@
         <input type="text" name="day1_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -732,7 +732,7 @@
         <input type="text" name="day1_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -744,7 +744,7 @@
         <input type="text" name="day1_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -756,7 +756,7 @@
         <input type="text" name="day1_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -775,7 +775,7 @@
         <input type="text" name="day2_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -787,7 +787,7 @@
         <input type="text" name="day2_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -799,7 +799,7 @@
         <input type="text" name="day2_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -811,7 +811,7 @@
         <input type="text" name="day2_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -823,7 +823,7 @@
         <input type="text" name="day2_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -842,7 +842,7 @@
         <input type="text" name="day3_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -854,7 +854,7 @@
         <input type="text" name="day3_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -866,7 +866,7 @@
         <input type="text" name="day3_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -878,7 +878,7 @@
         <input type="text" name="day3_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -890,7 +890,7 @@
         <input type="text" name="day3_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -909,7 +909,7 @@
         <input type="text" name="day4_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -921,7 +921,7 @@
         <input type="text" name="day4_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -933,7 +933,7 @@
         <input type="text" name="day4_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -945,7 +945,7 @@
         <input type="text" name="day4_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -957,7 +957,7 @@
         <input type="text" name="day4_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -976,7 +976,7 @@
         <input type="text" name="day5_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day5_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -988,7 +988,7 @@
         <input type="text" name="day5_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day5_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -1000,7 +1000,7 @@
         <input type="text" name="day5_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day5_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -1012,7 +1012,7 @@
         <input type="text" name="day5_endtime4" class="form-control" placeholder="Time">
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day5_destination4" class="form-control" placeholder="Destination">
     </div>
     <div class="form-group">
@@ -1024,7 +1024,7 @@
         <input type="text" name="day5_endtime5" class="form-control" placeholder="Time">
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day5_destination5" class="form-control" placeholder="Destination">
     </div>
     <div class="form-group">
@@ -1111,7 +1111,7 @@
 										<div class="mb-40"></div>
 										
 										<h4 class="section-title">Itinerary</h4>
-										<p>Compliment interested discretion estimating on stimulated apartments oh. Dear so sing when in find read of call. As distrusts behaviour abilities defective uncommonly.</p>
+										
 										
 										<div class="itinerary-form-wrapper">
                                             {!!Form::open(['action' => 'AgentsController@storeItineraries', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
@@ -1157,7 +1157,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination1" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1188,7 +1188,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination2" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1219,7 +1219,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination3" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1250,7 +1250,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination4" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1281,10 +1281,17 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination5" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day1_photo" >
+                                                                            </div>
                                                                         </div>
                                                                     
                                                                     </div>
@@ -1338,7 +1345,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination1" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1369,7 +1376,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination2" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1400,7 +1407,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination3" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1431,7 +1438,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination4" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1462,12 +1469,18 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination5" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
                                                                         </div>
-                                                                    
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day1_photo" >
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     
                                                                 </div>
@@ -1517,7 +1530,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>destination:</label>
                                                                                 <input type="text" name="day2_destination1" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1548,7 +1561,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>destination:</label>
                                                                                 <input type="text" name="day2_destination2" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1579,7 +1592,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination3" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1610,7 +1623,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination4" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1641,10 +1654,17 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination5" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day2_photo" >
+                                                                            </div>
                                                                         </div>
                                                                     
                                                                     </div>
@@ -1698,7 +1718,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination1" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1729,7 +1749,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination2" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1760,7 +1780,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination3" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1791,7 +1811,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination4" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1822,10 +1842,17 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination5" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day1_photo" >
+                                                                            </div>
                                                                         </div>
                                                                     
                                                                     </div>
@@ -1877,7 +1904,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination1" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1908,7 +1935,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination2" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1939,7 +1966,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination3" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -1970,7 +1997,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination4" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2001,10 +2028,17 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination5" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day2_photo" >
+                                                                            </div>
                                                                         </div>
                                                                     
                                                                     </div>
@@ -2056,7 +2090,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day3_destination1" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2087,7 +2121,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day3_destination2" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2118,7 +2152,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day3_destination3" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2149,7 +2183,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day3_destination4" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2180,12 +2214,17 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day3_destination5" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
                                                                         </div>
-                                                                    
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day3_photo" >
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     
                                                                 </div>
@@ -2237,7 +2276,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination1" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2268,7 +2307,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination2" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2299,7 +2338,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination3" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2330,7 +2369,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination4" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2361,10 +2400,17 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination5" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day1_photo" >
+                                                                            </div>
                                                                         </div>
                                                                     
                                                                     </div>
@@ -2416,7 +2462,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination1" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2447,7 +2493,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination2" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2478,7 +2524,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination3" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2509,7 +2555,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination4" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2540,10 +2586,17 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination5" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day2_photo" >
+                                                                            </div>
                                                                         </div>
                                                                     
                                                                     </div>
@@ -2595,7 +2648,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day3_destination1" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2626,7 +2679,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day3_destination2" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2657,7 +2710,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day3_destination3" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2688,7 +2741,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day3_destination4" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2719,10 +2772,17 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day3_destination5" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day3_photo" >
+                                                                            </div>
                                                                         </div>
                                                                     
                                                                     </div>
@@ -2774,7 +2834,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day4_destination1" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2805,7 +2865,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day4_destination2" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2836,7 +2896,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day4_destination3" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2867,7 +2927,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day4_destination4" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2898,10 +2958,17 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day4_destination5" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day4_photo" >
+                                                                            </div>
                                                                         </div>
                                                                     
                                                                     </div>
@@ -2955,7 +3022,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination1" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -2986,7 +3053,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination2" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3017,7 +3084,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination3" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3048,7 +3115,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="time" name="day1_destination4" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3079,10 +3146,17 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day1_destination5" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day1_photo" >
+                                                                            </div>
                                                                         </div>
                                                                     
                                                                     </div>
@@ -3134,7 +3208,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination1" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3165,7 +3239,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination2" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3196,7 +3270,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination3" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3227,7 +3301,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination4" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3258,10 +3332,17 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day2_destination5" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day2_photo" >
+                                                                            </div>
                                                                         </div>
                                                                     
                                                                     </div>
@@ -3313,7 +3394,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day3_destination1" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3344,7 +3425,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day3_destination2" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3375,7 +3456,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day3_destination3" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3406,7 +3487,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day3_destination4" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3437,10 +3518,17 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day3_destination5" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day3_photo" >
+                                                                            </div>
                                                                         </div>
                                                                     
                                                                     </div>
@@ -3492,7 +3580,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day4_destination1" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3523,7 +3611,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day4_destination2" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3554,7 +3642,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day4_destination3" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3585,7 +3673,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day4_destination4" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3616,10 +3704,17 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day4_destination5" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day4_photo" >
+                                                                            </div>
                                                                         </div>
                                                                     
                                                                     </div>
@@ -3671,7 +3766,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day5_destination1" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3702,7 +3797,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day5_destination2" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3733,7 +3828,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day5_destination3" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3764,7 +3859,7 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day5_destination4" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
@@ -3795,10 +3890,17 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                         
                                                                             <div class="form-group">
-                                                                                <label>Destinations:</label>
+                                                                                <label>Destination:</label>
                                                                                 <input type="text" name="day5_destination5" class="form-control" placeholder="Destination">
                                                                             </div>
                                                                             
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day5_photo" >
+                                                                            </div>
                                                                         </div>
                                                                     
                                                                     </div>
@@ -3848,49 +3950,19 @@
         <!-- start Footer Wrapper -->
 	
 	    <div class="footer-wrapper scrollspy-footer">
-            
-            <footer class="bottom-footer">
-            
-                <div class="container">
-                
-                    <div class="row">
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-4">
-                
-                            <p class="copy-right">&#169; 2017 Togoby - tour hosting</p>
-                            
+                <footer class="bottom-footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <center>
+                                    <p class="copy-right">&#169; 2017 Traventure - Tour and Booking System</p>
+                                <center>
+                            </div>
                         </div>
-                        
-                        <div class="col-xs-12 col-sm-6 col-md-4">
-                        
-                            <ul class="bottom-footer-menu">
-                                <li><a href="#">Cookies</a></li>
-                                <li><a href="#">Policies</a></li>
-                                <li><a href="#">Terms</a></li>
-                                <li><a href="#">Blogs</a></li>
-                            </ul>
-                        
-                        </div>
-                        
-                        <div class="col-xs-12 col-sm-12 col-md-4">
-                            <ul class="bottom-footer-menu for-social">
-                                <li><a href="#"><i class="icon-social-twitter" data-toggle="tooltip" data-placement="top" title="twitter"></i></a></li>
-                                <li><a href="#"><i class="icon-social-facebook" data-toggle="tooltip" data-placement="top" title="facebook"></i></a></li>
-                                <li><a href="#"><i class="icon-social-google" data-toggle="tooltip" data-placement="top" title="google plus"></i></a></li>
-                                <li><a href="#"><i class="icon-social-instagram" data-toggle="tooltip" data-placement="top" title="instrgram"></i></a></li>
-                            </ul>
-                        </div>
-                    
                     </div>
-    
-                </div>
-                
-            
-            </footer>
-            
-        </div>
-        
-        <!-- end Footer Wrapper -->
+                </footer>
+            </div>
+            <!-- end Footer Wrapper -->
         
     </div> 
     

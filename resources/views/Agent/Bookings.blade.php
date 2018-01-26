@@ -2,6 +2,7 @@
 @extends('layouts.user.headlayout')
 
 @section('content')
+<body class="transparent-header">
 <div class="container-wrapper">
 
 		<!-- start Header -->
@@ -18,7 +19,7 @@
 		
 			<!-- start Breadcrumb -->
 			
-			<div class="breadcrumb-image-bg" style="background-image:url({{ asset('images/breadcrumb-bg.jpg') }});">
+			<div class="breadcrumb-image-bg" style="background-image:url({{asset('images/hero-header/osmenapeak.jpg')}});">
 				<div class="container">
                                                                                            
 					<div class="page-title">
@@ -26,7 +27,9 @@
 						<div class="row">
 						
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+								<br><br>
 								<h2>Bookings</h2>
+								<br>
 							</div>
 							
 						</div>
@@ -71,7 +74,7 @@
 									<div class="row">
 										<div class="col-lg-6 col-md-5 col-xs-5">
 											<div class="input-group">
-												<input type="text" name="search_pname" class="form-control"  placeholder="Search package name" >
+												<input type="text" name="search_bookingid" class="form-control"  placeholder="Search package name" >
 												<span class="input-group-btn">
 													<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 												</span>
@@ -102,10 +105,11 @@
 										<div class="trip-list-wrapper col-lg-12">
 										
 											<div class="trip-list-item">
-												
+													
+													
 												<div class="image-absolute">
 													<div class="image image-object-fit image-object-fit-cover">
-														<img src="{{ asset('images/trip/01.jpg')}}" alt="image" >
+														<img src="/public/uploads/files/{{ $booking->photo }}" alt="image" >
 													</div>
 												</div>
 												<div class="content">
@@ -141,8 +145,12 @@
 																	<br>
 																	Travel date
 																	<span class="block text-primary font16 font700 mt-1">
-																		{{ Carbon\Carbon::parse($booking->date_from)->toFormattedDateString() }} -
-																		{{ Carbon\Carbon::parse($booking->date_to)->toFormattedDateString() }} 
+																		@if($booking->date_to == NULL)
+																			{{ Carbon\Carbon::parse($booking->date_from)->toFormattedDateString() }} 
+																		@else
+																			{{ Carbon\Carbon::parse($booking->date_from)->toFormattedDateString() }} -
+																			{{ Carbon\Carbon::parse($booking->date_to)->toFormattedDateString() }} 
+																		@endif
 																	</span>
 																</div>
 															</div>
@@ -150,11 +158,15 @@
 															<div class="GridLex-col-5_sm-6_xs-5_xss-12">
 																<div class="GridLex-inner text-right text-left-xss dropdown">
 																		{{--  <a href="/Traveler/Bookings/{{$booking->booking_id}}" class="btn btn-info btn-sm">View</a>  --}}
-																	@if($booking->status == 'Confirmed')
+																		<a href="/Agent/Bookings/{{$booking->booking_id}}/{{$booking->package_id}}" class="btn btn-info btn-sm">View</a>
+																	@if($booking->status == 'Confirmed' && $booking->expired == '0')
 																		<a href="/Agent/Packages/Accept/{{ $booking->booking_id }}" class="btn btn-success btn-sm">Accept</a>
 																		<a href="/Agent/Packages/Decline/{{ $booking->booking_id }}" class="btn btn-danger btn-sm">Decline</a>
+																	@elseif($booking->expired == '1')
+																	<a data-toggle="modal" id="deleteButton" data-target="#deleteModal(" 
+																			data-booking_id="{{ $booking->booking_id }} " 
+																			class="btn btn-danger btn-sm">Delete</a>
 																	@endif
-																	<a href="/Agent/Bookings/{{$booking->booking_id}}/{{$booking->package_id}}" class="btn btn-info btn-sm">View</a>
 																</div>
 															</div>
 															
@@ -255,6 +267,27 @@
 			</form>
 			
 	</div>
+
+	<div id="deleteModal" role="dialog" class="modal fade login-box-wrapper">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					{{--  <h4 class="modal-title"></h4>  --}}
+				</div>
+				<form method="POST" action = "{{ route('Agent.DeleteBooking')}}">
+					{{ csrf_field() }}
+					<div class="modal-body" style="padding:5%; margin-top:2%">
+						<h4 class="center">Are you sure you want to delete this booking request?</h4>
+						<input type="hidden" name="booking_id" class="text-primary" id="booking_id">
+					</div>
+					<div class="modal-footer">
+						<button type="button" data-dismiss="modal" class="btn btn-success">Close</button>
+						<button type="submit" class="btn btn-danger">Delete</button>
+					</div>
+				</form>
+			</div>
+	</div>
 </div>
 
 <script>
@@ -263,6 +296,11 @@
 		$('#package_id').val($(this).data('package_id'));
 		$('#replyModal').modal('show');
 	})); 
+
+	$(document).on("click",'#deleteButton',(function(){
+        $('#booking_id').val($(this).data('booking_id'));
+        $('#deleteModal').modal('show');
+    })); 
 </script>
 @endsection
 @extends('layouts.user.javascriptlayout')

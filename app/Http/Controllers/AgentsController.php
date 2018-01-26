@@ -9,12 +9,13 @@ use App\Packages;
 use App\Itineraries;
 use App\Slots;
 use App\Bookings;
-use App\Travels;
+use App\Travelers;
+use App\Agents;
 use DB;
 use View;
 use Carbon\Carbon;
 use Auth;
-
+use Hash;
 
 class AgentsController extends Controller
 {
@@ -37,8 +38,9 @@ class AgentsController extends Controller
     public function showBookings(Request $request){
         $requested = $request->input('requested'); 
         $accepted = $request->input('accepted');
-        $pname_search = $request->input('search_pname');
+        $bookingid_search = $request->input('search_bookingid');
         $id = Auth::user()->id;
+        
 
         if($requested){
             $bookings = DB::table('bookings')
@@ -47,6 +49,7 @@ class AgentsController extends Controller
                 ->where([['packages.agent_id', $id],
                         ['bookings.status', '!=', 'Declined'], ['bookings.status', '!=', 'Pending'], 
                         ['bookings.status', '!=', 'Cancelled'], ['bookings.status', '=', $requested]])
+                ->select('bookings.*', 'packages.*', 'travelers.fname', 'travelers.lname', 'travelers.email')
                 ->orderBy('bookings.created_at', 'desc')
                 ->paginate(5);
         }elseif($accepted){
@@ -56,6 +59,7 @@ class AgentsController extends Controller
                 ->where([['packages.agent_id', $id],
                         ['bookings.status', '!=', 'Declined'], ['bookings.status', '!=', 'Pending'],
                         ['bookings.status', '!=', 'Cancelled'],['bookings.status', '=', $accepted]])
+                ->select('bookings.*', 'packages.*', 'travelers.fname', 'travelers.lname', 'travelers.email')
                 ->orderBy('bookings.created_at', 'desc')
                 ->paginate(5);
         }else{
@@ -64,35 +68,32 @@ class AgentsController extends Controller
             ->join('travelers', 'bookings.traveler_id', '=', 'travelers.id')
             ->where([['packages.agent_id', $id], ['bookings.status', '!=', 'Pending'],
                     ['bookings.status', '!=', 'Declined'], ['bookings.status', '!=', 'Cancelled'],
-                    ['packages.package_name', 'like', '%'.$pname_search.'%']])
+                    ['bookings.booking_id', 'like', '%'.$bookingid_search.'%']])
+            ->select('bookings.*', 'packages.*', 'travelers.fname', 'travelers.lname', 'travelers.email')
             ->orderBy('bookings.created_at', 'desc')
             ->paginate(5);
+
         }
-        
+
+        foreach($bookings as $booking){
+            $now = Carbon::now();
+            $date_from  = new Carbon($booking->date_from);
+            $diff = $date_from->diffInDays($now);
+
+            if($now > $date_from){
+                DB::table('bookings')->where('booking_id', $booking->booking_id)->update(['expired' => 1]);
+            }
+        }
 
         return view('\Agent\Bookings')->with('bookings', $bookings);
     }
 
     public function storePackage(Request $request){
+        
         $this->validate($request, [
             'photo' => 'image|nullable|max:1999',
         ]);
 
-        //Handle file upload
-        // if($request->hasFile('photo')){
-        //     //Get the filename with the extension
-        //     $filenameWithExt = $request->file('photo')->getClientOriginalName();
-        //     //Get just filename
-        //     $justFilename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        //     //Get just ext
-        //     $ext = $request->file('photo')->getClientOriginalExtension();
-        //     //Filename to store
-        //     $fileNameToStore =$justFilename.'_'.time().'.'.$ext;
-        //     //Upload Image
-        //     $path = $request->file('photo')->storeAs('public/uploads/files/', $fileNameToStore);
-        // }else{
-        //     $fileNameToStore = 'noimage.jpg';
-        // }
         if (Input::file('photo')->isValid()) {
             $destinationPath = public_path('public/uploads/files/');
             $extension = Input::file('photo')->getClientOriginalExtension();
@@ -110,7 +111,7 @@ class AgentsController extends Controller
             'child_price' => $request->input('child_price'),
             'infant_price' => $request->input('infant_price'),
             'excess_price' => $request->input('excess_price'),
-            'service' => $request->get('service'),
+            'type' => $request->get('type'),
             'pax1' => $request->input('pax1'),
             'pax1_price' => $request->input('pax1_price'),
             'pax2' => $request->input('pax2'),
@@ -125,7 +126,6 @@ class AgentsController extends Controller
             'agent_id' => $agent_id
         ));
         
-        dd($packages);
         $packages->save();
         
         return view('Agent.CreateItineraries')->with('packages', $packages);
@@ -281,9 +281,33 @@ class AgentsController extends Controller
         return redirect('\Agent\Packages')->with(['packages' => $packages, 'addedPackage' => 'You have successfully made a new Package Tour!']);
     }
     
-    public function showPackages(){
-        $packages =  Packages::all();
-        return view('\Agent\Packages')->with('packages', $packages);
+    public function showPackages(Request $req){
+        $lastSignedIn = new Carbon(Auth::guard('agents')->user()->last_signed_in);
+        $now = Carbon::now();
+        $diffHours = $lastSignedIn->diffInHours($now);
+
+        if($diffHours <= 1){
+            DB::table('agents')->where('id', auth()->user()->id)->update(['active' => 1]);
+        }else{
+            DB::table('agents')->where('id', auth()->user()->id)->update(['active' => 0]);
+        }
+
+        $destination = $req->input('pname_search');
+        $packages = DB::table('packages')
+                    ->leftJoin('comments', function($join){
+                        $join->on('comments.package_id', '=', 'packages.package_id');
+                    })
+                    ->leftjoin('bookings', function($join){
+                        $join->on('bookings.package_id', '=', 'packages.package_id');
+                    })
+                    ->select('comments.*', 'packages.*', DB::raw('AVG(rating) as ratings_average'),
+                            DB::raw('count(bookings.booking_id) as count_bookings'))
+                    ->groupBy('comments.package_id', 'bookings.package_id')
+                    ->where([['packages.agent_id', auth()->user()->id], 
+                            ['packages.package_name', 'like', '%'.$destination.'%']])
+                    ->orderBy('packages.created_at', 'desc')
+                    ->paginate(8);   
+        return view('\Agent\Packages')->with(['packages' => $packages, 'diffHours' => $diffHours]);
     }
 
     public function editItineraries($package_id){
@@ -452,32 +476,73 @@ class AgentsController extends Controller
     }
     
     public function updatePackage(Request $request, $package_id){
-        $categoriesString = implode(",", $request->get('categories'));
-        $itineraries= Itineraries::find($package_id);
-        $packages = Packages::find($package_id);
-        $packages->package_name = $request->input('package_name');
-        $packages->days = $request->input('days');
-        $packages->adult_price = $request->input('adult_price');
-        $packages->child_price = $request->input('child_price');
-        $packages->infant_price = $request->input('infant_price');
-        $packages->excess_price = $request->input('excess_price');
-        $packages->type = $request->input('type');
-        $packages->pax1 = $request->input('pax1');
-        $packages->pax1_price = $request->input('pax1_price');
-        $packages->pax2 = $request->input('pax2');
-        $packages->pax2_price = $request->input('pax2_price');
-        $packages->pax3 = $request->input('pax3');
-        $packages->pax3_price = $request->input('pax3_price');
-        $packages->inclusions = $request->input('inclusions');
-        $packages->add_info = $request->input('add_info');
-        $packages->reminders = $request->input('reminders');
-        $packages->categories = $categoriesString;
-        $packages->save();
-        
+        $photo = 'null';
+        if ($request->hasFile('photo')){
+            $destinationPath = public_path('public/uploads/files/');
+            $extension = Input::file('photo')->getClientOriginalExtension();
+            $fileName = uniqid().'.'.$extension;
+    
+            Input::file('photo')->move($destinationPath, $photo);
+        }
+
+        if($request->input('type') == 'Joined'){
+            $categoriesString = implode(", ", $request->get('categories'));
+            $itineraries= Itineraries::find($package_id);
+            $packages = Packages::find($package_id);
+            $packages->package_name = $request->input('package_name');
+            $packages->days = $request->input('days');
+            $packages->adult_price = $request->input('adult_price');
+            $packages->child_price = $request->input('child_price');
+            $packages->infant_price = $request->input('infant_price');
+            $packages->pax1 = NULL;
+            $packages->pax1_price = NULL;
+            $packages->pax2 = NULL;
+            $packages->pax2_price = NULL;
+            $packages->pax3 = NULL;
+            $packages->pax3_price = NULL;
+            $packages->excess_price = NULL;
+            $packages->inclusions = $request->input('inclusions');
+            $packages->add_info = $request->input('add_info');
+            $packages->reminders = $request->input('reminders');
+            $packages->categories = $categoriesString;
+            $packages->photo = $fileName;
+            $packages->save();
+        }else{
+            $categoriesString = implode(",", $request->get('categories'));
+            $itineraries= Itineraries::find($package_id);
+            $packages = Packages::find($package_id);
+            $packages->package_name = $request->input('package_name');
+            $packages->days = $request->input('days');
+            $packages->type = $request->input('type');
+            $packages->adult_price = NULL;
+            $packages->child_price = NULL;
+            $packages->infant_price = NULL; 
+            $packages->pax1 = $request->input('pax1');
+            $packages->pax1_price = $request->input('pax1_price');
+            $packages->pax2 = $request->input('pax2');
+            $packages->pax2_price = $request->input('pax2_price');
+            $packages->pax3 = $request->input('pax3');
+            $packages->pax3_price = $request->input('pax3_price');
+            $packages->excess_price = $request->input('excess_price');
+            $packages->inclusions = $request->input('inclusions');
+            $packages->add_info = $request->input('add_info');
+            $packages->reminders = $request->input('reminders');
+            $packages->categories = $categoriesString;
+            $packages->photo = $fileName;
+            $packages->save();
+
+        }
         return view('Agent.EditItineraries')->with(['packages' => $packages, 'itineraries' => $itineraries]);
     }
 
-    public function deletePackage($package_id){
+    // public function deletePackage($package_id){
+    //     DB::table('packages')->where('package_id', $package_id)->delete();
+    //     DB::table('itineraries')->where('package_id', $package_id)->delete();
+    //     return redirect()->route('Agent.Packages')->with('deletedPackage', 'Package Deleted.');
+    // }
+
+    public function deletePackage(Request $req){
+        $package_id = $req->input('package_id');
         DB::table('packages')->where('package_id', $package_id)->delete();
         DB::table('itineraries')->where('package_id', $package_id)->delete();
         return redirect()->route('Agent.Packages')->with('deletedPackage', 'Package Deleted.');
@@ -486,13 +551,13 @@ class AgentsController extends Controller
     public function declineBooking($booking_id){
         Bookings::where('booking_id', $booking_id)->update(array('status' => 'Declined'));
 
-        return redirect()->route('Agent.Bookings');
+        return redirect()->route('Agent.Bookings')->with('BookingDeclined', 'You have successfully declined a booking!');
     }
     
     public function acceptBooking($booking_id){
         Bookings::where('booking_id', $booking_id)->update(array('status' => 'Accepted'));
 
-        return redirect()->route('Agent.Bookings');
+        return redirect()->route('Agent.Bookings')->with('BookingAccepted', 'You have successfully accepted a booking!');
     }
 
     public function itinerary(){
@@ -526,7 +591,6 @@ class AgentsController extends Controller
                     ->join('packages', 'packages.package_id', 'itineraries.package_id')
                     ->where('itineraries.package_id', $package_id)
                     ->get();
-        $count = count(DB::table('packages')->where('agent_id', Auth::user()->id)->get());
         $avg = DB::table('comments')->where('package_id', $package_id)->avg('rating');
         $comments = DB::table('comments')
                     ->join('packages', 'comments.package_id', '=', 'packages.package_id')
@@ -535,42 +599,25 @@ class AgentsController extends Controller
         $countCom = DB::table('comments')
                 ->where('package_id', $package_id)
                 ->count();
+        
+        $now = Carbon::now(); 
+
+        $slots = DB::table('slots')
+                    ->join('packages', 'slots.package_id', '=', 'packages.package_id')
+                    ->where([['slots.package_id', $package_id],
+                            ['slots.slots', '!=', '0'],
+                            ['slots.date_from', '>=', $now]
+                    ])
+                    ->orderBy('slots.date_from', 'asc')
+                    ->get();
+
         return View::make('\Agent\PackageDetails', ['packages' => $packages, 
                                                     'itineraries' => $itineraries, 
-                                                    'count' => $count,
                                                     'avg' => $avg,
                                                     'booking' => $booking,
                                                     'comments' => $comments,
-                                                    'countCom' => $countCom]);
-    }
-
-    public function editAgent($id){
-        $agents = Agents::find($id);
- 
-        return View::make('\Agent\EditAgent', ['agents' => $agents]);
-     }
-
-    public function updateAgent(Request $request, $id){
-        $fileName = 'null';
-        if (Input::file('agentPhoto')) {
-            $destinationPath = public_path('public/uploads/files/');
-            $extension = Input::file('agentPhoto')->getClientOriginalExtension();
-            $fileName = uniqid().'.'.$extension;
-    
-            Input::file('agentPhoto')->move($destinationPath, $fileName);
-        }
-
-        $agents = Agents::find($id);
-        $agents->company = $request->input('company');
-        $agents->name = $request->input('name');
-        $agents->position = $request->input('position');
-        $agents->contactNo = $request->input('contactNo');
-        $agents->email = $request->input('email');
-        $agents->agentPhoto = $fileName;
-
-        $agents->save();
-        
-        return redirect('Agent/Agents')->with('success', 'Updated');
+                                                    'countCom' => $countCom,
+                                                    'slots' => $slots]);
     }
 
     public function addSlots($package_id){
@@ -590,26 +637,8 @@ class AgentsController extends Controller
 
         $slots->save();
         
-        return redirect('Agent/Packages')->with('packages', $packages);
-    }
-  
-    public function showHomePage(){
-
-        $lastSignedIn = new Carbon(Auth::guard('agents')->user()->last_signed_in);
-        $now = Carbon::now();
-        $diffHours = $lastSignedIn->diffInHours($now);
-
-        if($diffHours <= 1){
-            DB::table('agents')->where('id', auth()->user()->id)->update(['active' => '1']);
-        }else{
-            DB::table('agents')->where('id', auth()->user()->id)->update(['active' => '0']);
-        }
-        return view('Agent.Home', compact('diffHours'));
-    }
-
-    // public function showRegisterForm(){
-    //     return view ('agentsRegister');
-    // }
+        return redirect()->back()->with('slotsAdded', 'Successfully Added Slots!');
+    } 
 
     public function showMessages(){
         $agent_email = Auth::user()->email;
@@ -635,10 +664,21 @@ class AgentsController extends Controller
                 'created_at' => Carbon::now()
             ]);
 
-        $id = $request->input('message_id');
-        DB::table('messages')->where('id', $id)->update(['status' => 1]); 
+        // $id = $request->input('message_id');
+        // DB::table('messages')->where('id', $id)->update(['status' => 1]); 
 
         return redirect()->back()->with('messageSent', 'Message sent!');
+    }
+
+    public function UpdateMsgStatus(Request $req){
+        $mId = $req->all();
+        
+        $updateMsg = DB::table('messages')
+                    ->where('id', $mId)
+                    ->update(['status' => 1]);
+        if($updateMsg){
+            echo "Succesfully updated status!";
+        }
     }
 
     public function deleteMessage(Request $request){
@@ -708,4 +748,38 @@ class AgentsController extends Controller
 
         return view ('Agent.OpenBooking')->with('bookings', $bookings);
     }
+
+    public function deleteSlot(Request $request){
+        $slot_id = $request->input('id');
+        DB::table('slots')->where('id', $slot_id)->delete();
+
+        return redirect()->back()->with('SlotDeleted', 'You have successfully deleted a slot!');
+    }
+
+    public function deleteBooking(Request $request){
+        $booking_id = $request->input('booking_id');
+        DB::table('bookings')->where('booking_id', $booking_id)->delete();
+
+        return redirect()->back()->with('BookingDeleted', 'You have successfully deleted a booking request!');
+    }
+
+    public function changePass(Request $request){
+        if (!(Hash::check($request->get('old_pass'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("ErrorPassword","Your current password does not matches with the password you provided. Please try again.");
+        }
+ 
+        if(strcmp($request->get('confirm_pass'), $request->get('new_pass')) != 0){
+            //Current password and new password are same
+            return redirect()->back()->with("ErrorReEnteredPassword","Your new password does not match your re-entered password.");
+        }
+ 
+        //Change Password
+        $user = Auth::user();
+        $user->password = bcrypt($request->get('new_pass'));
+        $user->save();
+ 
+        return redirect()->back()->with("PasswordChanged", "Password changed successfully!");
+    }
+    
 }

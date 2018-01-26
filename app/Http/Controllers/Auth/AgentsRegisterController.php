@@ -32,7 +32,7 @@ class AgentsRegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/Agent/HomePage';
+    protected $redirectTo = '/Agent/Packages';
 
     /**
      * Create a new controller instance.
@@ -105,4 +105,6 @@ class AgentsRegisterController extends Controller
         return $this->registered($request, $user)
             ?: redirect(route('AgentRegister'))->with('successful_signup', 'Sign up request was successfully sent! Please wait for the email from the admin.');
     }
+
+
 }

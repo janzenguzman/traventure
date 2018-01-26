@@ -92,8 +92,13 @@
                                             <li><span class="font600">Client Name: </span>{{ $booking->client_fname }} {{ $booking->client_lname }}</li>
                                             <li><span class="font600">Phone Number: </span> {{ $booking->contact_num }} </li>
                                             <li><span class="font600">Package Name: </span>{{ $booking->package_name }}</li>
-                                            <li><span class="font600">Starting Date: </span> {{ Carbon\Carbon::parse($booking->date_from)->toFormattedDateString() }}</li>
-                                            <li><span class="font600">End Date: </span>{{ Carbon\Carbon::parse($booking->date_to)->toFormattedDateString() }}</li>
+
+                                            @if($booking->date_to == NULL)
+                                                <li><span class="font600">Travel Date: </span> {{ Carbon\Carbon::parse($booking->date_from)->toFormattedDateString() }}</li>
+                                            @else
+                                                <li><span class="font600">Starting Date: </span> {{ Carbon\Carbon::parse($booking->date_from)->toFormattedDateString() }}</li>
+                                                <li><span class="font600">End Date: </span>{{ Carbon\Carbon::parse($booking->date_to)->toFormattedDateString() }}</li>
+                                            @endif
                                             <li><span class="font600">Duration: </span>
                                                 @if($booking->days == 1)
                                                     {{$booking->days}} Day Tour
@@ -118,7 +123,7 @@
                                         
                                         <ul class="list-with-icon list-inline-block">
                                             <li><i class="fa fa-mobile text-primary"></i> <strong>Phone:</strong> {{ $booking->contact_no }}</li>
-                                            <li><i class="ri ri-envelope text-primary"></i> <strong>Email:</strong> {{ $booking->email }}</li>
+                                                <li><i class="ri ri-envelope text-primary"></i> <strong>Email:</strong> {{ $booking->email }}</li>
                                             <li><i class="ri ri-comments-bubble text-primary"></i> <strong>Chat:</strong> <a href="/Traveler/TourPackage/{{ $booking->package_id }}">Click Here</a></li>
                                         </ul>
 
@@ -152,7 +157,7 @@
                                                                     <div class="row">
                                                                         <div class="col-xs-12 col-sm-4 col-md-3">
                                                                             <div class="image">
-                                                                                <img src="{{asset('images/itinerary/01.jpg')}}" alt="images" />
+                                                                                <img src="/public/uploads/files/{{ $itinerary->day1_photo }}" alt="images" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-xs-12 col-sm-8 col-md-9">
@@ -206,7 +211,7 @@
                                                                         <div class="row">
                                                                             <div class="col-xs-12 col-sm-4 col-md-3">
                                                                                 <div class="image">
-                                                                                    <img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+                                                                                    <img src="/public/uploads/files/{{ $itinerary->day2_photo }}" alt="images" />
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-xs-12 col-sm-8 col-md-9">
@@ -262,7 +267,7 @@
                                                                         <div class="row">
                                                                             <div class="col-xs-12 col-sm-4 col-md-3">
                                                                                 <div class="image">
-                                                                                    <img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+                                                                                    <img src="/public/uploads/files/{{ $itinerary->day3_photo }}" alt="images" />
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-xs-12 col-sm-8 col-md-9">
@@ -317,7 +322,7 @@
                                                                         <div class="row">
                                                                             <div class="col-xs-12 col-sm-4 col-md-3">
                                                                                 <div class="image">
-                                                                                    <img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+                                                                                    <img src="/public/uploads/files/{{ $itinerary->day4_photo }}" alt="images" />
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-xs-12 col-sm-8 col-md-9">
@@ -372,7 +377,7 @@
                                                                         <div class="row">
                                                                             <div class="col-xs-12 col-sm-4 col-md-3">
                                                                                 <div class="image">
-                                                                                    <img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+                                                                                    <img src="/public/uploads/files/{{ $itinerary->day5_photo }}" alt="images" />
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-xs-12 col-sm-8 col-md-9">
@@ -594,7 +599,7 @@
                                                                 
                                                                     <div class="form-group">
                                                                         <label>Your Message: </label>
-                                                                        <textarea name="comment" class="form-control form-control-sm" rows="5"></textarea>
+                                                                        <textarea name="comment" class="form-control form-control-sm" rows="5" required></textarea>
                                                                     </div>
                                                                 </div>
                                                                 
@@ -661,9 +666,9 @@
                                                                 </div>
                                                                 <div class="col-xs-5 col-sm-5 text-right">
                                                                     <h6 style="font-wight:bold"> 
-                                                                        PHP {{ $bill->adult_price }} <br>
-                                                                        PHP {{ $bill->child_price }} <br>
-                                                                        PHP {{ $bill->infant_price }}
+                                                                        PHP {{ number_format($bill->adult_price, 2) }} <br>
+                                                                        PHP {{ number_format($bill->child_price, 2) }} <br>
+                                                                        PHP {{ number_format($bill->infant_price, 2) }}
                                                                     </h6>
                                                                 </div>
                                                             </div>
@@ -677,13 +682,13 @@
                                                                     <span class="font600">Total </span>
                                                                 </div>
                                                                 <div class="col-xs-5 col-sm-5 text-right">
-                                                                        PHP {{ $bill->adult_price }} x {{ $bill->adult }} <br>
-                                                                        PHP {{ $bill->child_price }} x {{ $bill->child }} <br>
-                                                                        PHP {{ $bill->infant_price }} x {{ $bill->infant }}
+                                                                        PHP {{ number_format($bill->adult_price, 2) }} x {{ $bill->adult }} <br>
+                                                                        PHP {{ number_format($bill->child_price, 2) }} x {{ $bill->child }} <br>
+                                                                        PHP {{ number_format($bill->infant_price, 2) }} x {{ $bill->infant }}
                                                                 </div>
                                                                 <h4 class="font600 font24 block text-primary mt-5 pull-right">
-                                                                    PHP {{ ($bill->adult * $booking->adult_price) + 
-                                                                        ($bill->child * $bill->child_price) + ($bill->infant * $bill->infant_price) }}.00</h4>
+                                                                    PHP {{ number_format(($bill->adult * $booking->adult_price) + 
+                                                                        ($bill->child * $bill->child_price) + ($bill->infant * $bill->infant_price), 2) }}</h4>
                                                             </div>
                                                         </li>
                                                         
@@ -806,7 +811,6 @@
                         +data.traveler_fname+' '+data.traveler_lname+'</h6><span class="review-date">' +data.created_at+ '</span><div class="rating-item"><br>@if('+ data.rating +' == null)<span class="label label-warning"><span class="label label-warning">' +data.rating+ 
                         ' Star</span>@else<span class="label label-warning">'+data.rating+' Stars</span>@endif</div></div></div><div class="col-xs-12 col-sm-8 col-md-9"><div class="review-replied"><div class="review-replied-content"><p>'
                         +data.comment+ '</p></div></div></div></div></li></ul>');
-
                 $('#h2').hide();
             }
         });

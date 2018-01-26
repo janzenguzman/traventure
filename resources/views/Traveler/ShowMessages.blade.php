@@ -1,6 +1,7 @@
 @extends('layouts.user.headlayout')
 <link href="{{asset ('css_user/messages.css') }}" type="text/css" rel="stylesheet">
 @section('content')
+<body class="transparent-header">
 <div class="container-wrapper">
 
 		<!-- start Header -->
@@ -19,7 +20,7 @@
 		
 			<!-- start Breadcrumb -->
 			
-			<div class="breadcrumb-image-bg" style="background-image:url({{ asset('images/breadcrumb-bg.jpg') }});">
+			<div class="breadcrumb-image-bg" style="background-image:url({{asset('images/hero-header/osmenapeak.jpg')}});">
 				<div class="container">
                                                                                            
 					<div class="page-title">
@@ -27,7 +28,9 @@
 						<div class="row">
 						
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+								<br><br>
 								<h2>Messages</h2>
+								<br>
 							</div>
 							
 						</div>
@@ -105,7 +108,12 @@
 														<div class="col-xs-2 col-md-2">
 															<img src="/public/uploads/files/{{ $message->photo }}" class="img-circle img-responsive" alt="image" /></div>
 														@if($message->status == 0)
-														<div style="font-weight: bold; " class="col-xs-10 col-md-10">
+															<div style="font-weight: bold; " class="col-xs-10 col-md-10">
+															
+														@else
+															<div class="col-xs-10 col-md-10">	
+														@endif
+															<input type="hidden" value="{{$message->id}}" id="mId{{$message->id}}">
 															<div>
 																<a>{{ $message->fname }} {{ $message->lname }}</a>
 																<div class="mic-info">
@@ -119,62 +127,27 @@
 															<div class="pull-right">
 															
 															<a data-toggle="modal" 
-																		  data-id="{{ $message->id }} " 
-																		  data-sender_email="{{ $message->sender_email }} " 
-																		  data-receiver_email="{{ $message->receiver_email }} " 
-																		  data-package_id=" {{$message->package_id}} "
-																		  data-message=" {{$message->message}} "
-																		  data-created_at=" {{ Carbon\Carbon::parse($message->created_at)->toDayDateTimeString() }} "
-																		  data-fname=" {{$message->fname}} "
-																		  data-lname=" {{$message->lname}} "
-																		class="reply-modal btn btn-sm btn-hover btn-info"><span class="glyphicon glyphicon-share-alt" style="padding-right:3px;"></span>Reply</a>
+																data-id="{{ $message->id }} " 
+																data-sender_email="{{ $message->sender_email }} " 
+																data-receiver_email="{{ $message->receiver_email }} " 
+																data-package_id=" {{$message->package_id}} "
+																data-message=" {{$message->message}} "
+																data-created_at=" {{ Carbon\Carbon::parse($message->created_at)->toDayDateTimeString() }} "
+																data-fname=" {{$message->fname}} "
+																data-lname=" {{$message->lname}} "
+																class="reply-modal btn btn-sm btn-hover btn-info"
+																id="msg{{$message->id}}"><span class="glyphicon glyphicon-share-alt" style="padding-right:3px;"></span>Reply</a>
 															<a data-toggle="modal"
-																		  data-id="{{ $message->id }} " 
-																		  data-sender_email="{{ $message->sender_email }} " 
-																		  data-receiver_email="{{ $message->receiver_email }} "
-																		  data-package_id=" {{$message->package_id}} "
-																		  data-message=" {{$message->message}} "
-																		  data-created_at=" {{$message->created_at}} "
-																		  class="delete-modal btn btn-sm btn-hover btn-danger"><span class="glyphicon glyphicon-remove" style="padding-right:3px;"></span>Delete</a>
+																data-id="{{ $message->id }} " 
+																data-sender_email="{{ $message->sender_email }} " 
+																data-receiver_email="{{ $message->receiver_email }} "
+																data-package_id=" {{$message->package_id}} "
+																data-message=" {{$message->message}} "
+																data-created_at=" {{$message->created_at}} "
+																class="delete-modal btn btn-sm btn-hover btn-danger"><span class="glyphicon glyphicon-remove" style="padding-right:3px;"></span>Delete</a>
 															</div>
 															
 														</div>
-														@else
-														<div class="col-xs-10 col-md-10">
-																<div>
-																	<a>{{ $message->fname }} {{ $message->lname }}</a>
-																	<div class="mic-info">
-																		Inquiry: <a href="/Traveler/TourPackage/{{$message->package_id}}">{{ $message->package_name }}</a> | Received: {{ Carbon\Carbon::parse($message->created_at)->toDayDateTimeString() }}
-																	</div>
-																</div>
-																<div class="comment-text">
-																	{{ str_limit($message->message, 80) }}
-																</div>
-																
-																<div class="pull-right">
-																
-																<a data-toggle="modal" 
-																			  data-id="{{ $message->id }} " 
-																			  data-sender_email="{{ $message->sender_email }} " 
-																			  data-receiver_email="{{ $message->receiver_email }} " 
-																			  data-package_id=" {{$message->package_id}} "
-																			  data-message=" {{$message->message}} "
-																			  data-created_at=" {{ Carbon\Carbon::parse($message->created_at)->toDayDateTimeString() }} "
-																			  data-fname=" {{$message->fname}} "
-																			  data-lname=" {{$message->lname}} "
-																			class="reply-modal btn btn-sm btn-hover btn-info"><span class="glyphicon glyphicon-share-alt" style="padding-right:3px;"></span>Reply</a>
-																<a data-toggle="modal"
-																			  data-id="{{ $message->id }} " 
-																			  data-sender_email="{{ $message->sender_email }} " 
-																			  data-receiver_email="{{ $message->receiver_email }} "
-																			  data-package_id=" {{$message->package_id}} "
-																			  data-message=" {{$message->message}} "
-																			  data-created_at=" {{$message->created_at}} "
-																			  class="delete-modal btn btn-sm btn-hover btn-danger"><span class="glyphicon glyphicon-remove" style="padding-right:3px;"></span>Delete</a>
-																</div>
-																
-															</div>
-															@endif
 													</div>
 												</li>
 											</ul>
@@ -216,6 +189,62 @@
 		
 		<!-- start Footer Wrapper -->
 		<div class="footer-wrapper scrollspy-footer">
+			{{--  <footer class="main-footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 col-md-4">
+							<h5 class="footer-title">newsletter</h5>
+							
+							<p class="font16">Subsribe to get our latest updates and oeffers</p>
+								
+							<div class="footer-newsletter">
+								<div class="form-group">
+									<input class="form-control" placeholder="enter your email " />
+									<button class="btn btn-primary">subsribe</button>
+								</div>
+								<p class="font-italic font13">*** Don't worry, we wont spam you!</p>
+							</div>
+						</div>
+							
+						<div class="col-sm-12 col-md-8">
+							<div class="row">
+								<div class="col-xs-12 col-sm-4 col-md-3 col-md-offset-3 mt-25-sm">
+									<h5 class="footer-title">footer</h5>
+									<ul class="footer-menu">
+										<li><a href="#">Support</a></li>
+										<li><a href="#">Advertise</a></li>
+										<li><a href="#">Media Relations</a></li>
+										<li><a href="#">Affiliates</a></li>
+										<li><a href="#">Careers</a></li>
+									</ul>
+								</div>
+								
+								<div class="col-xs-12 col-sm-4 col-md-3 mt-25-sm">
+									<h5 class="footer-title">quick links</h5>
+									<ul class="footer-menu">
+										<li><a href="#">Media Relations</a></li>
+										<li><a href="#">Affiliates</a></li>
+										<li><a href="#">Careers</a></li>
+										<li><a href="#">Support</a></li>
+										<li><a href="#">Advertise</a></li>
+									</ul>
+								</div>
+								
+								<div class="col-xs-12 col-sm-4 col-md-3 mt-25-sm">
+									<h5 class="footer-title">helps</h5>
+									<ul class="footer-menu">
+										<li><a href="#">Using a Tour</a></li>
+										<li><a href="#">Submitting a Tour</a></li>
+										<li><a href="#">Managing My Account</a></li>
+										<li><a href="#">Merchant Help</a></li>
+										<li><a href="#">White Label Website</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>  --}}
 			<footer class="bottom-footer">
 				<div class="container">
 					<div class="row">
@@ -336,6 +365,20 @@
 		$('.form-delete').hide();
 		$('#myModal').modal('show');
 	});
+
+	@foreach($messages as $message)
+		$("#msg{{ $message->id }}").on('click', function(){
+			var mId = $("#mId{{ $message->id }}").val();
+			$.ajax({
+				type: 'get',
+				data: 'mId=' + mId,
+				url: '{{ route('Traveler.UpdateMsgStatus') }}',
+				success:function(response){
+					console.log(response);
+				}
+			});
+		});
+	@endforeach
 </script>
 @endsection
 @extends('layouts.user.javascriptlayout')

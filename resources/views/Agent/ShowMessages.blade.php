@@ -2,34 +2,7 @@
 
 <link href="{{asset ('css_user/messages.css') }}" type="text/css" rel="stylesheet">
 @section('content')
-{{--  <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Travel Agent Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    Last Signed in at {{ Auth::guard('agents')->user()->last_signed_in }}<br><br> 
-                    You are logged in as a Travel Agent!
-                    <br>
-
-                    {{$diffHours}} hour.
-
-                    @if($diffHours <= 1)
-                        <p>ACTIVE USER</p>
-                    @else
-                        <p>INACTIVE</p>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-</div>  --}}
+<body class="transparent-header">
 <div class="container-wrapper">
 
 		<!-- start Header -->
@@ -48,7 +21,7 @@
 		
 			<!-- start Breadcrumb -->
 			
-			<div class="breadcrumb-image-bg" style="background-image:url({{ asset('images/breadcrumb-bg.jpg') }});">
+			<div class="breadcrumb-image-bg" style="background-image:url({{asset('images/hero-header/osmenapeak.jpg')}});">
 				<div class="container">
                                                                                            
 					<div class="page-title">
@@ -56,7 +29,9 @@
 						<div class="row">
 						
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+								<br><br>
 								<h2>Messages</h2>
+								<br>
 							</div>
 							
 						</div>
@@ -87,7 +62,7 @@
 			
 			<!-- end Breadcrumb -->
 		
-            <iv class="pt-30 pb-50">
+            <div class="pt-30 pb-50">
 			
 					<div class="container">
 	
@@ -101,7 +76,7 @@
 								
 										<ul class="common-menu-list">
 											
-											<li class="active"><a href="{{ route('Agent.Messages') }}">
+											<li class="active"><a href="{{ route('Agent.ShowMessages') }}">
 												@if($messagesCount != 0)
 												<span class="badge pull-right">
 													{{ $messagesCount }}
@@ -135,43 +110,12 @@
 															<div class="col-xs-2 col-md-2">
 																<img src="/public/uploads/files/{{ $message->photo }}" class="img-circle img-responsive" alt="image" /></div>
 															@if($message->status == 0)
-															<div style="font-weight: bold; " class="col-xs-10 col-md-10">
-																<div>
-																	<a>{{ $message->fname }} {{ $message->lname }}</a>
-																	<div class="mic-info">
-																		Inquiry: <a href="/Traveler/TourPackage/{{$message->package_id}}">{{ $message->package_name }}</a> | Received: {{ Carbon\Carbon::parse($message->created_at)->toDayDateTimeString() }}
-																	</div>
-																</div>
-																<div class="comment-text">
-																	{{ str_limit($message->message, 80) }}
-																</div>
-																
-																<div class="pull-right">
-																
-																<a data-toggle="modal" 
-																			  data-id="{{ $message->id }} " 
-																			  data-sender_email="{{ $message->sender_email }} " 
-																			  data-receiver_email="{{ $message->receiver_email }} " 
-																			  data-package_id=" {{$message->package_id}} "
-																			  data-message=" {{$message->message}} "
-																			  data-created_at=" {{ Carbon\Carbon::parse($message->created_at)->toDayDateTimeString() }} "
-																			  data-fname=" {{$message->fname}} "
-																			  data-lname=" {{$message->lname}} "
-																			class="reply-modal btn btn-sm btn-hover btn-info"><span class="glyphicon glyphicon-share-alt" style="padding-right:3px;"></span>Reply</a>
-																<a data-toggle="modal"
-																			  data-id="{{ $message->id }} " 
-																			  data-sender_email="{{ $message->sender_email }} " 
-																			  data-receiver_email="{{ $message->receiver_email }} "
-																			  data-package_id=" {{$message->package_id}} "
-																			  data-message=" {{$message->message}} "
-																			  data-created_at=" {{$message->created_at}} "
-																			  class="delete-modal btn btn-sm btn-hover btn-danger"><span class="glyphicon glyphicon-remove" style="padding-right:3px;"></span>Delete</a>
-																</div>
-																
-															</div>
+																<div style="font-weight: bold; " class="col-xs-10 col-md-10">
 															@else
-															<div class="col-xs-10 col-md-10">
-																	<div>
+																<div class="col-xs-10 col-md-10">
+															@endif
+																<input type="hidden" value="{{$message->id}}" id="mId{{$message->id}}">
+																<div>
 																		<a>{{ $message->fname }} {{ $message->lname }}</a>
 																		<div class="mic-info">
 																			Inquiry: <a href="">{{ $message->package_name }}</a> | Received: {{ Carbon\Carbon::parse($message->created_at)->toDayDateTimeString() }}
@@ -183,28 +127,28 @@
 																	
 																	<div class="pull-right">
 																	
-																	<a data-toggle="modal" 
-																				  data-id="{{ $message->id }} " 
-																				  data-sender_email="{{ $message->sender_email }} " 
-																				  data-receiver_email="{{ $message->receiver_email }} " 
-																				  data-package_id=" {{$message->package_id}} "
-																				  data-message=" {{$message->message}} "
-																				  data-created_at=" {{ Carbon\Carbon::parse($message->created_at)->toDayDateTimeString() }} "
-																				  data-fname=" {{$message->fname}} "
-																				  data-lname=" {{$message->lname}} "
-																				class="reply-modal btn btn-sm btn-hover btn-info"><span class="glyphicon glyphicon-share-alt" style="padding-right:3px;"></span>Reply</a>
-																	<a data-toggle="modal"
-																				  data-id="{{ $message->id }} " 
-																				  data-sender_email="{{ $message->sender_email }} " 
-																				  data-receiver_email="{{ $message->receiver_email }} "
-																				  data-package_id=" {{$message->package_id}} "
-																				  data-message=" {{$message->message}} "
-																				  data-created_at=" {{$message->created_at}} "
-																				  class="delete-modal btn btn-sm btn-hover btn-danger"><span class="glyphicon glyphicon-remove" style="padding-right:3px;"></span>Delete</a>
+																		<a data-toggle="modal" 
+																			data-id="{{ $message->id }} " 
+																			data-sender_email="{{ $message->sender_email }} " 
+																			data-receiver_email="{{ $message->receiver_email }} " 
+																			data-package_id=" {{$message->package_id}} "
+																			data-message=" {{$message->message}} "
+																			data-created_at=" {{ Carbon\Carbon::parse($message->created_at)->toDayDateTimeString() }} "
+																			data-fname=" {{$message->fname}} "
+																			data-lname=" {{$message->lname}} "
+																			class="reply-modal btn btn-sm btn-hover btn-info"
+																			id="msg{{$message->id}}"><span class="glyphicon glyphicon-share-alt" style="padding-right:3px;"></span>Reply</a>
+																		<a data-toggle="modal"
+																			data-id="{{ $message->id }} " 
+																			data-sender_email="{{ $message->sender_email }} " 
+																			data-receiver_email="{{ $message->receiver_email }} "
+																			data-package_id=" {{$message->package_id}} "
+																			data-message=" {{$message->message}} "
+																			data-created_at=" {{$message->created_at}} "
+																			class="delete-modal btn btn-sm btn-hover btn-danger"><span class="glyphicon glyphicon-remove" style="padding-right:3px;"></span>Delete</a>
 																	</div>
 																	
-																</div>
-																@endif
+																</div>  
 														</div>
 													</li>
 												</ul>
@@ -244,22 +188,23 @@
         </div>
             
 			<!-- end Main Wrapper -->
-			<!-- start Footer Wrapper -->
-		<div class="footer-wrapper scrollspy-footer">
-			<footer class="bottom-footer">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12">
-                            <center>
-                                <p class="copy-right">&#169; 2017 Traventure - Tour and Booking System</p>
-                            <center>
-						</div>
+	</div>
+
+	<!-- start Footer Wrapper -->
+	<div class="footer-wrapper scrollspy-footer">
+		<footer class="bottom-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<center>
+							<p class="copy-right">&#169; 2017 Traventure - Tour and Booking System</p>
+						<center>
 					</div>
 				</div>
-			</footer>
-		</div>
-		<!-- end Footer Wrapper -->
+			</div>
+		</footer>
 	</div>
+	<!-- end Footer Wrapper -->
 	
 	
 	<!-- end Container Wrapper -->
@@ -273,7 +218,7 @@
 				</div>
 
 					<div class="title-delete">
-					  <text class="modal-title">Delete</text>
+					  <text class= "modal-title"></text>
 				  </div>
 			  </div>
 			  <div class="modal-body">
@@ -365,6 +310,20 @@
 		$('.form-delete').hide();
 		$('#myModal').modal('show');
 	});
+
+	@foreach($messages as $message)
+		$("#msg{{ $message->id }}").on('click', function(){
+			var mId = $("#mId{{ $message->id }}").val();
+			$.ajax({
+				type: 'get',
+				data: 'mId=' + mId,
+				url: '{{ route('Agent.UpdateMsgStatus') }}',
+				success:function(response){
+					console.log(response);
+				}
+			});
+		});
+	@endforeach
 </script>
 @endsection
 @extends('layouts.user.javascriptlayout')

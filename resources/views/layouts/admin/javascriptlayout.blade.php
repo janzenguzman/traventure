@@ -1,11 +1,11 @@
     <!doctype html>
     
     <!-- jQuery -->
-    <script src="{{ asset('admin_plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin_plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('admin_bootstrap/dist/js/tether.min.js') }}"></script>
-    <script src="{{ asset('admin_bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('admin_plugins/bower_components/bootstrap-extension/js/bootstrap-extension.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin_bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    {{--  <script type="text/javascript" src="{{ asset('admin_plugins/bower_components/bootstrap-extension/js/bootstrap-extension.min.js') }}"></script>  --}}
     <!-- Menu Plugin JavaScript -->
     <script src="{{ asset('admin_plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js') }}"></script>
     <!--slimscroll JavaScript -->

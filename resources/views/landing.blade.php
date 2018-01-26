@@ -10,8 +10,8 @@
                 <div class="hero img-bg-01">
                     <div class="container">
                         <center>
-                            <center><img src="{{ asset('uploads/files/logo-white-2.png') }}" style="width:350px; margin-top:-10%">
-								<p>Book. Chill. Venture.</p></center>
+                            <img src="{{ asset('uploads/files/logo-white-2.png') }}" style="width:350px; margin-top:-10%">
+								
                             <a href="{{ url('TravelerLogin') }}" class="btn btn-sm btn-info">TRAVELER</a>
                             <a href="{{ url('AgentLogin') }}" class="btn btn-sm btn-info">TRAVEL AGENT</a>
                         </center>
@@ -41,7 +41,7 @@
 				</div>
 
                 <!--siargao header-->
-                <div class="featured-bg" style="background-image:url('images/hero-header/06.jpg');">
+                <div class="featured-bg" style="background-image:url({{asset('images/hero-header/07.jpg')}});">
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-12 col-sm-8 col-sm-offset-2">

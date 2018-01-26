@@ -27,8 +27,8 @@ Route::post('/register', 'Auth\RegisterController@register') -> name('register')
 Route::post('/agentsRegister', 'Auth\RegisterController@showRegisterForm') -> name('agentsRegister');
 // Route::get('/agentsRegister', 'AgentsController@showRegisterForm') -> name('agentsRegister');
 Route::post('Agent/HomePage', 'Auth\AgentsLoginController@login')->name('Agents.Login.Submit');
-Route::post('/', 'Auth\LoginController@logout')->name('Traveler.Logout');
-Route::post('/', 'Auth\AgentsLoginController@logout')->name('Agent.Logout');
+
+
 
 
 Route::prefix('Traveler')->group(function(){
@@ -53,6 +53,7 @@ Route::prefix('Traveler')->group(function(){
     Route::get('/SentMessages', 'TravelersController@showSentMessages')->name('Traveler.SentMessages');
     Route::post('/SendMessage', 'TravelersController@sendMessage')->name('Traveler.SendMessage');
     Route::post('/ReplyMessage', 'TravelersController@replyMessage')->name('Traveler.ReplyMessage');
+    Route::get('/UpdateMsgStatus', 'TravelersController@UpdateMsgStatus')->name('Traveler.UpdateMsgStatus');
     Route::post('/DeleteMessage', 'TravelersController@deleteMessage')->name('Traveler.DeleteMessage');
     Route::post('/CancelRequest', 'TravelersController@cancelRequest')->name('Traveler.CancelRequest');
     Route::get('/Bookings/{package}/{booking}', 'TravelersController@showVoucher')->name('Traveler.Voucher');
@@ -61,7 +62,7 @@ Route::prefix('Traveler')->group(function(){
     Route::post('/Bookings', 'TravelersController@showBookings')->name('Traveler.SearchPname');
     Route::post('/Voucher', 'TravelersController@confirmRequest')->name('Traveler.ConfirmRequest');
     Route::get('/Bookings', 'TravelersController@showBookings')->name('Traveler.Bookings');
-
+    Route::post('/ChangePass', 'TravelersController@changePass')->name('Traveler.ChangePass');
     Route::get('/Trips', 'TravelersController@showTrips')->name('Traveler.Trips');
     Route::post('/Favorites', 'TravelersController@showFavorites')->name('Traveler.MyFavorites');
     // Route::get('/Messages', 'TravelersController@showMessages')->name('Traveler.Messages');
@@ -70,6 +71,8 @@ Route::prefix('Traveler')->group(function(){
     // Route::post('/favorite', 'TravelersController@favoritePackage')->name('Traveler.Favorite');
     Route::post('/Trips/CommentInsert', 'TravelersController@storeComment');
     Route::post('/Explore/AddToFavorite', 'TravelersController@addToFavorites');
+    Route::post('/Explore/Sort', 'TravelersController@sortBy')->name('Traveler.Sort');
+    Route::post('/', 'Auth\LoginController@logout')->name('Traveler.Logout');
     
 });
 
@@ -80,8 +83,9 @@ Route::prefix('Admin')->group(function(){
     Route::get('/StatusPage/accreditedDatatable', 'AdminController@accreditedDatatable')->name('Admin.StatusPage.accreditedDatatable');
     Route::get('/StatusPage/activeDatatable', 'AdminController@activeDatatable')->name('Admin.StatusPage.activeDatatable');
     Route::get('/StatusPage/inactiveDatatable', 'AdminController@inactiveDatatable')->name('Admin.StatusPage.inactiveDatatable');
+    Route::post('/RequestPage/Decline', 'AdminController@declineAgent')->name('Admin.Decline');
     Route::get('/RequestsPage/{id}/{action}', 'AdminController@requests')->name('requests');
-    Route::get('/StatusPage/{id}', 'AdminController@deactivate')->name('deactivate');
+    Route::post('/StatusPage/Deactivate', 'AdminController@deactivateAgent')->name('Admin.Deactivate');
     Route::get('/StatusPage', 'AdminController@showStatusPage')->name('Admin.StatusPage');
     Route::get('/Register', 'AdminController@showRegisterForm')->name('Admin.Register');
     Route::get('/Login', 'Auth\AdminLoginController@showLoginForm')->name('Admin.Login');
@@ -90,9 +94,8 @@ Route::prefix('Admin')->group(function(){
 }); 
 
 Route::prefix('Agent')->group(function(){
-
-    Route::get('/Packages', 'AgentsController@showHomePage') -> name('Agent.Home');
-    Route::get('/Bookings', 'AgentsController@showBookings') -> name('Agent.Bookings');
+    Route::post('/ChangePass', 'AgentsController@changePass')->name('Agent.ChangePass');
+    Route::post('/Bookings', 'AgentsController@showBookings') -> name('Agent.Bookings');
     Route::get('/Messages', 'AgentsController@showMessages') -> name('Agent.Messages');
 
     // Route::get('/Packages', 'AgentsController@showHomePage') -> name('Agent.HomePage');
@@ -102,11 +105,14 @@ Route::prefix('Agent')->group(function(){
     Route::get('/Messages', 'AgentsController@showMessages') -> name('Agent.ShowMessages');
     Route::get('/SentMessages', 'AgentsController@showSentMessages') -> name('Agent.SentMessages');
     Route::post('/ReplyMessage', 'AgentsController@replyMessage')->name('Agent.ReplyMessage');
+    Route::get('/UpdateMsgStatus', 'AgentsController@UpdateMsgStatus')->name('Agent.UpdateMsgStatus');
     Route::post('/Bookings/SendMessage', 'AgentsController@replyMessage')->name('Agent.SendMessage');
     Route::post('/DeleteMessage', 'AgentsController@deleteMessage')->name('Agent.DeleteMessage');
     Route::post('/UpdateProfile', 'AgentsController@updateProfile')->name('Agent.UpdateProfile');
+   
     Route::get('/Packages', 'AgentsController@showPackages') -> name('Agent.Packages');
     Route::get('/Bookings', 'AgentsController@showBookings') -> name('Agent.Bookings');
+    Route::post('/logout', 'Auth\AgentsLoginController@logout')->name('Agent.Logout');
     // Route::get('/Messages', 'AgentsController@showMessages') -> name('Agent.Messages');
     
     
@@ -140,24 +146,30 @@ Route::prefix('Agent')->group(function(){
     
     //Package Details
     Route::get('/Packages/PackageDetails/{id}', 'AgentsController@ViewPackage') -> name('Agent.PackageDetails');
-    
-    //Update Agent
-    Route::get('/EditAgent/{id}', array('uses' => 'AgentsController@editAgent'));
-    Route::match(['put', 'patch'], '/Agents/{id}/Update','AgentsController@updateAgent');
 
     //Update Slots
     Route::get('/Packages/AddSlots/{package_id}', 'AgentsController@addSlots') -> name('Agent.AddSlots');
     Route::post('/UpdateSlots','AgentsController@updateSlots');
     
     //Delete
-    Route::get('/Packages/DeletePackage/{package_id}', array('uses' => 'AgentsController@deletePackage'));
+    //Route::get('/Packages/DeletePackage/{package_id}', array('uses' => 'AgentsController@deletePackage'));
+
+    Route::post('/Packages/DeletePackage', array('uses' => 'AgentsController@deletePackage'))->name('Agent.DeletePackage');
 
     //Decline Booking
     Route::get('/Packages/Decline/{booking_id}', array('uses' => 'AgentsController@declineBooking'));
 
     //Accept Booking
     Route::get('/Packages/Accept/{booking_id}', array('uses' => 'AgentsController@acceptBooking'));
+
+    //Delete Slots
+    Route::post('/Packages/PackageDetails/DeleteSlot', array('uses' => 'AgentsController@deleteSlot'))->name('Agent.DeleteSlot');
+    
+    //delete booking
+    Route::post('/Bookings/DeleteBooking', array('uses' => 'AgentsController@deleteBooking'))->name('Agent.DeleteBooking');
     
 });
 
-Route::get('/gis', 'MapController@index');
+Route::get('/show', 'MapController@show');
+Route::get('/gis', 'MapController@gis');
+Route::post('/gis', 'MapController@add')->name('add');

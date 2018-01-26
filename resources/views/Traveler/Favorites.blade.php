@@ -58,7 +58,7 @@
 		
 			<!-- start Breadcrumb -->
 			
-			<div class="breadcrumb-image-bg" style="background-image:url({{ asset('images/breadcrumb-bg.jpg') }});">
+			<div class="breadcrumb-image-bg" style="background-image:url({{asset('images/hero-header/osmenapeak.jpg')}});">
 				<div class="container">
                                                                                            
 					<div class="page-title">
@@ -111,7 +111,7 @@
 											<form method="post" action="{{ route('Traveler.MyFavorites')}}">
 													{{ csrf_field() }}
 												<div class="input-group">
-													<input type="text" name="search_pname" class="form-control"  placeholder="Search package name" >
+													<input type="text" name="search_pname" class="form-control"  placeholder="Search package name" required>
 														<span class="input-group-btn">
 																<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 														</span>
@@ -121,7 +121,7 @@
 
 										<div class="col-lg-1" style="margin-right:3.5%">
 											<form>
-												<a href="{{ route('Traveler.MyFavorites') }}" class="btn btn-sm btn-info">Show All</a>
+												<a href="{{ route('Traveler.MyFavorites') }}" class="btn btn-sm btn-default">Show All</a>
 											</form>
 										</div>
 									</div>
@@ -154,7 +154,7 @@
 										<div class="trip-guide-item bg-light-primary">
 	
 											<div class="trip-guide-image">
-												<img src="{{ asset('images/itinerary/01.jpg') }}" alt="images" />
+												<img src="/public/uploads/files/{{ $favorite->photo }}" alt="images" />
 											</div>
 											
 											<div class="trip-guide-content bg-white">
@@ -169,7 +169,7 @@
 											
 												<div class="trip-guide-person bg-white clearfix">
 													<div class="image">
-														<img src="/public/uploads/files/{{ $favorite->photo }}" class="img-circle" alt="images" />
+														<img src="/public/uploads/files/{{ $favorite->agent_photo }}" class="img-circle" alt="images" />
 													</div>
 													<p class="name">By: <a>{{$favorite->fname}} {{$favorite->lname}}</a></p>
 													<p>Posted on {{ Carbon\Carbon::parse($favorite->created_at)->toFormattedDateString()}}</p>
@@ -259,15 +259,68 @@
 					</div>
 				
 				</div>
-			
-
 		</div>
 		
 		<!-- end Main Wrapper -->
 	</div>
 	<!-- start Footer Wrapper -->
-	<br>
 	<div class="footer-wrapper scrollspy-footer">
+		{{--  <footer class="main-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 col-md-4">
+						<h5 class="footer-title">newsletter</h5>
+						
+						<p class="font16">Subsribe to get our latest updates and oeffers</p>
+							
+						<div class="footer-newsletter">
+							<div class="form-group">
+								<input class="form-control" placeholder="enter your email " />
+								<button class="btn btn-primary">subsribe</button>
+							</div>
+							<p class="font-italic font13">*** Don't worry, we wont spam you!</p>
+						</div>
+					</div>
+						
+					<div class="col-sm-12 col-md-8">
+						<div class="row">
+							<div class="col-xs-12 col-sm-4 col-md-3 col-md-offset-3 mt-25-sm">
+								<h5 class="footer-title">footer</h5>
+								<ul class="footer-menu">
+									<li><a href="#">Support</a></li>
+									<li><a href="#">Advertise</a></li>
+									<li><a href="#">Media Relations</a></li>
+									<li><a href="#">Affiliates</a></li>
+									<li><a href="#">Careers</a></li>
+								</ul>
+							</div>
+							
+							<div class="col-xs-12 col-sm-4 col-md-3 mt-25-sm">
+								<h5 class="footer-title">quick links</h5>
+								<ul class="footer-menu">
+									<li><a href="#">Media Relations</a></li>
+									<li><a href="#">Affiliates</a></li>
+									<li><a href="#">Careers</a></li>
+									<li><a href="#">Support</a></li>
+									<li><a href="#">Advertise</a></li>
+								</ul>
+							</div>
+							
+							<div class="col-xs-12 col-sm-4 col-md-3 mt-25-sm">
+								<h5 class="footer-title">helps</h5>
+								<ul class="footer-menu">
+									<li><a href="#">Using a Tour</a></li>
+									<li><a href="#">Submitting a Tour</a></li>
+									<li><a href="#">Managing My Account</a></li>
+									<li><a href="#">Merchant Help</a></li>
+									<li><a href="#">White Label Website</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>  --}}
 		<footer class="bottom-footer">
 			<div class="container">
 				<div class="row">

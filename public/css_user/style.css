@@ -3713,7 +3713,8 @@ ul.user-header-menu li > a:hover > span {
 }
 
 .payment-content input[type='radio'] + label:before {
-    top: 8px
+    vertical-align: middle;
+    margin-top: 1px;
 }
 
 .payment-traveller + .payment-traveller {

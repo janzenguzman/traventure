@@ -1,93 +1,3 @@
-{{--  @extends('layouts.app')
-
-@section('content')
-<center>
-<div>
-    <img src="/public/uploads/files/{{ $itineraries->day1_photo }}" height="300" width="500">
-</div>
-
-<h1>{{ $packages->package_name }}</h1>
-<div>
-    <label>Days</label>
-    <p>{{ $packages->days }}</p>
-</div>
-<div>
-    <label>Nights</label>
-    <p>{{ $packages->days-1 }}</p>
-</div>
-<div>
-    <label>Adult Price</label>
-    <p>{{ $packages->adult_price }}</p>
-</div>
-<div>
-    <label>Child Price</label>
-    <p>{{ $packages->child_price }}</p>
-</div>
-<div>
-    <label>Infant Price</label>
-    <p>{{ $packages->infant_price }}</p>
-</div>
-<div>
-    <label>Excess Price</label>
-    <p>{{ $packages->excess_price }}</p>
-</div>
-<div>
-    <label>Type</label>
-    <p>{{ $packages->type }}</p>
-</div>
-<div>
-@if(count($packages) > 0)
-    @if($packages->type == 'Exclusive')
-        <label>Pax & Price</label>
-        <div>
-        {{$packages->pax1}}&nbsp;{{$packages->pax1_price}}
-        </div>
-        <div>
-        {{$packages->pax2}}&nbsp;{{$packages->pax2_price}}
-        </div>
-        <div>
-        {{$packages->pax3}}&nbsp;{{$packages->pax3_price}}
-        </div>
-    @endif
-
-    @if($packages->type == 'Joined')
-        <label>Price</label>
-            <div>
-                Adult:&nbsp;{{$packages->adult_price}}
-            </div>
-            <div>
-                Child:&nbsp;{{$packages->child_price}}
-            </div>
-            <div>
-                Infant:&nbsp;{{$packages->infant_price}}
-            </div>
-            <div>
-                Excess:&nbsp;{{$packages->excess_price}}
-            </div>
-    @endif
-@endif
-</div>
-<div>
-    <label>Inclusions</label>
-    <p>{{ $packages->inclusions }}</p>
-</div>
-<div>
-    <label>Additional Info</label>
-    <p>{{ $packages->add_info }}</p>
-</div>
-<div>
-    <label>Reminders</label>
-    <p>{{ $packages->reminders }}</p>
-</div>
-<div>
-    <label>Categories</label>
-    <p>{{ $packages->categories }}</p>
-</div>
-<div>
-    <a href="/Agent/Packages/EditPackage/{{ $packages->package_id }}"><button>Edit Package</button>
-</div>
-</center>
-@endsection  --}}
 
 @extends('layouts.user.headlayout')
 @section('content')
@@ -108,7 +18,7 @@
 		
         <!-- end Header -->
         <div class="main-wrapper scrollspy-container">
-            <div class="breadcrumb-image-bg detail-breadcrumb" style="background-image:url({{ asset('images/detail-header.jpg') }});">
+            <div class="breadcrumb-image-bg detail-breadcrumb" style="background-image:url({{asset('images/hero-header/06.jpg')}});">
                 <div class="container">
 
                     <div class="page-title detail-header-02">
@@ -117,22 +27,37 @@
                         
                             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                             
-                                <h2>{{$packages->package_name}}</h2>
-                                {{--  <h6>{{$packages->package_id}}</h6>  --}}
-                                <span class="labeling text-white mt-25"><span>Bangkok, Pattaya, Choburi, &amp; Sattaheeb</span> 
-                                    <span>
-                                        {{$packages->days}} 
-                                        @if($packages->days > 1)
-                                            days
-                                        @else
-                                            day
-                                        @endif
+                                    
+                                    <h2>{{$packages->package_name}}</h2>
+                                    <span class="labeling text-white mt-25"> 
+                                        <span>
+                                            @if($packages->days == 1)
+                                                {{$packages->days}} Day Tour
+                                            @else
+                                                {{$packages->days}} Days &amp;
+                                            @endif
+    
+                                            @if(($nights = $packages->days - 1) != 0)
+                                                @if($nights <= 1)
+                                                    {{$nights}} Night Tour
+                                                @else
+                                                    {{$nights}} Nights Tour
+                                                @endif
+                                            @endif
+                                        </span>
                                     </span>
-                                </span>
-                                <div class="rating-item rating-item-lg mb-25">
-                                    <input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="4.5"/>
-                                    <div class="rating-text"> <a href="#" style="color:white">(32 reviews)</a></div>
-                                </div>
+                                    <div class="rating-item rating-item-lg mb-25">
+                                        <input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="{{ $avg }}"/>
+                                        <div class="rating-text"> <a href="#" style="color:white">
+                                            @if($countCom > 1)
+                                                ({{$countCom}} Reviews)
+                                            @elseif($countCom == 1)
+                                                ({{$countCom}} Review)
+                                            @else
+                                                (No Reviews)
+                                            @endif
+                                        </a></div>
+                                    </div>
 
                             </div>
                             
@@ -180,10 +105,9 @@
             <div class="pt-30 pb-50">
             
                 <div class="container">
-
+                    @include('layouts.user.alerts')
                     <div class="row">
-                    
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="col-xs-12 col-sm-12 col-md-10">
                                 <div class="content-wrapper">
                                 
                                 <div class="user-long-sm-item clearfix">
@@ -201,11 +125,135 @@
                                 <div class="mb-25"></div>
                                 <div class="bb"></div>
                                 <div class="mb-25"></div>
+                                <h2 class="font-lg">{{$packages->type}} Tour</h2>
+                                <label class="text-muted">Categories: {{$packages->categories}}</label>
+                                <h4 class="uppercase spacing-1"><br>Price Details</h4>
+                                    @if($packages->type == 'Exclusive')
+                                        <ul class="clearfix">
+                                            <li class="row gap-20">
+                                                <div class="col-lg-4 col-md-4">
+                                                For {{ $packages->pax1 }} Pax
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 text-primary">
+                                                    PHP {{ $packages->pax1_price }}.00
+                                                </div>
+                                            </li>
+                                            <li class="row gap-20">
+                                                <div class="col-lg-4 col-md-4">
+                                                    For {{ $packages->pax2 }} Pax
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 text-primary">
+                                                    PHP {{ $packages->pax2_price }}.00
+                                                </div>
+                                            </li>
+                                            <li class="row gap-20">
+                                                <div class="col-lg-4 col-md-4">
+                                                    For {{ $packages->pax3 }} Pax
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 text-primary">
+                                                    PHP {{ $packages->pax3_price }}.00
+                                                </div>
+                                            </li>
+                                            <li class="row gap-20">
+                                                <div class="col-lg-4 col-md-4">
+                                                   Excess Person Price
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 text-primary">
+                                                    PHP {{ $packages->excess_price }}.00
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    @else
+                                        <ul class="clearfix">
+                                            <li class="row gap-20">
+                                                <div class="col-lg-4 col-md-4">
+                                                    Adult Price <b>(11 years. above)</b>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 text-primary">
+                                                    PHP {{ $packages->adult_price }}.00
+                                                </div>
+                                            </li>
+                                            <li class="row gap-20">
+                                                <div class="col-lg-4 col-md-4">
+                                                    Child Price: <b>(4-10 yesrs.)</b>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 text-primary">
+                                                    PHP {{ $packages->child_price }}.00
+                                                </div>
+                                            </li>
+                                            <li class="row gap-20">
+                                                <div class="col-lg-4 col-md-4">
+                                                    Infant Price <b>(3 years. below)</b>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 text-primary">
+                                                    PHP {{ $packages->infant_price }}.00
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    @endif
+                                    
+                                </div>
+
+                                <div class="mb-25"></div>
+                                <div class="bb"></div>
+                                <div class="mb-25"></div>
+
+                                <div>
+                                    <h4 class="uppercase spacing-1">Available Slots</h4>
+                                    <p>Here are the available slots for this package.</p>
+                                    <div class="text-box-h-bb-wrapper">
+                                        <div class="text-box-h-bb">
+                                            @if(count($slots))
+                                                @foreach($slots as $slot)
+                                                    @if($slot->slots != 0)	
+                                                        
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-lg-4 col-md-4">
+                                                                @if($packages->days == 1)
+                                                                    <h5>
+                                                                        {{ Carbon\Carbon::parse($slot->date_from)->toFormattedDateString() }}
+                                                                    </h5>
+                                                                @else
+                                                                    <h5>
+                                                                        {{ Carbon\Carbon::parse($slot->date_from)->toFormattedDateString() }} -
+                                                                        {{ Carbon\Carbon::parse($slot->date_to)->toFormattedDateString() }}
+                                                                    </h5>
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4">
+                                                                @if($packages->type == 'Joined')
+                                                                    <p class="font-sm text-danger"><b>{{ $slot->slots }}</b> slots left</p>
+                                                                @else
+                                                                    <p class="font-sm text-danger"><b>{{ $slot->slots }}</b> pax</p>
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-lg-2 col-md-2">
+                                                                    <a data-toggle="modal" 
+                                                                        data-slot_id="{{ $slot->id }}"	
+                                                                        class="btn btn-danger btn-sm" id="deleteButton">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                                @else
+                                                    <h4 class="text-danger">No slots available for this package yet.</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-25"></div>
+                                    <div class="bb"></div>
+                                    <div class="mb-25"></div>
+                                    
+                                </div>
+                                
                                 @if(count($itineraries) > 0)
                                     @foreach($itineraries as $itinerary)
                                         <div id="itinerary">
                                     
-                                            <h2 class="font-lg">Itinerary</h2>
+                                            <h2 class="font-lg">ITINERARY</h2>
                                                 
                                                 <div class="itinerary-toggle-wrapper mb-40">
                                             
@@ -218,7 +266,7 @@
                                                                 <div class="row">
                                                                     <div class="col-xs-12 col-sm-4 col-md-3">
                                                                         <div class="image">
-                                                                            <img src="{{asset('images/itinerary/01.jpg')}}" alt="images" />
+                                                                            <img src="/public/uploads/files/{{ $itinerary->day1_photo }}" alt="images" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-xs-12 col-sm-8 col-md-9">
@@ -272,7 +320,7 @@
                                                                     <div class="row">
                                                                         <div class="col-xs-12 col-sm-4 col-md-3">
                                                                             <div class="image">
-                                                                                <img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+                                                                                <img src="/public/uploads/files/{{ $itinerary->day2_photo }}" alt="images" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-xs-12 col-sm-8 col-md-9">
@@ -328,7 +376,7 @@
                                                                     <div class="row">
                                                                         <div class="col-xs-12 col-sm-4 col-md-3">
                                                                             <div class="image">
-                                                                                <img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+                                                                                <img src="/public/uploads/files/{{ $itinerary->day3_photo }}" alt="images" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-xs-12 col-sm-8 col-md-9">
@@ -383,7 +431,7 @@
                                                                     <div class="row">
                                                                         <div class="col-xs-12 col-sm-4 col-md-3">
                                                                             <div class="image">
-                                                                                <img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+                                                                                <img src="/public/uploads/files/{{ $itinerary->day4_photo }}" alt="images" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-xs-12 col-sm-8 col-md-9">
@@ -438,7 +486,7 @@
                                                                     <div class="row">
                                                                         <div class="col-xs-12 col-sm-4 col-md-3">
                                                                             <div class="image">
-                                                                                <img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+                                                                                <img src="/public/uploads/files/{{ $itinerary->day5_photo }}" alt="images" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-xs-12 col-sm-8 col-md-9">
@@ -501,7 +549,7 @@
 
                                 <div id="additional-info">
                                 
-                                        <h2 class="font-lg">Additional Information</h2>
+                                        <h2 class="font-lg">ADDITIONAL INFORMATION</h2>
                                         
                                         <div class="text-box-h-bb-wrapper">
                                             <div class="text-box-h-bb">
@@ -541,7 +589,7 @@
 
                                 <div id="reviews">
                             
-                                    <h2 class="font-lg">Reviews</h2>
+                                    <h2 class="font-lg">REVIEWS</h2>
                                         
                                         <div class="review-wrapper">
                             
@@ -560,10 +608,10 @@
                                                                         <div class="rating-item rating-item-lg">
                                                                             <input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-readonly value="{{ $avg }}"/>
                                                                         </div>
-                                                                        @if($count > 1)
-                                                                            {{$count}} Reviews
+                                                                        @if($countCom > 1)
+                                                                            {{$countCom}} Reviews
                                                                         @else
-                                                                            {{$count}} Review
+                                                                            {{$countCom}} Review
                                                                         @endif
                                                                     </div>
                                                                 </div>
@@ -602,7 +650,7 @@
                                                                             </div>
                                                                         </div>
                                                                         
-                                                                        <div class="col-xs-12 col-sm-8 col-md-9">
+                                                                        <div class="col-xs-12 col-sm-8 col-md-6">
                                                                             
                                                                             <div class="review-replied">
                 
@@ -624,71 +672,18 @@
                                             <div class="review-content" id="comments">
                                             </div>
                                             
-                                            {{--  @if($booking->expired == '1')
-                                            <form method="POST" action="{{ URL::to('Traveler/Trips/CommentInsert') }}" id="comment-insert">
-                                                {{ csrf_field() }}
-                                                <input type="hidden" class="form-control" name="traveler_id" value="{{ auth()->user()->id }}">
-                                                <input type="hidden" name="package_id" class="form-control" value="{{ $booking->package_id }}">
-                                                <div id="review-form" class="review-form">
-                                            
-                                                    <h3 class="review-form-title">Leave Your Review</h3>
-                                                    
-                                                        <div class="row">
-                                                            
-                                                            <div class="col-xs-12 col-sm-12 col-md-">
-                                                            
-                                                                <div class="form-group pull-right">
-                                                                    
-                                                                    <div class="stars">
-                                                                        <label>Your rating: </label>
-                                                                        <input value="5" class="star star-5" id="star-1" type="radio" name="rating"/>
-                                                                        <label class="star star-1" for="star-1"></label>
-                                                                        <input value="4" class="star star-5" id="star-2" type="radio" name="rating"/>
-                                                                        <label class="star star-2" for="star-2"></label>
-                                                                        <input value="3" class="star star-3" id="star-3" type="radio" name="rating"/>
-                                                                        <label class="star star-3" for="star-3"></label>
-                                                                        <input value="2" class="star star-2" id="star-4" type="radio" name="rating"/>
-                                                                        <label class="star star-4" for="star-4"></label>
-                                                                        <input value="1" class="star star-1" id="star-5" type="radio" name="rating"/>
-                                                                        <label class="star star-5" for="star-5"></label>
-                                                                    </div>
-                                                                </div>
-                                                            
-                                                            </div>
-        
-                                                            <div class="clear"></div>
-                                                            
-                                                            <div class="col-sm-12 col-md-12">
-                                                            
-                                                                <div class="form-group">
-                                                                    <label>Your Message: </label>
-                                                                    <textarea name="comment" class="form-control form-control-sm" rows="5"></textarea>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="clear mb-5"></div>
-                                                            
-                                                            <div class="col-sm-12 col-md-8">
-                                                                <input type="hidden" name="traveler_fname" value="{{ auth()->user()->fname }}">
-                                                                <input type="hidden" name="traveler_lname" value="{{ auth()->user()->lname }}">
-                                                                <input type="submit" class="btn btn-info btn-lg" value="Submit">
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    
-                                                    </form> 
-                                                    
-                                                </div>
-                                                @endif
-                                            </div>  --}}
-                                            
                                         </div>
-                                    
                                 </div>
                             </form>
 
                         </div>
-                        
+
+                        <div class="col-xs-12 col-sm-12 col-md-2">
+                                <div class="content">
+                                    <a href="/Agent/Packages/EditPackage/{{$packages->package_id}}" class="btn btn-info btn-sm btn-wide"> Edit Package</a>
+                                    {{--  <button class="col-lg-12 btn btn-success btn-sm"> Edit  Itinerary</button>  --}}
+                                </div>
+                            </div>
                     </div>
                     
                 </div>
@@ -721,5 +716,33 @@
 </div>
 
 <!-- end Back To Top -->
+
+<!-- delete package-->
+<div id="deleteModal" role="dialog" class="modal fade login-box-wrapper">
+        <!-- Modal content-->
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			{{--  <h4 class="modal-title"></h4>  --}}
+		</div>
+		<form method="POST" action = "{{ route('Agent.DeleteSlot')}}">
+			{{ csrf_field() }}
+			<div class="modal-body" style="padding:5%; margin-top:2%">
+				<h4 class="center">Are you sure you want to delete this slot?</h4>
+				<input type="hidden" name="id" class="text-primary" id="slot_id">
+			</div>
+			<div class="modal-footer">
+				<button type="button" data-dismiss="modal" class="btn btn-success">Close</button>
+				<button type="submit" class="btn btn-danger">Delete</button>
+			</div>
+		</form>
+</div>
+<!-- end of delete package -->
+
+<script>
+    $(document).on("click",'#deleteButton',(function(){
+        $('#slot_id').val($(this).data('slot_id'));
+        $('#deleteModal').modal('show');
+    })); 
+</script>
 @endsection
 @extends('layouts.user.javascriptlayout')
