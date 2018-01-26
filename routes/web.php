@@ -17,15 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/', 'Auth\LoginController@logout')->name('Traveler.Logout');
 Route::get('/TravelerLogin', 'Auth\LoginController@showLoginForm')->name('TravelerLogin');
 Route::get('/TravelerRegister', 'Auth\LoginController@showRegisterForm')->name('TravelerRegister');
 Route::get('/AgentRegister', 'Auth\AgentsLoginController@showRegisterForm')->name('AgentRegister');
 Route::get('/AgentLogin', 'Auth\AgentsLoginController@showLoginForm')->name('AgentLogin');
-
 Route::post('/agents-register', 'Auth\AgentsRegisterController@register') -> name('agents-register');
 Route::post('/register', 'Auth\RegisterController@register') -> name('register');
 Route::post('/agentsRegister', 'Auth\RegisterController@showRegisterForm') -> name('agentsRegister');
-// Route::get('/agentsRegister', 'AgentsController@showRegisterForm') -> name('agentsRegister');
 Route::post('Agent/HomePage', 'Auth\AgentsLoginController@login')->name('Agents.Login.Submit');
 Route::post('/', 'Auth\LoginController@logout')->name('Traveler.Logout');
 Route::post('/', 'Auth\AgentsLoginController@logout')->name('Agent.Logout');
@@ -64,10 +63,8 @@ Route::prefix('Traveler')->group(function(){
 
     Route::get('/Trips', 'TravelersController@showTrips')->name('Traveler.Trips');
     Route::post('/Favorites', 'TravelersController@showFavorites')->name('Traveler.MyFavorites');
-    // Route::get('/Messages', 'TravelersController@showMessages')->name('Traveler.Messages');
     Route::post('/favorite', 'TravelersController@favoritePackage')->name('Traveler.Favorite');
     Route::post('/unfavorite', 'TravelersController@unfavoritePackage')->name('Traveler.unFavorite');
-    // Route::post('/favorite', 'TravelersController@favoritePackage')->name('Traveler.Favorite');
     Route::post('/Trips/CommentInsert', 'TravelersController@storeComment');
     Route::post('/Explore/AddToFavorite', 'TravelersController@addToFavorites');
     
@@ -91,13 +88,7 @@ Route::prefix('Admin')->group(function(){
 
 Route::prefix('Agent')->group(function(){
 
-    Route::get('/Packages', 'AgentsController@showHomePage') -> name('Agent.Home');
     Route::get('/Bookings', 'AgentsController@showBookings') -> name('Agent.Bookings');
-    Route::get('/Messages', 'AgentsController@showMessages') -> name('Agent.Messages');
-
-    // Route::get('/Packages', 'AgentsController@showHomePage') -> name('Agent.HomePage');
-    // Route::post('/Bookings', 'AgentsController@showBookings') -> name('Agent.Bookings');
-    // Route::get('/Bookings', 'AgentsController@showBookings') -> name('Agent.Bookings');
     Route::get('/Bookings/{booking}/{package}', 'AgentsController@openBooking') -> name('Agent.OpenBooking');
     Route::get('/Messages', 'AgentsController@showMessages') -> name('Agent.ShowMessages');
     Route::get('/SentMessages', 'AgentsController@showSentMessages') -> name('Agent.SentMessages');
@@ -107,23 +98,20 @@ Route::prefix('Agent')->group(function(){
     Route::post('/UpdateProfile', 'AgentsController@updateProfile')->name('Agent.UpdateProfile');
     Route::get('/Packages', 'AgentsController@showPackages') -> name('Agent.Packages');
     Route::get('/Bookings', 'AgentsController@showBookings') -> name('Agent.Bookings');
-    // Route::get('/Messages', 'AgentsController@showMessages') -> name('Agent.Messages');
-    
-    
     Route::get('/Messages', 'AgentsController@showMessages') -> name('Agent.ShowMessages');
-    // Route::get('/Itinerary', 'AgentsController@itinerary') -> name('Agent.Itinerary');
-    // Route::post('/Itinerary', array('uses' => 'AgentsController@storeItinerary'));
     
-    Route::post('/Packages/StorePackage', 'AgentsController@storePackage') -> name('Agent.StorePackage');
-
     //Create Packages
     Route::get('/Packages/CreatePackage', 'AgentsController@createPackage') -> name('Agent.CreatePackage');
+    
+    //Store Packages
+    Route::post('/Packages/StorePackage', 'AgentsController@storePackage') -> name('Agent.StorePackage');
 
     //View Create Itineraries 
     Route::get('/Packages/CreateItineraries', 'AgentsController@createItineraries') -> name('Agent.CreateItineraries');
 
     //Store Itineraries
-    Route::post('/Packages', array('uses' => 'AgentsController@storeItineraries'));
+    // Route::post('/Packages', array('uses' => 'AgentsController@storeItineraries'));
+    Route::post('/Packages', array('uses' => 'AgentsController@storeItinerary'))->name('Agent.StoreItinerary');
 
     //Update Itineraries
     Route::get('/Packages/EditItineraries/{package_id}', array('uses' => 'AgentsController@editItineraries'));

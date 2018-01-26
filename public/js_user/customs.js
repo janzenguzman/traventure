@@ -99,7 +99,7 @@ jQuery(function($) {
 		 */
 		var paymentoption = $("div.payment-option-form"); 
 		paymentoption.hide();
-		$("input[name$='service']").on("click",function() {
+		$("input[name$='type']").on("click",function() {
 			var test = $(this).val();
 			paymentoption.hide();
 			$("#" + test).show();

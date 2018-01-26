@@ -132,25 +132,25 @@
                                         {{--  <p>Fill in the form to successfully make</p>  --}}
                                         <div class="row">
                                             {!!Form::open(['action' => 'AgentsController@storePackage', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-                                                <div class="col-xs-12 col-sm-12">
-                                                    <div class="form-group form-group-lg">
-                                                        <label>Tour Package Name:</label>       
-                                                        <input type="text" name="package_name" class="form-control" placeholder="Tour Package Name" />
+                                                <div class="col-xs-12 col-sm-12 col-md-12">    
+                                                    <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Tour Package Name:</label>       
+                                                            <input type="text" name="package_name" class="form-control" placeholder="Tour Package Name" />
+                                                        </div>
                                                     </div>
-                                                </div>
-
-                                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                                    
                                                     <div class="row gap-20">
                                                         <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
                                                             <div class="form-group form-spin-group">
                                                                 <label>Day/s:</label>       
-                                                                <input type="text" name="days" class="form-control form-spin" placeholder="How many Days?" value="1" />
+                                                                <input type="text" value="1" name="days" class="form-control form-spin" placeholder="How many Days?" value="1" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="payment-content">
+                                                <div class="col-xs-12 col-sm-12 col-md-12">
 
                                                     <h4 class="section-title">Service Type</h4>
 
@@ -161,7 +161,7 @@
                                                             <div class="col-sm-12">
                                                             
                                                                 <div class="radio-block">
-                                                                    <input id="service1" name="service" type="radio" class="radio" value="Exclusive"/>
+                                                                    <input id="service1" name="type" type="radio" class="radio" value="Exclusive"/>
                                                                     <label class="" for="service1"><span>Exclusive Tour</span></label>
                                                                 </div>
                                                                 
@@ -250,7 +250,7 @@
                                                             <div class="col-sm-12">
 
                                                                 <div class="radio-block">
-                                                                    <input id="service2" name="service" type="radio" class="radio" value="Joined"/>
+                                                                    <input id="service2" name="type" type="radio" class="radio" value="Joined"/>
                                                                     <label class="" for="service2"><span>Joined Tour</span></label>
                                                                 </div>
 
@@ -371,13 +371,6 @@
                                         <div class="mb-25"></div>
 
                                         <div class="mb-50">
-                        
-                                            <div class="checkbox-block font-icon-checkbox">
-                                                <input id="term_accept-1" name="term_accept" type="checkbox" class="checkbox" />
-                                                <label class="" for="term_accept-1">Am terminated it excellence invitation projection as. She graceful shy believed distance use nay. Lively is people so basket ladies window expect. <a href="#" class="font700">Terms &amp; Conditions</a></label>
-                                            </div>
-                                            
-                                            <div class="mb-25"></div>
 
                                             <div class="form-group">
                                                 {{Form::file('photo', ['required' => 'required'])}}
@@ -385,7 +378,7 @@
                                             {{Form::submit('Submit', ['class' => "btn btn-primary btn-wide" ])}}
 
                                             {{--  <a href="requested-create-done.html" class="btn btn-primary btn-wide">Submit</a>  --}}
-                                            <a href="#" class="btn btn-primary btn-wide btn-border">Save as draft</a>
+                                            {{--  <a href="#" class="btn btn-primary btn-wide btn-border">Save as draft</a>  --}}
                                             
                                         </div>
                                     {!!Form::close() !!}

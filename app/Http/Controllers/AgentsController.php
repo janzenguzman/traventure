@@ -14,7 +14,9 @@ use DB;
 use View;
 use Carbon\Carbon;
 use Auth;
-
+use App\Agents;
+use App\Itinerary;
+use App\Days;
 
 class AgentsController extends Controller
 {
@@ -77,22 +79,6 @@ class AgentsController extends Controller
         $this->validate($request, [
             'photo' => 'image|nullable|max:1999',
         ]);
-
-        //Handle file upload
-        // if($request->hasFile('photo')){
-        //     //Get the filename with the extension
-        //     $filenameWithExt = $request->file('photo')->getClientOriginalName();
-        //     //Get just filename
-        //     $justFilename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        //     //Get just ext
-        //     $ext = $request->file('photo')->getClientOriginalExtension();
-        //     //Filename to store
-        //     $fileNameToStore =$justFilename.'_'.time().'.'.$ext;
-        //     //Upload Image
-        //     $path = $request->file('photo')->storeAs('public/uploads/files/', $fileNameToStore);
-        // }else{
-        //     $fileNameToStore = 'noimage.jpg';
-        // }
         if (Input::file('photo')->isValid()) {
             $destinationPath = public_path('public/uploads/files/');
             $extension = Input::file('photo')->getClientOriginalExtension();
@@ -110,7 +96,7 @@ class AgentsController extends Controller
             'child_price' => $request->input('child_price'),
             'infant_price' => $request->input('infant_price'),
             'excess_price' => $request->input('excess_price'),
-            'service' => $request->get('service'),
+            'type' => $request->get('type'),
             'pax1' => $request->input('pax1'),
             'pax1_price' => $request->input('pax1_price'),
             'pax2' => $request->input('pax2'),
@@ -125,165 +111,96 @@ class AgentsController extends Controller
             'agent_id' => $agent_id
         ));
         
-        dd($packages);
+        // dd($packages);
         $packages->save();
         
         return view('Agent.CreateItineraries')->with('packages', $packages);
     }
 
-    public function storeItineraries(Request $request){
-        $day1_photo = 'null';
-        // if (Input::file('day1_photo')->isValid()) {
-        if ($request->hasFile('day1_photo')){
-            $destinationPath = public_path('public/uploads/files/');
-            $extension = Input::file('day1_photo')->getClientOriginalExtension();
-            $day1_photo = uniqid().'.'.$extension;
-    
-            Input::file('day1_photo')->move($destinationPath, $day1_photo);
-        }
-
-        $day2_photo = 'null';
-        // if (Input::file('day2_photo')->isValid()) {
-            if ($request->hasFile('day2_photo')){
-            $destinationPath = public_path('public/uploads/files/');
-            $extension = Input::file('day2_photo')->getClientOriginalExtension();
-            $day2_photo = uniqid().'.'.$extension;
-    
-            Input::file('day2_photo')->move($destinationPath, $day2_photo);
-        }
-
-        $day3_photo = 'null';
-        // if (Input::file('day3_photo')->isValid()) {
-            if ($request->hasFile('day3_photo')){
-            $destinationPath = public_path('public/uploads/files/');
-            $extension = Input::file('day3_photo')->getClientOriginalExtension();
-            $day3_photo = uniqid().'.'.$extension;
-    
-            Input::file('day3_photo')->move($destinationPath, $day3_photo);
-        }
-
-        $day4_photo = 'null';
-        // if (Input::file('day4_photo')->isValid()) {
-            if ($request->hasFile('day4_photo')){
-            $destinationPath = public_path('public/uploads/files/');
-            $extension = Input::file('day4_photo')->getClientOriginalExtension();
-            $day4_photo = uniqid().'.'.$extension;
-    
-            Input::file('day4_photo')->move($destinationPath, $day4_photo);
-        }
-
-        $day5_photo = 'null';
-        // if (Input::file('day5_photo')->isValid()) {
-            if ($request->hasFile('day5_photo')){
-            $destinationPath = public_path('public/uploads/files/');
-            $extension = Input::file('day5_photo')->getClientOriginalExtension();
-            $day5_photo = uniqid().'.'.$extension;
-    
-            Input::file('day5_photo')->move($destinationPath, $day5_photo);
-        }
-
+    public function storeItinerary(Request $request){
         $packages = Packages::all();
-        $itineraries =  new Itineraries;
-        $itineraries->package_id = $request->input('package_id');
-
-        // Day 1
-        $itineraries->day1_starttime1 = $request->input('day1_starttime1');
-        $itineraries->day1_endtime1 = $request->input('day1_endtime1');
-        $itineraries->day1_destination1 = $request->input('day1_destination1');
-        $itineraries->day1_starttime2 = $request->input('day1_starttime2');
-        $itineraries->day1_endtime2= $request->input('day1_endtime2');
-        $itineraries->day1_destination2 = $request->input('day1_destination2');
-        $itineraries->day1_starttime3 = $request->input('day1_starttime3');
-        $itineraries->day1_endtime3= $request->input('day1_endtime3');
-        $itineraries->day1_destination3 = $request->input('day1_destination3');
-        $itineraries->day1_starttime4 = $request->input('day1_starttime4');
-        $itineraries->day1_endtime4= $request->input('day1_endtime4');
-        $itineraries->day1_destination4 = $request->input('day1_destination4');
-        $itineraries->day1_starttime5 = $request->input('day1_starttime5');
-        $itineraries->day1_endtime5= $request->input('day1_endtime5');
-        $itineraries->day1_destination5 = $request->input('day1_destination5');
-        $itineraries->day1_photo = $day1_photo;
-
-        // Day 2
-        $itineraries->day2_starttime1 = $request->input('day2_starttime1');
-        $itineraries->day2_endtime1= $request->input('day2_endtime1');
-        $itineraries->day2_destination1 = $request->input('day2_destination1');
-        $itineraries->day2_starttime2 = $request->input('day2_starttime2');
-        $itineraries->day2_endtime2= $request->input('day2_endtime2');
-        $itineraries->day2_destination2 = $request->input('day2_destination2');
-        $itineraries->day2_starttime3 = $request->input('day2_starttime3');
-        $itineraries->day2_endtime3= $request->input('day2_endtime3');
-        $itineraries->day2_destination3 = $request->input('day2_destination3');
-        $itineraries->day2_starttime4 = $request->input('day2_starttime4');
-        $itineraries->day2_endtime4= $request->input('day2_endtime4');
-        $itineraries->day2_destination4 = $request->input('day2_destination4');
-        $itineraries->day2_starttime5 = $request->input('day2_starttime5');
-        $itineraries->day2_endtime5= $request->input('day2_endtime5');
-        $itineraries->day2_destination5 = $request->input('day2_destination5');
-        $itineraries->day2_photo = $day2_photo;
-
-        // Day 3
-        $itineraries->day3_starttime1 = $request->input('day3_starttime1');
-        $itineraries->day3_endtime1= $request->input('day3_endtime1');
-        $itineraries->day3_destination1 = $request->input('day3_destination1');
-        $itineraries->day3_starttime2 = $request->input('day3_starttime2');
-        $itineraries->day3_endtime2= $request->input('day3_endtime2');
-        $itineraries->day3_destination2 = $request->input('day3_destination2');
-        $itineraries->day3_starttime3 = $request->input('day3_starttime3');
-        $itineraries->day3_endtime3= $request->input('day3_endtime3');
-        $itineraries->day3_destination3 = $request->input('day3_destination3');
-        $itineraries->day3_starttime4 = $request->input('day3_starttime4');
-        $itineraries->day3_endtime4= $request->input('day3_endtime4');
-        $itineraries->day3_destination4 = $request->input('day3_destination4');
-        $itineraries->day3_starttime5 = $request->input('day3_starttime5');
-        $itineraries->day3_endtime5= $request->input('day3_endtime5');
-        $itineraries->day3_destination5 = $request->input('day3_destination5');
-        $itineraries->day3_photo = $day3_photo;
-
-        // Day 4
-        $itineraries->day4_starttime1 = $request->input('day4_starttime1');
-        $itineraries->day4_endtime1= $request->input('day4_endtime1');
-        $itineraries->day4_destination1 = $request->input('day4_destination1');
-        $itineraries->day4_starttime2 = $request->input('day4_starttime2');
-        $itineraries->day4_endtime2= $request->input('day4_endtime2');
-        $itineraries->day4_destination2 = $request->input('day4_destination2');
-        $itineraries->day4_starttime3 = $request->input('day4_starttime3');
-        $itineraries->day4_endtime3= $request->input('day4_endtime3');
-        $itineraries->day4_destination3 = $request->input('day4_destination3');
-        $itineraries->day4_starttime4 = $request->input('day4_starttime4');
-        $itineraries->day4_endtime4= $request->input('day4_endtime4');
-        $itineraries->day4_destination4 = $request->input('day4_destination4');
-        $itineraries->day4_starttime5 = $request->input('day4_starttime5');
-        $itineraries->day4_endtime5= $request->input('day4_endtime5');
-        $itineraries->day4_destination5 = $request->input('day4_destination5');
-        $itineraries->day4_photo = $day4_photo;
-
-        // Day 5
-        $itineraries->day5_starttime1 = $request->input('day5_starttime1');
-        $itineraries->day5_endtime1= $request->input('day5_endtime1');
-        $itineraries->day5_destination1 = $request->input('day5_destination1');
-        $itineraries->day5_starttime2 = $request->input('day5_starttime2');
-        $itineraries->day5_endtime2= $request->input('day5_endtime2');
-        $itineraries->day5_destination2 = $request->input('day5_destination2');
-        $itineraries->day5_starttime3 = $request->input('day5_starttime3');
-        $itineraries->day5_endtime3= $request->input('day5_endtime3');
-        $itineraries->day5_destination3 = $request->input('day5_destination3');
-        $itineraries->day5_starttime4 = $request->input('day5_starttime4');
-        $itineraries->day5_endtime4= $request->input('day5_endtime4');
-        $itineraries->day5_destination4 = $request->input('day5_destination4');
-        $itineraries->day5_starttime5 = $request->input('day5_starttime5');
-        $itineraries->day5_endtime5= $request->input('day5_endtime5');
-        $itineraries->day5_destination5 = $request->input('day5_destination5');
-        $itineraries->day5_photo = $day5_photo;
+        $this->validate($request, [
+            'day1_photo[]' => 'image|nullable|max:1999',
+        ]);
+        $day1_photo = 'null';
+        if ($day1_photo = $request->hasFile('day1_photo')) {
+            for($j = 0; $j < count($request->hasFile('day1_photo[]')); ++$j) {
+                $destinationPath = public_path('public/uploads/files/');
+                $extension = Input::file('day1_photo')->getClientOriginalExtension();
+                $day1_photo = uniqid().'.'.$extension;
         
-        $itineraries->save();
-
-        return redirect('\Agent\Packages')->with(['packages' => $packages, 'addedPackage' => 'You have successfully made a new Package Tour!']);
+                Input::file('day1_photo')->move($destinationPath, $day1_photo[$j]);
+            }
+        }
+        // $day1_photo = array();
+        // if ($day1_photo = $request->hasFile('day1_photo[]')){
+        //     for($j = 0; $j < count($request->hasFile('day1_photo[]')); ++$j) {
+        //         $destinationPath = public_path('public/uploads/files/');
+        //         $extension = Input::file('day1_photo[$j]')->getClientOriginalExtension();
+        //         $day1_photo = uniqid().'.'.$extension;
+        
+        //         Input::file('day1_photo[$j]')->move($destinationPath, $day1_photo);
+        //     }
+            
+        // }
+        dd($day1_photo);
+        $package_id = $request->input('package_id');
+        //$count = $request->input('daysCount');
+        // dd($package_id);
+        // $day->save();
+        // dd($day->id);
+        for($x = 0; $x < count($request->input('starttime')); ++$x){
+            $itinerary =  new Itinerary;
+            $itinerary->package_id = $package_id;
+            $itinerary->starttime =  $request->input('starttime')[$x];
+            $itinerary->endtime = $request->input('endtime')[$x];
+            $itinerary->destination = $request->input('destination')[$x];
+            $itinerary->day = $request->input('day');
+            $itinerary->save();
+        }
+        
+        $id = $itinerary->itinerary_id;
+            // dd($id);
+            // dd('HELLO');
+        for($a = 0; $a < count($id); ++$a){  
+            $day = new Days;
+            $day->itinerary_id = $id;
+            for($b = 0; $b < count($request->input('day')); ++$b){
+                $day->days = $request->input('day');
+                $day->days->save();
+            }
+            $day->photo = $day1_photo[$a];
+            // dd($day);
+            $day->save();
+        }
+        // dd($day);
+        // return "hi";
+        // return back();
+        return redirect('Agent\Packages')->with('packages', $packages)
+            ->with('addedPackage', 'You have successfully made a new Package Tour!');
     }
     
     public function showPackages(){
-        $packages =  Packages::all();
-        return view('\Agent\Packages')->with('packages', $packages);
+        $packages =  DB::table('packages')
+            ->where('agent_id', auth()->user()->id)
+            ->orderby('packages.created_at', 'desc')
+            ->paginate(8);
+
+        $lastSignedIn = new Carbon(Auth::guard('agents')->user()->last_signed_in);
+        $now = Carbon::now();
+        $diffHours = $lastSignedIn->diffInHours($now);
+
+        if($diffHours <= 1){
+            DB::table('agents')->where('id', auth()->user()->id)->update(['active' => '1']);
+        }else{
+            DB::table('agents')->where('id', auth()->user()->id)->update(['active' => '0']);
+        }
+        $agentPhoto = auth()->user()->photo;
+        // return view('Agent.Home', compact('diffHours'));
+
+        return view('\Agent\Packages')->with(['packages' => $packages, 
+                                            'diffHours' => $diffHours, 
+                                            'agentPhoto' => $agentPhoto]);
     }
 
     public function editItineraries($package_id){
@@ -522,9 +439,9 @@ class AgentsController extends Controller
         $packages =  Packages::find($package_id);
         $booking = Bookings::find($package_id);
         // $itineraries = Itineraries::find($package_id);
-        $itineraries = DB::table('itineraries')
-                    ->join('packages', 'packages.package_id', 'itineraries.package_id')
-                    ->where('itineraries.package_id', $package_id)
+        $itineraries = DB::table('itinerary')
+                    ->join('packages', 'packages.package_id', 'itinerary.package_id')
+                    ->where('itinerary.package_id', $package_id)
                     ->get();
         $count = count(DB::table('packages')->where('agent_id', Auth::user()->id)->get());
         $avg = DB::table('comments')->where('package_id', $package_id)->avg('rating');
@@ -535,13 +452,29 @@ class AgentsController extends Controller
         $countCom = DB::table('comments')
                 ->where('package_id', $package_id)
                 ->count();
+        $photo = DB::table('itinerary')
+                ->join('days', 'days.itinerary_id', 'itinerary.itinerary_id')
+                ->where('itinerary.package_id', $package_id)
+                ->select('days.photo')->get();
+        
+        $days = DB::table('itinerary')
+                ->where('itinerary.package_id', $package_id)
+                ->select('day')->get();
+
+        // $day = Itinerary::find($package_id)->selec;
+                // dd($day);
+        // for($a = 1; $a <= $days; ++$a){
+
+        // }
         return View::make('\Agent\PackageDetails', ['packages' => $packages, 
                                                     'itineraries' => $itineraries, 
                                                     'count' => $count,
                                                     'avg' => $avg,
                                                     'booking' => $booking,
                                                     'comments' => $comments,
-                                                    'countCom' => $countCom]);
+                                                    'countCom' => $countCom,
+                                                    'photo' => $photo,
+                                                    'days' => $days]);
     }
 
     public function editAgent($id){
@@ -583,7 +516,7 @@ class AgentsController extends Controller
         $packages = Packages::all();
 
         $slots = new Slots;
-        $slots->package_id = $request->input('package_id');      
+        $slots->package_id = $request->input('package_id');
         $slots->date_to = $request->input('date_to');
         $slots->date_from = $request->input('date_from');
         $slots->slots = $request->input('slots');
@@ -593,19 +526,19 @@ class AgentsController extends Controller
         return redirect('Agent/Packages')->with('packages', $packages);
     }
   
-    public function showHomePage(){
+    // public function showHomePage(){
 
-        $lastSignedIn = new Carbon(Auth::guard('agents')->user()->last_signed_in);
-        $now = Carbon::now();
-        $diffHours = $lastSignedIn->diffInHours($now);
+    //     $lastSignedIn = new Carbon(Auth::guard('agents')->user()->last_signed_in);
+    //     $now = Carbon::now();
+    //     $diffHours = $lastSignedIn->diffInHours($now);
 
-        if($diffHours <= 1){
-            DB::table('agents')->where('id', auth()->user()->id)->update(['active' => '1']);
-        }else{
-            DB::table('agents')->where('id', auth()->user()->id)->update(['active' => '0']);
-        }
-        return view('Agent.Home', compact('diffHours'));
-    }
+    //     if($diffHours <= 1){
+    //         DB::table('agents')->where('id', auth()->user()->id)->update(['active' => '1']);
+    //     }else{
+    //         DB::table('agents')->where('id', auth()->user()->id)->update(['active' => '0']);
+    //     }
+    //     return view('Agent.Home', compact('diffHours'));
+    // }
 
     // public function showRegisterForm(){
     //     return view ('agentsRegister');
