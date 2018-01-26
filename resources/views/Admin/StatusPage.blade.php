@@ -77,7 +77,36 @@
             </div>
             <footer class="footer text-center"> 2017 &copy; Traventure </footer>
         </div>
+
+        <!-- deactivate modal content -->
+        <div id="deactivateModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form method="POST" action = "{{ route('Admin.Deactivate')}}">
+                        {{ csrf_field() }}
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">Deactivate Inactive Account</h4> </div>
+                        <div class="modal-body">
+                            <h5>Are you sure you want to deactive this account?</h5>
+                            <input type="hidden" class="form-control" id="id" name="id">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info waves-effect" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger waves-effect">Decline</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
 </body>
+<!--AJAX-->
+<script>
+    $(document).on("click",'#deactivateButton',(function(){
+        $('#id').val($(this).data('id'));
+    })); 
+</script>
 @endsection
 @extends('layouts.admin.javascriptlayout')
 

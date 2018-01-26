@@ -17,9 +17,9 @@
 		
 		<!-- end Header -->
 		<!--start main wrapper-->
-
 		<div class="main-wrapper scrollspy-container">
-			<div class="breadcrumb-image-bg detail-breadcrumb" style="background-image:url({{ asset('images/detail-header.jpg') }});">
+			@foreach($packages as $package)
+			<div class="breadcrumb-image-bg detail-breadcrumb" style="background-image:url({{asset('images/hero-header/06.jpg')}});">
 				<div class="container">
 
 					<div class="page-title detail-header-02">
@@ -27,7 +27,6 @@
 						<div class="row">
 						
 							<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-							@foreach($packages as $package)
 								<h2>{{$package->package_name}}</h2>
 								<span class="labeling text-white mt-25"> 
 									<span>
@@ -112,7 +111,7 @@
 									<div class="user-long-sm-item clearfix">
 						
 										<div class="image">
-											<img src="/public/uploads/files/{{ $package->photo }}" alt="Images" />
+											<img src="/public/uploads/files/{{ $package->agent_photo }}" alt="Images" />
 										</div>
 										
 										<div class="content">
@@ -157,13 +156,20 @@
 										<div class="mb-25"></div>
 										<div class="bb"></div>
 										<div class="mb-25"></div>
+										<span id="fave" data-id="{{ $package->package_id }}">
+											<a class="fave btn btn-danger btn-wide pull-right">
+													{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
+														Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
+														'Unfavorite' : 'Favorite' : 'Favorite'}}
+											</a>
+											</span>
 										<h2 class="font-lg">{{$package->type}} Tour</h2>
-
+										<label class="text-muted">Categories: {{$package->categories}} </label>
 										<div class="row">
 							
 											<div class="col-xs-12 col-sm-8 col-md-12">
 											
-												<div class="featured-list-in-box">
+												<div class="featured-list-in-box"><br>
 													<h4 class="uppercase spacing-1">Trip Details</h4>
 													<div id="itinerary">
 															
@@ -178,7 +184,7 @@
 																			<div class="row">
 																				<div class="col-xs-12 col-sm-4 col-md-3">
 																					<div class="image">
-																						<img src="{{asset('images/itinerary/01.jpg')}}" alt="images" />
+																						<img src="/public/uploads/files/{{ $package->day1_photo }}" alt="images" />
 																					</div>
 																				</div>
 																				<div class="col-xs-12 col-sm-8 col-md-9">
@@ -227,7 +233,7 @@
 																				<div class="row">
 																					<div class="col-xs-12 col-sm-4 col-md-3">
 																						<div class="image">
-																							<img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+																							<img src="/public/uploads/files/{{ $package->day2_photo }}" alt="images" />
 																						</div>
 																					</div>
 																					<div class="col-xs-12 col-sm-8 col-md-9">
@@ -278,7 +284,7 @@
 																				<div class="row">
 																					<div class="col-xs-12 col-sm-4 col-md-3">
 																						<div class="image">
-																							<img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+																							<img src="/public/uploads/files/{{ $package->day3_photo }}" alt="images" />
 																						</div>
 																					</div>
 																					<div class="col-xs-12 col-sm-8 col-md-9">
@@ -328,7 +334,7 @@
 																				<div class="row">
 																					<div class="col-xs-12 col-sm-4 col-md-3">
 																						<div class="image">
-																							<img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+																							<img src="/public/uploads/files/{{ $package->day4_photo }}" alt="images" />
 																						</div>
 																					</div>
 																					<div class="col-xs-12 col-sm-8 col-md-9">
@@ -378,7 +384,7 @@
 																				<div class="row">
 																					<div class="col-xs-12 col-sm-4 col-md-3">
 																						<div class="image">
-																							<img src="{{asset('images/itinerary/02.jpg')}}" alt="images" />
+																							<img src="/public/uploads/files/{{ $package->day5_photo }}" alt="images" />
 																						</div>
 																					</div>
 																					<div class="col-xs-12 col-sm-8 col-md-9">
@@ -465,6 +471,14 @@
 																PHP {{ $package->pax3_price }}.00
 															</div>
 														</li>
+														<li class="row gap-20">
+															<div class="col-xs-12 col-sm-3">
+																Excess Person Price
+															</div>
+															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
+																PHP {{ $package->excess_price }}.00
+															</div>
+														</li>
 													</ul>
 												@else
 													<ul class="clearfix">
@@ -514,10 +528,16 @@
 															<br>
 															<div class="row">
 																<div class="col-lg-4 col-md-4">
-																	<h5>
-																		{{ Carbon\Carbon::parse($slot->date_from)->toFormattedDateString() }} -
-																		{{ Carbon\Carbon::parse($slot->date_to)->toFormattedDateString() }}
-																	</h5>
+																	@if($package->days == 1)
+																		<h5>
+																			{{ Carbon\Carbon::parse($slot->date_from)->toFormattedDateString() }}
+																		</h5>
+																	@else
+																		<h5>
+																			{{ Carbon\Carbon::parse($slot->date_from)->toFormattedDateString() }} -
+																			{{ Carbon\Carbon::parse($slot->date_to)->toFormattedDateString() }}
+																		</h5>
+																	@endif
 																</div>
 																<div class="col-lg-4 col-md-4">
 																	@if($package->type == 'Joined')
@@ -714,6 +734,7 @@
 		
 													<div class="col-sm-12 col-md-12">
 														<input type="hidden" name="package_id" value="{{$package->package_id}}">
+														<input type="hidden" name="receiver_email" value="{{$package->email}}">
 													</div>
 													
 													<div class="col-sm-12 col-md-12">
@@ -739,32 +760,6 @@
 									</aside>
 									
 										<br>
-		
-										{{--  <a href="#" style="color:black" class="add-fav-btn">
-											<div class="inner">
-												<i class="ti-heart" style="color:red"></i> Add Favourite
-											</div>
-										</a>  --}}
-										
-											<span id="fave" data-id="{{ $package->package_id }}">
-												<a style="color:black" class="fave add-fav-btn">
-													
-													<div class="inner">
-														@if(count($favs) == 0)
-															@foreach($favs as $fav)
-																@if($fav->favorited == 1)
-																	<i class="ti-heart" style="color:red"></i>
-																@else
-																	<i class="fa fa-heart" style="color:red"></i>
-																@endif
-															@endforeach
-														@endif
-														{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
-															Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
-															'Unfavorite' : 'Favorite' : 'Favorite'}}
-													</div>
-												</a>
-											</span>
 								</div>
 								
 							
@@ -837,6 +832,15 @@
 											<input type="hidden" name="slots" class="slots">
 											<input type="hidden" name="service" class="service">
 											<input type="hidden" name="package_id" class="package_id">
+
+											@if($package->days == '1')
+												<div class="col-sm-6 col-md-12">
+													<span class="labeling" style="color:black">Date: </span>
+													<div class="form-group form-group-sm">
+														<input type="text" name="date_from" class="date_from form-control" readonly>
+													</div>
+												</div>
+											@else
 												<div class="col-sm-6 col-md-6">
 													<span class="labeling" style="color:black">From: </span>
 													<div class="form-group form-group-sm">
@@ -850,7 +854,7 @@
 														<input type="text" name="date_to" class="date_to form-control" readonly>
 													</div>
 												</div>
-	
+											@endif
 												<div class="col-sm-6 col-md-6">
 													 <div class="form-group"> 
 														<span class="labeling" style="color:black">First Name: </span>
@@ -893,15 +897,15 @@
 														<div class="form-group form-spin-group"> 
 															<span class="labeling" style="color:black">Adult: (11 years. above)</span>
 															<div class="form-group form-group-sm">
-																<input type="text" name="adult" min="0" class="form-control form-spin" required/>
+																<input type="text" name="adult" min="0" class="form-control form-spin" value="0" required/>
 															</div>
 														</div>
 													</div>
 													<div class="col-sm-4 col-md-4">
 														<div class="form-group form-spin-group"> 
-															<span class="labeling" style="color:black">Child: (4-10 yesrs.)</span>
+															<span class="labeling" style="color:black">Child: (4-10 years.)</span>
 															<div class="form-group form-group-sm">
-																<input type="text" name="child" min="0" class="form-control form-spin" required/>
+																<input type="text" name="child" min="0" class="form-control form-spin" value="0" required/>
 															</div>
 														</div>
 													</div>
@@ -911,7 +915,7 @@
 														<div class="form-group form-spin-group"> 
 															<span class="labeling" style="color:black">Infant: (3 years below)</span>
 															<div class="form-group form-group-sm">
-																<input type="text" name="infant" min="0" class="form-control form-spin" required/>
+																<input type="text" name="infant" min="0" class="form-control form-spin" value="0" required/>
 															</div>
 														</div>
 													</div>
@@ -932,7 +936,7 @@
 														<div class="form-group form-spin-group"> 
 															<span class="labeling" style="color:black">Number of Excess Person: </span>
 															<div class="form-group form-group-sm">
-																<input type="text" name="no_of_excess" min="0" class="form-control form-spin"/>
+																<input type="text" name="no_of_excess" min="0" value="0" class="form-control form-spin"/>
 															</div>
 														</div>
 													</div>
@@ -1003,10 +1007,10 @@
 				success: function(data){
 					console.log(data);
 					if (data == 'Favorite') {
-						$t.html('<div class="inner"><i class="fa fa-heart" style="color:red"></i>Unfavorite</div>');
+						$t.text('Unfavorite');
 						//$t.append('<button class="btn btn-danger">Unfavorite</button>')
 					}else{
-						$t.html('<div class="inner"><i class="ti-heart heart" style="color:red"></i>Favorite</div>');
+						$t.text('Favorite');
 					}
 				},
 				error: function (jqXHR, exception) {

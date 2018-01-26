@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
+use DB;
 
 class AgentsLoginController extends Controller
 {
@@ -53,8 +54,10 @@ class AgentsLoginController extends Controller
         //Attempt to log the user in
         if(Auth::guard('agents')->attempt(['email' => $request->email,
                 'password' => $request->password, 'status' => 'Accepted'], $request->remember))
+                
         {
             //if successful to the intended location
+            
             return redirect()->route('Agent.Packages');
         }elseif(Auth::guard('agents')->attempt(['email' => $request->email,
                     'password' => $request->password, 'status' => 'Pending'], $request->remember)){

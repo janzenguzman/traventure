@@ -72,8 +72,12 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-6 mt-sm">
                                                 <span class="pl-sm">
-                                                    {{ Carbon\Carbon::parse($booking->date_from)->toFormattedDateString() }} -
-                                                    {{ Carbon\Carbon::parse($booking->date_to)->toFormattedDateString() }} 
+                                                    @if($booking->date_to == NULL)
+                                                        {{ Carbon\Carbon::parse($booking->date_from)->toFormattedDateString() }} 
+                                                    @else
+                                                        {{ Carbon\Carbon::parse($booking->date_from)->toFormattedDateString() }} -
+                                                        {{ Carbon\Carbon::parse($booking->date_to)->toFormattedDateString() }}
+                                                    @endif 
                                                 </span>
                                             </div>
                                         </div>
@@ -190,9 +194,9 @@
                                                                 </div>
                                                                 <div class="col-xs-5 col-sm-5 text-right">
                                                                     <h6 style="font-wight:bold"> 
-                                                                        PHP {{ $booking->adult_price }} <br>
-                                                                        PHP {{ $booking->child_price }} <br>
-                                                                        PHP {{ $booking->infant_price }}
+                                                                        PHP {{ number_format($booking->adult_price, 2) }} <br>
+                                                                        PHP {{ number_format($booking->child_price, 2) }} <br>
+                                                                        PHP {{ number_format($booking->infant_price, 2) }}
                                                                     </h6>
                                                                 </div>
                                                             </div>
@@ -206,13 +210,13 @@
                                                                     <span class="font600">Total </span>
                                                                 </div>
                                                                 <div class="col-xs-5 col-sm-5 text-right">
-                                                                        PHP {{ $booking->adult_price }} x {{ $booking->adult }} <br>
-                                                                        PHP {{ $booking->child_price }} x {{ $booking->child }} <br>
-                                                                        PHP {{ $booking->infant_price }} x {{ $booking->infant }}
+                                                                        PHP {{ number_format($booking->adult_price, 2) }} x {{ $booking->adult }} <br>
+                                                                        PHP {{ number_format($booking->child_price, 2) }} x {{ $booking->child }} <br>
+                                                                        PHP {{ number_format($booking->infant_price, 2) }} x {{ $booking->infant }}
                                                                 </div>
                                                                 <h4 class="font600 font24 block text-primary mt-5 pull-right">
-                                                                    PHP {{ ($booking->adult * $booking->adult_price) + 
-                                                                        ($booking->child * $booking->child_price) + ($booking->infant * $booking->infant_price) }}.00</h4>
+                                                                    PHP {{ number_format(($booking->adult * $booking->adult_price) + 
+                                                                        ($booking->child * $booking->child_price) + ($booking->infant * $booking->infant_price),2) }}</h4>
                                                             </div>
                                                         </li>
                                                         
@@ -235,8 +239,8 @@
                                                                     Excess Person Price 
                                                                 </div>
                                                                 <div class="col-xs-5 col-sm-5 text-right">
-                                                                    PHP {{$booking->pax_price}} <br>
-                                                                    PHP {{ $booking->excess_price }} 
+                                                                    PHP {{ number_format($booking->pax_price, 2) }} <br>
+                                                                    PHP {{ number_format($booking->excess_price, 2) }} 
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -249,11 +253,11 @@
                                                                     <span class="font600">Total </span>
                                                                 </div>
                                                                 <div class="col-xs-5 col-sm-5 text-right">
-                                                                        PHP {{ $booking->pax_price }} <br>
-                                                                        PHP {{ $booking->no_of_excess }} x {{ $booking->excess_price }}
+                                                                        PHP {{ number_format($booking->pax_price, 2) }} <br>
+                                                                        PHP {{ number_format($booking->excess_price, 2) }} x {{ $booking->no_of_excess }} 
                                                                 </div>
                                                                 <h4 class="font600 font24 block text-primary mt-5 pull-right">
-                                                                    PHP {{ $booking->total_payment }}</h4>
+                                                                    PHP {{ number_format($booking->total_payment, 2) }}</h4>
                                                             </div>
                                                         </li>
                                                         

@@ -71,3 +71,42 @@ div.stars {
   line-height: 1.35;
   margin-bottom: 6px;
 }
+
+.service-content + .service-content {
+  margin-top: 50px;
+}
+
+
+.details {
+  display: none;
+}
+:checked ~ .details {
+  display: block;
+  position: absolute;
+  left: 1em;
+  top: 4em;
+}
+.btn-holder {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 170px;
+  border: 1px solid rgb(28, 139, 212);
+}
+
+.bootstrap-tagsinput {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    padding: 4px 6px;
+    color: #555;
+    max-width: 100%;
+}
+.bootstrap-tagsinput input {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    background-color: transparent;
+    width: auto;
+}
+

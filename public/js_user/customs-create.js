@@ -22,6 +22,7 @@ jQuery(function($) {
 		Dropzone.autoDiscover = false;
 		$("#file-submit").dropzone({
 				url: "upload",
+				maxFiles: 1,
 				addRemoveLinks: true
 		});
 
@@ -61,8 +62,8 @@ jQuery(function($) {
 	});
 	engine.initialize();
 	$('#autocompleteTagging').tokenfield({
-		typeahead: [null, { source: engine.ttAdapter() }],
-		limit: '4',
+		typeahead: [null],
+		limit: '1',
 	});
 	
 	// Autocomplete Tagging 
@@ -75,8 +76,7 @@ jQuery(function($) {
 	});
 	engine.initialize();
 	$('#autocompleteTagging2').tokenfield({
-		typeahead: [null, { source: engine.ttAdapter() }],
-		limit: '5',
+		typeahead: [null],
 	});
 
 	

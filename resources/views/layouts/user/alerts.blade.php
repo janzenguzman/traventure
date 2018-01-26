@@ -59,4 +59,44 @@
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         {{ session('BookingFailed')}}
     </div>
+@elseif(session('slotsAdded'))
+    <div class="alert alert-success alert-dismissable fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ session('slotsAdded')}}
+    </div>
+@elseif(session('SlotDeleted'))
+    <div class="alert alert-success alert-dismissable fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ session('SlotDeleted')}}
+    </div>
+@elseif(session('BookingDeleted'))
+    <div class="alert alert-success alert-dismissable fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ session('BookingDeleted')}}
+    </div>
+@elseif(session('BookingAccepted'))
+    <div class="alert alert-success alert-dismissable fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ session('BookingAccepted')}}
+    </div>
+@elseif(session('BookingDeclined'))
+    <div class="alert alert-success alert-dismissable fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ session('BookingDeclined')}}
+    </div>
+@elseif(session('PasswordChanged'))
+    <div class="alert alert-success alert-dismissable fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ session('PasswordChanged')}}
+    </div>
+@elseif(session('ErrorReEnteredPassword'))
+    <div class="alert alert-danger alert-dismissable fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ session('ErrorReEnteredPassword')}}
+    </div>
+@elseif(session('ErrorPassword'))
+    <div class="alert alert-danger alert-dismissable fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ session('ErrorPassword')}}
+    </div>
 @endif

@@ -1,71 +1,6 @@
 @extends('layouts.user.headlayout')
 
 @section('content')
-{{--  <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading"><h1 style="text-align:center;">Bookings</h1></div>
-                @if(count($bookings) > 0)
-                    <table class="table table-striped">
-                        <tr>
-                            <th>Booking ID</th>
-                            <th>Package Name</th>
-                            <th>Package ID</th>
-                            <th>Client</th>
-                            <th>Status</th>
-                            <th>Date</th>
-                            <th>Expired</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        @foreach($bookings as $booking)
-                            @if($booking->expired == 0)
-                                <tr>
-                                    <td>{{$booking->booking_id}}</td>
-                                    <td>{{$booking->package_name}}</td>
-                                    <td>{{$booking->package_id}}</td>
-                                    <td>{{$booking->client_fname}} {{$booking->client_lname}}</td>
-                                    @if($booking->status == 0)
-                                        <td>Pending</td>
-                                    @else
-                                        <td>Accepted</td>
-                                    @endif
-                                    <td>{{$booking->date_from = Carbon\Carbon::parse($booking->date_from)->toFormattedDateString()}} - {{$booking->date_to = Carbon\Carbon::parse($booking->date_to)->toFormattedDateString()}}</td>
-                                    {{--  <td>Not Expired</td> 
-                                    @if($booking->expired == 0)
-                                        <td>Not Expired</td>
-                                    @else
-                                        <td>Expired</td>
-                                    @endif
-                                    <td>
-                                        {!!Form::open(['action' => ['TravelersController@destroyBookings', $booking->booking_id], 'method' => 'POST'])!!}
-                                            {{Form::hidden('_method', 'DELETE')}}
-                                            {{Form::submit('Cancel Booking', ['class' => "btn btn-danger"])}}
-                                        {!!Form::close()!!}
-                                        <a href="/Traveler/TourPackage/{{$booking->package_id}}/ContactNow">Contact Now</a><br>
-                                    </td>
-                                    <td>
-                                        <span id="fave" data-id="{{ $booking->package_id }}">
-                                            <button href="#" class="fave btn btn-danger">
-                                                {{	Auth::user()->favorites()->where('package_id', $booking->package_id)->first() ? 
-                                                    Auth::user()->favorites()->where('package_id', $booking->package_id)->first()->favorited == 1 ? 
-                                                    'Unfavorited' : 'Favorite' : 'Favorite'}}
-                                            </button>
-                                            {{--  <i class="fa fa-heart-o"></i> --}}
-                                            {{--  <a href="#" class="fave">Unfavorite</a>  --}}
-                                            {{--  <i class="fa fa-heart"></i>
-                                        </span>
-                                    </td>
-                                </tr>
-                            @endif  
-                        @endforeach
-                    </table>
-                    {{--  <hr>{{$bookings->links()}}
-                @else
-                    <p>You have no Bookings yet!!!!!</p>
-                @endif  --}}
-
 <body class="transparent-header">
 
 	<!-- start Container Wrapper -->
@@ -89,7 +24,7 @@
 		
 			<!-- start breadcrumb -->
 			
-			<div class="breadcrumb-image-bg" style="background-image:url({{ asset('images/breadcrumb-bg.jpg') }});">
+			<div class="breadcrumb-image-bg" style="background-image:url({{asset('images/hero-header/osmenapeak.jpg')}});">
 				<div class="container">
                                                                                            
 					<div class="page-title">
@@ -97,7 +32,9 @@
 						<div class="row">
 						
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+								<br><br>
 								<h2>Bookings</h2>
+								<br>
 							</div>
 							
 						</div>
@@ -135,7 +72,7 @@
 								<div class="row">
 									<div class="col-lg-6 col-md-5 col-xs-5">
 										<div class="input-group">
-											<input type="text" name="search_pname" class="form-control"  placeholder="Search package name" >
+											<input type="text" name="search_pname" class="form-control"  placeholder="Search package name" required>
 											<span class="input-group-btn">
 													<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 											</span>
@@ -169,7 +106,7 @@
 											<div class="trip-list-item">
 												<div class="image-absolute">
 													<div class="image image-object-fit image-object-fit-cover">
-														<img src="{{ asset('images/trip/01.jpg')}}" alt="image" >
+														<img src="/public/uploads/files/{{ $booking->photo }}" alt="image" >
 													</div>
 												</div>
 												<div class="content">
@@ -214,8 +151,12 @@
 																	<br>
 																	Travel date
 																	<span class="block text-primary font16 font700 mt-1">
+																	@if($booking->date_to == NULL)
+																		{{ Carbon\Carbon::parse($booking->date_from)->toFormattedDateString() }}
+																	@else
 																		{{ Carbon\Carbon::parse($booking->date_from)->toFormattedDateString() }} -
 																		{{ Carbon\Carbon::parse($booking->date_to)->toFormattedDateString() }} 
+																	@endif
 																	</span>
 																</div>
 															</div>
@@ -226,6 +167,7 @@
 																		<a href="/Traveler/Bookings/{{$booking->package_id}}/{{$booking->booking_id}}" class="btn btn-info btn-sm">View</a>
 																	@if($booking->status == 'Confirmed')
 																		<a href="/Traveler/Cancel/{{$booking->booking_id}}" class="btn btn-danger btn-sm">Cancel</a>
+																		{{--  <a data-toggle="modal" data-id="{{ $booking->booking_id }}" class="btn btn btn-danger btn-sm" id="cancelButton">Cancel</a>  --}}
 																	@endif
 																</div>
 															</div>
@@ -264,33 +206,106 @@
 
 				</div>
 			</div>
-
-        <div class="footer-wrapper scrollspy-footer">
-			<footer class="bottom-footer">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12">
-                            <center>
-                                <p class="copy-right">&#169; 2017 Traventure - Tour and Booking System</p>
-                            <center>
-						</div>
-					</div>
-				</div>
-			</footer>
-		</div>
-		<!-- end Footer Wrapper -->
 		
 		<!-- end Main Wrapper -->
 	</div>
-	
+	<div class="footer-wrapper scrollspy-footer">
+		{{--  <footer class="main-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 col-md-4">
+						<h5 class="footer-title">newsletter</h5>
+						
+						<p class="font16">Subsribe to get our latest updates and oeffers</p>
+							
+						<div class="footer-newsletter">
+							<div class="form-group">
+								<input class="form-control" placeholder="enter your email " />
+								<button class="btn btn-primary">subsribe</button>
+							</div>
+							<p class="font-italic font13">*** Don't worry, we wont spam you!</p>
+						</div>
+					</div>
+						
+					<div class="col-sm-12 col-md-8">
+						<div class="row">
+							<div class="col-xs-12 col-sm-4 col-md-3 col-md-offset-3 mt-25-sm">
+								<h5 class="footer-title">footer</h5>
+								<ul class="footer-menu">
+									<li><a href="#">Support</a></li>
+									<li><a href="#">Advertise</a></li>
+									<li><a href="#">Media Relations</a></li>
+									<li><a href="#">Affiliates</a></li>
+									<li><a href="#">Careers</a></li>
+								</ul>
+							</div>
+							
+							<div class="col-xs-12 col-sm-4 col-md-3 mt-25-sm">
+								<h5 class="footer-title">quick links</h5>
+								<ul class="footer-menu">
+									<li><a href="#">Media Relations</a></li>
+									<li><a href="#">Affiliates</a></li>
+									<li><a href="#">Careers</a></li>
+									<li><a href="#">Support</a></li>
+									<li><a href="#">Advertise</a></li>
+								</ul>
+							</div>
+							
+							<div class="col-xs-12 col-sm-4 col-md-3 mt-25-sm">
+								<h5 class="footer-title">helps</h5>
+								<ul class="footer-menu">
+									<li><a href="#">Using a Tour</a></li>
+									<li><a href="#">Submitting a Tour</a></li>
+									<li><a href="#">Managing My Account</a></li>
+									<li><a href="#">Merchant Help</a></li>
+									<li><a href="#">White Label Website</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>  --}}
+		<footer class="bottom-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<center>
+							<p class="copy-right">&#169; 2017 Traventure - Tour and Booking System</p>
+						<center>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+	<!-- end Footer Wrapper -->
 	<!-- end Container Wrapper -->
  
- 
+ {{--  <!-- cancel booking-->
+<div id="cancelModal" role="dialog" class="modal fade login-box-wrapper">
+		<!-- Modal content-->
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		</div>
+		<form method="POST" action="{{ route('Traveler.CancelBooking') }}">
+			{{ csrf_field() }}
+			<div class="modal-body" style="padding:5%; margin-top:2%">
+				<h4 class="center">Are you sure you want to cancel this booking?</h4>
+				<input type="hidden" name="booking_id" class="text-primary" id="booking_id">
+			</div>
+			<div class="modal-footer">
+				<button type="button" data-dismiss="modal" class="btn btn-success">Close</button>
+				<input type="submit" class="btn btn-danger" value="Cancel">
+			</div>
+		</form>
+</div>
+<!-- end of cancel booking -->  --}}
 <!-- start Back To Top -->
 
 <div id="back-to-top">
    <a href="#"><i class="ion-ios-arrow-up"></i></a>
 </div>
+
 
 <!-- end Back To Top -->
 </div>
@@ -339,6 +354,11 @@
                     //alert("HELLO HELLO HELLO");
                 });
         });
-    }(jQuery));
+	}(jQuery));
+	
+	$(document).on("click",'#cancelButton',(function(){
+		$('#booking_id').val($(this).data('id'));
+		$('#cancelModal').modal('show');
+	})); 
 </script>
 @endsection

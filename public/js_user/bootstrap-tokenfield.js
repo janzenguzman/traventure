@@ -52,7 +52,7 @@
 
     // Check for whitespace, dash and special characters
     var whitespace = $.inArray(' ', this._delimiters);
-      dash = $.inArray('-', this._delimiters);
+      var dash = $.inArray('-', this._delimiters);
 
     if (whitespace >= 0)
       this._delimiters[whitespace] = '\\s'

@@ -20,4 +20,10 @@ class Favorites extends Model
     {
         return $this->belongsTo('App\Package');
     }
+
+    public $fillable = [
+        'package_id',
+        'traveler_id',
+        'favorited'
+    ];
 }

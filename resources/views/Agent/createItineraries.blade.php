@@ -23,7 +23,7 @@
             <input type="text" name="day1_endtime1" class="form-control" placeholder="Time">
         </div>
         <div class="form-group">
-            <label>Destinations:</label>
+            <label>Destination:</label>
             <input type="text" name="day1_destination1" class="form-control" placeholder="Destination">
         </div>
         <div class="form-group">
@@ -35,7 +35,7 @@
             <input type="text" name="day1_endtime2" class="form-control" placeholder="Time">
         </div>
         <div class="form-group">
-            <label>Destinations:</label>
+            <label>Destination:</label>
             <input type="text" name="day1_destination2" class="form-control" placeholder="Destination">
         </div>
         <div class="form-group">
@@ -47,7 +47,7 @@
             <input type="text" name="day1_endtime3" class="form-control" placeholder="Time">
         </div>
         <div class="form-group">
-            <label>Destinations:</label>
+            <label>Destination:</label>
             <input type="text" name="day1_destination3" class="form-control" placeholder="Destination">
         </div>
         <div class="form-group">
@@ -59,7 +59,7 @@
             <input type="text" name="day1_endtime4" class="form-control" placeholder="Time">
         </div>
         <div class="form-group">
-            <label>Destinations:</label>
+            <label>Destination:</label>
             <input type="text" name="day1_destination4" class="form-control" placeholder="Destination">
         </div>
         <div class="form-group">
@@ -71,7 +71,7 @@
             <input type="text" name="day1_endtime5" class="form-control" placeholder="Time">
         </div>
         <div class="form-group">
-            <label>Destinations:</label>
+            <label>Destination:</label>
             <input type="text" name="day1_destination5" class="form-control" placeholder="Destination">
         </div>
         <div class="form-group">
@@ -93,7 +93,7 @@
         <input type="text" name="day1_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -105,7 +105,7 @@
         <input type="text" name="day1_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -117,7 +117,7 @@
         <input type="text" name="day1_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -129,7 +129,7 @@
         <input type="text" name="day1_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -141,7 +141,7 @@
         <input type="text" name="day1_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -160,7 +160,7 @@
         <input type="text" name="day2_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -172,7 +172,7 @@
         <input type="text" name="day2_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -184,7 +184,7 @@
         <input type="text" name="day2_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -196,7 +196,7 @@
         <input type="text" name="day2_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -208,7 +208,7 @@
         <input type="text" name="day2_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -230,7 +230,7 @@
         <input type="text" name="day1_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -242,7 +242,7 @@
         <input type="text" name="day1_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -254,7 +254,7 @@
         <input type="text" name="day1_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -266,7 +266,7 @@
         <input type="text" name="day1_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -278,7 +278,7 @@
         <input type="text" name="day1_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day1_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -297,7 +297,7 @@
         <input type="text" name="day2_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -309,7 +309,7 @@
         <input type="text" name="day2_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -321,7 +321,7 @@
         <input type="text" name="day2_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -333,7 +333,7 @@
         <input type="text" name="day2_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -345,7 +345,7 @@
         <input type="text" name="day2_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day2_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -364,7 +364,7 @@
         <input type="text" name="day3_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day3_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -376,7 +376,7 @@
         <input type="text" name="day3_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day3_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -388,7 +388,7 @@
         <input type="text" name="day3_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day3_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -400,7 +400,7 @@
         <input type="text" name="day3_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>Destination:</label>
         <input type="text" name="day3_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -412,7 +412,7 @@
         <input type="text" name="day3_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -435,7 +435,7 @@
         <input type="text" name="day1_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -447,7 +447,7 @@
         <input type="text" name="day1_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -459,7 +459,7 @@
         <input type="text" name="day1_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -471,7 +471,7 @@
         <input type="text" name="day1_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -483,7 +483,7 @@
         <input type="text" name="day1_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -502,7 +502,7 @@
         <input type="text" name="day2_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -514,7 +514,7 @@
         <input type="text" name="day2_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -526,7 +526,7 @@
         <input type="text" name="day2_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -538,7 +538,7 @@
         <input type="text" name="day2_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -550,7 +550,7 @@
         <input type="text" name="day2_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -569,7 +569,7 @@
         <input type="text" name="day3_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -581,7 +581,7 @@
         <input type="text" name="day3_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -593,7 +593,7 @@
         <input type="text" name="day3_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -605,7 +605,7 @@
         <input type="text" name="day3_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -617,7 +617,7 @@
         <input type="text" name="day3_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -636,7 +636,7 @@
         <input type="text" name="day4_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -648,7 +648,7 @@
         <input type="text" name="day4_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -660,7 +660,7 @@
         <input type="text" name="day4_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -672,7 +672,7 @@
         <input type="text" name="day4_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -684,7 +684,7 @@
         <input type="text" name="day4_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -708,7 +708,7 @@
         <input type="text" name="day1_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -720,7 +720,7 @@
         <input type="text" name="day1_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -732,7 +732,7 @@
         <input type="text" name="day1_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -744,7 +744,7 @@
         <input type="text" name="day1_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -756,7 +756,7 @@
         <input type="text" name="day1_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day1_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -775,7 +775,7 @@
         <input type="text" name="day2_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -787,7 +787,7 @@
         <input type="text" name="day2_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -799,7 +799,7 @@
         <input type="text" name="day2_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -811,7 +811,7 @@
         <input type="text" name="day2_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -823,7 +823,7 @@
         <input type="text" name="day2_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day2_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -842,7 +842,7 @@
         <input type="text" name="day3_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -854,7 +854,7 @@
         <input type="text" name="day3_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -866,7 +866,7 @@
         <input type="text" name="day3_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -878,7 +878,7 @@
         <input type="text" name="day3_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -890,7 +890,7 @@
         <input type="text" name="day3_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day3_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -909,7 +909,7 @@
         <input type="text" name="day4_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -921,7 +921,7 @@
         <input type="text" name="day4_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -933,7 +933,7 @@
         <input type="text" name="day4_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -945,7 +945,7 @@
         <input type="text" name="day4_endtime4" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination4" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -957,7 +957,7 @@
         <input type="text" name="day4_endtime5" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day4_destination5" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -976,7 +976,7 @@
         <input type="text" name="day5_endtime1" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day5_destination1" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -988,7 +988,7 @@
         <input type="text" name="day5_endtime2" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day5_destination2" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -1000,7 +1000,7 @@
         <input type="text" name="day5_endtime3" class="form-control" placeholder="Time" >
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day5_destination3" class="form-control" placeholder="Destination" >
     </div>
     <div class="form-group">
@@ -1012,7 +1012,7 @@
         <input type="text" name="day5_endtime4" class="form-control" placeholder="Time">
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day5_destination4" class="form-control" placeholder="Destination">
     </div>
     <div class="form-group">
@@ -1024,7 +1024,7 @@
         <input type="text" name="day5_endtime5" class="form-control" placeholder="Time">
     </div>
     <div class="form-group">
-        <label>Destinations:</label>
+        <label>destination:</label>
         <input type="text" name="day5_destination5" class="form-control" placeholder="Destination">
     </div>
     <div class="form-group">
@@ -1108,6 +1108,2443 @@
 								
 									<div class="create-tour-inner">
 										
+										<div class="mb-40"></div>
+										
+										<h4 class="section-title">Itinerary</h4>
+										
+										
+										<div class="itinerary-form-wrapper">
+                                            {!!Form::open(['action' => 'AgentsController@storeItineraries', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                                            @if(count($packages) > 0)
+                                                @if($packages->days == 1)
+											
+                                                    <div class="itinerary-form-item">
+                                                    
+                                                        <div class="content clearfix">
+                                                        
+                                                            <div class="row gap-20">
+                                                            
+                                                                <div class="col-xss-12 col-xs-2 col-sm-2 col-md-1">
+                                                                    <div class="day">
+                                                                        <h6 class="text-uppercase mb-0 mt-5 text-muted">Day</h6>
+                                                                        <span class="text-primary block number spacing-1">01</span>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <div class="col-xss-12 col-xs-10 col-sm-10 col-md-11">
+                                                                    
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination1" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination2" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination3" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination4" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination5" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day1_photo" >
+                                                                            </div>
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            
+                                                            </div>
+
+                                                        </div>
+                                                    
+                                                    </div>
+                                                @endif
+
+                                                @if($packages->days == 2)
+                                                    <div class="itinerary-form-item">
+                                                    
+                                                        <div class="content clearfix">
+                                                        
+                                                            <div class="row gap-20">
+                                                            
+                                                                <div class="col-xss-12 col-xs-2 col-sm-2 col-md-1">
+                                                                    <div class="day">
+                                                                        <h6 class="text-uppercase mb-0 mt-5 text-muted">Day</h6>
+                                                                        <span class="text-primary block number spacing-1">01</span>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <div class="col-xss-12 col-xs-10 col-sm-10 col-md-11">
+                                                                    
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination1" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination2" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination3" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination4" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination5" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day1_photo" >
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                    <div class="itinerary-form-item">
+                                                    
+                                                        <div class="content clearfix">
+                                                        
+                                                            <div class="row gap-20">
+                                                            
+                                                                <div class="col-xss-12 col-xs-2 col-sm-2 col-md-1">
+                                                                    <div class="day">
+                                                                        <h6 class="text-uppercase mb-0 mt-5 text-muted">Day</h6>
+                                                                        <span class="text-primary block number spacing-1">02</span>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <div class="col-xss-12 col-xs-10 col-sm-10 col-md-11">
+                                                                    
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>destination:</label>
+                                                                                <input type="text" name="day2_destination1" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>destination:</label>
+                                                                                <input type="text" name="day2_destination2" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination3" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination4" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination5" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day2_photo" >
+                                                                            </div>
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+                                                @endif
+                                                
+                                                @if($packages->days == 3)
+                                                    <div class="itinerary-form-item">
+                                                        
+                                                        <div class="content clearfix">
+                                                        
+                                                            <div class="row gap-20">
+                                                            
+                                                                <div class="col-xss-12 col-xs-2 col-sm-2 col-md-1">
+                                                                    <div class="day">
+                                                                        <h6 class="text-uppercase mb-0 mt-5 text-muted">Day</h6>
+                                                                        <span class="text-primary block number spacing-1">01</span>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <div class="col-xss-12 col-xs-10 col-sm-10 col-md-11">
+                                                                    
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination1" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination2" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination3" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination4" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination5" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day1_photo" >
+                                                                            </div>
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                    <div class="itinerary-form-item">
+                                                    
+                                                        <div class="content clearfix">
+                                                        
+                                                            <div class="row gap-20">
+                                                            
+                                                                <div class="col-xss-12 col-xs-2 col-sm-2 col-md-1">
+                                                                    <div class="day">
+                                                                        <h6 class="text-uppercase mb-0 mt-5 text-muted">Day</h6>
+                                                                        <span class="text-primary block number spacing-1">02</span>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <div class="col-xss-12 col-xs-10 col-sm-10 col-md-11">
+                                                                    
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination1" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination2" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination3" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination4" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination5" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day2_photo" >
+                                                                            </div>
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                    <div class="itinerary-form-item">
+                                                    
+                                                        <div class="content clearfix">
+                                                        
+                                                            <div class="row gap-20">
+                                                            
+                                                                <div class="col-xss-12 col-xs-2 col-sm-2 col-md-1">
+                                                                    <div class="day">
+                                                                        <h6 class="text-uppercase mb-0 mt-5 text-muted">Day</h6>
+                                                                        <span class="text-primary block number spacing-1">03<span>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <div class="col-xss-12 col-xs-10 col-sm-10 col-md-11">
+                                                                    
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day3_starttime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day3_endtime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day3_destination1" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day3_starttime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day3_endtime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day3_destination2" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day3_starttime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day3_endtime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day3_destination3" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day3_starttime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day3_endtime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day3_destination4" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day3_starttime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day3_endtime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day3_destination5" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day3_photo" >
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+                                                @endif
+
+                                                @if($packages->days == 4)
+                                                    <div class="itinerary-form-item">
+                                                            
+                                                        <div class="content clearfix">
+                                                        
+                                                            <div class="row gap-20">
+                                                            
+                                                                <div class="col-xss-12 col-xs-2 col-sm-2 col-md-1">
+                                                                    <div class="day">
+                                                                        <h6 class="text-uppercase mb-0 mt-5 text-muted">Day</h6>
+                                                                        <span class="text-primary block number spacing-1">01</span>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <div class="col-xss-12 col-xs-10 col-sm-10 col-md-11">
+                                                                    
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination1" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination2" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination3" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination4" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination5" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day1_photo" >
+                                                                            </div>
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                    <div class="itinerary-form-item">
+                                                    
+                                                        <div class="content clearfix">
+                                                        
+                                                            <div class="row gap-20">
+                                                            
+                                                                <div class="col-xss-12 col-xs-2 col-sm-2 col-md-1">
+                                                                    <div class="day">
+                                                                        <h6 class="text-uppercase mb-0 mt-5 text-muted">Day</h6>
+                                                                        <span class="text-primary block number spacing-1">02</span>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <div class="col-xss-12 col-xs-10 col-sm-10 col-md-11">
+                                                                    
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination1" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination2" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination3" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination4" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination5" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day2_photo" >
+                                                                            </div>
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                    <div class="itinerary-form-item">
+                                                    
+                                                        <div class="content clearfix">
+                                                        
+                                                            <div class="row gap-20">
+                                                            
+                                                                <div class="col-xss-12 col-xs-2 col-sm-2 col-md-1">
+                                                                    <div class="day">
+                                                                        <h6 class="text-uppercase mb-0 mt-5 text-muted">Day</h6>
+                                                                        <span class="text-primary block number spacing-1">03<span>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <div class="col-xss-12 col-xs-10 col-sm-10 col-md-11">
+                                                                    
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day3_starttime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day3_endtime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day3_destination1" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day3_starttime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day3_endtime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day3_destination2" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day3_starttime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day3_endtime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day3_destination3" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day3_starttime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day3_endtime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day3_destination4" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day3_starttime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day3_endtime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day3_destination5" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day3_photo" >
+                                                                            </div>
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                    <div class="itinerary-form-item">
+                                                    
+                                                        <div class="content clearfix">
+                                                        
+                                                            <div class="row gap-20">
+                                                            
+                                                                <div class="col-xss-12 col-xs-2 col-sm-2 col-md-1">
+                                                                    <div class="day">
+                                                                        <h6 class="text-uppercase mb-0 mt-5 text-muted">Day</h6>
+                                                                        <span class="text-primary block number spacing-1">04<span>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <div class="col-xss-12 col-xs-10 col-sm-10 col-md-11">
+                                                                    
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day4_starttime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day4_endtime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day4_destination1" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day4_starttime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day4_endtime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day4_destination2" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day4_starttime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day4_endtime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day4_destination3" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day4_starttime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day4_endtime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day4_destination4" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day4_starttime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day4_endtime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day4_destination5" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day4_photo" >
+                                                                            </div>
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+                                                @endif
+
+                                                @if($packages->days == 5)
+                                                    <div class="itinerary-form-item">
+                                                                
+                                                        <div class="content clearfix">
+                                                        
+                                                            <div class="row gap-20">
+                                                            
+                                                                <div class="col-xss-12 col-xs-2 col-sm-2 col-md-1">
+                                                                    <div class="day">
+                                                                        <h6 class="text-uppercase mb-0 mt-5 text-muted">Day</h6>
+                                                                        <span class="text-primary block number spacing-1">01</span>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <div class="col-xss-12 col-xs-10 col-sm-10 col-md-11">
+                                                                    
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination1" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination2" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination3" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="time" name="day1_destination4" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day1_starttime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day1_endtime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day1_destination5" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day1_photo" >
+                                                                            </div>
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                    <div class="itinerary-form-item">
+                                                    
+                                                        <div class="content clearfix">
+                                                        
+                                                            <div class="row gap-20">
+                                                            
+                                                                <div class="col-xss-12 col-xs-2 col-sm-2 col-md-1">
+                                                                    <div class="day">
+                                                                        <h6 class="text-uppercase mb-0 mt-5 text-muted">Day</h6>
+                                                                        <span class="text-primary block number spacing-1">02</span>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <div class="col-xss-12 col-xs-10 col-sm-10 col-md-11">
+                                                                    
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination1" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination2" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination3" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination4" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day2_starttime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day2_endtime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day2_destination5" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day2_photo" >
+                                                                            </div>
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                    <div class="itinerary-form-item">
+                                                    
+                                                        <div class="content clearfix">
+                                                        
+                                                            <div class="row gap-20">
+                                                            
+                                                                <div class="col-xss-12 col-xs-2 col-sm-2 col-md-1">
+                                                                    <div class="day">
+                                                                        <h6 class="text-uppercase mb-0 mt-5 text-muted">Day</h6>
+                                                                        <span class="text-primary block number spacing-1">03<span>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <div class="col-xss-12 col-xs-10 col-sm-10 col-md-11">
+                                                                    
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day3_starttime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day3_endtime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day3_destination1" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day3_starttime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day3_endtime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day3_destination2" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day3_starttime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day3_endtime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day3_destination3" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day3_starttime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day3_endtime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day3_destination4" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="row gap-20">
+                                                                    
+                                                                        <div class="col-xs-12 col-sm-6">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Start Time:</label>
+                                                                                <input type="time" name="day3_starttime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day3_endtime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day3_destination5" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day3_photo" >
+                                                                            </div>
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                    <div class="itinerary-form-item">
+                                                    
+                                                        <div class="content clearfix">
+
                                         <div class="mb-40"></div>
                                     
                                         <h4 class="section-title">Itinerary</h4>
@@ -1152,7 +3589,15 @@
                                                                                 </div>
                                                                                 
                                                                             </div>
-                                                                            
+                                         
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day4_destination1" class="form-control" placeholder="Destination">
+                                                                            </div>
                                                                             <div class="col-xs-12 col-sm-12">
                                                                             
                                                                                 <div class="form-group">
@@ -1167,10 +3612,18 @@
                                                                         <div class="form-group">
                                                                             {{Form::file('day1_photo[]', ['required' => 'required'])}}
                                                                         </div>
+                             
+                                                                        <div class="col-xs-12 col-sm-12">
                                                                         
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day4_destination2" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
                                                                         <div class="add-more-form">
                                                                             <span>Add Destination</span> 
                                                                             <a class="add_des" type="submit"><i class="ion-android-add-circle"></i></a>
+
                                                                         </div>
 
                                                                         {{--  <input type="hidden" value="{{ $packages->days }}" name="daysCount">  --}}
@@ -1226,8 +3679,22 @@
                                                                 </div>
 
                                                                 <div class="col-xs-12 col-sm-6">
-
-                                                                    <div class="form-group">
+                                                                          <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day4_endtime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day4_destination3" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                          <div class="form-group">
                                                                         <label>End Time:</label>
                                                                         <input type="time" name="day1_endtime1" class="oh-timepicker form-control" placeholder="Time">
                                                                     </div>
@@ -1258,11 +3725,26 @@
 
                                                                 <div class="col-xs-12 col-sm-6">
 
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day4_endtime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day4_destination4" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
                                                                     <div class="form-group">
                                                                         <label>End Time:</label>
                                                                         <input type="time" name="day1_endtime2" class="oh-timepicker form-control" placeholder="Time">
-                                                                    </div>
-                                                                    
+                                                                    </div>                                       
                                                                 </div>
                                                                 
                                                                 <div class="col-xs-12 col-sm-12">
@@ -1287,12 +3769,36 @@
                                                                 
                                                                 </div>
 
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day4_endtime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day4_destination5" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day4_photo" >
+                                                                            </div>
+                                                                        </div>
+
                                                                 <div class="col-xs-12 col-sm-6">
 
                                                                     <div class="form-group">
                                                                         <label>End Time:</label>
                                                                         <input type="time" name="day1_endtime3" class="oh-timepicker form-control" placeholder="Time">
                                                                     </div>
+
                                                                     
                                                                 </div>
                                                                 
@@ -1351,10 +3857,28 @@
 
                                                                 <div class="col-xs-12 col-sm-6">
 
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day5_endtime1" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day5_destination1" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
                                                                     <div class="form-group">
                                                                         <label>End Time:</label>
                                                                         <input type="time" name="day1_endtime1" class="oh-timepicker form-control" placeholder="Time">
                                                                     </div>
+
                                                                     
                                                                 </div>
                                                                 
@@ -1369,6 +3893,24 @@
                                                             
                                                             </div>
 
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day5_endtime2" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day5_destination2" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    
+
                                                             <div class="row gap-20">
                                                             
                                                                 <div class="col-xs-12 col-sm-6">
@@ -1376,11 +3918,28 @@
                                                                     <div class="form-group">
                                                                         <label>Start Time:</label>
                                                                         <input type="time" name="day1_starttime2" class="oh-timepicker form-control" placeholder="Time">
+
                                                                     </div>
                                                                 
                                                                 </div>
 
                                                                 <div class="col-xs-12 col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day5_endtime3" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day5_destination3" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
 
                                                                     <div class="form-group">
                                                                         <label>End Time:</label>
@@ -1399,6 +3958,21 @@
                                                                 </div>
                                                             
                                                             </div>
+                                                                   <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day5_endtime4" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day5_destination4" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
 
                                                             <div class="row gap-20">
                                                             
@@ -1407,16 +3981,42 @@
                                                                     <div class="form-group">
                                                                         <label>Start Time:</label>
                                                                         <input type="time" name="day1_starttime3" class="oh-timepicker form-control" placeholder="Time">
+
                                                                     </div>
                                                                 
                                                                 </div>
 
                                                                 <div class="col-xs-12 col-sm-6">
 
+
+                                                                            <div class="form-group">
+                                                                                <label>End Time:</label>
+                                                                                <input type="time" name="day5_endtime5" class="oh-timepicker form-control" placeholder="Time">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        
+                                                                            <div class="form-group">
+                                                                                <label>Destination:</label>
+                                                                                <input type="text" name="day5_destination5" class="form-control" placeholder="Destination">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Photo:</label>
+                                                                                <input type="file" name="day5_photo" >
+                                                                            </div>
+                                                                        </div>
+
                                                                     <div class="form-group">
                                                                         <label>End Time:</label>
                                                                         <input type="time" name="day1_endtime3" class="oh-timepicker form-control" placeholder="Time">
                                                                     </div>
+
                                                                     
                                                                 </div>
                                                                 
@@ -1475,49 +4075,19 @@
         <!-- start Footer Wrapper -->
 	
 	    <div class="footer-wrapper scrollspy-footer">
-            
-            <footer class="bottom-footer">
-            
-                <div class="container">
-                
-                    <div class="row">
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-4">
-                
-                            <p class="copy-right">&#169; 2017 Togoby - tour hosting</p>
-                            
+                <footer class="bottom-footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <center>
+                                    <p class="copy-right">&#169; 2017 Traventure - Tour and Booking System</p>
+                                <center>
+                            </div>
                         </div>
-                        
-                        <div class="col-xs-12 col-sm-6 col-md-4">
-                        
-                            <ul class="bottom-footer-menu">
-                                <li><a href="#">Cookies</a></li>
-                                <li><a href="#">Policies</a></li>
-                                <li><a href="#">Terms</a></li>
-                                <li><a href="#">Blogs</a></li>
-                            </ul>
-                        
-                        </div>
-                        
-                        <div class="col-xs-12 col-sm-12 col-md-4">
-                            <ul class="bottom-footer-menu for-social">
-                                <li><a href="#"><i class="icon-social-twitter" data-toggle="tooltip" data-placement="top" title="twitter"></i></a></li>
-                                <li><a href="#"><i class="icon-social-facebook" data-toggle="tooltip" data-placement="top" title="facebook"></i></a></li>
-                                <li><a href="#"><i class="icon-social-google" data-toggle="tooltip" data-placement="top" title="google plus"></i></a></li>
-                                <li><a href="#"><i class="icon-social-instagram" data-toggle="tooltip" data-placement="top" title="instrgram"></i></a></li>
-                            </ul>
-                        </div>
-                    
                     </div>
-    
-                </div>
-                
-            
-            </footer>
-            
-        </div>
-        
-        <!-- end Footer Wrapper -->
+                </footer>
+            </div>
+            <!-- end Footer Wrapper -->
         
     </div> 
     

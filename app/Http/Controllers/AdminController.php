@@ -38,8 +38,27 @@ class AdminController extends Controller
                 ->elementLabel('Total')
                 ->labels(['Accredited Companies', 'Active Companies', 'Inactive Companies'])
                 ->values([$totalAccredited, $totalActive, $totalInactive])
-                ->dimensions(1000, 500)
+                ->dimensions(100, 100)
                 ->responsive(true);
+
+        $now = Carbon::now();
+        $agents = Agents::all();
+        
+        foreach($agents as $agent){
+            $lastSignedIn = new Carbon($agent->last_signed_in);
+            $diffHours = $lastSignedIn->diffInHours($now);
+            
+            if($diffHours < 1){
+                DB::table('agents')->where([['id', $agent->id], ['status', 'Accepted']])
+                    ->whereNotNull('last_signed_in')
+                    ->update(['active' => 1]);
+            }elseif($diffHours >= 1){
+                DB::table('agents')->where([['id', $agent->id], ['status', 'Accepted']])
+                    ->whereNotNull('last_signed_in')
+                    ->update(['active' => 0]);
+            }
+        }
+
 
         return view ('\Admin\HomePage', ['totalAccredited' => $totalAccredited, 'totalActive' => $totalActive,
             'totalInactive' => $totalInactive, 'totalRequests' => $totalRequests, 'chart' => $chart]);
@@ -65,7 +84,33 @@ class AdminController extends Controller
         }
     }
 
-    public function deactivate($id){
+    public function deactivateAgent(Request $request){
+        $id = $request->input('id');
+        $agents = DB::table('agents')->where('id', $id)->get();
+            foreach($agents as $agent){
+                DB::table('deleted_agents')->insert(
+                    [
+                        'id' => $agent->id,
+                        'company_name' => $agent->company_name,
+                        'fname' => $agent->fname,
+                        'lname' => $agent->lname,
+                        'job_position' => $agent->job_position,
+                        'contact_no' => $agent->contact_no,
+                        'email' => $agent->email,
+                        'password' => $agent->password,
+                        'status' => $agent->status,
+                        'remember_token' => $agent->remember_token,
+                        'created_at' => $agent->created_at,
+                        'updated_at' => $agent->updated_at,
+                    ]
+                );
+            }
+        DB::table('agents')->where('id', $id)->delete();
+        return redirect()->back()->with('deactivated', 'Succesfully Deactivated!');
+    }
+
+    public function declineAgent(Request $request){
+        $id = $request->input('id');
         $agents = DB::table('agents')->where('id', $id)->get();
             foreach($agents as $agent){
                 DB::table('deleted_agents')->insert(
@@ -100,16 +145,20 @@ class AdminController extends Controller
                    return $row->fname.' '.$row->lname;
                })
                ->addColumn('action', function($row){
-                //    if($row->status == 'Pending'){
+                   if($row->status == 'Pending'){
                        return '<a href= "'.route("requests", ["id" => $row->id, "action" => "accept"]).'" class="btn btn-info btn-circle" style="margin-right:20%"><i class="fa fa-check"></i></a>
-                                <a href="'.route("requests", ["id" => $row->id, "action" => "decline"]).'" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></a>';
-                //    }else if($row->status == 'Accepted'){
-                //        return '<span class="label label-table label-success">Accepted</span>';
-                //    }else{
-                //        return '<span class="label label-table label-danger">Declined</span>';
-                //    }
+                       <a type="submit" data-toggle="modal" data-target="#declineModal" data-id="'.$row->id.'" id="declineButton" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></a>';
+                   }else if($row->status == 'Accepted'){
+                    //    <a href="'.route("requests", ["id" => $row->id, "action" => "decline"]).'" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></a>
+                       return '<span class="label label-table label-success">Accepted</span>';
+                   }else{
+                       return '<span class="label label-table label-danger">Declined</span>';
+                   }                
                })
                ->make(true);
+
+               
+                        
    }
 
    public function accreditedDatatable(){
@@ -141,15 +190,16 @@ class AdminController extends Controller
                 <small class="text-muted">'.$row->job_position.'</small>';
             })
             ->editColumn('status', function($row){
-                $now = Carbon::now();
-                $lastSignedIn = new Carbon($row->last_signed_in);
-                $diffHours = $lastSignedIn->diffInHours($now);
+                // $now = Carbon::now();
+                // $lastSignedIn = new Carbon($row->last_signed_in);
+                // $diffHours = $lastSignedIn->diffInHours($now);
 
-                if($diffHours < 1){
-                    return '<center><span class="label label-table label-primary">Active</span></center>';
-                }else{
-                    return DB::table('agents')->where('id', $row->id)->update(['active' => 0]);                    
-                }
+                // if($diffHours < 1){
+                //     return '<center><span class="label label-table label-primary">Active</span></center>';
+                // }else{
+                //     return DB::table('agents')->where('id', $row->id)->update(['active' => 0]);                    
+                // }
+                return '<center><span class="label label-table label-primary">Active</span></center>';
             })
             ->rawColumns(['name', 'status'])
             ->make(true);
@@ -179,14 +229,17 @@ class AdminController extends Controller
                 }else if($diffHours > 1){
                     return '<center><span class="label label-table label-warning">Inactive</span>
                     <br><small class="text-muted text-semibold">'.$diffHours.' hours ago</small></center>';
-                }else if($diffHours >=0){
-                    return DB::table('agents')->where('id', $row->id)->update(['active' => 0]);
-                }else{
-                    return DB::table('agents')->where('id', $row->id)->update(['active' => 1]);
                 }
+                
+                // else if($diffHours >=0){
+                //     return DB::table('agents')->where('id', $row->id)->update(['active' => 0]);
+                // }else{
+                //     return DB::table('agents')->where('id', $row->id)->update(['active' => 1]);
+                // }
             })
             ->addColumn('action', function($row){   
-                return '<center><a href="'.route("deactivate", ["id" => $row->id]).'" class="btn btn-danger btn-outline btn-xs text-semibold">Deactivate</a><center>';
+                return '<center>
+                <a type="submit" data-toggle="modal" data-target="#deactivateModal" data-id="'.$row->id.'" id="deactivateButton" class="btn btn-default btn-xs">Deactivate</a><center>';
             })
             ->rawColumns(['name', 'status', 'action'])
             ->make(true);
