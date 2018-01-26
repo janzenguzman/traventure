@@ -49,6 +49,11 @@ class TravelersController extends Controller
 
     public function index(Request $req)
     {
+        // $packages =DB::select('SELECT c.*, p.*, a.fname, a.lname, a.photo as agentPhoto, avg(rating)
+        //     FROM comments as c JOIN packages as p JOIN agents as a ON c.package_id=p.package_id AND p.agent_id=a.id
+        //     GROUP BY c.package_id');
+                // ->join('agents', 'packages.agent_id', '=', 'agents.id')->get();
+        // return view('Traveler.packages')->with('packages', $packages);
         //$packages = Package::all();
         ///$packages = Package::orderBy('created_at', 'desc')->paginate(8);
 
@@ -63,7 +68,7 @@ class TravelersController extends Controller
                         ['slots.date_from', 'like', $date]
                 ])
                 ->orderBy('packages.created_at', 'desc')
-                ->select('packages.*', 'agents.photo', 'agents.fname', 'agents.lname')
+                ->select('packages.*', 'agents.photo as agentPhoto', 'agents.fname', 'agents.lname')
                 ->paginate(8);
 
                 $avg = DB::table('comments')
@@ -78,7 +83,7 @@ class TravelersController extends Controller
             $packages = DB::table('packages')
                     ->join('agents', 'packages.agent_id', '=', 'agents.id')
                     ->orderBy('packages.created_at', 'desc')
-                    ->select('packages.*', 'agents.photo', 'agents.fname', 'agents.lname')
+                    ->select('packages.*', 'agents.photo  as agentPhoto', 'agents.fname', 'agents.lname')
                     ->paginate(8);
 
             $avg = DB::table('comments')

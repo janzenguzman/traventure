@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
     <meta name="token" content="{{ csrf_token() }}">
         <title>{{ config('app.name', 'Traventure') }}</title> 
@@ -40,7 +41,7 @@
 							</li>
 							
 							<li>
-								<a href="{{ route('Agent.Messages') }}">MESSAGES</a>
+								<a href="{{ route('Agent.ShowMessages') }}">MESSAGES</a>
 							</li>
 						</ul>
 				

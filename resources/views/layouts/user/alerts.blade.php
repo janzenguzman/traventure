@@ -52,7 +52,8 @@
 @elseif(session('addedPackage'))
     <div class="alert alert-success alert-dismissable fade in">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        {{ session('deletedPackage')}}
+        {{ session('addedPackage')}}
+    </div>
 @elseif(session('BookingFailed'))
     <div class="alert alert-danger alert-dismissable fade in">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

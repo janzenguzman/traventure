@@ -168,90 +168,82 @@
 							@foreach($packages as $package)
 							<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
 									
-									<div class="trip-guide-item bg-light-primary">
+								<div class="trip-guide-item bg-light-primary">
 
-										<div class="trip-guide-image">
-											<img src="{{ asset('images/itinerary/01.jpg') }}" alt="images" />
-										</div>
-										
-										<div class="trip-guide-content bg-white">
-											<h3>{{$package->package_name}}</h3>
-											<span id="fave" data-id="{{ $package->package_id }}">
-												<button href="#" class="fave btn btn-danger">
-													{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
-														Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
-														'Unfavorited' : 'Favorite' : 'Favorite'}}
-												</button>
-											</span>
-												<button class="fave btn btn-danger btn-sm pull-right">
-													{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
-														Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
-														'Unfavorite' : 'Favorite' : 'Favorite'}}
-												</button>
-											</span>
-											<label>{{ $package->type }} Tour</label>
-										</div>
-
-										<div class="trip-guide-bottom">
-										
-											<div class="trip-guide-person bg-white clearfix">
-												<div class="image">
-													<img src="/public/uploads/files/{{ $package->photo }}" class="img-circle" alt="images" />
-												</div>
-												<p class="name">By: <a href="#">{{$package->fname}} {{$package->lname}}</a></p>
-												{{--  <p>Posted on {{($package->created_at)->toFormattedDateString()}}</p>  --}}
-												<p class="name">By: <a>{{$package->fname}} {{$package->lname}}</a></p>
-												<p>Posted on {{ Carbon\Carbon::parse($package->created_at)->toFormattedDateString()}}</p>
-			
-											</div>
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-readonly value="{{ $avg }}"/>
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">
-													<!-- slots here-->
-												</div>
-											</div>
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at
-														<span class="number">PHP 6,000{{--$package->price--}}</span>
-														@if($package->days == 1)
-															{{$package->days}} Day Tour
-														@else
-															{{$package->days}} Days
-														@endif
-
-														@if(($nights = $package->days - 1) != 0)
-															@if($nights <= 1)
-																{{$nights}} Night 
-															@else
-																{{$nights}} Nights
-															@endif
-														@endif
-
-														@if($package->type == 'Joined')
-															<span class="number">PHP {{$package->adult_price}}</span>
-														@else
-															<span class="number">PHP {{$package->pax1_price}}</span>
-														@endif
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="/Traveler/TourPackage/{{$package->package_id}}" class="btn btn-info btn-sm">Details</a>
-												</div>
-											</div>
-
-										
-										</div>
+									<div class="trip-guide-image">
+										<img src="/public/uploads/files/{{ $package->photo }}" alt="images" />{{--style="height:180px;"--}}
+									</div>
 									
+									<div class="trip-guide-content bg-white">
+										<h3>{{$package->package_name}}</h3>
+										<label>{{ $package->type }} Tour</label>
+										<span id="fave" data-id="{{ $package->package_id }}">
+											<button href="#" class="fave btn btn-danger btn-sm pull-right">
+												{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
+													Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
+													'Unfavorited' : 'Favorite' : 'Favorite'}}
+											</button>
+										</span>
+									</div>
+
+									<div class="trip-guide-bottom">
+									
+										<div class="trip-guide-person bg-white clearfix">
+											<div class="image">
+												<img src="/public/uploads/files/{{ $package->agentPhoto }}" class="img-circle" alt="images" />
+											</div>
+											<p class="name">By: <a>{{$package->fname}} {{$package->lname}}</a></p>
+											<p>Posted on {{ Carbon\Carbon::parse($package->created_at)->toFormattedDateString()}}</p>
+		
+										</div>
+										<div class="trip-guide-meta row gap-10">
+											<div class="col-xs-6 col-sm-6">
+												<div class="rating-item">
+													<input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-readonly value=""/>
+												</div>
+											</div>
+											<div class="col-xs-6 col-sm-6 text-right">
+												<!-- slots here-->
+											</div>
+										</div>
+										<div class="row gap-10">
+											<div class="col-xs-12 col-sm-7">
+												<div class="trip-guide-price">
+													@if($package->days == 1)
+														{{$package->days}} Day Tour
+													@else
+														{{$package->days}} Days
+													@endif
+
+													@if(($nights = $package->days - 1) != 0)
+														@if($nights <= 1)
+															{{$nights}} Night 
+														@else
+															{{$nights}} Nights
+														@endif
+													@endif
+
+													@if($package->type == 'Joined')
+														<span class="number">PHP {{number_format($package->adult_price,2)}}</span>
+													@else
+														<span class="number">PHP {{number_format($package->pax1_price,2)}}</span>
+													@endif
+
+													
+												</div>
+											</div>
+											<div class="col-xs-12 col-sm-5 text-right">
+												<a href="/Traveler/TourPackage/{{$package->package_id}}" class="btn btn-info btn-sm">Details</a>
+											</div>
+											
+										</div>
+										{{--  <p>tags here</p>  --}}
 									</div>
 								
 								</div>
-								@endforeach
+							
+							</div>
+							@endforeach
 									
 							</div> 
 						
@@ -268,7 +260,7 @@
 												<div class="clearfix">
 													<nav class="pager-center">
 														<ul class="pagination">
-																{{$packages->links()}}
+															{{$packages->links()}}
 														</ul>
 													</nav>
 												</div>
@@ -364,37 +356,3 @@
 	}(jQuery));
 </script>
 @endsection
-
-
-
-{{--  <div class="container-fluid text-center">
-	<div class="panel panel-default panel-heading"><h1>Traveler Dashboard</h1></div>
-	@if(count($packages) > 0)
-		@foreach($packages as $package)
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h2><a href="/Traveler/TourPackage/{{$package->package_id}}">{{$package->package_name}}</a></h2>
-				</div>
-				<div class="panel-body">
-					Pax: {{$package->pax}} <br>
-					Php {{number_format($package->price, 2)}} <br>
-					Services: {{$package->services}}
-				</div>
-				<span id="fave" data-id="{{ $package->package_id }}">
-					<button href="#" class="fave btn btn-danger">
-						{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
-							Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
-							'Unfavorited' : 'Favorite' : 'Favorite'}}
-					</button>
-					{{--  <i class="fa fa-heart-o"></i> --}}
-					{{--  <a href="#" class="fave">Unfavorite</a>  --}}
-					{{--  <i class="fa fa-heart"></i> 
-				</span>
-				<hr><small>Posted on {{Carbon\Carbon::parse($package->created_at)->toDayDateTimeString()}}</small>
-			</div>
-		@endforeach
-		<hr>{{$packages->links()}}
-	@else
-		<p>No Packages Yet.</p>
-	@endif
-</div>  --}}

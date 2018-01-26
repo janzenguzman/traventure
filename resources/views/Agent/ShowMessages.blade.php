@@ -101,7 +101,7 @@
 								
 										<ul class="common-menu-list">
 											
-											<li class="active"><a href="{{ route('Agent.Messages') }}">
+											<li class="active"><a href="{{ route('Agent.ShowMessages') }}">
 												@if($messagesCount != 0)
 												<span class="badge pull-right">
 													{{ $messagesCount }}
