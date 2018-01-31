@@ -2,6 +2,7 @@
 
 @section('content')
 <body class="transparent-header">
+    <div id="introLoader" class="introLoading"></div>
     <!-- start Container Wrapper -->
     <div class="container-wrapper">
         <!-- start Header -->
@@ -14,7 +15,7 @@
         <!-- start Main Wrapper -->
         <div class="main-wrapper scrollspy-container">
             <!-- start breadcrumb -->
-            <div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url({{ asset('images/breadcrumb-bg.jpg') }});">
+            <div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url({{asset('/uploads/files/osmena.jpg')}});">
                 <div class="container">
                     <div class="page-title">                    
                         <div class="row">                        
@@ -23,13 +24,7 @@
                                 {{--  <p>Celebrated no he decisively thoroughly.</p>  --}}
                             </div>                            
                         </div>
-                    </div>                    
-                    <div class="breadcrumb-wrapper">                    
-                        <ol class="breadcrumb">
-                            <li><a href="/Agent/Packages">Home</a></li>
-                            <li class="active"><span>Create Tour Package</span></li>
-                        </ol>                    
-                    </div>
+                    </div>      
                 </div>                
             </div>            
             <!-- end breadcrumb -->            
@@ -48,7 +43,7 @@
                                                     <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
                                                         <div class="form-group">
                                                             <label>Tour Package Name:</label>       
-                                                            <input type="text" name="package_name" class="form-control" placeholder="Tour Package Name" />
+                                                            <input type="text" name="package_name" class="form-control" placeholder="Tour Package Name" required/>
                                                         </div>
                                                     </div>
                                                     
@@ -56,7 +51,7 @@
                                                         <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
                                                             <div class="form-group form-spin-group">
                                                                 <label>Day/s:</label>       
-                                                                <input type="text" value="1" name="days" class="form-control form-spin" placeholder="How many Days?" value="1" />
+                                                                <input type="text" value="1" name="days" class="form-control form-spin" min="1" required />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -222,15 +217,15 @@
                                             <div class="col-xs-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Inclusions:</label>
-                                                    <textarea type="text" name="inclusions" class="form-control" rows="3"></textarea>
+                                                    <textarea type="text" name="inclusions" class="form-control" rows="3" required></textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Additional Information:</label>
-                                                    <textarea type="text" name="add_info" class="form-control" rows="3"></textarea>
+                                                    <textarea type="text" name="add_info" class="form-control" rows="3" required></textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Reminders:</label>
-                                                    <textarea type="text" name="reminders" class="form-control" rows="3"></textarea><br>
+                                                    <textarea type="text" name="reminders" class="form-control" rows="3" required></textarea><br>
                                                 </div>
                                             </div>
 
@@ -242,7 +237,7 @@
                                                 <div class="form-group">
                                                     <label>Tags: </label>
                                                     {{--  <input type="text" class="form-control" name="categories[]" id="autocompleteTagging2" placeholder="" />  --}}
-                                                    <input type="text" class="form-control" name="categories[]" data-role="tagsinput" />
+                                                    <input type="text" class="form-control" name="categories[]" data-role="tagsinput" required />
                                                 </div>
                                             </div>
                                             <div class="mb-40"></div>  
@@ -259,7 +254,7 @@
                                             <div class="col-xs-12 col-sm-12">
                                                 <div class="form-group">
                                                     {{--  <div id="file-submit" class="dropzone">
-                                                        <input name="photo" type="file" required>
+                                                        <input name="photo" type=f"file" required>
                                                         <div class="dz-default dz-message"><span>Click or Drop Image Here</span></div>
                                                     </div>  --}}
 
@@ -328,6 +323,6 @@
     var categories = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('categories'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        }
+        
     });
 </script>

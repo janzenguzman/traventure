@@ -1,5 +1,6 @@
 @extends('layouts.user.login_headlayout')
 <body class="transparent-header">
+	<div id="introLoader" class="introLoading"></div>
 
 	<!-- start Container Wrapper -->
 	<div class="container-wrapper">

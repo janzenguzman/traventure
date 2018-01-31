@@ -81,9 +81,19 @@ class MapController extends Controller
         return view ('map');
     }
 
+    // public function add(Request $req){
+    //     Gis::create($req->all());
+    //     return redirect()->back();
+    // }
+
     public function add(Request $req){
-        Gis::create($req->all());
-        return redirect()->back();
+        for($x = 0; $x < count($req->input('destination')); ++$x){
+            $gis =  new gis;
+            $gis->destination = $req->input('destination')[$x];
+            $gis->lat = $req->input('lat')[$x];
+            $gis->lng = $req->input('lng')[$x];
+            $gis->save();
+        }
     }
 
     public function show(){

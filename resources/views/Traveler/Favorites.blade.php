@@ -1,43 +1,4 @@
-{{--  @extends('layouts.app')
-
-@section('content')
-<div class="container-fluid text-center">
-    <div class="panel panel-default">
-        <div class="panel-heading"><h1>My Favorites</h1></div>
-        @if(count($favorites) > 0)
-            <table class="table table-striped">
-                <tr>
-                    <th>Favorite ID</th>
-                    <th>Package ID</th>
-                    <th>Package Name</th>
-                    <th>Information</th>
-                    <th></th>
-                </tr>
-                @foreach($favorites as $favorite)
-                    <tr id="fave{{$favorite->favorite_id}}">
-                        <td>{{$favorite->favorite_id}}</td>
-                        <td>{{$favorite->package_id}}</td>
-                        <td>{{$favorite->package_name}}</td>
-                        <td style="text-align:left;">
-                            Pax: {{$favorite->pax}} <br>
-                            Php {{number_format($favorite->price, 2)}} <br>
-                            Services: {{$favorite->services}}
-                        </td>
-                        <td>
-                            <button class="btn btn-danger del" value="{{$favorite->favorite_id}}">Unfavorite</button>
-                        </td>
-                    </tr>
-                @endforeach
-            </table>
-        @else
-            <div class="panel-body">
-                <p>You have no favorite packages yet.</p>
-            </div>
-        @endif
-        {{$favorites->links()}}
-    </div>
-</div>  --}}
-
+<!doctype html>
 @extends('layouts.user.headlayout')
 @section('content')
 <div class="container-wrapper">
@@ -58,7 +19,7 @@
 		
 			<!-- start Breadcrumb -->
 			
-			<div class="breadcrumb-image-bg" style="background-image:url({{asset('images/hero-header/osmenapeak.jpg')}});">
+			<div class="breadcrumb-image-bg" style="background-image:url({{asset('/uploads/files/osmena.jpg')}});">
 				<div class="container">
                                                                                            
 					<div class="page-title">

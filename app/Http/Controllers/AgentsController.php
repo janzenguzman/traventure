@@ -129,52 +129,59 @@ class AgentsController extends Controller
         ));
       
         $packages->save();
-        
-        return view('Agent.CreateItineraries')->with('packages', $packages);
+
+        $day = 1;
+        return redirect("Agent/Packages/CreateItineraries/".$packages->package_id."/".$day."")->with('day', $day);
     }
 
     public function storeItinerary(Request $request){
-        $packages = Packages::all();
-        // $this->validate($request, [
-        //     'day1_photo[]' => 'image|nullable|max:1999',
-        // ]);
-        // $day1_photo = 'null';
-        // if ($day1_photo = $request->hasFile('day1_photo')) {
-        //     for($j = 0; $j < count($request->hasFile('day1_photo[]')); ++$j) {
-        //         $destinationPath = public_path('public/uploads/files/');
-        //         $extension = Input::file('day1_photo')->getClientOriginalExtension();
-        //         $day1_photo = uniqid().'.'.$extension;
-        
-        //         Input::file('day1_photo')->move($destinationPath, $day1_photo[$j]);
-        //     }
-        // {
+        $packages = Packages::find($request->input('package_id'));
+            foreach ($request->file('day1_photo') as $media) {
+                $destinationPath = public_path('public/uploads/files/');
+                $extension = $media->getClientOriginalExtension();
+                $filename = uniqid().'.'.$extension;
+                $media->move($destinationPath, $filename);
+            }
+
             $package_id = $request->input('package_id');
             for($x = 0; $x < count($request->input('starttime')); ++$x){
+
                 $itinerary =  new Itinerary;
                 $itinerary->itinerary_id = $package_id;
                 $itinerary->package_id = $package_id;
                 $itinerary->starttime =  $request->input('starttime')[$x];
                 $itinerary->endtime = $request->input('endtime')[$x];
                 $itinerary->destination = $request->input('destination')[$x];
-                $itinerary->day = $request->input('day')[$x];
+                $itinerary->dayPhoto = $filename;
+                $itinerary->day = $request->input('day');
+                $itinerary->lat = $request->input('lat')[$x];
+                $itinerary->lng = $request->input('lng')[$x];
                 $itinerary->save();
+                
             }
             
-        $day = 0;
-        foreach ($request->file('day1_photo') as $media) {
-            if (!empty($media)) {
-                ++$day;
-                $destinationPath = 'public/uploads/files/';
-                $filename = $media->getClientOriginalName();
-                $media->move($destinationPath, $filename);
-                $day1_photo= DB::table('days')->insert(['photo' => $filename,
-                'days' => $day,
-                'itinerary_id' => $package_id]);
-            }
-        }
+        $days = 0;
+        // foreach ($request->file('day1_photo') as $media) {
+        //     if (!empty($media)) {
+        //         ++$days;
+        //         $destinationPath = 'public/uploads/files/';
+        //         $filename = $media->getClientOriginalName();
+        //         $media->move($destinationPath, $filename);
+        //         $day1_photo= DB::table('days')
+        //                     ->insert(['photo' => $filename,
+        //                             'days' => $days,
+        //                             'itinerary_id' => $package_id]);
+        //     }
+        // }
         
-        return redirect('Agent\Packages')->with('packages', $packages)
-            ->with('addedPackage', 'You have successfully made a new Package Tour!');
+        $day = $request->input('day');
+        if($request->input('day') == $request->input('no_day')){
+            return redirect('Agent\Packages')->with('packages', $packages)
+                ->with('addedPackage', 'You have successfully made a new Package Tour!');
+        }else{
+            ++$day;
+            return redirect("Agent/Packages/CreateItineraries/".$packages->package_id."/".$day."");
+        }
     }
     
     public function showPackages(Request $req){
@@ -187,7 +194,7 @@ class AgentsController extends Controller
         }else{
             DB::table('agents')->where('id', auth()->user()->id)->update(['active' => 0]);
         }
-
+        
         $destination = $req->input('pname_search');
         $packages = DB::table('packages')
                     ->leftJoin('comments', function($join){
@@ -198,8 +205,8 @@ class AgentsController extends Controller
                     })
                     ->select('comments.*', 'packages.*', DB::raw('AVG(rating) as ratings_average'),
                             DB::raw('count(bookings.booking_id) as count_bookings'))
-                    ->groupBy('comments.package_id', 'bookings.package_id')
-                    ->where([['packages.agent_id', auth()->user()->id], 
+                    ->groupBy('comments.package_id', 'bookings.package_id', 'packages.package_id')
+                    ->where([['packages.agent_id', Auth::user()->id], 
                             ['packages.package_name', 'like', '%'.$destination.'%']])
                     ->orderBy('packages.created_at', 'desc')
                     ->paginate(8);  
@@ -444,6 +451,12 @@ class AgentsController extends Controller
         return redirect()->route('Agent.Packages')->with('deletedPackage', 'Package Deleted.');
     }
 
+    public function cancelPackage($package_id){
+        DB::table('packages')->where('package_id', $package_id)->delete();
+        return redirect()->route('Agent.CreatePackage');
+        
+    }
+
     public function declineBooking($booking_id){
         Bookings::where('booking_id', $booking_id)->update(array('status' => 'Declined'));
 
@@ -456,27 +469,13 @@ class AgentsController extends Controller
         return redirect()->route('Agent.Bookings')->with('BookingAccepted', 'You have successfully accepted a booking!');
     }
 
-    public function itinerary(){
-        return view ('\Agent\Itinerary');
-    }
-
     public function createPackage(){
         return view ('\Agent\CreatePackage');
     }
 
-    public function createItineraries(){
-        $packages = Packages::all();
-        return view ('\Agent\CreateItineraries')->with('packages', $packages);
-    }
-
-    public function showAgents(){
-        $agents =  Agents::all();
-        return view('\Agent\Agents')->with('agents', $agents);
-    }
-
-    public function viewProfile($id){
-        $agents =  Agents::find($id);
-        return view('\Agent\ViewProfile')->with('agents', $agents);
+    public function createItineraries($package_id, $day){
+        $packages = Packages::find($package_id);
+        return view("Agent.CreateItineraries")->with(['packages' => $packages, 'day' => $day]);
     }
 
     public function viewPackage($package_id){

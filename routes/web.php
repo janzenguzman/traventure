@@ -117,9 +117,9 @@ Route::prefix('Agent')->group(function(){
     
     //Store Packages
     Route::post('/Packages/StorePackage', 'AgentsController@storePackage') -> name('Agent.StorePackage');
-
+    Route::get('/Packages/{package_id}', 'AgentsController@cancelPackage');
     //View Create Itineraries 
-    Route::get('/Packages/CreateItineraries', 'AgentsController@createItineraries') -> name('Agent.CreateItineraries');
+    Route::get('/Packages/CreateItineraries/{id}/{day}', 'AgentsController@createItineraries')->name('Agent.CreateItineraries');
 
     //Store Itineraries
     // Route::post('/Packages', array('uses' => 'AgentsController@storeItineraries'));

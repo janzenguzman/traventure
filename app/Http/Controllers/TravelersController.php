@@ -51,7 +51,7 @@ class TravelersController extends Controller
                     })
                     ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
                             DB::raw('AVG(rating) as ratings_average'))
-                    ->groupBy('comments.package_id')
+                    ->groupBy('comments.package_id', 'packages.package_id')
                     ->where([['packages.package_name', 'like', '%'.$req->input('destination_search').'%'],
                              ['slots.date_from', '=', $req->input('date_search')], 
                              ['packages.categories', 'like', '%'.$req->input('categories').'%']])
@@ -90,7 +90,7 @@ class TravelersController extends Controller
                     })
                     ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
                             DB::raw('AVG(rating) as ratings_average'))
-                    ->groupBy('comments.package_id')
+                    ->groupBy('comments.package_id', 'packages.package_id')
                     ->orderBy('comments.rating', 'desc')
                     ->paginate(8);
         }else if($req->input('sort') == 'joined'){
@@ -118,7 +118,7 @@ class TravelersController extends Controller
                     })
                     ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
                             DB::raw('AVG(rating) as ratings_average'))
-                    ->groupBy('comments.package_id')
+                    ->groupBy('comments.package_id', 'packages.package_id')
                     ->orderBy('packages.adult_price', 'asc')
                     ->where('packages.type', 'Exclusive')
                     ->paginate(8);
@@ -132,7 +132,7 @@ class TravelersController extends Controller
                     })
                     ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
                             DB::raw('AVG(rating) as ratings_average'))
-                    ->groupBy('comments.package_id')
+                    ->groupBy('comments.package_id', 'packages.package_id')
                     ->orderBy('comments.rating')
                     ->paginate(8);
         }
