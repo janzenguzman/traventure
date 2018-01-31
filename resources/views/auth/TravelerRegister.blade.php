@@ -1,5 +1,6 @@
 @extends('layouts.user.login_headlayout')
 <body class="transparent-header">
+	<div id="introLoader" class="introLoading"></div>
 
 	<!-- start Container Wrapper -->
 	<div class="container-wrapper">
@@ -233,9 +234,8 @@
 <div id="back-to-top">
    <a href="#"><i class="ion-ios-arrow-up"></i></a>
 </div>
-
+</body>
 <!-- end Back To Top -->
  <!-- Core JS -->
 @extends('layouts.user.login_javascriptlayout')
 </html>
-</body>

@@ -248,169 +248,7 @@
                                     <div class="mb-25"></div>
                                     
                                 </div>
-                                
-                                @if(count($itineraries) > 0)
-                                    @foreach($itineraries as $itinerary)
-                                        <div id="itinerary">
-                                    
-                                            <h2 class="font-lg">ITINERARY</h2>
-                                                
-                                                <div class="itinerary-toggle-wrapper mb-40">
-                                            
-                                                    <div class="panel-group bootstrap-toggle">
-            
-                                                        <div class="panel">
 
-                                                            <!--DAY 1-->
-                                                            <div class="itinerary-list-item">
-                                                                <div class="row">
-                                                                    <div class="col-xs-12 col-sm-4 col-md-3">
-                                                                        <div class="image">
-                                                                            <img src="/public/uploads/files/{{ $itinerary->day1_photo }}" alt="images" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xs-12 col-sm-8 col-md-9">
-                                                                        <div class="content">
-                                                                            <h4>Day 1</h4>
-                                                                            <div class="labeling">
-                                                                                    <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                    <span style="color:black">{{ $itinerary->day1_destination1}}</span> 
-                                                                                <span>({{ date("g:i A", strtotime($itinerary->day1_starttime1)) }} - {{ date("g:i A", strtotime($itinerary->day1_endtime1)) }})</span>
-                                                                            </div>
-                                                                            
-                                                                            @if($itinerary->day1_starttime2 != NULL)
-                                                                                <div class="labeling">
-                                                                                        <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                        <span style="color:black">{{ $itinerary->day1_destination2}}</span> 
-                                                                                    <span>({{ date("g:i A", strtotime($itinerary->day1_starttime2)) }} - {{ date("g:i A", strtotime($itinerary->day1_endtime2)) }})</span>
-                                                                                </div>
-                                                                            @endif
-
-                                                                            @if($itinerary->day1_starttime3 != NULL)
-                                                                                <div class="labeling">
-                                                                                        <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                        <span style="color:black">{{ $itinerary->day1_destination3}}</span> 
-                                                                                    <span>({{ date("g:i A", strtotime($itinerary->day1_starttime3)) }} - {{ date("g:i A", strtotime($itinerary->day1_endtime3)) }})</span>
-                                                                                </div>
-                                                                            @endif
-
-                                                                            @if($itinerary->day1_starttime4 != NULL)
-                                                                                <div class="labeling">
-                                                                                        <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                        <span style="color:black">{{ $itinerary->day1_destination4}}</span> 
-                                                                                    <span>({{ date("g:i A", strtotime($itinerary->day1_starttime4)) }} - {{ date("g:i A", strtotime($itinerary->day1_endtime4)) }})</span>
-                                                                                </div>
-                                                                            @endif
-
-                                                                            @if($itinerary->day1_starttime5 != NULL)
-                                                                                <div class="labeling">
-                                                                                        <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                        <span style="color:black">{{ $itinerary->day1_destination5}}</span> 
-                                                                                    <span>({{ date("g:i A", strtotime($itinerary->day1_starttime5)) }} - {{ date("g:i A", strtotime($itinerary->day1_endtime5)) }})</span>
-                                                                                </div>
-                                                                            @endif
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <!--DAY 2-->
-                                                            @if($itinerary->day2_starttime1 != NULL)
-                                                                <div class="itinerary-list-item">
-                                                                    <div class="row">
-                                                                        <div class="col-xs-12 col-sm-4 col-md-3">
-                                                                            <div class="image">
-                                                                                <img src="/public/uploads/files/{{ $itinerary->day2_photo }}" alt="images" />
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xs-12 col-sm-8 col-md-9">
-                                                                            <div class="content">
-                                                                                <h4>Day 2</h4>
-                                                                                <div class="labeling">
-                                                                                        <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                        <span style="color:black">{{ $itinerary->day2_destination1}}</span> 
-                                                                                    <span>({{ date("g:i A", strtotime($itinerary->day2_starttime1)) }} - {{ date("g:i A", strtotime($itinerary->day2_endtime1)) }})</span>
-                                                                                </div>
-                                                                                
-                                                                                @if($itinerary->day2_starttime2 != NULL)
-                                                                                    <div class="labeling">
-                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                            <span style="color:black">{{ $itinerary->day2_destination2}}</span> 
-                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day2_starttime2)) }} - {{ date("g:i A", strtotime($itinerary->day2_endtime2)) }})</span>
-                                                                                    </div>
-                                                                                @endif
-
-                                                                                @if($itinerary->day2_starttime3 != NULL)
-                                                                                    <div class="labeling">
-                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                            <span style="color:black">{{ $itinerary->day2_destination3}}</span> 
-                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day2_starttime3)) }} - {{ date("g:i A", strtotime($itinerary->day2_endtime3)) }})</span>
-                                                                                    </div>
-                                                                                @endif
-
-                                                                                @if($itinerary->day2_starttime4 != NULL)
-                                                                                    <div class="labeling">
-                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                            <span style="color:black">{{ $itinerary->day2_destination4}}</span> 
-                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day2_starttime4)) }} - {{ date("g:i A", strtotime($itinerary->day2_endtime4)) }})</span>
-                                                                                    </div>
-                                                                                @endif
-
-                                                                                @if($itinerary->day2_starttime5 != NULL)
-                                                                                    <div class="labeling">
-                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                            <span style="color:black">{{ $itinerary->day2_destination5}}</span> 
-                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day2_starttime5)) }} - {{ date("g:i A", strtotime($itinerary->day2_endtime5)) }})</span>
-                                                                                    </div>
-                                                                                @endif
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            @endif
-                                                            
-
-                                                            <!--DAY 3-->
-                                                            @if($itinerary->day3_starttime1 != NULL)
-                                                                <div class="itinerary-list-item">
-                                                                    <div class="row">
-                                                                        <div class="col-xs-12 col-sm-4 col-md-3">
-                                                                            <div class="image">
-                                                                                <img src="/public/uploads/files/{{ $itinerary->day3_photo }}" alt="images" />
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xs-12 col-sm-8 col-md-9">
-                                                                            <div class="content">
-                                                                                <h4>Day 3</h4>
-                                                                                <div class="labeling">
-                                                                                        <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                        <span style="color:black">{{ $itinerary->day3_destination1}}</span> 
-                                                                                    <span>({{ date("g:i A", strtotime($itinerary->day3_starttime1)) }} - {{ date("g:i A", strtotime($itinerary->day3_endtime1)) }})</span>
-                                                                                </div>
-                                                                                
-                                                                                @if($itinerary->day3_starttime2 != NULL)
-                                                                                    <div class="labeling">
-                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                            <span style="color:black">{{ $itinerary->day3_destination2}}</span> 
-                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day3_starttime2)) }} - {{ date("g:i A", strtotime($itinerary->day3_endtime2)) }})</span>
-                                                                                    </div>
-                                                                                @endif
-
-                                                                                @if($itinerary->day3_starttime3 != NULL)
-                                                                                    <div class="labeling">
-                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                            <span style="color:black">{{ $itinerary->day3_destination3}}</span> 
-                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day3_starttime3)) }} - {{ date("g:i A", strtotime($itinerary->day3_endtime3)) }})</span>
-                                                                                    </div>
-                                                                                @endif
-
-                                                                                @if($itinerary->day3_starttime4 != NULL)
-                                                                                    <div class="labeling">
-                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                            <span style="color:black">{{ $itinerary->day3_destination4}}</span> 
-                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day3_starttime4)) }} - {{ date("g:i A", strtotime($itinerary->day3_endtime4)) }})</span>
-
-                                
                                     <div id="itinerary">
                                 
                                         <h2 class="font-lg">Itinerary</h2>
@@ -420,115 +258,6 @@
                                             <div class="panel-group bootstrap-toggle">
     
                                                 <div class="panel">
-                                                    @if(count($itineraries) > 0)
-                                                        @foreach($days as $day)
-                                                            @foreach($photo as $photos)
-                                                                @for($a = 0; $a <= $day; ++$a)
-                                                                    {{--  @if($a == $day->day)  --}}
-                                                                    <div class="itinerary-list-item">
-                                                                        <div class="row">
-                                                                            <div class="col-xs-12 col-sm-8 col-md-9">
-                                                                                <div class="content">
-                                                                                    <div class="col-xs-12 col-sm-4 col-md-3">
-                                                                                    
-                                                                                            <div class="image">
-                                                                                                <img src="/public/uploads/files/{{ $photos->photo }}" alt="images" />
-                                                                                            </div>
-                                                                                        {{--  @endforeach  --}}
-                                                                                    </div>
-                                                                                    
-                                                                                    <h4>Day {{$day}}</h4>
-                                                                                    @if($a == $day)
-                                                                                        @foreach($itineraries as $itinerary1)
-                                                                                        <div class="labeling">
-                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-
-                                                                                            <span style="color:black">{{ $itinerary->day3_destination5}}</span> 
-                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day3_starttime5)) }} - {{ date("g:i A", strtotime($itinerary->day3_endtime5)) }})</span>
-                                                                                    </div>
-                                                                                @endif
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            @endif
-
-                                                            <!--DAY 4-->
-                                                            @if($itinerary->day4_starttime1 != NULL)
-                                                                <div class="itinerary-list-item">
-                                                                    <div class="row">
-                                                                        <div class="col-xs-12 col-sm-4 col-md-3">
-                                                                            <div class="image">
-                                                                                <img src="/public/uploads/files/{{ $itinerary->day4_photo }}" alt="images" />
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xs-12 col-sm-8 col-md-9">
-                                                                            <div class="content">
-                                                                                <h4>Day 4</h4>
-                                                                                <div class="labeling">
-                                                                                        <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                        <span style="color:black">{{ $itinerary->day4_destination1}}</span> 
-                                                                                    <span>({{ date("g:i A", strtotime($itinerary->day4_starttime1)) }} - {{ date("g:i A", strtotime($$itinerary->day4_endtime1)) }})</span>
-
-                                                                                            <span style="color:black">{{ $itinerary1->destination}}</span> 
-                                                                                            <span>({{ date("g:i A", strtotime($itinerary1->starttime)) }} - {{ date("g:i A", strtotime($itinerary1->endtime)) }})</span>
-                                                                                        </div>
-                                                                                        {{--  @endif
-                                                                                        @endfor  --}}
-                                                                                        @endforeach
-                                                                                    @endif
-
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                            
-                                                                    </div>
-
-                                                                </div>
-                                                            @endif
-
-                                                            <!--DAY 5-->
-                                                            @if($itinerary->day5_starttime1 != NULL)
-                                                                <div class="itinerary-list-item">
-                                                                    <div class="row">
-                                                                        <div class="col-xs-12 col-sm-4 col-md-3">
-                                                                            <div class="image">
-                                                                                <img src="/public/uploads/files/{{ $itinerary->day5_photo }}" alt="images" />
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xs-12 col-sm-8 col-md-9">
-                                                                            <div class="content">
-                                                                                <h4>Day 5</h4>
-                                                                                <div class="labeling">
-                                                                                        <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                        <span style="color:black">{{ $itinerary->day5_destination1}}</span> 
-                                                                                    <span>({{ date("g:i A", strtotime($itinerary->day5_starttime1)) }} - {{ date("g:i A", strtotime($itinerary->day5_endtime1)) }})</span>
-                                                                                </div>
-                                                                                
-                                                                                @if($itinerary->day3_starttime2 != NULL)
-                                                                                    <div class="labeling">
-                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                            <span style="color:black">{{ $itinerary->day5_destination2}}</span> 
-                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day5_starttime2)) }} - {{ date("g:i A", strtotime($itinerary->day5_endtime2)) }})</span>
-                                                                                    </div>
-                                                                                @endif
-
-                                                                                @if($itinerary->day5_starttime3 != NULL)
-                                                                                    <div class="labeling">
-                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                            <span style="color:black">{{ $itinerary->day5_destination3}}</span> 
-                                                                                        <span>({{ date("g:i A", strtotime($itinerary->day5_starttime3)) }} - {{ date("g:i A", strtotime($itinerary->day5_endtime3)) }})</span>
-                                                                                    </div>
-                                                                                @endif
-
-                                                                    {{--  @endif  --}}
-                                                                @endfor
-                                                            @endforeach
-                                                        @endforeach
-                                                        
-                                                    @else
-                                                        <p>No Itinerary.</p>
-                                                    @endif
                                                 </div>
 
 
@@ -540,7 +269,7 @@
 
                                 <div id="additional-info">
                                 
-                                        <h2 class="font-lg">ADDITIONAL INFORMATION</h2>
+                                        <h2 class="font-lg">Additional Information</h2>
                                         
                                         <div class="text-box-h-bb-wrapper">
                                             <div class="text-box-h-bb">
@@ -580,7 +309,7 @@
 
                                 <div id="reviews">
                             
-                                    <h2 class="font-lg">REVIEWS</h2>
+                                    <h2 class="font-lg">Reviews</h2>
                                         
                                         <div class="review-wrapper">
                             

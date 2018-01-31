@@ -19,8 +19,8 @@
 
 <!--FOR DETAIL PAGE-->
 <script type="text/javascript" src="{{ asset('js_user/moment.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js_user/jquery.daterangepicker.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js_user/customs-datepicker-12.js') }}"></script>
+{{--  <script type="text/javascript" src="{{ asset('js_user/jquery.daterangepicker.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js_user/customs-datepicker-12.js') }}"></script>  --}}
 <script type="text/javascript" src="{{ asset('js_user/jquery.sumogallery.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js_user/images-grid.js') }}"></script>
 {{--  <script type="text/javascript" src="{{ asset('js_user/jquery.stickit.js') }}"></script>  --}}

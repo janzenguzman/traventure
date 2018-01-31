@@ -24,7 +24,7 @@
 		
 			<!-- start breadcrumb -->
 			
-			<div class="breadcrumb-image-bg" style="background-image:url({{asset('images/hero-header/osmenapeak.jpg')}});">
+			<div class="breadcrumb-image-bg" style="background-image:url({{asset('/uploads/files/osmena.jpg')}});">
 				<div class="container">
                                                                                            
 					<div class="page-title">
