@@ -253,22 +253,12 @@
 
                                             <div class="col-xs-12 col-sm-12">
                                                 <div class="form-group">
-                                                    {{--  <div id="file-submit" class="dropzone">
-                                                        <input name="photo" type=f"file" required>
-                                                        <div class="dz-default dz-message"><span>Click or Drop Image Here</span></div>
-                                                    </div>  --}}
-
                                                     {{Form::file('photo', ['required' => 'required'])}}
                                                     {{--  <input type="submit" class="btn btn-info btn-wide pull-right" style="margin-bottom: 5%">  --}}
                                                     {{Form::submit('Submit', ['class' => "btn btn-info btn-wide pull-right"])}}
                                                 </div>
                                             
                                             </div> <br>
-                                            {{--  <a href="requested-create-done.html" class="btn btn-primary btn-wide">Submit</a>  --}}
-
-                                            {{--  <a href="#" class="btn btn-primary btn-wide btn-border">Save as draft</a>  --}}
-                                            
-
                                         </div>
                                             {!!Form::close() !!}
                                     </div>

@@ -106,7 +106,7 @@
         <!-- start Main Wrapper -->
         <div class="main-wrapper scrollspy-container">
             <!-- start breadcrumb -->
-            <div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url({{ asset('images/breadcrumb-bg.jpg') }});">
+            <div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url({{asset('/uploads/files/osmena.jpg')}});">
                 <div class="container">
                     <div class="page-title">                    
                         <div class="row">                        
@@ -152,7 +152,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+                                                <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <h4 class="section-title">Service Type</h4>
                                                 @if($packages->type == 'Exclusive')
                                                 <div id="paymentOption" class="payment-option-wrapper">
@@ -424,6 +424,7 @@
                                                             
                                                         </div>
                                                     </div>
+                                                </div>
                                                 @endif
             
                                             </div>
@@ -451,45 +452,16 @@
                                             
                                             <h4 class="section-title">Categories:</h4>
 
-                                            <div class="row checkbox-wrapper">
-                                                <div class="col-xss-12 col-xs-6 col-sm-6 col-md-4">
-                                                    <div class="checkbox-block">
-                                                        <input id="beach" value="Beach" name="categories[]" type="checkbox" class="checkbox"/>
-                                                        <label class="" for="beach">Beach</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xss-12 col-xs-6 col-sm-6 col-md-4">
-                                                    <div class="checkbox-block">
-                                                        <input id="city" value="City Tour" name="categories[]" type="checkbox" class="checkbox"/>
-                                                        <label class="" for="city">City Tour</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xss-12 col-xs-6 col-sm-6 col-md-4">
-                                                    <div class="checkbox-block">
-                                                        <input id="historical" value="Historical" name="categories[]" type="checkbox" class="checkbox"/>
-                                                        <label class="" for="historical">Historical</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xss-12 col-xs-6 col-sm-6 col-md-4">
-                                                    <div class="checkbox-block">
-                                                        <input id="island" value="Island Hopping" name="categories[]" type="checkbox" class="checkbox"/>
-                                                        <label class="" for="island">Island Hopping</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xss-12 col-xs-6 col-sm-6 col-md-4">
-                                                    <div class="checkbox-block">
-                                                        <input id="mountains" value="Mountains" name="categories[]" type="checkbox" class="checkbox"/>
-                                                        <label class="" for="mountains">Mountains</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xss-12 col-xs-6 col-sm-6 col-md-4">
-                                                    <div class="checkbox-block">
-                                                        <input id="waterfalls" value="Waterfalls" name="categories[]" type="checkbox" class="checkbox"/>
-                                                        <label class="" for="waterfalls">Waterfalls</label>
-                                                    </div>
+                                            <div class="col-xs-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Tags: </label>
+                                                    {{--  <input type="text" class="form-control" name="categories[]" id="autocompleteTagging2" placeholder="" />  --}}
+                                                    <input type="text" class="form-control" name="categories[]" data-role="tagsinput" required/>
                                                 </div>
                                             </div>
-                                    
+                                            <div class="mb-40"></div>  
+                                                <br></br>
+                                            
                                         <div class="mb-25"></div>
                                         <div class="bb"></div>
                                         <div class="mb-25"></div>
@@ -498,14 +470,26 @@
                                             
                                             <div class="mb-25"></div>
 
-                                            <div class="form-group">
-                                                {{Form::file('photo', ['required' => 'required'])}}
-                                            </div>
-                                            {{Form::submit('Submit', ['class' => "btn btn-info btn-wide pull-right" ])}}
+                                            <div class="col-xs-12 col-sm-12">
+                                                <div class="form-group">
+                                                    {{--  <div id="file-submit" class="dropzone">
+                                                        <input name="photo" type=f"file" required>
+                                                        <div class="dz-default dz-message"><span>Click or Drop Image Here</span></div>
+                                                    </div>  --}}
 
+                                                    {{Form::file('photo', ['required' => 'required'])}}
+                                                    {{--  <input type="submit" class="btn btn-info btn-wide pull-right" style="margin-bottom: 5%">  --}}
+                                                    {{Form::submit('Submit', ['class' => "btn btn-info btn-wide pull-right"])}}
+                                                </div>
+                                            
+                                            </div> <br>
                                             {{--  <a href="requested-create-done.html" class="btn btn-primary btn-wide">Submit</a>  --}}
+
+                                            {{--  <a href="#" class="btn btn-primary btn-wide btn-border">Save as draft</a>  --}}
+                                            
+
                                         </div>
-                                    {!!Form::close() !!}
+                                            {!!Form::close() !!}
                                 </div>
                                 
                             </div>
@@ -552,3 +536,10 @@
 <!-- end Back To Top -->
 @endsection
 @extends('layouts.user.javascriptlayout')
+<script>
+    var categories = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('categories'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        
+    });
+</script>

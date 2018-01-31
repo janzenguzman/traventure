@@ -40,7 +40,7 @@
         <!-- start Main Wrapper -->
         <div class="main-wrapper scrollspy-container">
             <!-- start breadcrumb -->
-            <div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url({{asset('images/hero-header/osmenapeak.jpg')}});">
+            <div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url({{asset('/uploads/files/osmena.jpg')}});">
                 <div class="container">
                     <div class="page-title">                    
                         <div class="row">                        

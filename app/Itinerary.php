@@ -15,5 +15,5 @@ class Itinerary extends Model
 
     protected $table = 'itinerary';
 
-    protected $primaryKey = 'itinerary_id';
+    protected $primaryKey = 'id';
 }
