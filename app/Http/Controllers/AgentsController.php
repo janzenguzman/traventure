@@ -491,20 +491,6 @@ class AgentsController extends Controller
                     ])
                     ->orderBy('slots.date_from', 'asc')
                     ->get();
-        // $photo = DB::table('itinerary')
-        //         ->join('days', 'days.itinerary_id', 'itinerary.itinerary_id')
-        //         ->where('itinerary.package_id', $package_id)
-        //         ->select('days.photo')->get();
-        
-        // $days = DB::table('itinerary')
-        //         ->where('itinerary.package_id', $package_id)
-        //         ->select('day')->get();
-
-        // $day = Itinerary::find($package_id)->selec;
-                // dd($day);
-        // for($a = 1; $a <= $days; ++$a){
-
-        // }
         return View::make('\Agent\PackageDetails', ['packages' => $packages, 
                                                     'itineraries' => $itineraries, 
                                                     'avg' => $avg,

@@ -1,5 +1,5 @@
-
 @extends('layouts.user.headlayout')
+
 @section('content')
 <body class="transparent-header with-multiple-sticky">
     <div id="introLoader" class="introLoading"></div>
@@ -248,8 +248,8 @@
                                     <div class="mb-25"></div>
                                     
                                 </div>
-
-                                    <div id="itinerary">
+                                
+                                    {{--  <div id="itinerary">
                                 
                                         <h2 class="font-lg">Itinerary</h2>
                                             
@@ -258,6 +258,46 @@
                                             <div class="panel-group bootstrap-toggle">
     
                                                 <div class="panel">
+<<<<<<< HEAD
+                                                    @if(count($itineraries) > 0)
+                                                        @foreach($days as $day)
+                                                            @foreach($photo as $photos)
+                                                                @for($a = 0; $a <= $day->days; ++$a)
+                                                                    {{--  @if($a == $day->day)  
+                                                                    <div class="itinerary-list-item">
+                                                                        <div class="row">
+                                                                            <div class="col-xs-12 col-sm-8 col-md-9">
+                                                                                <div class="content">
+                                                                                    <div class="col-xs-12 col-sm-4 col-md-3">
+                                                                                    
+                                                                                            <div class="image">
+                                                                                                <img src="/public/uploads/files/{{ $photos->photo }}" alt="images" />
+                                                                                            </div>
+                                                                                        {{--  @endforeach  
+                                                                                    </div>
+                                                                                    
+                                                                                    <h4>Day {{$day->days}}</h4>
+                                                                                    @if($a == $day->days)
+                                                                                        @foreach($itineraries as $itinerary)
+                                                                                        <div class="labeling">
+                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+
+                                                                                            <span style="color:black">{{ $itinerary->destination}}</span> 
+                                                                                        <span>({{ date("g:i A", strtotime($itinerary->starttime)) }} - {{ date("g:i A", strtotime($itinerary->endtime)) }})</span>
+                                                                                        @endforeach
+                                                                                    @endif
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                            @endfor
+                                                        @endforeach
+                                                        @endforeach
+                                                        
+                                                    @else
+                                                        <p>No Itinerary.</p>
+                                                    @endif
+                                                    
                                                 </div>
 
 
@@ -265,7 +305,62 @@
 
                                         </div>
 
-                                    </div>                                       
+                                    </div>                                         --}}
+                                    <div>
+                                        {{--  @foreach($days as $day)
+                                            {{$temp = 0}}
+                                            @for($count=1; $count<$day->days; ++$count)
+                                                @if($temp != $day->days)
+                                                    Day {{$day->days}}
+                                                    {{$temp = $day->days}}
+                                                @endif
+                                            @endfor
+                                        @endforeach  --}}
+                                <div id="itinerary">
+                                    <h2 class="font-lg">Itinerary</h2>
+                                    <div class="itinerary-toggle-wrapper mb-40">
+                                        <div class="panel-group bootstrap-toggle">
+                                            <div class="panel">
+
+                                                <?php $temp = 0 ?>
+                                                @if(count($itineraries) > 0)
+                                                    <div class="itinerary-list-item">
+                                                    @foreach($itineraries as $itinerary)
+                                                        @for($x=0; $x<count($itinerary->package_id); ++$x)
+                                                            {{--  <div class="itinerary-list-item">  --}}
+                                                                <div class="row">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div class="content">
+                                                                            @if($temp != $itinerary->day)
+                                                                                <div class="col-xs-12 col-sm-4 col-md-3">
+                                                                                    <div class="image">
+                                                                                        <img src="/public/uploads/files/{{ $itinerary->dayPhoto }}" alt="images" />
+                                                                                    </div>
+                                                                                </div>
+                                                                                    
+                                                                                <h4>Day {{$itinerary->day}}</h4>
+                                                                                <?php $temp = $itinerary->day ?> 
+                                                                            @endif
+                                                                            <div class="labeling">
+                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                                <span style="color:black">{{ $itinerary->destination}}</span> 
+                                                                                <span>({{ date("g:i A", strtotime($itinerary->starttime)) }} - {{ date("g:i A", strtotime($itinerary->endtime)) }})</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            {{--  </div>  --}}
+                                                        @endfor
+                                                    @endforeach
+                                                    </div>
+                                                @else
+                                                    <h5>No Itinerary.</h5>
+                                                @endif
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div id="additional-info">
                                 
@@ -313,7 +408,7 @@
                                         
                                         <div class="review-wrapper">
                             
-                                                @if($avg != 0)
+                                            @if($avg != 0)
                                                 <div class="review-header">
                                                 
                                                     <div class="GridLex-gap-30">
@@ -458,11 +553,13 @@
 </div>
 <!-- end of delete package -->
 
-<script>
+@endsection
+@extends('layouts.user.javascriptlayout')
+@section('script')
+<script type="text/javascript">
     $(document).on("click",'#deleteButton',(function(){
         $('#slot_id').val($(this).data('slot_id'));
         $('#deleteModal').modal('show');
     })); 
 </script>
 @endsection
-@extends('layouts.user.javascriptlayout')
