@@ -147,7 +147,6 @@ class AgentsController extends Controller
             for($x = 0; $x < count($request->input('starttime')); ++$x){
 
                 $itinerary =  new Itinerary;
-                $itinerary->itinerary_id = $package_id;
                 $itinerary->package_id = $package_id;
                 $itinerary->starttime =  $request->input('starttime')[$x];
                 $itinerary->endtime = $request->input('endtime')[$x];
@@ -161,19 +160,6 @@ class AgentsController extends Controller
             }
             
         $days = 0;
-        // foreach ($request->file('day1_photo') as $media) {
-        //     if (!empty($media)) {
-        //         ++$days;
-        //         $destinationPath = 'public/uploads/files/';
-        //         $filename = $media->getClientOriginalName();
-        //         $media->move($destinationPath, $filename);
-        //         $day1_photo= DB::table('days')
-        //                     ->insert(['photo' => $filename,
-        //                             'days' => $days,
-        //                             'itinerary_id' => $package_id]);
-        //     }
-        // }
-        
         $day = $request->input('day');
         if($request->input('day') == $request->input('no_day')){
             return redirect('Agent\Packages')->with('packages', $packages)
@@ -214,7 +200,7 @@ class AgentsController extends Controller
     }
 
     public function editItineraries($package_id){
-        $itineraries = Itineraries::find($package_id);
+        $itineraries = Itinerary::find($package_id);
         $packages = Packages::find($package_id);
  
         return view('\Agent\EditItineraries')->with(['itineraries' => $itineraries, 'packages' => $packages]);
@@ -373,7 +359,7 @@ class AgentsController extends Controller
 
     public function editPackage($package_id){
         $packages = Packages::find($package_id);
-        $itineraries = Itineraries::find($package_id);
+        $itineraries = Itinerary::find($package_id);
  
         return view('\Agent\EditPackage')->with(['packages' => $packages, 'itineraries' => $packages]);
     }
@@ -505,14 +491,14 @@ class AgentsController extends Controller
                     ])
                     ->orderBy('slots.date_from', 'asc')
                     ->get();
-        $photo = DB::table('itinerary')
-                ->join('days', 'days.itinerary_id', 'itinerary.itinerary_id')
-                ->where('itinerary.package_id', $package_id)
-                ->select('days.photo')->get();
+        // $photo = DB::table('itinerary')
+        //         ->join('days', 'days.itinerary_id', 'itinerary.itinerary_id')
+        //         ->where('itinerary.package_id', $package_id)
+        //         ->select('days.photo')->get();
         
-        $days = DB::table('itinerary')
-                ->where('itinerary.package_id', $package_id)
-                ->select('day')->get();
+        // $days = DB::table('itinerary')
+        //         ->where('itinerary.package_id', $package_id)
+        //         ->select('day')->get();
 
         // $day = Itinerary::find($package_id)->selec;
                 // dd($day);
@@ -525,9 +511,7 @@ class AgentsController extends Controller
                                                     'booking' => $booking,
                                                     'comments' => $comments,
                                                     'countCom' => $countCom,
-                                                    'slots' => $slots,
-                                                    'photo' => $photo,
-                                                    'days' => $days]);
+                                                    'slots' => $slots]);
     }
 
     public function editAgent($id){

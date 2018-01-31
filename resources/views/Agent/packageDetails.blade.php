@@ -2,7 +2,7 @@
 @extends('layouts.user.headlayout')
 @section('content')
 <body class="transparent-header with-multiple-sticky">
-
+    <div id="introLoader" class="introLoading"></div>
 	<!-- start Container Wrapper -->
 	<div class="container-wrapper">
 
