@@ -1,10 +1,10 @@
 @extends('layouts.user.headlayout')
-{{--  <style>
+<style>
     #map_canvas {
         height: 400px;
         width: 100%;
     }
-</style>  --}}
+</style>
 @section('content')
 <body class="transparent-header">
     <!-- start Container Wrapper -->
@@ -113,10 +113,10 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="col-xs-12 col-sm-12">
+                                                                            {{--  <div class="col-xs-12 col-sm-12">
                                                                                 <a class="add_des" type="submit"><i class="ion-android-add-circle"></i></a>
                                                                                 <span>Add Destination</span>
-                                                                            </div>
+                                                                            </div>  --}}
 
                                                                             <div class="col-xs-12 col-sm-12">
                                                                                 <div class="form-group">
@@ -166,12 +166,12 @@
                                                     </div><br>  --}}
                                                     <br>
                                                     @if($packages->days == 1)
-                                                        <input type="SUBMIT" name="submit" class="btn btn-wide btn-info btn-sm pull-right" value="submit"/>
+                                                        <input type="SUBMIT" name="submit" class="btn btn-wide btn-info btn-sm pull-right" value="submit"/><br>
                                                     @else
                                                         @if($day == $packages->days)
-                                                            <input type="SUBMIT" name="submit" class="btn btn-wide btn-info btn-sm pull-right" value="submit"/>
+                                                            <input type="SUBMIT" name="submit" class="btn btn-wide btn-info btn-sm pull-right" value="submit"/><br>
                                                         @else
-                                                            <input type="SUBMIT" name="submit" class="btn btn-wide btn-info btn-sm pull-right" value="next"/>
+                                                            <input type="SUBMIT" name="submit" class="btn btn-wide btn-info btn-sm pull-right" value="next"/><br>
                                                         @endif
                                                     @endif
                                         {!!Form::close() !!}

@@ -9,11 +9,11 @@ use App\Packages;
 use App\Itineraries;
 use App\Slots;
 use App\Bookings;
+use Carbon\Carbon;
 use App\Travelers;
 use App\Agents;
 use DB;
 use View;
-use Carbon\Carbon;
 use Auth;
 use Hash;
 use App\Itinerary;
@@ -433,7 +433,7 @@ class AgentsController extends Controller
     public function deletePackage(Request $req){
         $package_id = $req->input('package_id');
         DB::table('packages')->where('package_id', $package_id)->delete();
-        DB::table('itineraries')->where('package_id', $package_id)->delete();
+        DB::table('itinerary')->where('package_id', $package_id)->delete();
         return redirect()->route('Agent.Packages')->with('deletedPackage', 'Package Deleted.');
     }
 
@@ -471,6 +471,7 @@ class AgentsController extends Controller
         $itineraries = DB::table('itinerary')
                     ->join('packages', 'packages.package_id', 'itinerary.package_id')
                     ->where('itinerary.package_id', $package_id)
+                    ->orderBy('itinerary.starttime')
                     ->get();
         $avg = DB::table('comments')->where('package_id', $package_id)->avg('rating');
         $comments = DB::table('comments')
@@ -498,6 +499,14 @@ class AgentsController extends Controller
                                                     'comments' => $comments,
                                                     'countCom' => $countCom,
                                                     'slots' => $slots]);
+    }
+
+    public function viewRoutes($package_id, $day){
+        $routes = DB::table('itinerary')
+                ->where([['package_id', $package_id], ['day', $day]])
+                ->orderBy('starttime')
+                ->get();
+        return view('Agent.ViewRoutes')->with('routes', $routes);
     }
 
     public function editAgent($id){

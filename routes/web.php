@@ -161,7 +161,7 @@ Route::prefix('Agent')->group(function(){
     
     //delete booking
     Route::post('/Bookings/DeleteBooking', array('uses' => 'AgentsController@deleteBooking'))->name('Agent.DeleteBooking');
-    
+    Route::get('/Packages/PackageDetails/ViewRoutes/{package_id}/{day}', 'AgentsController@viewRoutes')->name('Agent.ViewRoutes');
 });
 
 Route::get('/show', 'MapController@show');

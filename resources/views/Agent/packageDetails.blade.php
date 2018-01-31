@@ -119,8 +119,12 @@
                                         <span class="labeling">Offered by: </span>
                                         <h4>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</h4>
                                         <a>{{ Auth::user()->job_position }} OF {{ Auth::user()->company_name }}</a><br>
-                                    </div>
                                     
+                                        <div class="content">
+                                            <a href="/Agent/Packages/EditPackage/{{$packages->package_id}}" class="btn btn-info btn-sm btn-wide pull-right"> Edit Package</a>
+                                            {{--  <button class="col-lg-12 btn btn-success btn-sm"> Edit  Itinerary</button>  --}}
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="mb-25"></div>
                                 <div class="bb"></div>
@@ -248,113 +252,67 @@
                                     <div class="mb-25"></div>
                                     
                                 </div>
-                                
-                                    {{--  <div id="itinerary">
-                                
-                                        <h2 class="font-lg">Itinerary</h2>
-                                            
-                                        <div class="itinerary-toggle-wrapper mb-40">
-                                    
-                                            <div class="panel-group bootstrap-toggle">
-    
-                                                <div class="panel">
-<<<<<<< HEAD
-                                                    @if(count($itineraries) > 0)
-                                                        @foreach($days as $day)
-                                                            @foreach($photo as $photos)
-                                                                @for($a = 0; $a <= $day->days; ++$a)
-                                                                    {{--  @if($a == $day->day)  
-                                                                    <div class="itinerary-list-item">
-                                                                        <div class="row">
-                                                                            <div class="col-xs-12 col-sm-8 col-md-9">
-                                                                                <div class="content">
-                                                                                    <div class="col-xs-12 col-sm-4 col-md-3">
-                                                                                    
-                                                                                            <div class="image">
-                                                                                                <img src="/public/uploads/files/{{ $photos->photo }}" alt="images" />
-                                                                                            </div>
-                                                                                        {{--  @endforeach  
-                                                                                    </div>
-                                                                                    
-                                                                                    <h4>Day {{$day->days}}</h4>
-                                                                                    @if($a == $day->days)
-                                                                                        @foreach($itineraries as $itinerary)
-                                                                                        <div class="labeling">
-                                                                                            <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-
-                                                                                            <span style="color:black">{{ $itinerary->destination}}</span> 
-                                                                                        <span>({{ date("g:i A", strtotime($itinerary->starttime)) }} - {{ date("g:i A", strtotime($itinerary->endtime)) }})</span>
-                                                                                        @endforeach
-                                                                                    @endif
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                            @endfor
-                                                        @endforeach
-                                                        @endforeach
-                                                        
-                                                    @else
-                                                        <p>No Itinerary.</p>
-                                                    @endif
-                                                    
-                                                </div>
-
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>                                         --}}
-                                    <div>
-                                        {{--  @foreach($days as $day)
-                                            {{$temp = 0}}
-                                            @for($count=1; $count<$day->days; ++$count)
-                                                @if($temp != $day->days)
-                                                    Day {{$day->days}}
-                                                    {{$temp = $day->days}}
-                                                @endif
-                                            @endfor
-                                        @endforeach  --}}
+                                <div>
                                 <div id="itinerary">
-                                    <h2 class="font-lg">Itinerary</h2>
+                                    <h2 class="font-lg">ITINERARY</h2>
                                     <div class="itinerary-toggle-wrapper mb-40">
                                         <div class="panel-group bootstrap-toggle">
                                             <div class="panel">
 
                                                 <?php $temp = 0 ?>
                                                 @if(count($itineraries) > 0)
-                                                    <div class="itinerary-list-item">
+                                                     <div class="itinerary-list-item">
                                                     @foreach($itineraries as $itinerary)
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                <div class="content">
                                                         @for($x=0; $x<count($itinerary->package_id); ++$x)
-                                                            {{--  <div class="itinerary-list-item">  --}}
-                                                                <div class="row">
-                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                                                        <div class="content">
-                                                                            @if($temp != $itinerary->day)
-                                                                                <div class="col-xs-12 col-sm-4 col-md-3">
-                                                                                    <div class="image">
-                                                                                        <img src="/public/uploads/files/{{ $itinerary->dayPhoto }}" alt="images" />
-                                                                                    </div>
-                                                                                </div>
-                                                                                    
-                                                                                <h4>Day {{$itinerary->day}}</h4>
-                                                                                <?php $temp = $itinerary->day ?> 
-                                                                            @endif
-                                                                            <div class="labeling">
-                                                                                <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-                                                                                <span style="color:black">{{ $itinerary->destination}}</span> 
-                                                                                <span>({{ date("g:i A", strtotime($itinerary->starttime)) }} - {{ date("g:i A", strtotime($itinerary->endtime)) }})</span>
-                                                                            </div>
-                                                                        </div>
+                                                               
+                                                            @if($temp != $itinerary->day)
+                                                                @if($itinerary->day !=1)
+                                                                <div class="mb-25"></div>
+                                                                <div class="bb"></div>
+                                                                <div class="mb-25"></div>
+                                                                @endif
+                                                            <div class="col-xs-12 col-sm-4 col-md-12">
+                                                                <b><span class="labeling" style="font-size: 20px">Day 0{{$itinerary->day}}</span></b>
+                                                                <div class="col-xs-12 col-sm-4 col-md-3">
+                                                                    <div class="image">
+                                                                        <img src="/public/uploads/files/{{ $itinerary->dayPhoto }}" alt="images" />
+                                                                        
                                                                     </div>
+                                                                    
+                                                                    
                                                                 </div>
-                                                            {{--  </div>  --}}
+                                                                <div class="col-xs-12 col-sm-4 col-md-9">
+                                                                    <a href="/Agent/Packages/PackageDetails/ViewRoutes/{{$itinerary->package_id}}/{{$itinerary->day}}" class="btn btn-success pull-right">View Routes</a>
+                                                                    </div>
+                                                            </div>
+                                                                <?php $temp = $itinerary->day ?> 
+                                                            @endif
+                                                            <div class="col-xs-12 col-sm-4 col-md-12">
+                                                            <div class="content">
+                                                                <div class="labeling">
+                                                                    <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+                                                                    <span style="color:black">{{ $itinerary->destination}}</span> 
+                                                                    <span>({{ date("g:i A", strtotime($itinerary->starttime)) }} - {{ date("g:i A", strtotime($itinerary->endtime)) }})</span>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                                            
+                                                                        
                                                         @endfor
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        
                                                     @endforeach
-                                                    </div>
+                                                </div>    
                                                 @else
-                                                    <h5>No Itinerary.</h5>
+                                                <div class="itinerary-list-item">
+                                                    <h4 class="text-danger">No Itinerary for this package.</p>
+                                                </div>
                                                 @endif
 
                                             </div>
@@ -364,7 +322,7 @@
 
                                 <div id="additional-info">
                                 
-                                        <h2 class="font-lg">Additional Information</h2>
+                                        <h2 class="font-lg">ADDITIONAL INFORMATION</h2>
                                         
                                         <div class="text-box-h-bb-wrapper">
                                             <div class="text-box-h-bb">
@@ -404,7 +362,7 @@
 
                                 <div id="reviews">
                             
-                                    <h2 class="font-lg">Reviews</h2>
+                                    <h2 class="font-lg">REVIEWS</h2>
                                         
                                         <div class="review-wrapper">
                             
@@ -492,13 +450,6 @@
                             </form>
 
                         </div>
-
-                        <div class="col-xs-12 col-sm-12 col-md-2">
-                                <div class="content">
-                                    <a href="/Agent/Packages/EditPackage/{{$packages->package_id}}" class="btn btn-info btn-sm btn-wide"> Edit Package</a>
-                                    {{--  <button class="col-lg-12 btn btn-success btn-sm"> Edit  Itinerary</button>  --}}
-                                </div>
-                            </div>
                     </div>
                     
                 </div>
