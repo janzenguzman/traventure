@@ -1,11 +1,13 @@
+<?php
+    $countMessages = DB::table('messages')
+                    ->where([['receiver_email', auth()->user()->email],['status', 0]])
+                    ->count();
+?>  
 <html lang="{{ app()->getLocale() }}">
     <meta name="token" content="{{ csrf_token() }}">
         <title>{{ config('app.name', 'Traventure') }}</title> 
-
             <nav class="navbar navbar-default navbar-fixed-top navbar-sticky-function navbar-arrow">
-
 				<div class="container">
-					
 					<div class="logo-wrapper">
 						<div class="logo">
 							<a href="/Traveler/Explore"><img src="{{ asset('images/navbar-logo.png') }}" alt="Logo" /></a>
@@ -13,7 +15,6 @@
 					</div>
 					
 					<div id="navbar" class="navbar-nav-wrapper">
-					
 						<ul class="nav navbar-nav" id="responsive-menu">
                             <li>
 								<a><i class="fa fa-user"></i> Hi, {{ Auth::user()->fname }} {{ Auth::user()->lname }}</a>
@@ -51,16 +52,18 @@
 							</li>
 							
 							<li>
-								<a href="{{ route('Traveler.ShowMessages') }}">MESSAGES</a>
+								<a href="{{ route('Traveler.ShowMessages') }}">MESSAGES
+                                    @if($countMessages != 0)
+                                        <span class="badge">
+                                            {{ $countMessages }}
+                                        </span>
+                                    @endif
+                                </a>
 							</li>
 						</ul>
-				
 					</div><!--/.nav-collapse -->
-				
 				</div>
-				
 				<div id="slicknav-mobile"></div>
-				
 			</nav>
 
         <!--USER PROFILE MODAL-->
@@ -115,15 +118,7 @@
                                                     <h4>{{ Auth::user()->email }}</h4>
                                                 </div>
                                             </div>
-
-											{{--  <ul class="user-meta">
-												<li>53 tours</li>
-												<li>443 reviews</li>
-												<li>8 awards</li>
-											</ul>
-											<a href="#">view profile <i class="ion-android-arrow-forward"></i></a>  --}}
 										</div>
-										
 									</div>
                                 </div>
                             </div>
@@ -135,11 +130,10 @@
                 <a href="#editProfile" type="button" class="btn btn-info btn-sm" data-toggle="modal">Edit</a>
                 <button type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button>
             </div>
-            
         </div>
 
+
         <!--USER EDIT MODAL-->
-        
         <div id="editProfile" class="modal fade login-box-wrapper" tabindex="-1" data-width="550" data-backdrop="static" data-keyboard="false" data-replace="true">
 
             <div class="modal-header">
@@ -156,7 +150,7 @@
                                         <form method="POST" action="{{ route('Traveler.UpdateProfile') }}" enctype="multipart/form-data">
 										{{ csrf_field() }}
                                         <div class="image">
-											<img src="/public/uploads/files/{{ Auth::user()->photo }}" class="img-circle" alt="images" />
+											<img src="/public/uploads/files/{{ Auth::user()->photo }}" class="img-circle" alt="images" id="profile-img-tag"/>
 										</div>
 										
 										<div class="content">
@@ -183,16 +177,15 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-6 col-md-6 filter-item mmr eventForm">
                                                 <div class="form-group"> 
                                                     <span class="labeling" style="color:black">Birthday: </span>
-                                                    <div class="form-group form-group-sm">
-                                                        <input type="date" class="form-control" name="birthday" value="{{ Auth::user()->birthday }}"/>
+                                                    <div class="form-group form-group-sm input-append date">
+                                                        <input type="text" class="form-control datePicker" name="birthday" value="{{ Auth::user()->birthday }}"/>
                                                     </div>
                                                 </div>
                                             </div>
                                             
-
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group"> 
                                                     <span class="labeling" style="color:black">Contact Number: </span>
@@ -206,7 +199,7 @@
                                                 <div class="form-group form-group-sm"> 
                                                     <span class="labeling" style="color:black">Change Profile Picture: </span>
                                                     <div class="form-group form-group-sm">
-                                                        <input type="file" name="photo"/>
+                                                        <input type="file" name="photo" id="profile-img"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -227,59 +220,115 @@
             
         </div>
 
-                <!--CHANGE PASS MODAL-->
-                <div id="changepass_modal" class="modal fade login-box-wrapper" tabindex="-1" data-width="550" data-backdrop="static" data-keyboard="false" data-replace="true">
+        <!--CHANGE PASS MODAL-->
+        <div id="changepass_modal" class="modal fade login-box-wrapper" tabindex="-1" data-width="550" data-backdrop="static" data-keyboard="false" data-replace="true">
 
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title text-center">Change Password</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row gap-20">
-                            <div class="user-item-wrapper-01">
-                                <div class="GridLex-gap-20 GridLex-gap-15-mdd GridLex-gap-10-xs">
-                                    <div class="GridLex-grid-noGutter-equalHeight GridLex-grid-center">
-                                        <div class="GridLex-col-12_sm-4_xs-12_xss-12">
-                                            <div class="user-long-sm-item clearfix">
-                                                <form method="POST" action="{{ route('Traveler.ChangePass') }}">
-                                                    
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <div class="col-sm-12 col-md-12">
-                                                        <div class="col-sm-12 col-md-12">
-                                                            <div class="form-group form-group-sm">
-                                                                <label>Old Password: </label>
-                                                                <input type="password" class="form-control" name="old_pass" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12 col-md-12">
-                                                            <div class="form-group form-group-sm">
-                                                                <label>New Password: </label>
-                                                                <input type="password" class="form-control" name="new_pass" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12 col-md-12">
-                                                            <div class="form-group form-group-sm">
-                                                                <label>Re-enter New Password: </label>
-                                                                <input type="password" class="form-control" name="confirm_pass" required>
-                                                            </div>
-                                                        </div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title text-center">Change Password</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row gap-20">
+                    <div class="user-item-wrapper-01">
+                        <div class="GridLex-gap-20 GridLex-gap-15-mdd GridLex-gap-10-xs">
+                            <div class="GridLex-grid-noGutter-equalHeight GridLex-grid-center">
+                                <div class="GridLex-col-12_sm-4_xs-12_xss-12">
+                                    <div class="user-long-sm-item clearfix">
+                                        <form method="POST" action="{{ route('Traveler.ChangePass') }}">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <div class="col-sm-12 col-md-12">
+                                                <div class="col-sm-12 col-md-12">
+                                                    <div class="form-group form-group-sm">
+                                                        <label>Old Password: </label>
+                                                        <input type="password" class="form-control" name="old_pass" required>
                                                     </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-12">
+                                                    <div class="form-group form-group-sm">
+                                                        <label>New Password: </label>
+                                                        <input type="password" class="form-control" name="new_pass" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-12">
+                                                    <div class="form-group form-group-sm">
+                                                        <label>Re-enter New Password: </label>
+                                                        <input type="password" class="form-control" name="confirm_pass" required>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer text-center">
-                        <input type="submit" class="btn btn-info btn-sm" value="Save"/>
-                        <button type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button>
-                    </div>
-               
                 </div>
-                </form>
-                <!--CHANGE PASS MODAL-->
             </div>
+            <div class="modal-footer text-center">
+                <input type="submit" class="btn btn-info btn-sm" value="Save"/>
+                <button type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button>
+            </div>
+        
+        </div>
+        </form>
+        <!--CHANGE PASS MODAL-->
+    </div>
 
-        @yield('content')
-        @yield('js')
+@yield('content')
+@yield('js')
+
+<script>
+        $(document).ready(function() {
+            $('.datePicker')
+                .datepicker({
+                    autoclose: true,
+                    format: 'yyyy-mm-dd'
+                })
+                .on('changeDate', function(e) {
+                    // Revalidate the date field
+                    $('.eventForm').formValidation('revalidateField', 'date');
+                });
+        
+            $('.eventForm').formValidation({
+                framework: 'bootstrap',
+                icon: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    name: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The name is required'
+                            }
+                        }
+                    },
+                    date: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The date is required'
+                            },
+                            date: {
+                                format: 'YYYY-MM-DD',
+                                message: 'The date is not a valid'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#profile-img-tag').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#profile-img").change(function(){
+            readURL(this);
+        });
+</script>

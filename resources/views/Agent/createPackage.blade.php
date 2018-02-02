@@ -37,7 +37,6 @@
                                     <div class="create-tour-inner">
                                         @include('layouts.user.alerts')
                                         <h4 class="section-title">About this tour</h4>
-                                        {{--  <p>Fill in the form to successfully make</p>  --}}
                                         <div class="row">
                                             {!!Form::open(['action' => 'AgentsController@storePackage', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                                                 <div class="col-xs-12 col-sm-12 col-md-12">    
@@ -310,10 +309,12 @@
 <!-- end Back To Top -->
 @endsection
 @extends('layouts.user.javascriptlayout')
-<script>
+<script type="text/javascript">
     var categories = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('categories'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         
     });
+
+    categories.initialize();
 </script>

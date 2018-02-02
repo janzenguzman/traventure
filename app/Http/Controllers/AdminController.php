@@ -46,13 +46,12 @@ class AdminController extends Controller
         
         foreach($agents as $agent){
             $lastSignedIn = new Carbon($agent->last_signed_in);
-            $diffHours = $lastSignedIn->diffInHours($now);
-            
-            if($diffHours < 1){
+            $diffMonths = $lastSignedIn->diffInMonths($now);
+            if($diffMonths < 12){
                 DB::table('agents')->where([['id', $agent->id], ['status', 'Accepted']])
                     ->whereNotNull('last_signed_in')
                     ->update(['active' => 1]);
-            }elseif($diffHours >= 1){
+            }elseif($diffMonths >= 12){
                 DB::table('agents')->where([['id', $agent->id], ['status', 'Accepted']])
                     ->whereNotNull('last_signed_in')
                     ->update(['active' => 0]);
@@ -149,7 +148,6 @@ class AdminController extends Controller
                        return '<a href= "'.route("requests", ["id" => $row->id, "action" => "accept"]).'" class="btn btn-info btn-circle" style="margin-right:20%"><i class="fa fa-check"></i></a>
                        <a type="submit" data-toggle="modal" data-target="#declineModal" data-id="'.$row->id.'" id="declineButton" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></a>';
                    }else if($row->status == 'Accepted'){
-                    //    <a href="'.route("requests", ["id" => $row->id, "action" => "decline"]).'" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></a>
                        return '<span class="label label-table label-success">Accepted</span>';
                    }else{
                        return '<span class="label label-table label-danger">Declined</span>';
@@ -221,14 +219,15 @@ class AdminController extends Controller
             ->editColumn('status', function($row){
                 $now = Carbon::now();
                 $lastSignedIn = new Carbon($row->last_signed_in);
-                $diffHours = $lastSignedIn->diffInHours($now);
+                $diffMonths = $lastSignedIn->diffInMonths($now);
                 
-                if($diffHours == 1){
+
+                if($diffMonths == 12){
                     return '<center><span class="label label-table label-warning">Inactive</span>
-                    <br><small class="text-muted text-semibold">'.$diffHours.' hour ago</small></center>';
-                }else if($diffHours > 1){
+                    <br><small class="text-muted text-semibold">'.$diffMonths.' month ago</small></center>';
+                }else if($diffMonths > 12){
                     return '<center><span class="label label-table label-warning">Inactive</span>
-                    <br><small class="text-muted text-semibold">'.$diffHours.' hours ago</small></center>';
+                    <br><small class="text-muted text-semibold">'.$diffMonths.' months ago</small></center>';
                 }
                 
                 // else if($diffHours >=0){

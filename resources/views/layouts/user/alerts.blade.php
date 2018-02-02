@@ -105,7 +105,7 @@
         {{ session('InvalidDay')}}
     </div>
 @elseif(session('updatedPackage'))
-    <div class="alert alert-succes alert-dismissable fade in">
+    <div class="alert alert-success alert-dismissable fade in">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         {{ session('updatedPackage')}}
     </div>

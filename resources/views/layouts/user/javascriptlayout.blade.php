@@ -29,8 +29,12 @@
 <!--EDIT PROFILE-->
 <script type="text/javascript" src="{{ asset('js_user/fileinput.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js_user/customs-fileinput.js') }}"></script>
-{{--  <script type="text/javascript" src="{{ asset('js_user/bootstrap3-wysihtml5.min.js') }}"></script>  --}}
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 
+<script src="https://rawgit.com/twitter/typeahead.js/master/dist/bloodhound.min.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>  
 </body>
 </html>
 

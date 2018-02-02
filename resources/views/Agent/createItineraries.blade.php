@@ -111,7 +111,11 @@
                                                                                     <input type="text" class="form-control" id="target" placeholder="Destination">
                                                                                 </div>
                                                                             </div>
-
+                                                                            <div class="col-xs-12 col-sm-12">
+                                                                                <div class="panel panel-info">
+                                                                                    <div class="panel-body address_markers"></div>
+                                                                                </div>
+                                                                            </div>
                                                                             <div class="col-xs-12 col-sm-12">
                                                                                 <div class="form-group">
                                                                                     {{Form::file('day1_photo[]', ['required' => 'required'])}}
@@ -120,13 +124,6 @@
                                                                             <div class="col-xs-12 col-sm-12">
                                                                                 <div id="map_canvas"></div>
                                                                             </div>
-
-                                                                            <div class="col-xs-12 col-sm-12">
-                                                                                <div class="panel panel-info">
-                                                                                    <div class="panel-body address_markers"></div>
-                                                                                </div>
-                                                                            </div>
-                                                                            
                                                                         </div>
                                                                         
                                                                     </div>
