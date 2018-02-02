@@ -35,6 +35,7 @@
                             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">                            
                                 <div class="form">
                                     <div class="create-tour-inner">
+                                        @include('layouts.user.alerts')
                                         <h4 class="section-title">About this tour</h4>
                                         {{--  <p>Fill in the form to successfully make</p>  --}}
                                         <div class="row">
@@ -51,7 +52,7 @@
                                                         <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
                                                             <div class="form-group form-spin-group">
                                                                 <label>Day/s:</label>       
-                                                                <input type="text" value="1" name="days" class="form-control form-spin" min="1" required />
+                                                                <input type="text" value="1" name="days" class="form-control form-spin" required />
                                                             </div>
                                                         </div>
                                                     </div>

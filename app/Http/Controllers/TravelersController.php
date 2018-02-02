@@ -202,11 +202,15 @@ class TravelersController extends Controller
     {
         $packages = DB::table('packages')
                     ->join('agents', 'packages.agent_id', '=', 'agents.id')
-                    ->join('itineraries', 'packages.package_id', '=', 'itineraries.package_id')
-                    ->select('packages.*', 'itineraries.*', 'agents.photo as agent_photo', 'agents.fname', 'agents.lname',
+                    ->select('packages.*', 'agents.photo as agent_photo', 'agents.fname', 'agents.lname',
                                 'agents.job_position', 'agents.company_name', 'agents.email', 'agents.contact_no')
                     ->where('packages.package_id', $package_id)
                     ->get();
+        $itineraries = DB::table('itinerary')
+                        ->where('package_id', $package_id)
+                        ->orderBy('starttime', 'ASC')
+                        ->orderBy('day', 'ASC')
+                        ->get();
         
         $now = Carbon::now(); 
         $slots = DB::table('slots')
@@ -238,7 +242,7 @@ class TravelersController extends Controller
                     ->get();
 
         return view('Traveler.show')->with(['packages' => $packages, 'comments' => $comments, 
-                    'avg' => $avg, 'count' => $count, 'slots' => $slots, 'favs' => $favs]); 
+                    'avg' => $avg, 'count' => $count, 'slots' => $slots, 'favs' => $favs, 'itineraries' => $itineraries]); 
     }
 
     public function book($package_id)
@@ -569,21 +573,15 @@ class TravelersController extends Controller
                     ->where('bookings.booking_id', $booking_id)
                     ->get();
 
-        $itineraries = DB::table('itineraries')
-                    ->join('packages', 'itineraries.package_id', '=', 'packages.package_id')
-                    ->where('itineraries.package_id', $package_id)
+        $itineraries = DB::table('itinerary')
+                    ->join('packages', 'itinerary.package_id', '=', 'packages.package_id')
+                    ->where('itinerary.package_id', $package_id)
                     ->get();
 
-        $bills=DB::table('bills')
+        $bills = DB::table('bills')
                     ->join('bookings', 'bookings.booking_id', '=', 'bills.booking_id')
                     ->where('bills.booking_id', $booking_id)
                     ->get();
-
-        // $agents = DB::table('packages')
-        //             ->join('agents', 'packages.agent_id', '=' ,'agents.id')
-        //             ->where('packages.package_id', $package_id)
-        //             ->select('agents.*')
-        //             ->get();
 
         $comments=DB::table('comments')
                     ->where('package_id', $package_id)
@@ -598,6 +596,14 @@ class TravelersController extends Controller
                 ->count();
         return view('Traveler.Voucher', ['bookings' => $bookings, 'comments' => $comments, 'avg' => $avg, 
                     'count' => $count, 'bills' => $bills, 'itineraries' => $itineraries]);
+    }
+
+    public function viewRoutes($package_id, $day){
+        $routes = DB::table('itinerary')
+                ->where([['package_id', $package_id], ['day', $day]])
+                ->orderBy('starttime')
+                ->get();
+        return view('Traveler.ViewRoutes')->with('routes', $routes);
     }
 
     public function cancelBooking($booking_id){

@@ -346,10 +346,10 @@
 												
 												<li>
 													<div class="row gap-10 mt-10">
-														<div class="col-xs-7 col-sm-7">
+														<div class="col-xs-5 col-sm-5">
 															<span class="font600">Total </span>
 														</div>
-														<div class="col-xs-5 col-sm-5 text-right">
+														<div class="col-xs-7 col-sm-7 text-right">
 																PHP {{ number_format($bookingRequest->adult_price, 2) }} x {{ $bookingRequest->adult }} <br>
 																PHP {{ number_format($bookingRequest->child_price, 2) }} x {{ $bookingRequest->child }} <br>
 																PHP {{ number_format($bookingRequest->infant_price, 2) }} x {{ $bookingRequest->infant }}
@@ -396,10 +396,10 @@
 												
 												<li>
 													<div class="row gap-10 mt-10">
-														<div class="col-xs-7 col-sm-7">
+														<div class="col-xs-5 col-sm-5">
 															<span class="font600">Total </span>
 														</div>
-														<div class="col-xs-5 col-sm-5 text-right">
+														<div class="col-xs-7 col-sm-7 text-right">
 																PHP {{ $price }} <br>
 																PHP {{ number_format($bookingRequest->excess_price, 2) }} x {{ $bookingRequest->no_of_excess }}
 															<h4 class="font600 font24 block text-primary mt-5">

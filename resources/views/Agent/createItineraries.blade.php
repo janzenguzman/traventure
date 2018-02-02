@@ -1,10 +1,10 @@
 @extends('layouts.user.headlayout')
-<style>
+{{--  <style>
     #map_canvas {
         height: 400px;
         width: 100%;
     }
-</style>
+</style>  --}}
 @section('content')
 <body class="transparent-header">
     <!-- start Container Wrapper -->
@@ -65,7 +65,6 @@
 										<h4 class="section-title">Itinerary</h4>
                                         
                                         {!!Form::open(['action' => ['AgentsController@storeItinerary', 'day='. $day], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-                                        {{--  <form method="POST">  --}}
                                             {{ csrf_field() }}
                                             <div class="itinerary-form-wrapper" id="main">
                                                     
@@ -112,11 +111,6 @@
                                                                                     <input type="text" class="form-control" id="target" placeholder="Destination">
                                                                                 </div>
                                                                             </div>
-
-                                                                            {{--  <div class="col-xs-12 col-sm-12">
-                                                                                <a class="add_des" type="submit"><i class="ion-android-add-circle"></i></a>
-                                                                                <span>Add Destination</span>
-                                                                            </div>  --}}
 
                                                                             <div class="col-xs-12 col-sm-12">
                                                                                 <div class="form-group">
@@ -294,12 +288,9 @@
         $(this).timepicker();
     });;
     
-    var autocompleteOptions = {
-            componentRestrictions: {country: "PH"}
-    };
+    
     function initMap() {
-        
-        
+
         var markers = [];
         var infowindow = new google.maps.InfoWindow();
         var bounds = new google.maps.LatLngBounds();
@@ -309,25 +300,23 @@
         }
 
         var map = new google.maps.Map(document.getElementById('map_canvas'), destination);
-        //var input = (document.getElementById('target'));
-        //var searchBox = new google.maps.places.SearchBox(input);
-
+        var autocompleteOptions = {
+            componentRestrictions: {country: "PH"}
+        };
         var input = document.getElementById('target');
-        var searchBox = new google.maps.places.SearchBox(input);
-
-        
+        var searchBox = new google.maps.places.Autocomplete(input, autocompleteOptions);
         var marker;
-        var places;
-        google.maps.event.addListener(searchBox, 'places_changed', function () {
-            places = searchBox.getPlaces();
-            placeMarker(places[0].geometry.location);
+        var place;
+        google.maps.event.addListener(searchBox, 'place_changed', function () {
+            place = searchBox.getPlace();
+            placeMarker(place.geometry.location);
             map.setZoom(16);
             map.setCenter(marker.getPosition());
         });
 
         
         function placeMarker(location)
-        {
+        {   
             marker = new google.maps.Marker({
                 position: location,
                 map: map,
@@ -340,7 +329,15 @@
 
             bounds.extend(marker.position);
             map.fitBounds(bounds);
-            var locName = $('#target').val();
+            
+            if (place.address_components) {
+                address = [
+                  (place.address_components[0] && place.address_components[0].short_name || ''),
+                  (place.address_components[1] && place.address_components[1].short_name || ''),
+                  (place.address_components[2] && place.address_components[2].short_name || '')
+                ].join(' ');
+            }
+            console.log(place.name);
             google.maps.event.addListener(marker[x], 'click', function () {
                 infowindow.setContent('<div><strong>' + locName + '</strong>');
                 infowindow.open(map, this);
@@ -355,9 +352,9 @@
                 $('.address_markers').append("<section class='" + mid + " well'>");
                 $('section.' + mid).append("<label>Start Time:</label><p></p> <input type='time' name='starttime[]' class='form-control' value="+ $('.starttime').val() +" readonly>");
                 $('section.' + mid).append("<label>End Time:</label><input type='time' name='endtime[]' class='form-control' value="+ $('.endtime').val() +" readonly>");
-                $('section.' + mid).append("<label>Destination:</label><p>"+ $('#target').val() +"</p><textarea name='destination[]' class='form-control hidden' readonly>" + $('#target').val() + "</textarea><span><button value='" + mid + "' id='removemarker' class='btn btn-danger pull-right' onclick='clearSingleMarker(this.value)' type='button'><i class='fa fa-trash'></i></button></span>");
-                $('section.' + mid).append("<input type='hidden' name='lat[]' class='form-control' value="+ event.lat().toFixed(5) + ">");
-                $('section.' + mid).append("<input type='hidden' name='lng[]' class='form-control' value="+ event.lng().toFixed(6) + "><br>");
+                $('section.' + mid).append("<label>Destination:</label><p>"+ place.name +"</p><textarea name='destination[]' class='form-control hidden' readonly>" + place.name + "</textarea><span><button value='" + mid + "' id='removemarker' class='btn btn-danger pull-right' onclick='clearSingleMarker(this.value)' type='button'><i class='fa fa-trash'></i></button></span>");
+                $('section.' + mid).append("<input type='hidden' name='lat[]' class='form-control' value="+ event.lat() + ">");
+                $('section.' + mid).append("<input type='hidden' name='lng[]' class='form-control' value="+ event.lng() + "><br>");
                 $('.address_markers').append("</section>");
         }
     
@@ -384,8 +381,6 @@
         }
         $('.address_markers').find("section." + id).remove();
     }
-
-
 
 </script>
 <script async defer

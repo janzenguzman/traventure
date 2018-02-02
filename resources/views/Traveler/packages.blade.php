@@ -50,10 +50,9 @@
 												</div>
 													
 											</div>  --}}
-
 											<div class="filter-item col-xs-12 col-sm-12 col-md-3">
 												<span><label><i class="fa fa-tags"></i> Tags:</label></span>
-												<input type="text" class="form-control" name="categories" id="autocompleteTagging" placeholder="" />
+												<input type="text" class="form-control" name="categories[]" data-role="tagsinput" required />
 											</div>
 											<div class="col-xs-12 col-sm-12 col-md-7">
 												<div class="filter-item-wrapper">
@@ -361,6 +360,13 @@
 				});
 		});
 	}(jQuery));
+</script>
+<script>
+	var categories = new Bloodhound({
+		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('categories'),
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		
+	});
 </script>
 @endsection
 

@@ -172,268 +172,70 @@
 												<div class="featured-list-in-box"><br>
 													<h4 class="uppercase spacing-1">Trip Details</h4>
 													<div id="itinerary">
-															
-															<div class="itinerary-toggle-wrapper mb-40">
-														
-																<div class="panel-group bootstrap-toggle">
-						
-																	<div class="panel">
-		
-																		<!--DAY 1-->
-																		<div class="itinerary-list-item">
+														<div class="itinerary-toggle-wrapper mb-40">
+															<div class="panel-group bootstrap-toggle">
+																<div class="panel">
+					
+																	<?php $temp = 0 ?>
+																	@if(count($itineraries) > 0)
+																			<div class="itinerary-list-item">
+																		@foreach($itineraries as $itinerary)
 																			<div class="row">
-																				<div class="col-xs-12 col-sm-4 col-md-3">
-																					<div class="image">
-																						<img src="/public/uploads/files/{{ $package->day1_photo }}" alt="images" />
-																					</div>
-																				</div>
-																				<div class="col-xs-12 col-sm-8 col-md-9">
+																				<div class="col-xs-12 col-sm-12 col-md-12">
 																					<div class="content">
-																						<h4>Day 1</h4>
-																						<div class="labeling">
-																								<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																								<span style="color:black">{{ $package->day1_destination1}}</span> 
+																			@for($x=0; $x<count($itinerary->package_id); ++$x)
+																					
+																				@if($temp != $itinerary->day)
+																					@if($itinerary->day !=1)
+																					<div class="mb-25"></div>
+																					<div class="bb"></div>
+																					<div class="mb-25"></div>
+																					@endif
+																				<div class="col-xs-12 col-sm-4 col-md-12">
+																					<b><span class="labeling" style="font-size: 20px">Day 0{{$itinerary->day}}</span></b>
+																					<div class="col-xs-12 col-sm-4 col-md-3">
+																						<div class="image">
+																							<img src="/public/uploads/files/{{ $itinerary->dayPhoto }}" alt="images" />
+																							
 																						</div>
 																						
-																						@if($package->day1_starttime2 != NULL)
-																							<div class="labeling">
-																									<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																									<span style="color:black">{{ $package->day1_destination2}}</span> 
-																							</div>
-																						@endif
-		
-																						@if($package->day1_starttime3 != NULL)
-																							<div class="labeling">
-																									<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																									<span style="color:black">{{ $package->day1_destination3}}</span> 
-																							</div>
-																						@endif
-		
-																						@if($package->day1_starttime4 != NULL)
-																							<div class="labeling">
-																									<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																									<span style="color:black">{{ $package->day1_destination4}}</span> 
-																							</div>
-																						@endif
-		
-																						@if($package->day1_starttime5 != NULL)
-																							<div class="labeling">
-																									<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																									<span style="color:black">{{ $package->day1_destination5}}</span> 
-																							</div>
-																						@endif
+																						
+																					</div>
+																					<div class="col-xs-12 col-sm-4 col-md-9">
+																						{{--  <a href="/Agent/Packages/PackageDetails/ViewRoutes/{{$itinerary->package_id}}/{{$itinerary->day}}" class="btn btn-success pull-right">View Routes</a>  --}}
+																						</div>
+																				</div>
+																					<?php $temp = $itinerary->day ?> 
+																				@endif
+																				<div class="col-xs-12 col-sm-4 col-md-12">
+																				<div class="content">
+																					<div class="labeling"><br>
+																						<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
+																						<span style="color:black">{{ $itinerary->destination}}</span> 
+																						{{--  <span>({{ date("g:i A", strtotime($itinerary->starttime)) }} - {{ date("g:i A", strtotime($itinerary->endtime)) }})</span>  --}}
+																						
 																					</div>
 																				</div>
 																			</div>
-																		</div>
-		
-																		<!--DAY 2-->
-																		@if($package->day2_starttime1 != NULL)
-																			<div class="itinerary-list-item">
-																				<div class="row">
-																					<div class="col-xs-12 col-sm-4 col-md-3">
-																						<div class="image">
-																							<img src="/public/uploads/files/{{ $package->day2_photo }}" alt="images" />
-																						</div>
-																					</div>
-																					<div class="col-xs-12 col-sm-8 col-md-9">
-																						<div class="content">
-																							<h4>Day 2</h4>
-																							<div class="labeling">
-																									<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																									<span style="color:black">{{ $package->day2_destination1}}</span> 
-																							</div>
+																								
 																							
-																							@if($package->day2_starttime2 != NULL)
-																								<div class="labeling">
-																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																										<span style="color:black">{{ $package->day2_destination2}}</span> 
-																								</div>
-																							@endif
-				
-																							@if($package->day2_starttime3 != NULL)
-																								<div class="labeling">
-																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																										<span style="color:black">{{ $package->day2_destination3}}</span> 
-																								</div>
-																							@endif
-				
-																							@if($package->day2_starttime4 != NULL)
-																								<div class="labeling">
-																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																										<span style="color:black">{{ $package->day2_destination4}}</span>
-																								</div>
-																							@endif
-				
-																							@if($package->day2_starttime5 != NULL)
-																								<div class="labeling">
-																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																										<span style="color:black">{{ $package->day2_destination5}}</span> 
-																								</div>
-																							@endif
-																						</div>
-																					</div>
-																				</div>
+																			@endfor
 																			</div>
-																		@endif
-																		
-		
-																		<!--DAY 3-->
-																		@if($package->day3_starttime1 != NULL)
-																			<div class="itinerary-list-item">
-																				<div class="row">
-																					<div class="col-xs-12 col-sm-4 col-md-3">
-																						<div class="image">
-																							<img src="/public/uploads/files/{{ $package->day3_photo }}" alt="images" />
-																						</div>
-																					</div>
-																					<div class="col-xs-12 col-sm-8 col-md-9">
-																						<div class="content">
-																							<h4>Day 3</h4>
-																							<div class="labeling">
-																									<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																									<span style="color:black">{{ $package->day3_destination1}}</span> 
-																							</div>
-																							
-																							@if($package->day3_starttime2 != NULL)
-																								<div class="labeling">
-																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																										<span style="color:black">{{ $package->day3_destination2}}</span> 
-																								</div>
-																							@endif
-				
-																							@if($package->day3_starttime3 != NULL)
-																								<div class="labeling">
-																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																										<span style="color:black">{{ $package->day3_destination3}}</span> 
-																								</div>
-																							@endif
-				
-																							@if($package->day3_starttime4 != NULL)
-																								<div class="labeling">
-																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																										<span style="color:black">{{ $package->day3_destination4}}</span> 
-																								</div>
-																							@endif
-				
-																							@if($package->day3_starttime5 != NULL)
-																								<div class="labeling">
-																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																										<span style="color:black">{{ $package->day3_destination5}}</span> 
-																								</div>
-																							@endif
-																						</div>
-																					</div>
-																				</div>
-																			</div>
-																		@endif
-		
-																		<!--DAY 4-->
-																		@if($package->day4_starttime1 != NULL)
-																			<div class="itinerary-list-item">
-																				<div class="row">
-																					<div class="col-xs-12 col-sm-4 col-md-3">
-																						<div class="image">
-																							<img src="/public/uploads/files/{{ $package->day4_photo }}" alt="images" />
-																						</div>
-																					</div>
-																					<div class="col-xs-12 col-sm-8 col-md-9">
-																						<div class="content">
-																							<h4>Day 4</h4>
-																							<div class="labeling">
-																									<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																									<span style="color:black">{{ $package->day4_destination1}}</span> 
-																							</div>
-																							
-																							@if($package->day4_starttime2 != NULL)
-																								<div class="labeling">
-																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																										<span style="color:black">{{ $package->day4_destination2}}</span> 
-																								</div>
-																							@endif
-				
-																							@if($package->day4_starttime3 != NULL)
-																								<div class="labeling">
-																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																										<span style="color:black">{{ $package->day4_destination3}}</span>
-																								</div>
-																							@endif
-				
-																							@if($package->day4_starttime4 != NULL)
-																								<div class="labeling">
-																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																										<span style="color:black">{{ $package->day4_destination4}}</span> 
-																								</div>
-																							@endif
-				
-																							@if($package->day4_starttime5 != NULL)
-																								<div class="labeling">
-																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																										<span style="color:black">{{ $package->day4_destination5}}</span>
-																								</div>
-																							@endif
-																						</div>
-																					</div>
-																				</div>
-																			</div>
-																		@endif
-		
-																		<!--DAY 5-->
-																		@if($package->day5_starttime1 != NULL)
-																			<div class="itinerary-list-item">
-																				<div class="row">
-																					<div class="col-xs-12 col-sm-4 col-md-3">
-																						<div class="image">
-																							<img src="/public/uploads/files/{{ $package->day5_photo }}" alt="images" />
-																						</div>
-																					</div>
-																					<div class="col-xs-12 col-sm-8 col-md-9">
-																						<div class="content">
-																							<h4>Day 5</h4>
-																							<div class="labeling">
-																									<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																									<span style="color:black">{{ $package->day5_destination1}}</span> 
-																							</div>
-																							
-																							@if($package->day3_starttime2 != NULL)
-																								<div class="labeling">
-																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																										<span style="color:black">{{ $package->day5_destination2}}</span> 
-																								</div>
-																							@endif
-				
-																							@if($package->day5_starttime3 != NULL)
-																								<div class="labeling">
-																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																										<span style="color:black">{{ $package->day5_destination3}}</span> 
-																								</div>
-																							@endif
-				
-																							@if($package->day5_starttime4 != NULL)
-																								<div class="labeling">
-																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																										<span style="color:black">{{ $package->day5_destination4}}</span> 
-																								</div>
-																							@endif
-				
-																							@if($package->day5_starttime5 != NULL)
-																								<div class="labeling">
-																										<i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
-																										<span style="color:black">{{ $package->day5_destination5}}</span>
-																								</div>
-																							@endif
-																						</div>
-																					</div>
-																				</div>
-																			</div>
-																		@endif
-						
-						
 																	</div>
-						
 																</div>
 															
+																		@endforeach
+																	</div>    
+																	@else
+																	<div class="itinerary-list-item">
+																		<h4 class="text-danger">No Itinerary for this package.</p>
+																	</div>
+																	@endif
+					
+																</div>
 															</div>
+														</div>	
+														
 													</div>
 													
 												</div>
@@ -527,7 +329,7 @@
 															
 															<br>
 															<div class="row">
-																<div class="col-lg-4 col-md-4">
+																<div class="col-lg-7 col-md-7">
 																	@if($package->days == 1)
 																		<h5>
 																			{{ Carbon\Carbon::parse($slot->date_from)->toFormattedDateString() }}
@@ -539,14 +341,14 @@
 																		</h5>
 																	@endif
 																</div>
-																<div class="col-lg-4 col-md-4">
+																<div class="col-lg-3 col-md-3">
 																	@if($package->type == 'Joined')
 																		<p class="font-sm text-danger"><b>{{ $slot->slots }}</b> slots left</p>
 																	@else
 																		<p class="font-sm text-danger"><b>{{ $slot->slots }}</b> pax</p>
 																	@endif
 																</div>
-																<div class="col-lg-4 col-md-4">
+																<div class="col-lg-2 col-md-2">
 																	<a data-toggle="modal" 
 																		data-slot_id="{{ $slot->id }}"	
 																		data-slots="{{ $slot->slots }}"
@@ -555,7 +357,7 @@
 																		data-date_to="{{ $slot->date_to }}"
 																		data-service="{{ $package->type }}"
 																		data-excess_price="{{ $package->excess_price }}"
-																		class="booking_modal btn btn-info btn-sm"
+																		class="booking_modal btn btn-info btn-sm col-md-12"
 																	>Book</a>
 																</div>
 															</div>
