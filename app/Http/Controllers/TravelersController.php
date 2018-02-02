@@ -38,47 +38,24 @@ class TravelersController extends Controller
 
     public function index(Request $req)
     {
-        if($req->input('destination_search') != NULL && $req->input('date_search') != NULL && $req->input('categories') != NULL){ 
-            $packages = DB::table('packages')
-                    ->leftJoin('comments', function($join){
-                        $join->on('comments.package_id', '=', 'packages.package_id');
-                    })
-                    ->join('agents', function($join){
-                        $join->on('packages.agent_id', '=', 'agents.id');
-                    })
-                    ->join('slots', function($join){
-                        $join->on('slots.package_id', '=', 'packages.package_id');
-                    })
-                    ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
-                            DB::raw('AVG(rating) as ratings_average'))
-                    ->groupBy('comments.package_id', 'packages.package_id')
-                    ->where([['packages.package_name', 'like', '%'.$req->input('destination_search').'%'],
-                             ['slots.date_from', '=', $req->input('date_search')], 
-                             ['packages.categories', 'like', '%'.$req->input('categories').'%']])
-                    ->orderBy('packages.created_at', 'desc');
-        }
+        // dd($req);
         $destination = $req->input('destination_search');
         $date = $req->input('date_search');
 
         if($destination != NULL && $date != NULL){
             $packages = DB::table('packages')
+                ->leftJoin('comments', function($join){
+                    $join->on('comments.package_id', '=', 'packages.package_id');
+                })
                 ->join('agents', 'packages.agent_id', '=', 'agents.id')
                 ->join('slots', 'packages.package_id', '=', 'slots.package_id')
-                ->where([['package_name', 'like', '%'.$destination.'%'],
-                        ['slots.date_from', 'like', $date]
+                ->where([['packages.package_name', 'like', '%'.$destination.'%'],
+                        ['slots.date_from', '=', $date], ['slots.slots', '!=', 0]
                 ])
                 ->orderBy('packages.created_at', 'desc')
-                ->select('packages.*', 'agents.photo as agentPhoto', 'agents.fname', 'agents.lname')
+                ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
+                            DB::raw('AVG(rating) as ratings_average'))
                 ->paginate(8);
-
-                $avg = DB::table('comments')
-                        ->join('packages', 'comments.package_id', '=', 'packages.package_id')
-                        ->join('slots', 'packages.package_id', '=', 'slots.package_id')
-                        ->where([['package_name', 'like', '%'.$destination.'%'],
-                                ['slots.date_from', 'like', $date]
-                        ])
-                        ->avg('rating')
-                        ->paginate(8);
 
         }else if($req->input('sort') == 'rating'){
             $packages = DB::table('packages')
@@ -102,7 +79,7 @@ class TravelersController extends Controller
                         $join->on('packages.agent_id', '=', 'agents.id');
                     })
                     ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
-                            DB::raw('AVG(rating) as ratings_average'))
+                        DB::raw('AVG(rating) as ratings_average'))
                     ->groupBy('comments.package_id')
                     ->orderBy('packages.adult_price', 'asc')
                     ->where('packages.type', 'Joined')
@@ -208,8 +185,8 @@ class TravelersController extends Controller
                     ->get();
         $itineraries = DB::table('itinerary')
                         ->where('package_id', $package_id)
-                        ->orderBy('starttime', 'ASC')
                         ->orderBy('day', 'ASC')
+                        ->orderBy('starttime', 'ASC')
                         ->get();
         
         $now = Carbon::now(); 
@@ -390,8 +367,6 @@ class TravelersController extends Controller
         }
     }
     
-    //ADDED BY ARIEL
-    
     public function updateProfile(Request $request){
 
         $user_id = Auth::user()->id;
@@ -440,9 +415,6 @@ class TravelersController extends Controller
                 'created_at' => Carbon::now()
             ]);
 
-        // $id = $request->input('message_id');
-        // DB::table('messages')->where('id', $id)->update(['status' => 1]); 
-
         return redirect()->back()->with('messageSent', 'Message sent!');
     }
 
@@ -483,7 +455,6 @@ class TravelersController extends Controller
             ->orderBy('created_at', 'desc')->paginate(5);
         $messagesCount = DB::table('messages')->where([['receiver_email', $traveler_email],['status', 0]])->count();
         return view('Traveler.ShowMessages')->with(['messages' => $messages, 'messagesCount' => $messagesCount]);
-        // dd($messages);
     }
 
     public function deleteMessage(Request $request){
@@ -634,7 +605,6 @@ class TravelersController extends Controller
         if($req->ajax()){
             $fav = Favorites::create($req->all());
             return response()->json($fav);
-            // return response($req->all());
         }
     }
 
@@ -642,12 +612,6 @@ class TravelersController extends Controller
         if($req->ajax()){     
             $comment=Comment::create($req->all());
             return response()->json($comment);
-        }
-    }
-
-    public function sortBy(Request $req){
-        if($req->ajax()){
-
         }
     }
 

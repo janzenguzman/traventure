@@ -216,7 +216,7 @@ class AgentsController extends Controller
                 $media->move($destinationPath, $filename);
             }
             
-            DB::table('itinerary')->where('package_id', $request->input('package_id'))->delete();
+            DB::table('itinerary')->where([['package_id', $request->input('package_id')], ['day', $request->input('day')]])->delete();
 
             for($x = 0; $x < count($request->input('starttime')); ++$x){
                 $itinerary =  new Itinerary;
@@ -359,8 +359,8 @@ class AgentsController extends Controller
         // $itineraries = Itineraries::find($package_id);
         $itineraries = DB::table('itinerary')
                     ->where('itinerary.package_id', $package_id)
-                    ->orderBy('starttime', 'ASC')
                     ->orderBy('day', 'ASC')
+                    ->orderBy('starttime', 'ASC')
                     ->get();
         $avg = DB::table('comments')->where('package_id', $package_id)->avg('rating');
         $comments = DB::table('comments')

@@ -53,9 +53,9 @@
 							<li>
 								<a href="{{ route('Agent.Bookings') }}">BOOKINGS
                                     @if($countBookings != 0)
-                                    <span class="badge">
-                                            {{ $countBookings }}
-                                    </span>
+                                        <span class="badge">
+                                                {{ $countBookings }}
+                                        </span>
                                     @endif
                                 </a>
 							</li>
@@ -63,9 +63,9 @@
 							<li>
 								<a href="{{ route('Agent.ShowMessages') }}">MESSAGES 
                                     @if($countMessages != 0)
-                                    <span class="badge">
-                                        {{$countMessages}}
-                                    </span>
+                                        <span class="badge">
+                                            {{$countMessages}}
+                                        </span>
                                     @endif
                                 </a>
 							</li>
@@ -170,7 +170,7 @@
                                         <form method="POST" action="{{ route('Agent.UpdateProfile') }}" enctype="multipart/form-data">
 										{{ csrf_field() }}
                                         <div class="image">
-											<img src="/public/uploads/files/{{ Auth::user()->photo }}" class="img-circle" alt="images" />
+											<img src="/public/uploads/files/{{ Auth::user()->photo }}" class="img-circle" alt="images" id="profile-img-tag"/>
 										</div>
 										
 										<div class="content">
@@ -210,7 +210,7 @@
                                                 <div class="form-group"> 
                                                     <span class="labeling" style="color:black">Change Profile Picture: </span>
                                                     <div class="form-group form-group-sm">
-                                                        <input type="file" name="photo"/>
+                                                        <input type="file" name="photo" id="profile-img"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -283,6 +283,20 @@
         </form>
         <!--CHANGE PASS MODAL-->
     </div>
-
 @yield('content')
 @yield('script')
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#profile-img-tag').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#profile-img").change(function(){
+        readURL(this);
+    });
+</script>

@@ -139,7 +139,7 @@
                                                 For {{ $packages->pax1 }} Pax
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 text-primary">
-                                                    PHP {{ $packages->pax1_price }}.00
+                                                    PHP {{ number_format($packages->pax1_price, 2) }}
                                                 </div>
                                             </li>
                                             <li class="row gap-20">
@@ -147,7 +147,7 @@
                                                     For {{ $packages->pax2 }} Pax
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 text-primary">
-                                                    PHP {{ $packages->pax2_price }}.00
+                                                    PHP {{ number_format($packages->pax2_price, 2) }}
                                                 </div>
                                             </li>
                                             <li class="row gap-20">
@@ -155,7 +155,7 @@
                                                     For {{ $packages->pax3 }} Pax
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 text-primary">
-                                                    PHP {{ $packages->pax3_price }}.00
+                                                    PHP {{ number_format($packages->pax3_price, 2) }}
                                                 </div>
                                             </li>
                                             <li class="row gap-20">
@@ -163,7 +163,7 @@
                                                    Excess Person Price
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 text-primary">
-                                                    PHP {{ $packages->excess_price }}.00
+                                                    PHP {{ number_format($packages->excess_price, 2) }}
                                                 </div>
                                             </li>
                                         </ul>
