@@ -147,7 +147,7 @@
                                                     <div class="row gap-20">
                                                         <div class="form-group form-spin-group">
                                                             <label>Day/s:</label>       
-                                                            <input type="text" name="days" class="form-control form-spin" value="{{$packages->days}}"/>
+                                                            <input type="text" name="days" class="form-control" value="{{$packages->days}}" readonly/>
                                                             <br />
                                                         </div>
                                                     </div>

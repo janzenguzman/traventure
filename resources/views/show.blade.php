@@ -38,7 +38,7 @@
         directionsDisplay = new google.maps.DirectionsRenderer();
 
 
-        var map = new google.maps.Map(document.getElementById('map'), {
+        var map = new google.maps.Map(document.getElementById('map_vc'), {
             zoom: 10,
             center: new google.maps.LatLng(10.3157, 123.8854),
             mapTypeId: google.maps.MapTypeId.ROADMAP

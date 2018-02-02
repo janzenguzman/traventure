@@ -99,4 +99,14 @@
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         {{ session('ErrorPassword')}}
     </div>
+@elseif(session('InvalidDay'))
+    <div class="alert alert-danger alert-dismissable fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ session('InvalidDay')}}
+    </div>
+@elseif(session('updatedPackage'))
+    <div class="alert alert-succes alert-dismissable fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ session('updatedPackage')}}
+    </div>
 @endif

@@ -211,10 +211,8 @@
                                             @if(count($slots))
                                                 @foreach($slots as $slot)
                                                     @if($slot->slots != 0)	
-                                                        
-                                                        <br>
                                                         <div class="row">
-                                                            <div class="col-lg-4 col-md-4">
+                                                            <div class="col-lg-6 col-md-6">
                                                                 @if($packages->days == 1)
                                                                     <h5>
                                                                         {{ Carbon\Carbon::parse($slot->date_from)->toFormattedDateString() }}
@@ -226,7 +224,7 @@
                                                                     </h5>
                                                                 @endif
                                                             </div>
-                                                            <div class="col-lg-4 col-md-4">
+                                                            <div class="col-lg-4 col-md-2">
                                                                 @if($packages->type == 'Joined')
                                                                     <p class="font-sm text-danger"><b>{{ $slot->slots }}</b> slots left</p>
                                                                 @else
@@ -234,9 +232,9 @@
                                                                 @endif
                                                             </div>
                                                             <div class="col-lg-2 col-md-2">
-                                                                    <a data-toggle="modal" 
-                                                                        data-slot_id="{{ $slot->id }}"	
-                                                                        class="btn btn-danger btn-sm" id="deleteButton">Delete</a>
+                                                                <a data-toggle="modal" 
+                                                                    data-slot_id="{{ $slot->id }}"	
+                                                                    class="btn btn-danger" id="deleteButton">Delete</a>
                                                             </div>
                                                         </div>
                                                     @endif
@@ -286,13 +284,13 @@
                                                                 </div>
                                                                 <div class="col-xs-12 col-sm-4 col-md-9">
                                                                     <a href="/Agent/Packages/PackageDetails/ViewRoutes/{{$itinerary->package_id}}/{{$itinerary->day}}" class="btn btn-success pull-right">View Routes</a>
-                                                                    </div>
+                                                                </div>
                                                             </div>
                                                                 <?php $temp = $itinerary->day ?> 
                                                             @endif
                                                             <div class="col-xs-12 col-sm-4 col-md-12">
                                                             <div class="content">
-                                                                <div class="labeling">
+                                                                <div class="labeling"><br>
                                                                     <i class="fa fa-long-arrow-right" style="color:black" aria-hidden="true"></i>
                                                                     <span style="color:black">{{ $itinerary->destination}}</span> 
                                                                     <span>({{ date("g:i A", strtotime($itinerary->starttime)) }} - {{ date("g:i A", strtotime($itinerary->endtime)) }})</span>

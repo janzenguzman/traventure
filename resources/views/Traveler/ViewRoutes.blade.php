@@ -15,7 +15,7 @@
     <header id="header">
 
         <!-- start Navbar (Header) -->
-        @extends('layouts.agent-navbar')
+        @extends('layouts.traveler-navbar')
         <!-- end Navbar (Header) -->
 
     </header>
@@ -31,7 +31,7 @@
         <div class="breadcrumb-wrapper">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li><a href="{{ URL::previous() }}">Package Details</a></li>
+                    <li><a href="{{ URL::previous() }}">Booking Details</a></li>
                     <li class="active">Routes</li>
                 </ol>
             </div>
