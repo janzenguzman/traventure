@@ -6,28 +6,13 @@
 }
 </style>
 @section('content')
-
-<!-- start Container Wrapper -->
+<body class="transparent-header with-multiple-sticky">
 <div class="container-wrapper">
-    
-    <!-- start Header -->
-    
     <header id="header">
-
-        <!-- start Navbar (Header) -->
         @extends('layouts.agent-navbar')
-        <!-- end Navbar (Header) -->
-
     </header>
     
-    <!-- end Header -->
-
-    <!-- start Main Wrapper -->
-    
     <div class="main-wrapper scrollspy-container">
-    
-        <!-- start Breadcrumb -->
-        {{--  @foreach($bookings as $booking)  --}}
         <div class="breadcrumb-wrapper">
             <div class="container">
                 <ol class="breadcrumb">
@@ -37,15 +22,10 @@
             </div>
         </div>
         
-        <!-- end Breadcrumb -->
-
         <div class="pt-30 pb-50">
-        
             <div class="container">
                 <div class="row">
-                    
                     <div class="col-xs-12 col-sm-7 col-md-6 mt-20">
-                        
                         <?php $temp = 0 ?>
                         @foreach($routes as $route)
                             @for($x=0; $x<count($route->package_id); ++$x)
@@ -56,26 +36,18 @@
                             @endfor
                         @endforeach
                         <div id="map_canvas"></div>
-
                     </div>
                     
                     <div id="sidebar-sticky" class="col-xs-12 col-sm-5 col-md-6 mt-20">
-
                         <aside class="sidebar-wrapper with-box-shadow">
-                        
                             <div class="sidebar-booking-box">
-                                
                                 <div class="sidebar-booking-header clearfix">
-                                
                                     <div class="price">Destinations</div>
-                                
                                 </div>
                                 
                                 <div class="sidebar-booking-inner">
-                            
                                     <ul class="price-summary-list">
                                         <ul class="price-summary-list">
-                                            
                                             <li>
                                                 <div class="row gap-10 mt-10">
                                                     <div class="col-xs-7 col-sm-7">
@@ -88,6 +60,7 @@
                                                     </div>
                                                 </div>
                                             </li>
+
                                             <li class="divider"></li>
 
                                             <?php $points = 'A'?>
@@ -106,29 +79,18 @@
                                                 </li>
                                                 <li class="divider"></li>
                                             @endforeach
-                                            
                                         </ul>
-                                        
                                     </ul>
-                                    
                                 </div>
-                                
                             </div>
-                            
                         </aside>
-                    
                     </div>
-                    
                 </div>
             </div>
-        
         </div>
-
     </div>
-    <!-- end Main Wrapper -->
-    
+
     <!-- start Footer Wrapper -->
-    
     <div class="footer-wrapper scrollspy-footer">
             <footer class="bottom-footer">
                 <div class="container">
@@ -142,20 +104,13 @@
                 </div>
             </footer>
         </div>
-    
     <!-- end Footer Wrapper -->
-
 </div>
 
-<!-- end Container Wrapper -->
-
-
 <!-- start Back To Top -->
-
 <div id="back-to-top">
 <a href="#"><i class="ion-ios-arrow-up"></i></a>
 </div>
-
 <!-- end Back To Top -->
 
 @endsection

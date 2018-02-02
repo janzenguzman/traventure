@@ -1,33 +1,24 @@
 @extends('layouts.user.headlayout')
-
 @section('content')
 <body class="transparent-header">
     <div id="introLoader" class="introLoading"></div>
-    <!-- start Container Wrapper -->
     <div class="container-wrapper">
-        <!-- start Header -->
         <header id="header">
-            <!-- start Navbar (Header) -->
             @extends('layouts.agent-navbar')
-            <!-- end Navbar (Header) -->
         </header>
-        <!-- end Header -->
-        <!-- start Main Wrapper -->
         <div class="main-wrapper scrollspy-container">
-            <!-- start breadcrumb -->
             <div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url({{asset('/uploads/files/osmena.jpg')}});">
                 <div class="container">
                     <div class="page-title">                    
                         <div class="row">                        
                             <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">                            
                                 <h2>Create Tour Package</h2>
-                                {{--  <p>Celebrated no he decisively thoroughly.</p>  --}}
                             </div>                            
                         </div>
                     </div>      
                 </div>                
             </div>            
-            <!-- end breadcrumb -->            
+
             <div class="bg-light">            
                 <div class="create-tour-wrapper">
                     <div class="container">                    
@@ -57,37 +48,26 @@
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                                    <br>
+                                                <div class="col-xs-12 col-sm-12 col-md-12"><br>
                                                     <h4 class="section-title">Service Type</h4>
-
                                                     <div id="paymentOption" class="payment-option-wrapper">
-                
                                                         <div class="row">
-                                                        
                                                             <div class="col-sm-12">
-                                                            
                                                                 <div class="radio-block">
                                                                     <input id="service1" name="type" type="radio" class="radio" value="Exclusive"/>
                                                                     <label class="" for="service1"><span>Exclusive Tour</span></label>
                                                                 </div>
-                                                                
                                                             </div>
-                                                            
                                                         </div>
 
                                                         <div id="Exclusive" class="payment-option-form">
-                                                        
-                                                            <div class="inner">
-                                                            
-                                                        <br />
+                                                            <div class="inner"><br/>
                                                                 <div class="col-xs-12 col-sm-6 col-md-6">
                                                                     <label>Pax:</label>
                                                                 </div>
                                                                 <div class="col-xs-12 col-sm-6 col-md-6">
                                                                     <label>Price:</label>
                                                                 </div>
-                                                            
                                                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                                                     <div class="row gap-20">
                                                                         <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
@@ -144,31 +124,22 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
                                                             </div>
-                                                            
                                                         </div>
 
-                                                        <div class="clear"></div><br />
+                                                        <div class="clear"></div><br/>
                                                             
                                                         <div class="row">
-
                                                             <div class="col-sm-12">
-
                                                                 <div class="radio-block">
                                                                     <input id="service2" name="type" type="radio" class="radio" value="Joined"/>
                                                                     <label class="" for="service2"><span>Joined Tour</span></label>
                                                                 </div>
-
                                                             </div>
-                                                            
-                                                        </div>
-                                                        
-                                                        <br />
+                                                        </div><br/>
                                                         
                                                         <div id="Joined" class="payment-option-form">
                                                             <div class="inner">
-                                                            
                                                                 <div class="col-xs-12 col-sm-6 col-md-6">
                                                                     <label>Adult Price (13 years above):</label>
                                                                     <div class="input-group mb-15">
@@ -200,14 +171,10 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
                                                             </div>
-                                                            
                                                         </div>
                                                     </div>
-                
                                                 </div>
-                                                
                                             </div>
                                             
                                             <div class="mb-30"></div>
@@ -236,85 +203,65 @@
                                             <div class="col-xs-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Tags: </label>
-                                                    {{--  <input type="text" class="form-control" name="categories[]" id="autocompleteTagging2" placeholder="" />  --}}
                                                     <input type="text" class="form-control" name="categories[]" data-role="tagsinput" required />
                                                 </div>
                                             </div>
-                                            <div class="mb-40"></div>  
-                                                <br></br>
-                                            
-                                        <div class="mb-25"></div>
-                                        <div class="bb"></div>
-                                        <div class="mb-25"></div>
-
-                                        <div class="mb-50">
+                                            <div class="mb-40"></div> <br></br>
                                             
                                             <div class="mb-25"></div>
+                                            <div class="bb"></div>
+                                            <div class="mb-25"></div>
 
-                                            <div class="col-xs-12 col-sm-12">
-                                                <div class="form-group">
-                                                    {{Form::file('photo', ['required' => 'required'])}}
-                                                    {{--  <input type="submit" class="btn btn-info btn-wide pull-right" style="margin-bottom: 5%">  --}}
-                                                    {{Form::submit('Submit', ['class' => "btn btn-info btn-wide pull-right"])}}
-                                                </div>
-                                            
-                                            </div> <br>
-                                        </div>
+                                            <div class="mb-50">
+                                                <div class="mb-25"></div>
+
+                                                <div class="col-xs-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        {{Form::file('photo', ['required' => 'required'])}}
+                                                        {{Form::submit('Submit', ['class' => "btn btn-info btn-wide pull-right"])}}
+                                                    </div>
+                                                </div><br>
+                                            </div>
                                             {!!Form::close() !!}
+                                        </div>
                                     </div>
                                 </div>
-                                
                             </div>
-                        
                         </div>
-                        
                     </div>
-                    
                 </div>
-            
             </div>
-            
-
-        </div>
         
-        <!-- end Main Wrapper -->
-        
-       <!-- start Footer Wrapper -->
-		<div class="footer-wrapper scrollspy-footer">
-            <footer class="bottom-footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <center>
-                                <p class="copy-right">&#169; 2017 Traventure - Tour and Booking System</p>
-                            <center>
+            <div class="footer-wrapper scrollspy-footer">
+                <footer class="bottom-footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <center>
+                                    <p class="copy-right">&#169; 2017 Traventure - Tour and Booking System</p>
+                                <center>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </footer>
+                </footer>
+            </div>
         </div>
-        <!-- end Footer Wrapper -->
-    </div>
-    
-    <!-- end Container Wrapper -->
-    
+        
     
 <!-- start Back To Top -->
-
 <div id="back-to-top">
     <a href="#"><i class="ion-ios-arrow-up"></i></a>
 </div>
 <script type="text/javascript">
 </script>
 <!-- end Back To Top -->
+
 @endsection
 @extends('layouts.user.javascriptlayout')
 <script type="text/javascript">
     var categories = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('categories'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        
     });
-
     categories.initialize();
 </script>

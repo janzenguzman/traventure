@@ -1,47 +1,26 @@
 @extends('layouts.user.login_headlayout')
 <body class="transparent-header">
 	<div id="introLoader" class="introLoading"></div>
-
-	<!-- start Container Wrapper -->
 	<div class="container-wrapper">
-		<!-- start Main Wrapper -->
-		
 		<div class="main-wrapper scrollspy-container">
-		
-			<!-- start breadcrumb -->
-			
 			<div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url('images/hero-header/04.jpg');">
 				<div class="container">
-
 					<div class="page-title">
-					
 						<div class="row">
-						
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-							
-								<center><img src="{{ asset('uploads/files/logo-white-2.png') }}" style="width:300px">
-                                <p>Book. Chill. Venture</p></center>
-						
+								<center><img src="{{ asset('uploads/files/logo-white-2.png') }}" style="width:300px"></center>
 							</div>
-							
 						</div>
-
-					</div>
-					
+                    </div>
+                    
 					<div class="breadcrumb-wrapper">
-					
 						<ol class="breadcrumb">
 							<li><a href="{{ url('/') }}">Home</a></li>
 							<li class="active"><span>Traveler Sign Up</span></li>
 						</ol>
-					
 					</div>
-
 				</div>
-				
 			</div>
-			
-			<!-- end breadcrumb -->
 			
 			<div class="bg-light">
 				<div class="create-tour-wrapper">
@@ -189,8 +168,6 @@
                                                         <button type="submit" style="margin-top:2%" class="btn btn-info">Register</button>
                                                     </center>
                                                 </div>
-
-                                                
                                             </form>
                                         </div>
 						            </div>
@@ -202,9 +179,7 @@
 			</div>
 		</div>
 		
-		<!-- end Main Wrapper -->
-		
-				<!-- start Footer Wrapper -->
+		<!-- start Footer Wrapper -->
 		<div class="footer-wrapper scrollspy-footer">
 			<footer class="bottom-footer">
 				<div class="container">

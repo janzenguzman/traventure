@@ -104,7 +104,20 @@ jQuery(function($) {
 			paymentoption.hide();
 			$("#" + test).show();
 		});
-		
+
+		var details = $("div.payment-option-form-two");
+
+		if(!details){
+			details.hide();
+		}else{
+			details.show();
+		}
+		$("input[name$='type']").on("click",function() {
+			var test = $(this).val();
+			details.hide();
+			$("#" + test).show();
+		});
+
 		
 		/**
 		 * Icon Change on Collapse

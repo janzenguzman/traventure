@@ -1,36 +1,34 @@
 @extends('layouts.user.login_headlayout')
 <body class="home transparent-header">
 	<div id="introLoader" class="introLoading"></div>
-	<!-- start Container Wrapper -->
-    
     <div class="container-wrapper">
             <div class="main-wrapper scrollspy-container">
-            
-                <!-- start hero-header -->
                 <div class="hero img-bg-01">
                     <div class="container">
                             <center><img src="{{ asset('uploads/files/logo-white-2.png') }}" style="width:350px; margin-top:-10%">
-								{{--  <p>Book. Chill. Venture.</p></center>  --}}
                             <a href="{{ url('TravelerLogin') }}" class="btn btn-sm btn-info">TRAVELER</a>
                             <a href="{{ url('AgentLogin') }}" class="btn btn-sm btn-info">TRAVEL AGENT</a>
                         </center>
-
                     </div>
                 </div>
             </div>
 
-        <!--ABOUT-->
+        	<!--ABOUT-->
             <div class="pt-50 pb-60">
 				<div class="container">
 					<div class="row mb-30">
 						<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 						    <div class="section-title">
                                 <h2 class="text-uppercase">About Us</h2>
-								<p>Certain but she but shyness why cottage. Gay the put instrument sir entreaties affronting. Pretended exquisite see cordially the you.</p>
+								{{--  <p>Certain but she but shyness why cottage. Gay the put instrument sir entreaties affronting. Pretended exquisite see cordially the you.</p>  --}}
 							</div>
 							
-                                <p>Far concluded not his something extremity. Want four we face an he gate. On he of played he ladies answer little though nature. Blessing oh do pleasure as so formerly. Took four spot soon led size you. Outlived it received he material. Him yourself joy moderate off repeated laughter outweigh screened.</p>
-                                <p>Or neglected agreeable of discovery concluded oh it sportsman. Week to time in john. Son elegance use weddings separate. Ask too matter formed county wicket oppose talent. He immediate sometimes or to dependent in. Everything few frequently discretion surrounded did simplicity decisively. Less he year do with no sure loud.</p>
+                                <p>Founded in 2017, the aim of Traventure is to establish an environment where the people can belong when they travel by being linked
+										and connected to particular cultures and enjoying unique travel experiences. Its community emporium grants access to thousands of 
+										exclusive, uncommon and particular accommodations that is related to travelling in more than 7,107 islands here in the Philippines.</p>
+                                <p>From beautiful beaches, to astonishing mountains, appealing cities and more, Traventure offers a broad variety of unique
+								accommodations for your next trip. Whether you're searching a beach for a brief getaway, or astounding mountains to camp and hike to,
+								Traventure can help you find and book what you desire.</p>
 						</div>
 					</div>
 				</div>

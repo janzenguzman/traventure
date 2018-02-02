@@ -1,48 +1,28 @@
 @extends('layouts.user.login_headlayout')
 <body class="transparent-header">
 	<div id="introLoader" class="introLoading"></div>
-
-	<!-- start Container Wrapper -->
 	<div class="container-wrapper">
-		<!-- start Main Wrapper -->
-		
 		<div class="main-wrapper scrollspy-container">
-		
-			<!-- start breadcrumb -->
-			
 			<div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url('images/hero-header/04.jpg');">
 				<div class="container">
-
 					<div class="page-title">
-					
 						<div class="row">
-						
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-							
-								<center><img src="{{ asset('uploads/files/logo-white-2.png') }}" style="width:300px">
-								<p>Book. Chill. Venture.</p></center>
-						
+								<center><img src="{{ asset('uploads/files/logo-white-2.png') }}" style="width:300px"></center>
 							</div>
-							
 						</div>
-
 					</div>
 					
 					<div class="breadcrumb-wrapper">
-					
 						<ol class="breadcrumb">
 							<li><a href="{{ url('/') }}">Home</a></li>
 							<li class="active"><span>Travel Agent Login</span></li>
 						</ol>
-					
 					</div>
-
 				</div>
-				
 			</div>
 			
 			<!-- end breadcrumb -->
-			
 			<div class="bg-light">
 				<div class="create-tour-wrapper">
 					<div class="container">
@@ -95,26 +75,6 @@
                                                     </div>
                                                 
                                                 </div>
-                                                
-                                                {{--  <div class="col-sm-6 col-md-6">
-                                                    <div class="checkbox-block"> 
-                                                        <input id="remember_me_checkbox" name="remember_me_checkbox" class="checkbox" value="First Choice" type="checkbox"> 
-                                                        <label class="" for="remember_me_checkbox">Remember me</label>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-sm-6 col-md-6">
-                                                    <div class="login-box-link-action">
-                                                        <a data-toggle="modal" href="#forgotPasswordModal" class="block line18 mt-1">Forgot password?</a> 
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-sm-12 col-md-12">
-                                                    <div class="login-box-box-action">
-                                                        No account? <a data-toggle="modal" href="#registerModal">Register</a>
-                                                    </div>
-                                                </div>  --}}
-                                                
                                                 <center>
                                                     <button type="submit" class="btn btn-info">Log-in</button>
                                                 </center>
@@ -128,10 +88,8 @@
 				</div>
 			</div>
 		</div>
-		
-		<!-- end Main Wrapper -->
-		
-				<!-- start Footer Wrapper -->
+
+		<!-- start Footer Wrapper -->
 		<div class="footer-wrapper scrollspy-footer">
 			<footer class="bottom-footer">
 				<div class="container">
@@ -145,19 +103,10 @@
 				</div>
 			</footer>
 		</div>
-		<!-- end Footer Wrapper -->
-			
-		</div>
-		
-		<!-- end Footer Wrapper -->
-
 	</div>
-	
-	<!-- end Container Wrapper -->
- 
+</div>
  
 <!-- start Back To Top -->
-
 <div id="back-to-top">
    <a href="#"><i class="ion-ios-arrow-up"></i></a>
 </div>

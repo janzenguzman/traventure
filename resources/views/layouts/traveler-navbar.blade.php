@@ -278,57 +278,57 @@
 @yield('js')
 
 <script>
-        $(document).ready(function() {
-            $('.datePicker')
-                .datepicker({
-                    autoclose: true,
-                    format: 'yyyy-mm-dd'
-                })
-                .on('changeDate', function(e) {
-                    // Revalidate the date field
-                    $('.eventForm').formValidation('revalidateField', 'date');
-                });
-        
-            $('.eventForm').formValidation({
-                framework: 'bootstrap',
-                icon: {
-                    valid: 'glyphicon glyphicon-ok',
-                    invalid: 'glyphicon glyphicon-remove',
-                    validating: 'glyphicon glyphicon-refresh'
-                },
-                fields: {
-                    name: {
-                        validators: {
-                            notEmpty: {
-                                message: 'The name is required'
-                            }
+    $(document).ready(function() {
+        $('.datePicker')
+            .datepicker({
+                autoclose: true,
+                format: 'yyyy-mm-dd'
+            })
+            .on('changeDate', function(e) {
+                // Revalidate the date field
+                $('.eventForm').formValidation('revalidateField', 'date');
+            });
+    
+        $('.eventForm').formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                name: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The name is required'
                         }
-                    },
-                    date: {
-                        validators: {
-                            notEmpty: {
-                                message: 'The date is required'
-                            },
-                            date: {
-                                format: 'YYYY-MM-DD',
-                                message: 'The date is not a valid'
-                            }
+                    }
+                },
+                date: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The date is required'
+                        },
+                        date: {
+                            format: 'YYYY-MM-DD',
+                            message: 'The date is not a valid'
                         }
                     }
                 }
-            });
-        });
-
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#profile-img-tag').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
             }
-        }
-        $("#profile-img").change(function(){
-            readURL(this);
         });
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#profile-img-tag').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#profile-img").change(function(){
+        readURL(this);
+    });
 </script>

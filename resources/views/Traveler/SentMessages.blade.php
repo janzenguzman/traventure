@@ -3,6 +3,7 @@
 <link href="{{asset ('css_user/messages.css') }}" type="text/css" rel="stylesheet">
 @section('content')
 <body class="transparent-header">
+	<div id="introLoader" class="introLoading"></div>
 	<div class="container-wrapper">
 		<header id="header">
 			@extends('layouts.traveler-navbar')

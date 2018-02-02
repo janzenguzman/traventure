@@ -1,6 +1,7 @@
 @extends('layouts.user.headlayout')
 @section('content')
 <body class="transparent-header">
+	<div id="introLoader" class="introLoading"></div>
 	<div class="container-wrapper">
 		<header id="header">
 			@extends('layouts.traveler-navbar')
@@ -38,24 +39,22 @@
 							<div class="filter-full-primary-inner">
 								<div class="form-holder">
 									<div class="row">
-										<div>
-											<div class="col-lg-8 col-md-5 col-xs-5">
-												<form method="post" action="{{ route('Traveler.MyFavorites')}}">
-														{{ csrf_field() }}
-													<div class="input-group">
-														<input type="text" name="search_pname" class="form-control"  placeholder="Search package name" required>
-															<span class="input-group-btn">
-																<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-															</span>
-													</div>
-												</form>
-											</div>
+										<div class="col-lg-7 col-md-5 col-xs-12">
+											<form method="post" action="{{ route('Traveler.MyFavorites')}}">
+													{{ csrf_field() }}
+												<div class="input-group">
+													<input type="text" name="search_pname" class="form-control"  placeholder="Search package name" required>
+														<span class="input-group-btn">
+															<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+														</span>
+												</div>
+											</form>
+										</div>
 
-											<div class="col-lg-1" style="margin-right:3.5%">
-												<form>
-													<a href="{{ route('Traveler.MyFavorites') }}" class="btn btn-sm btn-default">Show All</a>
-												</form>
-											</div>
+										<div class="col-md-3 col-xs-12">
+											<form>
+												<a href="{{ route('Traveler.MyFavorites') }}" class="btn btn-sm btn-default col-xs-12">Show All</a>
+											</form>
 										</div>
 									</div>
 								</div>

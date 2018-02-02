@@ -1,45 +1,14 @@
-{{--  @extends('layouts.app')
-
-@section('content')
-<style>
-    .foo {
-    width: 100px;
-}
-</style>
-    <h1>Slots</h1>
-    {!!Form::open(['action' => 'AgentsController@updateSlots', 'method' => 'POST']) !!}
-        <div class="form-group">
-            <label>Date to:</label>       
-            <input type="date" name="date_to" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label>Date From:</label>       
-            <input type="date" name="date_from" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label>Slot/s:</label>
-            <input type="text" name="slots" class="form-control" required>
-        </div>
-        <input type="hidden" name="package_id" value="{{ $packages->package_id }}">
-        <input type="submit" value="Submit">
-    {!!Form::close() !!}
-@endsection  --}}
 @extends('layouts.user.headlayout')
 
 @section('content')
 <body class="transparent-header">
-    <!-- start Container Wrapper -->
+    <div id="introLoader" class="introLoading"></div>
     <div class="container-wrapper">
-        <!-- start Header -->
         <header id="header">
-            <!-- start Navbar (Header) -->
             @extends('layouts.agent-navbar')
-            <!-- end Navbar (Header) -->
         </header>
-        <!-- end Header -->
-        <!-- start Main Wrapper -->
+
         <div class="main-wrapper scrollspy-container">
-            <!-- start breadcrumb -->
             <div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url({{asset('/uploads/files/osmena.jpg')}});">
                 <div class="container">
                     <div class="page-title">                    
@@ -57,7 +26,7 @@
                     </div>
                 </div>                
             </div>            
-            <!-- end breadcrumb -->            
+
             <div class="bg-light">            
                 <div class="create-tour-wrapper">
                     <div class="container">                    
@@ -65,14 +34,10 @@
                             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">                            
                                 <div class="form">
                                     <div class="create-tour-inner">
-                                       
                                         <h4 class="section-title">Add Slots</h4>
-                                        
                                             @include('layouts.user.alerts')
-
                                             @if($packages->type == 'Exclusive')
                                                 <b><p>{{$packages->type}} {{$packages->package_name}}</p></b>
-
                                             @else
                                                 <b><p>{{$packages->type}} {{$packages->package_name}}</p></b>
                                             @endif
@@ -92,23 +57,24 @@
                                                     @endif
                                                 @endif
                                             </p>
-
                                             {!!Form::open(['action' => 'AgentsController@updateSlots', 'method' => 'POST']) !!}
+                                            
                                             @if($packages->days == 1)
-                                                <div class="form-group">
+                                                <div class="form-group eventForm">
                                                     <label>Date:</label>       
-                                                    <input type="date" name="date_from" class="form-control" required>
+                                                    <input type="text" name="date_from" class="form-control datePicker filter-item mmr input-append date" required>
                                                 </div>
                                             @else
-                                                <div class="form-group">
+                                                <div class="form-group eventForm">
                                                     <label>Date From:</label>       
-                                                    <input type="date" name="date_from" class="form-control" required>
+                                                    <input type="text" name="date_from" class="form-control datePicker filter-item mmr input-append date" required>
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group eventForm">
                                                     <label>Date to:</label>       
-                                                    <input type="date" name="date_to" class="form-control" required>
+                                                    <input type="text" name="date_to" class="form-control datePicker filter-item mmr input-append date" required>
                                                 </div>
                                             @endif
+
                                             @if($packages->type == 'Exclusive')
                                                 <div class="form-group">
                                                     <label>Slot/s:</label>
@@ -136,7 +102,6 @@
                 </div>
             </div>
         </div>
-        <!-- start Footer Wrapper -->
         
         <div class="footer-wrapper scrollspy-footer">
             <footer class="bottom-footer">
@@ -151,8 +116,6 @@
                 </div>
             </footer>
         </div>
-        <!-- end Footer Wrapper -->
-
     </div>
     
     <!-- end Container Wrapper -->
@@ -165,5 +128,48 @@
 </div>
 
 <!-- end Back To Top -->
+
+<script>
+    $(document).ready(function() {
+        $('.datePicker')
+            .datepicker({
+                autoclose: true,
+                format: 'yyyy-mm-dd'
+            })
+            .on('changeDate', function(e) {
+                // Revalidate the date field
+                $('.eventForm').formValidation('revalidateField', 'date');
+            });
+    
+        $('.eventForm').formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                name: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The name is required'
+                        }
+                    }
+                },
+                date: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The date is required'
+                        },
+                        date: {
+                            format: 'YYYY-MM-DD',
+                            message: 'The date is not a valid'
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
 @endsection
 @extends('layouts.user.javascriptlayout')
