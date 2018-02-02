@@ -1,109 +1,64 @@
 @extends('layouts.user.headlayout')
-
 @section('content')
 <body class="transparent-header">
-    <!-- start Container Wrapper -->
     <div class="container-wrapper">
-        <!-- start Header -->
         <header id="header">
-            <!-- start Navbar (Header) -->
             @extends('layouts.agent-navbar')
-            <!-- end Navbar (Header) -->
         </header>
-        <!-- end Header -->
-        <!-- start Main Wrapper -->
 		
 		<div class="main-wrapper scrollspy-container">
-		
-			<!-- start breadcrumb -->
-			
 			<div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url({{asset('/uploads/files/osmena.jpg')}});">
 				<div class="container">
-
 					<div class="page-title">
-					
 						<div class="row">
-						
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-							
 								<h2>Create Itinerary</h2>
-						
 							</div>
-							
 						</div>
-
 					</div>
-					
-
 				</div>
-				
 			</div>
 			
-			<!-- end breadcrumb -->
-			
 			<div class="bg-light">
-			
 				<div class="create-tour-wrapper">
-
 					<div class="container">
-					
 						<div class="row">
-						
 							<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-							
 								<div class="form">
-								
 									<div class="create-tour-inner">
-										
 										<div class="mb-40"></div>
-										
 										<h4 class="section-title">Itinerary</h4>
-										
-										
-										<div class="itinerary-form-wrapper">
-                                            {!!Form::open(['action' => ['AgentsController@updateItineraries', 'package_id='. $package_id ,'day='. $day], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-                                            
-                                            {{ csrf_field() }}
-                                            @if(count($packages) > 0)
-											
+                                            <div class="itinerary-form-wrapper">
+                                                {!!Form::open(['action' => ['AgentsController@updateItineraries', 'package_id='. $package_id ,'day='. $day], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                                                {{ csrf_field() }}
+                                                @if(count($packages) > 0)
                                                     <div class="itinerary-form-item">
-                                                    
                                                         <div class="content clearfix">
-                                                        
                                                             <div class="row gap-20">
-                                                                    
                                                                 <div class="col-xss-12 col-xs-2 col-sm-2 col-md-1">
                                                                     <div class="day">
                                                                         <h6 class="text-uppercase mb-0 mt-5 text-muted">Day</h6>
                                                                         <span class="text-primary block number spacing-1">0{{ $day }}</span>
                                                                     </div>
-                                                                    
                                                                 </div>
                                                                 
                                                                 <div class="col-xss-12 col-xs-10 col-sm-10 col-md-11">
-                                                                    
                                                                     <div class="row gap-20">
-                                                                    
                                                                         <div class="col-xs-12 col-sm-6">
-                                                                        
                                                                             <div class="form-group">
                                                                                 <label>Start Time:</label>
                                                                                 <input type="time" class="oh-timepicker form-control starttime">
                                                                             </div>
-                                                                        
                                                                         </div>
 
                                                                         <div class="col-xs-12 col-sm-6">
-
                                                                             <div class="form-group">
                                                                                 <label>End Time:</label>
                                                                                 <input type="time" class="oh-timepicker form-control endtime">
                                                                             </div>
-                                                                            
                                                                         </div>
                                                                         
                                                                         <div class="col-xs-12 col-sm-12">
-                                                                        
                                                                             <div class="form-group">
                                                                                 <label>Destination:</label>
                                                                                 <input type="text" class="form-control" id="target" placeholder="Destination">
@@ -139,71 +94,46 @@
                                                                             <input type="hidden" name="package_id"  class="form-control" value="{{ $packages->package_id }}">
                                                                         </div>
                                                                     </div>
-                                                                        
                                                                 </div>
-                                                                    
-                                                             </div>
-                                                            
+                                                            </div>
                                                         </div>
-
                                                     </div>
-                                                    
                                                 </div>
-                                                
                                             @endif
-
                                         </div>
-
                                     </div>
-
                                     <div class="mb-25"></div>
                                     {!!Form::close() !!}
-
                                     <div class="mb-25"></div>
 								</div>
-								
 							</div>
-						
 						</div>
-						
 					</div>
-					
 				</div>
-			
 			</div>
-
 		</div>
-		
-        <!-- end Main Wrapper -->
-        <!-- start Footer Wrapper -->
 	
 	    <div class="footer-wrapper scrollspy-footer">
-                <footer class="bottom-footer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <center>
-                                    <p class="copy-right">&#169; 2017 Traventure - Tour and Booking System</p>
-                                <center>
-                            </div>
+            <footer class="bottom-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <center>
+                                <p class="copy-right">&#169; 2017 Traventure - Tour and Booking System</p>
+                            <center>
                         </div>
                     </div>
-                </footer>
-            </div>
-            <!-- end Footer Wrapper -->
-        
+                </div>
+            </footer>
+        </div>
     </div> 
     
-    <!-- end Container Wrapper -->
-    
-    
-    <!-- start Back To Top -->
-    
-    <div id="back-to-top">
-        <a href="#"><i class="ion-ios-arrow-up"></i></a>
-    </div>
-    
-    <!-- end Back To Top -->
+<!-- start Back To Top -->
+<div id="back-to-top">
+    <a href="#"><i class="ion-ios-arrow-up"></i></a>
+</div>
+
+<!-- end Back To Top -->
 
 <script type="text/javascript">
     
@@ -267,13 +197,13 @@
     
         function updateLocation(event, mid)
         {
-                $('.address_markers').append("<section class='" + mid + " well'>");
-                $('section.' + mid).append("<label>Start Time:</label><p></p> <input type='time' name='starttime[]' class='form-control' value="+ $('.starttime').val() +" readonly>");
-                $('section.' + mid).append("<label>End Time:</label><input type='time' name='endtime[]' class='form-control' value="+ $('.endtime').val() +" readonly>");
-                $('section.' + mid).append("<label>Destination:</label><p>"+ place.name +"</p><textarea name='destination[]' class='form-control hidden' readonly>" + place.name + "</textarea><span><button value='" + mid + "' id='removemarker' class='btn btn-danger pull-right' onclick='clearSingleMarker(this.value)' type='button'><i class='fa fa-trash'></i></button></span>");
-                $('section.' + mid).append("<input type='hidden' name='lat[]' class='form-control' value="+ event.lat() + ">");
-                $('section.' + mid).append("<input type='hidden' name='lng[]' class='form-control' value="+ event.lng() + "><br>");
-                $('.address_markers').append("</section>");
+            $('.address_markers').append("<section class='" + mid + " well'>");
+            $('section.' + mid).append("<label>Start Time:</label><p></p> <input type='time' name='starttime[]' class='form-control' value="+ $('.starttime').val() +" readonly>");
+            $('section.' + mid).append("<label>End Time:</label><input type='time' name='endtime[]' class='form-control' value="+ $('.endtime').val() +" readonly>");
+            $('section.' + mid).append("<label>Destination:</label><p>"+ place.name +"</p><textarea name='destination[]' class='form-control hidden' readonly>" + place.name + "</textarea><span><button value='" + mid + "' id='removemarker' class='btn btn-danger pull-right' onclick='clearSingleMarker(this.value)' type='button'><i class='fa fa-trash'></i></button></span>");
+            $('section.' + mid).append("<input type='hidden' name='lat[]' class='form-control' value="+ event.lat() + ">");
+            $('section.' + mid).append("<input type='hidden' name='lng[]' class='form-control' value="+ event.lng() + "><br>");
+            $('.address_markers').append("</section>");
         }
     
         

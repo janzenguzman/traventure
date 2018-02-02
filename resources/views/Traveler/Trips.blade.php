@@ -1,6 +1,7 @@
 @extends('layouts.user.headlayout')
 @section('content')
 <body class="transparent-header">
+	<div id="introLoader" class="introLoading"></div>
 	<div class="container-wrapper">
 		<header id="header">
 			@extends('layouts.traveler-navbar')
@@ -40,7 +41,7 @@
 							<form method="post" action="{{ route('Traveler.Trips')}}">
 								{{ csrf_field() }}	
 								<div class="row">
-									<div class="col-lg-6 col-md-5 col-xs-5">
+									<div class="col-lg-6 col-md-5 col-xs-12">
 										<div class="input-group">
 											<input type="text" name="search_pname" class="form-control"  placeholder="Search package name" required>
 											<span class="input-group-btn">
@@ -49,16 +50,16 @@
 										</div><br>
 									</div>
 							</form>
-							<div class="col-lg-1" style="margin-right:3.5%">
+							<div class="col-md-2 col-xs-12">
 								<form>
-									<a href="{{ route('Traveler.Trips') }}" class="btn btn-sm btn-default">Show All</a>
+									<a href="{{ route('Traveler.Trips') }}" class="btn btn-sm btn-default col-xs-12">Show All</a>
 								</form>
 							</div>
 							@if(count($trips) > 0)
 								@foreach($trips as $trip)
 									@if($trip->expired == 1)
 										<div class="col-lg-12">
-											<div class="trip-list-wrapper">
+											<div class="trip-list-wrapper col-lg-12 col-xs-12"><br>
 											
 												<div class="trip-list-item">
 													<div class="image-absolute">

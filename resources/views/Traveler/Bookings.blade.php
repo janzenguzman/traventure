@@ -1,6 +1,7 @@
 @extends('layouts.user.headlayout')
 @section('content')
 <body class="transparent-header">
+	<div id="introLoader" class="introLoading"></div>
 	<div class="container-wrapper">
 		<header id="header">
 			@extends('layouts.traveler-navbar')
@@ -51,28 +52,31 @@
 										</div><br>
 									</div>
 							</form>
-							<div class="col-xs-6 col-md-6">
+							<div class="col-md-2 col-xs-12">
 								<form>
-									<a href="{{ route('Traveler.Bookings') }}" class="btn btn-sm btn-default" style="float: left; margin-right: 1%">Show All</a>
+									<a href="{{ route('Traveler.Bookings') }}" class="btn btn-sm btn-default col-xs-12">Show All</a>
 								</form>
-							
+							</div>
+							<div class="col-md-2 col-xs-12">
 								<form method="post" action="{{ route('Traveler.Bookings')}}">
 									{{ csrf_field() }}	
 									<input type="hidden" name="accepted" class="form-control" value="Accepted">
-									<button type="submit" class="btn btn-sm btn-default" style="float: left; margin-right: 1%">Booked</button>
+									<button type="submit" class="btn btn-sm btn-default col-xs-12">Booked</button>
 								</form>
-							
+							</div>
+							<div class="col-md-2 col-xs-12">
 								<form method="post" action="{{ route('Traveler.Bookings')}}">
 									{{ csrf_field() }}	
 									<input type="hidden" name="requested" class="form-control" value="Confirmed">
-									<button type="submit" class="btn btn-sm btn-default" style="float: left">Requested</button>
+									<button type="submit" class="btn btn-sm btn-default col-xs-12">Requested</button>
 								</form>
 							</div>
+						</div>
                             @if(count($bookings) > 0)
 								@foreach($bookings as $booking)
 									@if($booking->expired == 0)
-										<div class="trip-list-wrapper col-lg-12">
-											<div class="trip-list-item">
+										<div class="trip-list-wrapper col-lg-12 col-xs-12"><br>
+											<div class="trip-list-item"><br>
 												<div class="image-absolute">
 													<div class="image image-object-fit image-object-fit-cover">
 														<img src="/public/uploads/files/{{ $booking->photo }}" alt="image" >

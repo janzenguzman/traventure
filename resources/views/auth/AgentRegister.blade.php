@@ -1,48 +1,27 @@
 @extends('layouts.user.login_headlayout')
 <body class="transparent-header">
 	<div id="introLoader" class="introLoading"></div>
-
-	<!-- start Container Wrapper -->
 	<div class="container-wrapper">
-		<!-- start Main Wrapper -->
-		
 		<div class="main-wrapper scrollspy-container">
-		
-			<!-- start breadcrumb -->
-			
 			<div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url('images/hero-header/04.jpg');">
 				<div class="container">
-
 					<div class="page-title">
-					
 						<div class="row">
-						
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-							
-								<center><img src="{{ asset('uploads/files/logo-white-2.png') }}" style="width:300px">
-                                <p>Book. Chill. Venture.</p></center>
-						
+								<center><img src="{{ asset('uploads/files/logo-white-2.png') }}" style="width:300px"></center>
 							</div>
-							
 						</div>
-
 					</div>
 					
 					<div class="breadcrumb-wrapper">
-					
 						<ol class="breadcrumb">
 							<li><a href="{{ url('/') }}">Home</a></li>
 							<li class="active"><span>Travel Agent Sign Up</span></li>
 						</ol>
-					
 					</div>
-
 				</div>
-				
 			</div>
-			
-			<!-- end breadcrumb -->
-			
+			-
 			<div class="bg-light">
 				<div class="create-tour-wrapper">
 					<div class="container">
@@ -80,7 +59,7 @@
                                             </div>
                                         <br><br><h4 class="section-title"></h4>
 										<div class="row">
-										    <form method="POST" action="{{ route ('agents-register') }}" enctype="multipart/form-data">
+										    <form method="POST" action="{{ route ('AgentsRegister') }}" enctype="multipart/form-data">
                                                 {{ csrf_field() }}
 
                                                 <div class="col-sm-12 col-md-12">
@@ -219,7 +198,7 @@
 		
 		<!-- end Main Wrapper -->
 		
-				<!-- start Footer Wrapper -->
+		<!-- start Footer Wrapper -->
 		<div class="footer-wrapper scrollspy-footer">
 			<footer class="bottom-footer">
 				<div class="container">
@@ -234,22 +213,13 @@
 			</footer>
 		</div>
 		<!-- end Footer Wrapper -->
-			
 		</div>
-		
-		<!-- end Footer Wrapper -->
-
-	</div>
-	
-	<!-- end Container Wrapper -->
- 
- 
+    </div>
+    
 <!-- start Back To Top -->
-
 <div id="back-to-top">
    <a href="#"><i class="ion-ios-arrow-up"></i></a>
 </div>
-
 <!-- end Back To Top -->
  <!-- Core JS -->
 @extends('layouts.user.login_javascriptlayout')

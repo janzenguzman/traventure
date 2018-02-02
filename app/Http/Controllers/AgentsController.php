@@ -356,7 +356,7 @@ class AgentsController extends Controller
     public function viewPackage($package_id){
         $packages =  Packages::find($package_id);
         $booking = Bookings::find($package_id);
-        // $itineraries = Itineraries::find($package_id);
+
         $itineraries = DB::table('itinerary')
                     ->where('itinerary.package_id', $package_id)
                     ->orderBy('day', 'ASC')
@@ -434,17 +434,31 @@ class AgentsController extends Controller
     }
 
     public function updateSlots(Request $request){
+        $packages= Packages::find($request->input('package_id'));
 
-        $packages = Packages::all();
+        if($packages->days == 1){
+            $slots = new Slots;
+            $slots->package_id = $request->input('package_id');
+            $slots->date_to = $request->input('date_to');
+            $slots->date_from = $request->input('date_from');
+            $slots->slots = $request->input('slots');
+            $slots->save();
+        }else{
+            $from  = new Carbon($request->input('date_from'));
+            $to  = new Carbon($request->input('date_to'));
+            $diff = $from->diffInDays($to);
 
-        $slots = new Slots;
-        $slots->package_id = $request->input('package_id');
-        $slots->date_to = $request->input('date_to');
-        $slots->date_from = $request->input('date_from');
-        $slots->slots = $request->input('slots');
-
-        $slots->save();
-      
+            if($diff == (($packages->days) - 1)){
+                $slots = new Slots;
+                $slots->package_id = $request->input('package_id');
+                $slots->date_to = $request->input('date_to');
+                $slots->date_from = $request->input('date_from');
+                $slots->slots = $request->input('slots');
+                $slots->save();
+            }else{
+                return redirect()->back()->with('ErrorSlots', 'Invalid Dates!');
+            }
+        }
         return redirect()->back()->with('slotsAdded', 'Successfully Added Slots!');
     } 
        
@@ -452,11 +466,11 @@ class AgentsController extends Controller
     public function showMessages(){
         $agent_email = Auth::user()->email;
         $messages = DB::table('messages')
-            ->join('travelers', 'messages.sender_email', '=', 'travelers.email')
-            ->join('packages', 'messages.package_id', '=', 'packages.package_id')
-            ->select('messages.*', 'travelers.fname', 'travelers.photo','travelers.lname', 'packages.package_name')
-            ->where('receiver_email', $agent_email)
-            ->orderBy('created_at', 'desc')->paginate(5);
+                    ->join('travelers', 'messages.sender_email', '=', 'travelers.email')
+                    ->join('packages', 'messages.package_id', '=', 'packages.package_id')
+                    ->select('messages.*', 'travelers.fname', 'travelers.photo','travelers.lname', 'packages.package_name')
+                    ->where('receiver_email', $agent_email)
+                    ->orderBy('created_at', 'desc')->paginate(5);
 
         $messagesCount = DB::table('messages')->where([['receiver_email', $agent_email],['status', 0]])->count();
         return view('Agent.ShowMessages')->with(['messages' => $messages, 'messagesCount' => $messagesCount]);
@@ -471,10 +485,7 @@ class AgentsController extends Controller
                 'message' => $request->input('message'),
                 'status' => 0,
                 'created_at' => Carbon::now()
-            ]);
-
-        // $id = $request->input('message_id');
-        // DB::table('messages')->where('id', $id)->update(['status' => 1]); 
+        ]);
 
         return redirect()->back()->with('messageSent', 'Message sent!');
     }

@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/TravelerLogin', 'Auth\LoginController@showLoginForm')->name('TravelerLogin');
 Route::get('/TravelerRegister', 'Auth\LoginController@showRegisterForm')->name('TravelerRegister');
-Route::get('/AgentRegister', 'Auth\AgentsLoginController@showRegisterForm')->name('AgentRegister');
+Route::get('/AgentRegister', 'Auth\AgentsLoginController@showRegisterForm')->name('AgentsRegister');
 Route::get('/AgentLogin', 'Auth\AgentsLoginController@showLoginForm')->name('AgentLogin');
 Route::post('/', 'Auth\AgentsLoginController@logout')->name('Agent.Logout');
 Route::get('/', 'Auth\LoginController@logout')->name('Traveler.Logout');

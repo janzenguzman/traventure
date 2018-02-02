@@ -7,7 +7,6 @@
     $countMessages = DB::table('messages')
                     ->where([['receiver_email', auth()->user()->email],['status', 0]])
                     ->count();
-    
 ?>  
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
@@ -129,15 +128,7 @@
                                                     <h4>{{ Carbon\Carbon::parse(Auth::user()->created_at)->toFormattedDateString() }}</h4>
                                                 </div>
                                             </div>
-
-											{{--  <ul class="user-meta">
-												<li>53 tours</li>
-												<li>443 reviews</li>
-												<li>8 awards</li>
-											</ul>
-											<a href="#">view profile <i class="ion-android-arrow-forward"></i></a>  --}}
-										</div>
-										
+                                        </div>
 									</div>
                                 </div>
                             </div>
@@ -230,7 +221,7 @@
         </div>
 
         
-    <!--CHANGE PASS MODAL-->
+        <!--CHANGE PASS MODAL-->
         <div id="changepass_modal" class="modal fade login-box-wrapper">
 
             <div class="modal-header">
@@ -278,7 +269,6 @@
                 <input type="submit" class="btn btn-info btn-sm" value="Save"/>
                 <button type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button>
             </div>
-       
         </div>
         </form>
         <!--CHANGE PASS MODAL-->
