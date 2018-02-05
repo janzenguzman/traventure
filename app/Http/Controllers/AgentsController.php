@@ -202,7 +202,11 @@ class AgentsController extends Controller
     }
 
     public function editItineraries($package_id, $day){
-        $packages = Packages::find($package_id);
+        // $packages = Packages::find($package_id);
+        $packages = DB::table('packages')
+                    ->join('itinerary', 'packages.package_id', '=', 'itinerary.package_id')
+                    ->where([['packages.package_id', $package_id], ['itinerary.day', $day]])
+                    ->get();
         return view('\Agent\EditItineraries')->with(['packages' => $packages, 'day' => $day, 'package_id' => $package_id]);
     }
 
@@ -235,7 +239,7 @@ class AgentsController extends Controller
         $day = $request->input('day');
         if($request->input('day') == $request->input('no_day')){
             return redirect('Agent\Packages')->with('packages', $packages)
-                ->with('updatedPackage', 'Successfully Updated!');
+                ->with('updatedItinerary', 'Itinerary Successfully Updated!');
         }else{
             ++$day;
             return redirect("Agent/Packages/EditItineraries/".$packages->package_id."/".$day."");
@@ -309,15 +313,9 @@ class AgentsController extends Controller
 
             }
         }
-        $day = 1;
-        return redirect("Agent/Packages/EditItineraries/".$packages->package_id."/".$day."")->with('day', $day);
-    }
 
-    // public function deletePackage($package_id){
-    //     DB::table('packages')->where('package_id', $package_id)->delete();
-    //     DB::table('itineraries')->where('package_id', $package_id)->delete();
-    //     return redirect()->route('Agent.Packages')->with('deletedPackage', 'Package Deleted.');
-    // }
+        return redirect('Agent\Packages')->with('updatedPackage', 'Tour Package Successfully Updated!');
+    }
 
     public function deletePackage(Request $req){
         $package_id = $req->input('package_id');

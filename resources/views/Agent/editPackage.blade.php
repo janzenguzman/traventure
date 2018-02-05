@@ -13,7 +13,7 @@
                     <div class="page-title">                    
                         <div class="row">                        
                             <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">                            
-                                <h2>Create Tour Package</h2>
+                                <h2>Edit Tour Package</h2>
                             </div>                            
                         </div>
                     </div>                    
@@ -33,7 +33,7 @@
                             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">                            
                                 <div class="form">
                                     <div class="create-tour-inner">
-                                        <h4 class="section-title">About this tour</h4>
+                                        <h4 class="section-title">{{ $packages->package_name }}</h4>
                                         <div class="row">
                                             {!!Form::open(array('method' => 'post', 'enctype' => 'multipart/form-data','action' => array('AgentsController@updatePackage', $packages->package_id)))!!}
                                                 <div class="col-md-6 col-sm-12">
@@ -338,14 +338,12 @@
                                             <div class="mb-50">
                                                 
                                             <div class="mb-25"></div>
-
-                                            <div class="col-xs-12 col-sm-12">
-                                                <div class="form-group">
-                                                    {{Form::file('photo', ['required' => 'required'])}}
-                                                    {{Form::submit('Submit', ['class' => "btn btn-info btn-wide pull-right"])}}
-                                                </div>
-                                            
-                                            </div><br>
+                                            {{Form::file('photo', ['required' => 'required'])}}
+                                            <div class="mb-50 pull-right">
+                                                <div class="mb-25"></div>
+                                                <a href="{{ route('Agent.Packages') }}" class="btn btn-danger btn-wide btn-border">Cancel</a>
+                                                {{Form::submit('Submit', ['class' => "btn btn-info btn-wide"])}}
+                                            </div>
                                         </div>
                                         {!!Form::close() !!}
                                 </div>

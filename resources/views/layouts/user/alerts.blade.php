@@ -109,6 +109,11 @@
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         {{ session('updatedPackage')}}
     </div>
+@elseif(session('updatedItinerary'))
+    <div class="alert alert-success alert-dismissable fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ session('updatedItinerary')}}
+    </div>
 @elseif(session('ErrorSlots'))
     <div class="alert alert-danger alert-dismissable fade in">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

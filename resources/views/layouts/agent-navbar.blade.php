@@ -241,7 +241,7 @@
                                             <div class="col-sm-12 col-md-12">
                                                 <div class="col-sm-12 col-md-12">
                                                     <div class="form-group form-group-sm">
-                                                        <label>Old Password: </label>
+                                                        <label>Current Password: </label>
                                                         <input type="password" class="form-control" name="old_pass" required>
                                                     </div>
                                                 </div>
@@ -253,7 +253,7 @@
                                                 </div>
                                                 <div class="col-sm-12 col-md-12">
                                                     <div class="form-group form-group-sm">
-                                                        <label>Re-enter New Password: </label>
+                                                        <label>Confirm New Password: </label>
                                                         <input type="password" class="form-control" name="confirm_pass" required>
                                                     </div>
                                                 </div>

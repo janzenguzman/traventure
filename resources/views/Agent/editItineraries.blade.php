@@ -27,7 +27,32 @@
 								<div class="form">
 									<div class="create-tour-inner">
 										<div class="mb-40"></div>
-										<h4 class="section-title">Itinerary</h4>
+                                        <h4 class="section-title">Itinerary</h4>
+                                        <div class="itinerary-form-wrapper">
+                                            <div class="itinerary-form-item">
+                                                <div class="content clearfix">
+                                                    <div class="row gap-20">
+                                                        <?php $des = 0?>
+                                                        @foreach($packages as $package)
+                                                            <?php $des++?>
+                                                            <div class="col-xss-12 col-xs-10 col-sm-10 col-md-6">
+                                                                <div class="day">
+                                                                    <span class="text-primary block number spacing-1">Destination {{ $des }}</span>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    {{--  <label>Time:</label>  --}}
+                                                                    <p>({{ date("g:i A", strtotime($package->starttime)) }} - {{ date("g:i A", strtotime($package->endtime)) }})<br><b>{{$package->destination}}</b></p>
+                                                                    
+                                                                </div>
+                                                                <div class="mb-25"></div>
+                                                                <div class="bb"></div>
+                                                                <div class="mb-25"></div>
+                                                            </div>
+                                                         @endforeach 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><br>
                                             <div class="itinerary-form-wrapper">
                                                 {!!Form::open(['action' => ['AgentsController@updateItineraries', 'package_id='. $package_id ,'day='. $day], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                                                 {{ csrf_field() }}
@@ -65,11 +90,7 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="col-xs-12 col-sm-12">
-                                                                            <div class="form-group">
-                                                                                {{Form::file('day1_photo[]', ['required' => 'required'])}}
-                                                                            </div>
-                                                                        </div>
+                                                                        
                                                                         <div class="col-xs-12 col-sm-12">
                                                                             <div id="map_canvas"></div>
                                                                         </div>
@@ -77,22 +98,48 @@
                                                                         <div class="col-xs-12 col-sm-12">
                                                                             <div class="panel panel-info">
                                                                                 <div class="panel-body address_markers"></div>
-                                                                            </div><br>
-                                                                            @if($packages->days == 1)
-                                                                                <input type="SUBMIT" name="submit" class="btn btn-wide btn-info btn-sm pull-right" value="submit"/><br>
-                                                                            @else
-                                                                                @if($day == $packages->days)
-                                                                                    <input type="SUBMIT" name="submit" class="btn btn-wide btn-info btn-sm pull-right" value="submit"/><br>
-                                                                                @else
-                                                                                    <input type="SUBMIT" name="submit" class="btn btn-wide btn-info btn-sm pull-right" value="next"/><br>
-                                                                                @endif
-                                                                            @endif
+                                                                            </div>
                                                                         </div>
-                                                                        <input type="hidden" value="{{ $day }}" class="form-control" name="day">
-                                                                        <input type="hidden" value="{{ $packages->days }}" class="form-control" name="no_day">
-                                                                        <div>
-                                                                            <input type="hidden" name="package_id"  class="form-control" value="{{ $packages->package_id }}">
+                                                                        <div class="col-xs-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                {{Form::file('day1_photo[]', ['required' => 'required'])}}
+                                                                            </div>
                                                                         </div>
+                                                                        <?php $temp = 0 ?>
+                                                                            @foreach($packages as $package)
+                                                                                @for($x=0; $x<count($package->days); ++$x)
+                                                                                    @if($temp != $package->day)
+                                                                                        @if($package->days == 1)
+                                                                                            <div class="mb-50 pull-right">
+                                                                                                <div class="mb-25"></div>
+                                                                                                <a href="{{ route('Agent.Packages') }}" class="btn btn-danger btn-wide btn-border">Cancel</a>
+                                                                                                <input type="SUBMIT" name="submit" class="btn btn-wide btn-info" value="submit"/>
+                                                                                            </div>
+                                                                                            
+                                                                                        @else
+                                                                                            @if($day == $package->days)
+                                                                                                <div class="mb-50 pull-right">
+                                                                                                    <div class="mb-25"></div>
+                                                                                                    <a href="{{ route('Agent.Packages') }}" class="btn btn-danger btn-wide btn-border">Cancel</a>
+                                                                                                    <input type="SUBMIT" name="submit" class="btn btn-wide btn-info" value="submit"/> 
+                                                                                                </div>
+                                                                                            @else
+                                                                                                <div class="mb-50 pull-right">
+                                                                                                    <div class="mb-25"></div>
+                                                                                                    <a href="{{ route('Agent.Packages') }}" class="btn btn-danger btn-wide btn-border">Cancel</a>
+                                                                                                    <input type="SUBMIT" name="submit" class="btn btn-wide btn-info" value="next"/> 
+                                                                                                </div>
+                                                                                            @endif
+                                                                                        @endif
+                                                                                        <input type="hidden" value="{{ $day }}" class="form-control" name="day">
+                                                                                        <input type="hidden" value="{{ $package->days }}" class="form-control" name="no_day">
+                                                                                        <div>
+                                                                                            <input type="hidden" name="package_id"  class="form-control" value="{{ $package->package_id }}">
+                                                                                        </div>
+                                                                                        <?php $temp = $package->day ?> 
+                                                                                    @endif
+                                                                                @endfor
+                                                                        @endforeach
                                                                     </div>
                                                                 </div>
                                                             </div>
