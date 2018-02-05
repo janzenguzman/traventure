@@ -8,7 +8,7 @@
 		</header>
 		
         <div class="main-wrapper scrollspy-container">
-            <div class="breadcrumb-image-bg detail-breadcrumb" style="background-image:url({{asset('images/hero-header/06.jpg')}});">
+            <div class="breadcrumb-image-bg detail-breadcrumb" style="background-image:url(/public/uploads/files/{{ $packages->photo }});">
                 <div class="container">
                     <div class="page-title detail-header-02">
                         <div class="row">
@@ -79,26 +79,12 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-10">
                                 <div class="content-wrapper">
-                                    <div class="user-long-sm-item clearfix">
-                                        <div class="image">
-                                            <img src="/public/uploads/files/{{ Auth::user()->photo }}" alt="Images" />
-                                        </div>
-                                        
-                                        <div class="content">
-                                            <span class="labeling">Offered by: </span>
-                                            <h4>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</h4>
-                                            <a>{{ Auth::user()->job_position }} OF {{ Auth::user()->company_name }}</a><br>
-                                        
-                                            <div class="content">
-                                                <a href="/Agent/Packages/EditPackage/{{$packages->package_id}}" class="btn btn-info btn-sm btn-wide pull-right"> Edit Package</a>
-                                            </div>
-                                        </div>
+                                    <div class="content pull-right">
+                                        <a href="/Agent/Packages/EditPackage/{{$packages->package_id}}" class="btn btn-info btn-sm "> Edit Package</a>
+                                        <?php $day=1?>
+                                        <a href="/Agent/Packages/EditItineraries/{{$packages->package_id}}/{{$day}}") class="btn btn-info btn-sm"> Edit Itinerary</a>
                                     </div>
-
-                                    <div class="mb-25"></div>
-                                    <div class="bb"></div>
-                                    <div class="mb-25"></div>
-
+                                    
                                     <h2 class="font-lg">{{$packages->type}} Tour</h2>
                                     <label class="text-muted">Categories: {{$packages->categories}}</label>
                                     <h4 class="uppercase spacing-1"><br>Price Details</h4>
@@ -403,7 +389,7 @@
                 </div>
             </div>
         </footer>
-    </div>>
+    </div>
 
 <!-- start Back To Top -->
 <div id="back-to-top">

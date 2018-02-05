@@ -6,7 +6,7 @@
 }
 </style>
 @section('content')
-<body class="transparent-header with-multiple-sticky">
+<body>
 <div class="container-wrapper">
     <header id="header">
         @extends('layouts.agent-navbar')

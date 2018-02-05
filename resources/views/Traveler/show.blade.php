@@ -9,7 +9,7 @@
 		
 		<div class="main-wrapper scrollspy-container">
 			@foreach($packages as $package)
-				<div class="breadcrumb-image-bg detail-breadcrumb" style="background-image:url({{asset('images/hero-header/06.jpg')}});">
+				<div class="breadcrumb-image-bg detail-breadcrumb" style="background-image:url(/public/uploads/files/{{ $package->photo }});">
 					<div class="container">
 						<div class="page-title detail-header-02">
 							<div class="row">

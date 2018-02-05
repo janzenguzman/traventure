@@ -108,7 +108,7 @@
                                                     </div>
                                                 </div>
                                             @else
-                                                <center><h2>No sent messages yet.</h2></center>
+                                                <center><h2 class="text-danger">No sent messages yet.</h2></center>
                                             @endif 
                                         </div>
                                     </div>

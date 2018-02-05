@@ -115,21 +115,20 @@
 													</li>
 												</ul>
 												@endforeach
-											@else
-												<center><h2>Inbox is empty.</h2></center>
-											@endif
-
-											<div class="pager-wrappper clearfix">
-												<div class="pager-innner">
-													<div class="clearfix">
-														<nav class="pager-center">
-															<ul class="pagination">
-																{{$messages->links()}}
-															</ul>
-														</nav>
+												<div class="pager-wrappper clearfix">
+													<div class="pager-innner">
+														<div class="clearfix">
+															<nav class="pager-center">
+																<ul class="pagination">
+																	{{$messages->links()}}
+																</ul>
+															</nav>
+														</div>
 													</div>
 												</div>
-											</div>
+											@else
+												<center><h2 class="text-danger">Inbox is empty.</h2></center>
+											@endif
 										</div>
 									</div>
 							</div>
