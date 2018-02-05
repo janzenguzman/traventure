@@ -7,9 +7,8 @@
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                         <h4 class="page-title">Dashboard</h4> 
                     </div>
-                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.row -->
+                
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="white-box">
@@ -80,28 +79,19 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--row -->
-                <!-- /.row -->
-                <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                         <div class="white-box">
-                            <div class="col-lg-9 b-0">
-                                <h3 class="box-title"></h3>
-                                    {!! Charts::styles() !!}
-                                    {!! $chart->html() !!}
-                                    {!! Charts::scripts() !!}
-                                    {!! $chart->script() !!}
-                            </div>
+                            <h3 class="box-title"></h3>
+                            {!! Charts::styles() !!}
+                            {!! $chart->html() !!}
+                            {!! Charts::scripts() !!}
+                            {!! $chart->script() !!}
                         </div>
-                    </div>
+                     </div>
                 </div>
             </div>
-                
-                <footer class="footer text-center"> 2017 &copy; Traventure </footer>
+            <footer class="footer text-center"> 2017 &copy; Traventure </footer>
         </div>
-        <!-- End Of Main Application -->
-        
     </body>     
 @endsection
 @extends('layouts.admin.javascriptlayout')
