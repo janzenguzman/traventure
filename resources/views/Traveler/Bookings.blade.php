@@ -139,9 +139,13 @@
 												</div>
 											</div>
 										</div>
-									</div>
-									@endif
+										@endif
 								@endforeach
+									</div>
+								</div>
+								@else
+									<h2 class="text-danger">No records found.</h2>
+								@endif
 								
 								<div class="pager-wrappper text-left clearfix col-lg-12">
 									<div class="pager-innner">
@@ -154,10 +158,7 @@
 										</div>
 									</div>
 								</div>
-							@else
-					</div>
-					<h2 class="text-danger">No records found.</h2>
-					@endif
+							
 			</div>
 		</div>
 	</div>
