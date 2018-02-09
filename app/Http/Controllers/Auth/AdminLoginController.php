@@ -43,7 +43,7 @@ class AdminLoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('\Admin\Login');
+        return view('Admin.Login');
     }
     
     public function login(Request $request)
