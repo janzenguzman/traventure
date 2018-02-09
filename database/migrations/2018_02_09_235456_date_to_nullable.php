@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddIdToItinerary extends Migration
+class DateToNullable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddIdToItinerary extends Migration
      */
     public function up()
     {
-        Schema::table('itinerary', function($table){
-            $table->integer('id');
-        }); 
+        Schema::table('bookings', function (Blueprint $table) {
+            $table->date('date_to')->nullable();
+        });
     }
 
     /**
@@ -25,8 +25,6 @@ class AddIdToItinerary extends Migration
      */
     public function down()
     {
-        Schema::table('itinerary', function($table){
-            $table->dropColumn('id');
-        });
+        //
     }
 }

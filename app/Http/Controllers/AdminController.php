@@ -38,7 +38,7 @@ class AdminController extends Controller
                 ->elementLabel('Total')
                 ->labels(['Accredited Companies', 'Active Companies', 'Inactive Companies'])
                 ->values([$totalAccredited, $totalActive, $totalInactive])
-                ->dimensions(50, 100)
+                ->dimensions(50, 50)
                 ->responsive(true);
 
         $now = Carbon::now();
@@ -59,18 +59,18 @@ class AdminController extends Controller
         }
 
 
-        return view ('\Admin\HomePage', ['totalAccredited' => $totalAccredited, 'totalActive' => $totalActive,
+        return view ('Admin.HomePage', ['totalAccredited' => $totalAccredited, 'totalActive' => $totalActive,
             'totalInactive' => $totalInactive, 'totalRequests' => $totalRequests, 'chart' => $chart]);
     }
 
     public function showRequestsPage(){
         $totalRequests = DB::table('agents')->where('status', 'Pending')->count();
-        return view ('\Admin\RequestsPage', ['totalRequests' => $totalRequests]);
+        return view ('Admin.RequestsPage', ['totalRequests' => $totalRequests]);
     }
 
     public function showStatusPage(){
         $totalRequests = DB::table('agents')->where('status', 'Pending')->count();
-        return view ('\Admin\StatusPage', ['totalRequests' => $totalRequests]);
+        return view ('Admin.StatusPage', ['totalRequests' => $totalRequests]);
     }
 
     public function requests($id, $action){

@@ -322,7 +322,7 @@
 															<?php $price = $bookingRequest->pax2_price ?>
 															PHP {{ number_format($bookingRequest->pax2_price, 2) }} <br>
 														@else
-															<?php $bookingRequest->pax3_price ?>
+															<?php $price = $bookingRequest->pax3_price ?>
 															PHP {{ number_format($bookingRequest->pax3_price, 2)}} <br>
 														@endif
 															PHP {{ number_format($bookingRequest->excess_price, 2) }} 
