@@ -139,25 +139,24 @@
 												</div>
 											</div>
 										</div>
-									</div>
 									@endif
 								@endforeach
-								
-								<div class="pager-wrappper text-left clearfix col-lg-12">
-									<div class="pager-innner">
-										<div class="clearfix">
-											<nav>
-												<ul class="pagination">
-													{{$bookings->links()}}
-												</ul>
-											</nav>
-										</div>
-									</div>
 								</div>
-							@else
-					</div>
-					<h2 class="text-danger">No records found.</h2>
+							</div>
+						@else
+						<h2 class="text-danger">No records found.</h2>
 					@endif
+				<div class="pager-wrappper text-left clearfix col-lg-12">
+					<div class="pager-innner">
+						<div class="clearfix">
+							<nav>
+								<ul class="pagination">
+									{{$bookings->links()}}
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
