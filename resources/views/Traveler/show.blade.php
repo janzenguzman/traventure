@@ -145,8 +145,8 @@
 																									@endif
 																									<div class="col-xs-12 col-sm-4 col-md-12">
 																										<b><span class="labeling" style="font-size: 20px">Day 0{{$itinerary->day}}</span></b>
-																										<div class="col-xs-12 col-sm-4 col-md-3">
-																											<div class="image">
+																										<div class="col-xs-12 col-sm-4 col-md-5">
+																											<div class="image sidebar-wrapper with-box-shadow">
 																												<img src="/public/uploads/files/{{ $itinerary->dayPhoto }}" alt="images" />
 																											</div>
 																										</div>
