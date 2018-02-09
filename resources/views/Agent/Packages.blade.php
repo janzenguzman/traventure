@@ -166,7 +166,7 @@
 							</div> 
 					</div>
 					@else
-						<center><h2>No Packages Yet.</h2></center>
+						<center class="text-danger"><h2>No Packages Yet.</h2></center>
 					@endif
 
 					<div class="pager-wrappper clearfix">
