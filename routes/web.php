@@ -22,12 +22,13 @@ Route::get('/TravelerRegister', 'Auth\LoginController@showRegisterForm')->name('
 Route::get('/AgentRegister', 'Auth\AgentsLoginController@showRegisterForm')->name('AgentsRegister');
 Route::get('/AgentLogin', 'Auth\AgentsLoginController@showLoginForm')->name('AgentLogin');
 Route::post('/RegisterAgent', 'Auth\AgentsRegisterController@register')->name('RegisterAgent');
+Route::post('/RegisterTraveler', 'Auth\RegisterController@register')->name('RegisterTraveler');
 Route::post('/', 'Auth\AgentsLoginController@logout')->name('Agent.Logout');
 Route::get('/', 'Auth\LoginController@logout')->name('Traveler.Logout');
 
 Route::prefix('Traveler')->group(function(){
     Route::get('/Explore', 'TravelersController@index') -> name('Traveler.Explore');
-    Route::post('/Explore', 'TravelersController@index') -> name('Traveler.Search');
+    Route::post('/Explore', 'TravelersController@index');
     Route::get('/TourPackage/{package}', 'TravelersController@showPackages') -> name('Traveler.TourPackage');
     Route::post('/store', 'TravelersController@store') -> name('Traveler.Store');
     Route::get('/Bill', 'TravelersController@showBill') -> name('Traveler.Bill');
@@ -96,11 +97,11 @@ Route::prefix('Agent')->group(function(){
     Route::post('/Bookings/SendMessage', 'AgentsController@replyMessage')->name('Agent.SendMessage');
     Route::post('/DeleteMessage', 'AgentsController@deleteMessage')->name('Agent.DeleteMessage');
     Route::post('/UpdateProfile', 'AgentsController@updateProfile')->name('Agent.UpdateProfile');
-    Route::get('/Packages', 'AgentsController@showPackages') -> name('Agent.Packages');
-    Route::get('/Bookings', 'AgentsController@showBookings') -> name('Agent.Bookings');
-    Route::get('/Messages', 'AgentsController@showMessages') -> name('Agent.ShowMessages');
-    Route::get('/Packages/CreatePackage', 'AgentsController@createPackage') -> name('Agent.CreatePackage');
-    Route::post('/Packages/StorePackage', 'AgentsController@storePackage') -> name('Agent.StorePackage');
+    Route::get('/Packages', 'AgentsController@showPackages')->name('Agent.Packages');
+    Route::get('/Bookings', 'AgentsController@showBookings')->name('Agent.Bookings');
+    Route::get('/Messages', 'AgentsController@showMessages')->name('Agent.ShowMessages');
+    Route::get('/Packages/CreatePackage', 'AgentsController@createPackage')->name('Agent.CreatePackage');
+    Route::post('/Packages/StorePackage', 'AgentsController@storePackage')->name('Agent.StorePackage');
     Route::get('/Packages/{package_id}', 'AgentsController@cancelPackage');
     Route::get('/Packages/CreateItineraries/{id}/{day}', 'AgentsController@createItineraries')->name('Agent.CreateItineraries');
     Route::post('/Packages', array('uses' => 'AgentsController@storeItinerary'))->name('Agent.StoreItinerary');

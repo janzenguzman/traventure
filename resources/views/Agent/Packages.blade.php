@@ -32,41 +32,6 @@
 					</ol>
 				</div>
 			</div>
-
-			<div class="filter-full-width-wrapper">
-				<div class="filter-full-primary">
-					<div class="container">
-						<div class="filter-full-primary-inner">
-							<div class="form-holder">
-								<div class="row">	
-									<form method="POST" method="{{ route('Traveler.Explore') }}">
-											{{ csrf_field() }}
-										<div class="col-xs-12 col-sm-12 col-md-6">
-											<div class="filter-item bb-sm no-bb-xss">
-												<span><label><i class="fa fa-map-marker"></i> Destination:</label></span>
-												<input type="text" name="pname_search" class="form-control"  placeholder="Search package name">
-											</div>
-										</div>
-
-										<div class="col-xs-12 col-sm-12 col-md-6">
-											<div class="filter-item-wrapper">
-												<div class="row">
-													<div class="col-xss-12 col-xs-6 col-sm-12 col-md-5">
-														<div class="filter-item mmr">
-															<br>
-															<input type = "submit" class="btn btn-default" value="Search">
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</form>			
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 			

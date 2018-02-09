@@ -119,4 +119,10 @@
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         {{ session('ErrorSlots')}}
     </div>
+@elseif(session('successful_signupTraveler'))
+    <div class="alert alert-success alert-dismissable fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ session('successful_signupTraveler')}}
+    </div>
 @endif
+

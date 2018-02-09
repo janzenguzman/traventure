@@ -136,7 +136,7 @@
                                                         Adult Price <b>(11 years. above)</b>
                                                     </div>
                                                     <div class="col-lg-4 col-md-4 text-primary">
-                                                        PHP {{ $packages->adult_price }}.00
+                                                        PHP {{ number_format($packages->adult_price, 2) }}
                                                     </div>
                                                 </li>
                                                 <li class="row gap-20">
@@ -144,7 +144,7 @@
                                                         Child Price: <b>(4-10 yesrs.)</b>
                                                     </div>
                                                     <div class="col-lg-4 col-md-4 text-primary">
-                                                        PHP {{ $packages->child_price }}.00
+                                                        PHP {{ number_format($packages->child_price, 2) }}
                                                     </div>
                                                 </li>
                                                 <li class="row gap-20">
@@ -152,7 +152,7 @@
                                                         Infant Price <b>(3 years. below)</b>
                                                     </div>
                                                     <div class="col-lg-4 col-md-4 text-primary">
-                                                        PHP {{ $packages->infant_price }}.00
+                                                        PHP {{ number_format($packages->infant_price, 2) }}
                                                     </div>
                                                 </li>
                                             </ul>

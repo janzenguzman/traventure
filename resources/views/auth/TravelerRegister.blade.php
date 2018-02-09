@@ -42,7 +42,7 @@
 										<h4 class="section-title">Sign Up As Traveler</h4>
 										<div class="row">
 										
-										    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+										    <form method="POST" action="{{ route('RegisterTraveler') }}" enctype="multipart/form-data">
                                                 {{ csrf_field() }}
 
                                                 <div class="col-sm-6 col-md-6">
@@ -147,15 +147,9 @@
                                                 </div>
 
                                                 <div class="col-sm-6 col-md-6">
-                                                    <div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}"> 
+                                                    <div class="form-group"> 
                                                         <label for="birthday">Birthday</label>
-                                                            <input id="birthday" type="date" class="form-control" name="birthday" required>
-
-                                                            @if ($errors->has('birthday'))
-                                                                <span class="help-block">
-                                                                    <strong>{{ $errors->first('birthday') }}</strong>
-                                                                </span>
-                                                            @endif
+                                                        <input id="birthday" type="date" class="form-control" name="birthday" required>
                                                     </div>
                                                 </div>
 

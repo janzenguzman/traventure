@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Requests; 
+use Illuminate\Auth\Events\Registered;
+
 
 class RegisterController extends Controller
 {
@@ -31,7 +33,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/Traveler/Explore';
+    // protected $redirectTo = '/TravelerLogin';
 
     /**
      * Create a new controller instance.
@@ -60,7 +62,6 @@ class RegisterController extends Controller
             'contact_no' => 'required|string|min:11|max:11',
             'password' => 'required|string|min:6|confirmed',
             'birthday' => 'required|date',
-            //'photo' => 'required|string|max:191',
         ]);
     }
 
@@ -98,8 +99,13 @@ class RegisterController extends Controller
         return $traveler;
     }
 
-    
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
 
+        event(new Registered($user = $this->create($request->all())));
 
-
+        return $this->registered($request, $user)
+            ?: redirect(route('TravelerLogin'))->with('successful_signupTraveler', 'Successfully created a new traveler account!');
+        }
 }

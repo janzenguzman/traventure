@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use FarhanWazir\GoogleMaps\GMaps;
 use Auth;
 use App\Travelers;
 use App\Agents;

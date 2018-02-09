@@ -43,7 +43,6 @@ class AgentsController extends Controller
         $bookingid_search = $request->input('search_bookingid');
         $id = Auth::user()->id;
         
-
         if($requested){
             $bookings = DB::table('bookings')
                 ->join('packages', 'bookings.package_id', '=', 'packages.package_id')
@@ -158,7 +157,6 @@ class AgentsController extends Controller
                 $itinerary->lat = $request->input('lat')[$x];
                 $itinerary->lng = $request->input('lng')[$x];
                 $itinerary->save();
-                
             }
             
         $days = 0;
@@ -172,7 +170,7 @@ class AgentsController extends Controller
         }
     }
     
-    public function showPackages(Request $req){
+    public function showPackages(){
         $lastSignedIn = new Carbon(Auth::guard('agents')->user()->last_signed_in);
         $now = Carbon::now();
         $diffHours = $lastSignedIn->diffInHours($now);
@@ -182,23 +180,19 @@ class AgentsController extends Controller
         }else{
             DB::table('agents')->where('id', auth()->user()->id)->update(['active' => 0]);
         }
-        
-        $destination = $req->input('pname_search');
-        $packages = DB::table('packages')
-                    ->leftJoin('comments', function($join){
-                        $join->on('comments.package_id', '=', 'packages.package_id');
-                    })
-                    ->leftjoin('bookings', function($join){
-                        $join->on('bookings.package_id', '=', 'packages.package_id');
-                    })
-                    ->select('comments.*', 'packages.*', DB::raw('AVG(rating) as ratings_average'),
-                            DB::raw('count(bookings.booking_id) as count_bookings'))
-                    ->groupBy('comments.package_id', 'bookings.package_id')
-                    ->where([['packages.agent_id', Auth::user()->id], 
-                            ['packages.package_name', 'like', '%'.$destination.'%']])
-                    ->orderBy('packages.created_at', 'desc')
-                    ->paginate(8);  
-        return view('Agent.Packages')->with(['packages' => $packages, 'diffHours' => $diffHours]);
+          $packages = DB::table('packages')
+              ->leftJoin('comments', function($join){
+                  $join->on('comments.package_id', '=', 'packages.package_id');
+              })
+              ->leftjoin('bookings', function($join){
+                  $join->on('bookings.package_id', '=', 'packages.package_id');
+              })
+              ->select('comments.*', 'packages.*', DB::raw('AVG(rating) as ratings_average'),
+                      DB::raw('count(bookings.booking_id) as count_bookings'))
+              ->groupBy('comments.package_id', 'bookings.package_id', 'packages.package_id')
+              ->where('packages.agent_id', Auth::user()->id)
+              ->orderBy('packages.created_at', 'desc')
+              ->paginate(8);
     }
 
     public function editItineraries($package_id, $day){

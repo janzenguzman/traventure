@@ -149,15 +149,9 @@
 
                                                 <div class="col-sm-6 col-md-6">
                                                 
-                                                    <div class="form-group{{ $errors->has('contact_no') ? ' has-error' : '' }}"> 
+                                                    <div class="form-group"> 
                                                         <label>Contact No.</label>
                                                         <input id="contact_no" type="text" class="form-control" name="contact_no" value="{{ old('contact_no') }}" required>
-
-                                                            @if ($errors->has('contact_no'))
-                                                                <span class="help-block">
-                                                                    <strong>{{ $errors->first('contact_no') }}</strong>
-                                                                </span>
-                                                            @endif
                                                     </div>
                                                 
                                                 </div>
