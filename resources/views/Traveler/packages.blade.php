@@ -22,7 +22,7 @@
 								<div class="form-holder">
 									<div class="row">
 										<div class="col-xs-12 col-sm-12 col-md-12">
-											<form method="POST" method="{{ route('Traveler.Explore') }}">
+											<form method="POST" action="{{ route('Traveler.Explore') }}">
 												{{ csrf_field() }}
 												<div class="filter-item-wrapper">
 													<div class="row">
@@ -236,7 +236,6 @@
 <script>
 	var token = '{{ Session::token() }}';
 	var urlFave = '{{ route('Traveler.Favorite') }}';
-	var urlSearch = '{{ route('Traveler.Explore') }}';
 
 	var categories = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('categories'),

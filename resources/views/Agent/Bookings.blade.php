@@ -46,7 +46,7 @@
 								<div class="row">
 									<div class="col-lg-6 col-md-5 col-xs-12">
 										<div class="input-group">
-											<input type="text" name="search_bookingid" class="form-control"  placeholder="Search package name" >
+											<input type="text" name="search_bookingid" class="form-control"  placeholder="Search Booking ID" >
 											<span class="input-group-btn">
 												<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 											</span>

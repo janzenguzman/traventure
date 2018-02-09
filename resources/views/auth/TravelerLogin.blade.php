@@ -41,6 +41,7 @@
 										</div>
 										
 										<h4 class="section-title">Login As Traveler</h4>
+										@include('layouts.user.alerts')
 										<div class="row">
 										
 										    <form method="POST" action="{{ route('login') }}">

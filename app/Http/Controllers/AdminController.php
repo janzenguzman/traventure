@@ -38,7 +38,7 @@ class AdminController extends Controller
                 ->elementLabel('Total')
                 ->labels(['Accredited Companies', 'Active Companies', 'Inactive Companies'])
                 ->values([$totalAccredited, $totalActive, $totalInactive])
-                ->dimensions(100, 100)
+                ->dimensions(50, 100)
                 ->responsive(true);
 
         $now = Carbon::now();
