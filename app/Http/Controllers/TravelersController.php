@@ -76,7 +76,7 @@ class TravelersController extends Controller
                 ->orderBy('packages.created_at', 'desc')
                 ->paginate(8);
 
-        }else if($req->input('sort') == 'joined'){
+        }else if($req->input('sort') == 'joinedHtoL'){
             $packages = DB::table('packages')
                 ->leftJoin('comments', function($join){
                     $join->on('comments.package_id', '=', 'packages.package_id');
@@ -87,11 +87,26 @@ class TravelersController extends Controller
                 ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
                         DB::raw('AVG(rating) as ratings_average'))
                 ->groupBy('comments.package_id', 'packages.package_id')
-                ->orderBy('packages.pax1_price', 'asc')
+                ->orderBy('packages.adult_price', 'desc')
                 ->where('packages.type', 'Joined')
                 ->paginate(8);
         
-        }else if($req->input('sort') == 'exclusive'){
+        }else if($req->input('sort') == 'joinedLtoH'){
+            $packages = DB::table('packages')
+                ->leftJoin('comments', function($join){
+                    $join->on('comments.package_id', '=', 'packages.package_id');
+                })
+                ->join('agents', function($join){
+                    $join->on('packages.agent_id', '=', 'agents.id');
+                })
+                ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
+                        DB::raw('AVG(rating) as ratings_average'))
+                ->groupBy('comments.package_id', 'packages.package_id')
+                ->orderBy('packages.adult_price', 'asc')
+                ->where('packages.type', 'Joined')
+                ->paginate(8);
+        
+        }else if($req->input('sort') == 'exclusiveLtoH'){
             $packages = DB::table('packages')
                 ->leftJoin('comments', function($join){
                     $join->on('comments.package_id', '=', 'packages.package_id');
@@ -106,7 +121,21 @@ class TravelersController extends Controller
                 ->where('packages.type', 'Exclusive')
                 ->paginate(8);
 
-
+        }else if($req->input('sort') == 'exclusiveHtoL'){
+            $packages = DB::table('packages')
+                ->leftJoin('comments', function($join){
+                    $join->on('comments.package_id', '=', 'packages.package_id');
+                })
+                ->join('agents', function($join){
+                    $join->on('packages.agent_id', '=', 'agents.id');
+                })
+                ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
+                        DB::raw('AVG(rating) as ratings_average'))
+                ->groupBy('comments.package_id', 'packages.package_id')
+                ->orderBy('packages.pax1_price', 'desc')
+                ->where('packages.type', 'Exclusive')
+                ->paginate(8);
+        
         }else{
             $packages = DB::table('packages')
                 ->leftJoin('comments', function($join){
