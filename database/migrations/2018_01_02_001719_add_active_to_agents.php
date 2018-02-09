@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCountToPackagesTable extends Migration
+class AddActiveToAgents extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddCountToPackagesTable extends Migration
      */
     public function up()
     {
-        Schema::table('packages', function($table){
-            $table->integer('count')->default(0);
+        Schema::table('agents', function($table){
+            $table->boolean('active');
         });
     }
 
@@ -25,8 +25,8 @@ class AddCountToPackagesTable extends Migration
      */
     public function down()
     {
-        Schema::table('packages', function($table){
-            $table->dropColumn('count');
+        Schema::table('agents', function($table){
+            $table->dropColumn('active');
         });
     }
 }

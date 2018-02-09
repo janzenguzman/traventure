@@ -15,14 +15,25 @@ class CreatePackagesTable extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->increments('package_id');
-            $table->string('package_name');
-            $table->mediumText('services');
-            $table->integer('pax');
-            $table->float('price');
-            $table->mediumText('inclusions');
-            $table->mediumText('add_info');
-            $table->mediumText('reminders');
+            $table->string('package_name')->nullable();
+            $table->integer('days');
+            $table->decimal('adult_price', 10,2)->nullable();
+            $table->decimal('child_price', 10,2)->nullable();
+            $table->decimal('infant_price', 10,2)->nullable();
+            $table->decimal('excess_price', 10,2)->nullable();
+            $table->string('type')->nullable();
+            $table->integer('pax1')->nullable();
+            $table->decimal('pax1_price', 10,2)->nullable();
+            $table->integer('pax2')->nullable();
+            $table->decimal('pax2_price', 10,2)->nullable();
+            $table->integer('pax3')->nullable();
+            $table->decimal('pax3_price', 10,2)->nullable();
+            $table->text('inclusions')->nullable();
+            $table->text('add_info')->nullable();
+            $table->text('reminders')->nullable();
+            $table->string('categories');
             $table->timestamps();
+            $table->integer('agent_id');
         });
     }
 

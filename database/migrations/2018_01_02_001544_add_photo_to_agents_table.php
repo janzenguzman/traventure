@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDaysTable extends Migration
+class AddPhotoToAgentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateDaysTable extends Migration
      */
     public function up()
     {
-        Schema::create('days', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('itinerary_id');
-            $table->integer('days');
+        Schema::table('agents', function($table){
             $table->string('photo');
-            $table->timestamps();
-        });
+        }); 
     }
 
     /**
@@ -29,6 +25,8 @@ class CreateDaysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('days');
+        Schema::table('agents', function($table){
+            $table->string('photo');
+        });
     }
 }

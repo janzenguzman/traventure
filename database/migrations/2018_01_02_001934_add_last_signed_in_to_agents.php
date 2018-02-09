@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFavoritedToPackages extends Migration
+class AddLastSignedInToAgents extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddFavoritedToPackages extends Migration
      */
     public function up()
     {
-        Schema::table('packages', function($table){
-            $table->boolean('favorited')->nullable();
+        Schema::table('agents', function($table){
+            $table->timestamp('last_signed_in')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddFavoritedToPackages extends Migration
      */
     public function down()
     {
-        Schema::table('packages', function($table){
-            $table->dropColumn('favorited');
+        Schema::table('agents', function($table){
+            $table->dropColumn('last_signed_in')->nullable();
         });
     }
 }
