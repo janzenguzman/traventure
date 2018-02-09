@@ -170,7 +170,7 @@ class AgentsController extends Controller
         }
     }
     
-    public function showPackages(Request $req){
+    public function showPackages(){
         $lastSignedIn = new Carbon(Auth::guard('agents')->user()->last_signed_in);
         $now = Carbon::now();
         $diffHours = $lastSignedIn->diffInHours($now);
@@ -180,7 +180,6 @@ class AgentsController extends Controller
         }else{
             DB::table('agents')->where('id', auth()->user()->id)->update(['active' => 0]);
         }
-        
           $packages = DB::table('packages')
               ->leftJoin('comments', function($join){
                   $join->on('comments.package_id', '=', 'packages.package_id');
@@ -193,7 +192,7 @@ class AgentsController extends Controller
               ->groupBy('comments.package_id', 'bookings.package_id', 'packages.package_id')
               ->where('packages.agent_id', Auth::user()->id)
               ->orderBy('packages.created_at', 'desc')
-              ->paginate(8); 
+              ->paginate(8);
     }
 
     public function editItineraries($package_id, $day){
