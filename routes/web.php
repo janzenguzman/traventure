@@ -21,6 +21,7 @@ Route::get('/TravelerLogin', 'Auth\LoginController@showLoginForm')->name('Travel
 Route::get('/TravelerRegister', 'Auth\LoginController@showRegisterForm')->name('TravelerRegister');
 Route::get('/AgentRegister', 'Auth\AgentsLoginController@showRegisterForm')->name('AgentsRegister');
 Route::get('/AgentLogin', 'Auth\AgentsLoginController@showLoginForm')->name('AgentLogin');
+Route::post('/RegisterAgent', 'Auth\AgentsRegisterController@register')->name('RegisterAgent');
 Route::post('/', 'Auth\AgentsLoginController@logout')->name('Agent.Logout');
 Route::get('/', 'Auth\LoginController@logout')->name('Traveler.Logout');
 
@@ -83,6 +84,7 @@ Route::prefix('Admin')->group(function(){
 
 Route::prefix('Agent')->group(function(){
     Route::post('/HomePage', 'Auth\AgentsLoginController@login')->name('Agents.Login.Submit');
+    Route::get('/EditProfile', 'AgentsController@showEditProfile')->name('Agent.EditProfile');
     Route::post('/ChangePass', 'AgentsController@changePass')->name('Agent.ChangePass');
     Route::post('/Bookings', 'AgentsController@showBookings') -> name('Agent.Bookings');
     Route::get('/Messages', 'AgentsController@showMessages') -> name('Agent.Messages');

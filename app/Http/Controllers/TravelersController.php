@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Package;
 use App\Booking;
 use App\Travelers;
+use App\Agents;
 use App\Trips;
 use App\Comment;
 use Carbon\Carbon;
@@ -33,14 +34,14 @@ class TravelersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
-    // MADE BY JANZEN
 
     public function index(Request $req)
     {
-        // dd($req);
         $destination = $req->input('destination_search');
         $date = $req->input('date_search');
+        $city = $req->input('city');
+        $categories = $req->input('categories');
+        $now=Carbon::now();
 
         if($destination != NULL && $date != NULL){
             $packages = DB::table('packages')
@@ -48,73 +49,82 @@ class TravelersController extends Controller
                     $join->on('comments.package_id', '=', 'packages.package_id');
                 })
                 ->join('agents', 'packages.agent_id', '=', 'agents.id')
-                ->join('slots', 'packages.package_id', '=', 'slots.package_id')
+                ->leftjoin('slots', 'packages.package_id', '=', 'slots.package_id')
                 ->where([['packages.package_name', 'like', '%'.$destination.'%'],
-                        ['slots.date_from', '=', $date], ['slots.slots', '!=', 0]
+                        ['slots.date_from', '=', $date], ['slots.slots', '!=', 0], ['slots.date_from', '>', $now],
+                        ['slots.slots', '!=', NULL], ['packages.categories', 'like', '%'.$categories.'%'],
+                        ['agents.city', '=', $city]
                 ])
+                ->groupBy('comments.package_id', 'packages.package_id')
                 ->orderBy('packages.created_at', 'desc')
                 ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
-                            DB::raw('AVG(rating) as ratings_average'))
+                        DB::raw('AVG(rating) as ratings_average'))
                 ->paginate(8);
 
         }else if($req->input('sort') == 'rating'){
             $packages = DB::table('packages')
-                    ->leftJoin('comments', function($join){
-                        $join->on('comments.package_id', '=', 'packages.package_id');
-                    })
-                    ->join('agents', function($join){
-                        $join->on('packages.agent_id', '=', 'agents.id');
-                    })
-                    ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
-                            DB::raw('AVG(rating) as ratings_average'))
-                    ->groupBy('comments.package_id', 'packages.package_id')
-                    ->orderBy('comments.rating', 'desc')
-                    ->paginate(8);
+                ->leftJoin('comments', function($join){
+                    $join->on('comments.package_id', '=', 'packages.package_id');
+                })
+                ->join('agents', function($join){
+                    $join->on('packages.agent_id', '=', 'agents.id');
+                })
+                ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
+                        DB::raw('AVG(rating) as ratings_average'))
+                ->groupBy('comments.package_id', 'packages.package_id')
+                ->orderBy('comments.rating', 'desc')
+                ->orderBy('packages.created_at', 'desc')
+                ->paginate(8);
+
         }else if($req->input('sort') == 'joined'){
             $packages = DB::table('packages')
-                    ->leftJoin('comments', function($join){
-                        $join->on('comments.package_id', '=', 'packages.package_id');
-                    })
-                    ->join('agents', function($join){
-                        $join->on('packages.agent_id', '=', 'agents.id');
-                    })
-                    ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
+                ->leftJoin('comments', function($join){
+                    $join->on('comments.package_id', '=', 'packages.package_id');
+                })
+                ->join('agents', function($join){
+                    $join->on('packages.agent_id', '=', 'agents.id');
+                })
+                ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
                         DB::raw('AVG(rating) as ratings_average'))
-                    ->groupBy('comments.package_id')
-                    ->orderBy('packages.adult_price', 'asc')
-                    ->where('packages.type', 'Joined')
-                    ->paginate(8);
+                ->groupBy('comments.package_id', 'packages.package_id')
+                ->orderBy('packages.pax1_price', 'asc')
+                ->where('packages.type', 'Joined')
+                ->paginate(8);
         
         }else if($req->input('sort') == 'exclusive'){
             $packages = DB::table('packages')
-                    ->leftJoin('comments', function($join){
-                        $join->on('comments.package_id', '=', 'packages.package_id');
-                    })
-                    ->join('agents', function($join){
-                        $join->on('packages.agent_id', '=', 'agents.id');
-                    })
-                    ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
-                            DB::raw('AVG(rating) as ratings_average'))
-                    ->groupBy('comments.package_id', 'packages.package_id')
-                    ->orderBy('packages.adult_price', 'asc')
-                    ->where('packages.type', 'Exclusive')
-                    ->paginate(8);
+                ->leftJoin('comments', function($join){
+                    $join->on('comments.package_id', '=', 'packages.package_id');
+                })
+                ->join('agents', function($join){
+                    $join->on('packages.agent_id', '=', 'agents.id');
+                })
+                ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
+                        DB::raw('AVG(rating) as ratings_average'))
+                ->groupBy('comments.package_id', 'packages.package_id')
+                ->orderBy('packages.pax1_price', 'asc')
+                ->where('packages.type', 'Exclusive')
+                ->paginate(8);
+
+
         }else{
             $packages = DB::table('packages')
-                    ->leftJoin('comments', function($join){
-                        $join->on('comments.package_id', '=', 'packages.package_id');
-                    })
-                    ->join('agents', function($join){
-                        $join->on('packages.agent_id', '=', 'agents.id');
-                    })
-                    ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
-                            DB::raw('AVG(rating) as ratings_average'))
-                    ->groupBy('comments.package_id', 'packages.package_id')
-                    ->orderBy('comments.rating')
-                    ->paginate(8);
+                ->leftJoin('comments', function($join){
+                    $join->on('comments.package_id', '=', 'packages.package_id');
+                })
+                ->join('agents', function($join){
+                    $join->on('packages.agent_id', '=', 'agents.id');
+                })
+                ->leftjoin('slots', 'packages.package_id', '=', 'slots.package_id')
+                ->select('comments.*', 'packages.*', 'agents.fname', 'agents.lname', 'agents.photo as agent_photo', 
+                        DB::raw('AVG(rating) as ratings_average'))                        
+                ->groupBy('comments.package_id', 'packages.package_id')
+                ->orderBy('packages.created_at', 'desc')
+                ->paginate(8);
         }
-        
-        return view('Traveler.packages')->with('packages', $packages);
+
+        $cities = DB::table('agents')->orderBy('city', 'asc')->get();
+        return view('Traveler.packages')->with(['packages' => $packages, 'cities' => $cities]);
     }
 
     public function store(Request $request)
@@ -218,8 +228,11 @@ class TravelersController extends Controller
                     ->where('comments.package_id', $package_id)
                     ->get();
 
+        $agent = Agents::find(Auth::user()->id);
+
         return view('Traveler.show')->with(['packages' => $packages, 'comments' => $comments, 
-                    'avg' => $avg, 'count' => $count, 'slots' => $slots, 'favs' => $favs, 'itineraries' => $itineraries]); 
+                    'avg' => $avg, 'count' => $count, 'slots' => $slots, 'favs' => $favs, 'itineraries' => $itineraries,
+                    'agent' => $agent]); 
     }
 
     public function book($package_id)
@@ -251,7 +264,7 @@ class TravelersController extends Controller
             ->join('packages', 'bookings.package_id', '=', 'packages.package_id')
             ->where([['traveler_id', $id], ['bookings.status', '!=', 'Pending'], 
                     ['bookings.status', '!=', 'Cancelled'],
-                    ['bookings.status', 'like', $requested],])
+                    ['bookings.status', 'like', $requested]])
             ->orderBy('bookings.created_at', 'desc')->paginate(5);
         }elseif($accepted){
             $bookings = DB::table('bookings')
@@ -308,7 +321,7 @@ class TravelersController extends Controller
             ->where([['trips.traveler_id', $id],
                     ['packages.package_name', 'like', '%'.$pname_search.'%'],
                     ['bookings.status', 'Accepted']])
-            ->orderBy('trips_id')->paginate(5);
+            ->orderBy('trips_id', 'desc')->paginate(5);
         return view('Traveler.Trips')->with('trips', $trips);
     }
 
@@ -344,7 +357,6 @@ class TravelersController extends Controller
             $faves = $traveler->favorites()->where('package_id', $id)->first();
             if($faves){
                 $faves->delete();
-                // return 'Unfavorite';
                 return response()->json($faves);
             }else{
                 $faves = new Favorites;
@@ -547,6 +559,8 @@ class TravelersController extends Controller
         $itineraries = DB::table('itinerary')
                     ->join('packages', 'itinerary.package_id', '=', 'packages.package_id')
                     ->where('itinerary.package_id', $package_id)
+                    ->orderBy('day', 'ASC')
+                    ->orderBy('starttime', 'ASC')
                     ->get();
 
         $bills = DB::table('bills')

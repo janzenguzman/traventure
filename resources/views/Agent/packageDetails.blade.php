@@ -79,14 +79,20 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-10">
                                 <div class="content-wrapper">
-                                    <div class="content pull-right">
-                                        <a href="/Agent/Packages/EditPackage/{{$packages->package_id}}" class="btn btn-info btn-sm "> Edit Package</a>
-                                        <?php $day=1?>
-                                        <a href="/Agent/Packages/EditItineraries/{{$packages->package_id}}/{{$day}}") class="btn btn-info btn-sm"> Edit Itinerary</a>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="content pull-right">
+                                            <a href="/Agent/Packages/EditPackage/{{$packages->package_id}}" class="btn btn-info btn-sm "> Edit Package</a>
+                                            <?php $day=1?>
+                                            <a href="/Agent/Packages/EditItineraries/{{$packages->package_id}}/{{$day}}") class="btn btn-info btn-sm"> Edit Itinerary</a>
+                                        </div>
                                     </div>
                                     
                                     <h2 class="font-lg">{{$packages->type}} Tour</h2>
-                                    <label class="text-muted">Categories: {{$packages->categories}}</label>
+                                    <div class="hash-tag-wrapper clearfix mt-20 mb-30">
+                                        @foreach(explode(',', $packages->categories) as $categories) 
+                                            <a class="hash-tag"># {{$categories}}</a>
+                                        @endforeach
+                                    </div>
                                     <h4 class="uppercase spacing-1"><br>Price Details</h4>
                                         @if($packages->type == 'Exclusive')
                                             <ul class="clearfix">
@@ -220,24 +226,24 @@
                                                                                 
                                                                                 @if($temp != $itinerary->day)
                                                                                     @if($itinerary->day !=1)
-                                                                                    <div class="mb-25"></div>
-                                                                                    <div class="bb"></div>
-                                                                                    <div class="mb-25"></div>
+                                                                                        <div class="mb-25"></div>
+                                                                                        <div class="bb"></div>
+                                                                                        <div class="mb-25"></div>
                                                                                     @endif
-                                                                                <div class="col-xs-12 col-sm-4 col-md-12">
-                                                                                    <b><span class="labeling" style="font-size: 20px">Day 0{{$itinerary->day}}</span></b>
-                                                                                    <div class="col-xs-12 col-sm-4 col-md-3">
-                                                                                        <div class="image">
-                                                                                            <img src="/public/uploads/files/{{ $itinerary->dayPhoto }}" alt="images" />
+                                                                                    <div class="col-xs-12 col-sm-4 col-md-12">
+                                                                                        <b><span class="labeling" style="font-size: 20px">Day 0{{$itinerary->day}}</span></b>
+                                                                                        <div class="col-xs-12 col-sm-4 col-md-3">
+                                                                                            <div class="image">
+                                                                                                <img src="/public/uploads/files/{{ $itinerary->dayPhoto }}" alt="images" />
+                                                                                                
+                                                                                            </div>
+                                                                                            
                                                                                             
                                                                                         </div>
-                                                                                        
-                                                                                        
+                                                                                        <div class="col-xs-12 col-sm-4 col-md-9">
+                                                                                            <a href="/Agent/Packages/PackageDetails/ViewRoutes/{{$itinerary->package_id}}/{{$itinerary->day}}" class="btn btn-success pull-right">View Routes</a>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="col-xs-12 col-sm-4 col-md-9">
-                                                                                        <a href="/Agent/Packages/PackageDetails/ViewRoutes/{{$itinerary->package_id}}/{{$itinerary->day}}" class="btn btn-success pull-right">View Routes</a>
-                                                                                    </div>
-                                                                                </div>
                                                                                     <?php $temp = $itinerary->day ?> 
                                                                                 @endif
                                                                                 <div class="col-xs-12 col-sm-4 col-md-12">
@@ -278,12 +284,14 @@
                                             </div>
                                             <div class="text-box-h-bb">
                                                 <div class="row">
-                                                    <div class="col-xs-12 col-sm-4 col-md-3">
+                                                    <div class="col-xs-12 col-sm-4 col-md-12">
                                                         <h4>Inclusions</h4>
                                                     </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                                        <p class="font-md">{{ $packages->inclusions }} </p>
-                                                    </div>
+                                                    @foreach(explode(',', $packages->inclusions) as $inclusions)
+                                                        <div class="col-xs-12 col-sm-12 col-md-4">
+                                                            <p class="font-md"><i class="fa fa-check-circle "></i> {{ $inclusions }} </p>
+                                                        </div>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                             <div class="text-box-h-bb">

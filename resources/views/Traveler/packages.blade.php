@@ -21,54 +21,71 @@
 							<div class="filter-full-primary-inner">
 								<div class="form-holder">
 									<div class="row">
-										<form method="POST" method="{{ route('Traveler.Explore') }}">
-											{{ csrf_field() }}
-											<div class="filter-item col-xs-12 col-sm-12 col-md-3">
-												<span><label><i class="fa fa-tags"></i> Tags:</label></span>
-												<input type="text" class="form-control" name="categories" data-role="tagsinput" required />
-											</div>
-											<div class="col-xs-12 col-sm-12 col-md-7">
+										<div class="col-xs-12 col-sm-12 col-md-12">
+											<form method="POST" method="{{ route('Traveler.Explore') }}">
+												{{ csrf_field() }}
 												<div class="filter-item-wrapper">
 													<div class="row">
-														<div class="col-xs-12 col-sm-12 col-md-3">
+														<div class="col-xs-12 col-sm-12 col-md-2">
+															<div class="filter-item mmr eventForm">
+																<span><label><i class="fa fa-tags"></i> Tags:</label></span>
+																<input type="text" class="form-control" name="categories" id="cat" required />
+															</div>
+														</div>
+														<div class="col-xs-12 col-sm-12 col-md-2">
 															<div class="filter-item mmr eventForm">
 																<span><label><i class="fa fa-calendar input-append date"></i> Date From:</label></span>
 																	<input type="text" class="form-control datePicker" name="date_search"  required/>
 															</div>
 														</div>
-														<div class="col-xs-12 col-sm-12  col-md-4">
+														<div class="col-xss-12 col-xs-6 col-sm-3">
 															<div class="filter-item mmr">
-																<span><label><i class="fa fa-map-marker"></i> Destination:</label></span>
-																<input type="text" name="destination_search" class="form-control"  placeholder="Search package name" required>	
+																<span><label>Travel Agents From:</label></span>
+																<select class="selectpicker form-control block-xs" name="city">
+																	<?php $temp = 'sample' ?>
+																	@foreach($cities as $city)
+																		@for($x=0; $x<count($city->id); ++$x)
+																			@if($temp != $city->city)
+																				<option value="{{ $city->city }}"> {{ $city->city }}</option>
+																				<?php $temp = $city->city ?> 
+																			@endif
+																		@endfor
+																	@endforeach
+																</select>
 															</div>
 														</div>
-														
-														<div class="col-xss-12 col-xs-6 col-sm-2">
-															<div class="filter-item mmr"><br>
-																<input type="submit" class="btn btn-default" value="Search">
+														<div class="col-xs-12 col-sm-12 col-md-3">
+															<div class="filter-item mmr">
+																	<span><label><i class="fa fa-map-marker"></i> Destination:</label></span>
+																<div class="input-group">
+																	
+																	<input type="text" name="destination_search" id="search" class="form-control"  placeholder="Search package name" required>	
+																	<span class="input-group-btn">
+																		<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+																	</span>
+																</div>
 															</div>
+														</div>
+													</form>
+													<div class="col-xss-12 col-xs-6 col-sm-2">
+														<div class="filter-item mmr">
+															<form  method="POST" method="{{ route('Traveler.Explore') }}">
+																{{ csrf_field() }}
+																<span><label><i class="fa fa-sort-amount-desc"></i> Sort by:</label></span>
+																<div class="input-group">
+																	<select class="selectpicker form-control block-xs" name="sort">
+																		<option value="rating"> Rating</option>
+																		<option value="joined"> Joined Tour</option>
+																		<option value="exclusive"> Exclusive Tour</option>
+																	</select>
+																	<span class="input-group-btn">
+																		<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+																	</span>
+																</div>
+															</form>
 														</div>
 													</div>
 												</div>
-											</div>
-										</form>
-											
-										<div class="col-xss-12 col-xs-6 col-sm-2">
-											<div class="filter-item mmr">
-												<form  method="POST" method="{{ route('Traveler.Explore') }}">
-													{{ csrf_field() }}
-													<span><label><i class="fa fa-sort-amount-desc"></i> Sort by:</label></span>
-													<div class="input-group">
-														<select class="selectpicker form-control block-xs" name="sort">
-															<option value="rating"> Rating</option>
-															<option value="joined"> Joined Tour</option>
-															<option value="exclusive"> Exclusive Tour</option>
-														</select>
-														<span class="input-group-btn">
-															<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-														</span>
-													</div>
-												</form>
 											</div>
 										</div>
 									</div>
@@ -78,102 +95,102 @@
 					</div>
 
 					<div class="pt-30 pb-50">
-					<div class="container">
-									
-					<div class="trip-guide-wrapper">
-						@include('layouts.user.alerts')
-						<div class="GridLex-gap-20 GridLex-gap-15-mdd GridLex-gap-10-xs">
-							<div class="GridLex-grid-noGutter-equalHeight GridLex-grid">
-								@if(count($packages) > 0)
-									@foreach($packages as $package)
-										<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-											
-										<div class="trip-guide-item bg-light-primary">
 
-												<div class="trip-guide-image">
-													<img src="/public/uploads/files/{{ $package->photo }}" style="height: 200px" alt="images" />
-												</div>
+					<div class="container">			
+						<div class="trip-guide-wrapper">
+							@include('layouts.user.alerts')
+							<div class="GridLex-gap-20 GridLex-gap-15-mdd GridLex-gap-10-xs">
+								<div class="GridLex-grid-noGutter-equalHeight GridLex-grid">
+									@if(count($packages) > 0)
+										@foreach($packages as $package)
+											<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
 												
-												<div class="trip-guide-content bg-white">
-													<h3>{{$package->package_name}}</h3>
-													<span id="fave" data-id="{{ $package->package_id }}">
-														<button class="fave btn btn-danger btn-sm pull-right">
-															{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
-																Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
-																'Unfavorite' : 'Favorite' : 'Favorite'}}
-														</button>
-													</span>
-													<label>{{ $package->type }} Tour</label>
-												</div>
+											<div class="trip-guide-item bg-light-primary">
 
-												<div class="trip-guide-bottom">
-												
-													<div class="trip-guide-person bg-white clearfix">
-														<div class="image">
-															<img src="/public/uploads/files/{{$package->agent_photo}}" class="img-circle" alt="images" />
-														</div>
-														<p class="name">By: <a>{{$package->fname}} {{$package->lname}}</a></p>
-														<p>Posted on {{ Carbon\Carbon::parse($package->created_at)->toFormattedDateString()}}</p>
-					
+													<div class="trip-guide-image">
+														<img src="/public/uploads/files/{{ $package->photo }}" style="height: 200px" alt="images" />
 													</div>
-													<div class="trip-guide-meta row gap-10">
-														<div class="col-xs-6 col-sm-6">
-															<div class="rating-item">
-																<input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-readonly value="{{ $package->ratings_average }}"/>
+													
+													<div class="trip-guide-content bg-white">
+														<h3>{{$package->package_name}}</h3>
+														<span id="fave" data-id="{{ $package->package_id }}">
+															<button class="fave btn btn-danger btn-sm pull-right">
+																{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
+																	Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
+																	'Unfavorite' : 'Favorite' : 'Favorite'}}
+															</button>
+														</span>
+														<label>{{ $package->type }} Tour</label>
+													</div>
+
+													<div class="trip-guide-bottom">
+													
+														<div class="trip-guide-person bg-white clearfix">
+															<div class="image">
+																<img src="/public/uploads/files/{{$package->agent_photo}}" class="img-circle" alt="images" />
+															</div>
+															<p class="name">By: <a>{{$package->fname}} {{$package->lname}}</a></p>
+															<p>Posted on {{ Carbon\Carbon::parse($package->created_at)->toFormattedDateString()}}</p>
+						
+														</div>
+														<div class="trip-guide-meta row gap-10">
+															<div class="col-xs-6 col-sm-6">
+																<div class="rating-item">
+																	<input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-readonly value="{{ $package->ratings_average }}"/>
+																</div>
 															</div>
 														</div>
-													</div>
-													<div class="row gap-10">
-														<div class="col-xs-12 col-sm-6">
-															<div class="trip-guide-price">
-																@if($package->days == 1)
-																	{{$package->days}} Day Tour
-																@else
-																	{{$package->days}} Days 
-																	@if($night = $package->days - 1 == 1)
-																		{{$night}} Night 
+														<div class="row gap-10">
+															<div class="col-xs-12 col-sm-6">
+																<div class="trip-guide-price">
+																	@if($package->days == 1)
+																		{{$package->days}} Day Tour
 																	@else
-																		{{$night}} Nights
+																		{{$package->days}} Days 
+																		@if($night = $package->days - 1 == 1)
+																			{{$night}} Night 
+																		@else
+																			{{$night}} Nights
+																		@endif
 																	@endif
-																@endif
 
-																@if($package->type == 'Joined')
-																	<span class="number" style="font-size:18px">PHP {{number_format($package->adult_price, 2)}}</span>
-																@else
-																	<span class="number" style="font-size:18px">PHP {{number_format($package->pax1_price, 2)}}</span>
-																@endif
+																	@if($package->type == 'Joined')
+																		<span class="number" style="font-size:18px">PHP {{number_format($package->adult_price, 2)}}</span>
+																	@else
+																		<span class="number" style="font-size:18px">PHP {{number_format($package->pax1_price, 2)}}</span>
+																	@endif
+																</div>
 															</div>
-														</div>
-														<div class="col-xs-12 col-sm-6 text-right">
-															<a href="/Traveler/TourPackage/{{$package->package_id}}" class="btn btn-info btn-sm">Details</a>
+															<div class="col-xs-12 col-sm-6 text-right">
+																<a href="/Traveler/TourPackage/{{$package->package_id}}" class="btn btn-info btn-sm">Details</a>
+															</div>
 														</div>
 													</div>
 												</div>
 											</div>
-										</div>
-									@endforeach
-								</div>	
-							</div>
-						</div> 
+										@endforeach
+									</div>	
+								</div>
+							</div> 
 
-						<div class="pager-wrappper clearfix">
-							<div class="pager-innner">
-								<div class="pager-wrappper clearfix">
-									<div class="pager-innner">
-										<div class="clearfix">
-											<nav class="pager-center">
-												<ul class="pagination">
-													{{$packages->links()}}
-												</ul>
-											</nav>
+							<div class="pager-wrappper clearfix">
+								<div class="pager-innner">
+									<div class="pager-wrappper clearfix">
+										<div class="pager-innner">
+											<div class="clearfix">
+												<nav class="pager-center">
+													<ul class="pagination">
+														{{$packages->links()}}
+													</ul>
+												</nav>
+											</div>
 										</div>
 									</div>
 								</div>
+									@else
+										<center><h2 class="text-danger">No Packages Yet.</h2></center>
+									@endif
 							</div>
-								@else
-									<center><h2 class="text-danger">No Packages Yet.</h2></center>
-								@endif
-						</div>
 					</div>
 				</div>
 			</div>
@@ -217,6 +234,7 @@
 <script>
 	var token = '{{ Session::token() }}';
 	var urlFave = '{{ route('Traveler.Favorite') }}';
+	var urlSearch = '{{ route('Traveler.Explore') }}';
 
 	var categories = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('categories'),
@@ -264,40 +282,23 @@
 			.datepicker({
 				autoclose: true,
 				format: 'yyyy-mm-dd'
-			})
-			.on('changeDate', function(e) {
-				// Revalidate the date field
-				$('.eventForm').formValidation('revalidateField', 'date');
-			});
-	
-		$('.eventForm').formValidation({
-			framework: 'bootstrap',
-			icon: {
-				valid: 'glyphicon glyphicon-ok',
-				invalid: 'glyphicon glyphicon-remove',
-				validating: 'glyphicon glyphicon-refresh'
-			},
-			fields: {
-				name: {
-					validators: {
-						notEmpty: {
-							message: 'The name is required'
-						}
-					}
-				},
-				date: {
-					validators: {
-						notEmpty: {
-							message: 'The date is required'
-						},
-						date: {
-							format: 'YYYY-MM-DD',
-							message: 'The date is not a valid'
-						}
-					}
-				}
-			}
 		});
+
+		// Autocomplete Tagging 
+		var engine = new Bloodhound({
+			local: [{value: 'Romantic'}, {value: 'Adventure'}, {value: 'Lifestyle'} , {value: 'Shopping'}, {value: 'Backpack'}, {value: 'One day trip'}, {value: 'City tour'}, {value: 'Cruise'}, {value: 'Business'}],
+			datumTokenizer: function(d) {
+				return Bloodhound.tokenizers.whitespace(d.value);
+			},
+			queryTokenizer: Bloodhound.tokenizers.whitespace
+		});
+		
+		engine.initialize();
+		$('#cat').tokenfield({
+			typeahead: [null],
+			limit: '1',
+		});
+			
 	});
 </script>
 @endsection

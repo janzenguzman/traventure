@@ -66,19 +66,5 @@ jQuery(function($) {
 		limit: '1',
 	});
 	
-	// Autocomplete Tagging 
-	var engine = new Bloodhound({
-		local: [{value: 'Romantic'}, {value: 'Adventure'}, {value: 'Lifestyle'} , {value: 'Shopping'}, {value: 'Backpack'}, {value: 'One day trip'}, {value: 'City tour'}, {value: 'Cruise'}, {value: 'Business'}],
-		datumTokenizer: function(d) {
-			return Bloodhound.tokenizers.whitespace(d.value);
-		},
-		queryTokenizer: Bloodhound.tokenizers.whitespace
-	});
-	engine.initialize();
-	$('#autocompleteTagging2').tokenfield({
-		typeahead: [null],
-	});
-
-	
 });
 

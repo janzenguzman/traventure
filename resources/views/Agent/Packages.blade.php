@@ -51,10 +51,10 @@
 										<div class="col-xs-12 col-sm-12 col-md-6">
 											<div class="filter-item-wrapper">
 												<div class="row">
-													<div class="col-xss-12 col-xs-6 col-sm-5">
+													<div class="col-xss-12 col-xs-6 col-sm-12 col-md-5">
 														<div class="filter-item mmr">
 															<br>
-															<input type = "submit" class="btn btn-default col-lg-12" value="Search">
+															<input type = "submit" class="btn btn-default" value="Search">
 														</div>
 													</div>
 												</div>
@@ -142,20 +142,20 @@
 												</div>
 											</div>
 											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-4">
+												<div class="col-xs-12 col-sm-4 col-md-4">
 													<a data-toggle="modal"
 														data-id="{{ $package->package_id }} " 
-														class="btn btn btn-danger btn-sm col-lg-12"
+														class="btn btn btn-danger btn-sm"
 														id="deleteButton" type="submit">Delete</a>
 												</div>
-												<div class="col-xs-12 col-sm-4">
-													<a href="/Agent/Packages/AddSlots/{{ $package->package_id }}" class="btn btn-color-03 btn-sm col-lg-12">
+												<div class="col-xs-12 col-sm-4 col-md-4">
+													<a href="/Agent/Packages/AddSlots/{{ $package->package_id }}" class="btn btn-color-03 btn-sm">
 														<i class="fa fa-plus"></i> Slots
 													</a>
 												</div>
-												<div class="col-xs-12 col-sm-4">
-													<a href="/Agent/Packages/PackageDetails/{{ $package->package_id }}">
-														<button class="btn btn btn-info btn-sm col-lg-12">Details</button>
+												<div class="col-xs-12 col-sm-4 col-md-4">
+													<a href="/Agent/Packages/PackageDetails/{{ $package->package_id }}" class="btn btn btn-info btn-sm">
+														Details
 													</a>
 												</div>
 											</div>

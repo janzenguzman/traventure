@@ -1,4 +1,10 @@
 @extends('layouts.user.headlayout')
+<style>
+#map {
+	height: 200px;
+	width: 100%;
+}
+</style>
 @section('content')
 <body class="transparent-header with-multiple-sticky">
 	<div id="introLoader" class="introLoading"></div>
@@ -94,12 +100,6 @@
 										
 									<div id="trip-details">
 										<div class="bt mt-30 mb-30"></div>
-										<div class="featured-icon-simple-wrapper">
-											<div class="GridLex-gap-30">
-												<div class="GridLex-grid-noGutter-equalHeight">
-												</div>
-											</div>
-										</div>
 										
 										<div class="featured-icon-simple-wrapper">
 											<div class="GridLex-gap-30 GridLex-gap-20-xs">
@@ -107,21 +107,19 @@
 												</div>
 											</div>
 										</div>
-										
-										<div class="mb-25"></div>
-										<div class="bb"></div>
-										<div class="mb-25"></div>
-
 										<span id="fave" data-id="{{ $package->package_id }}">
-											<a class="fave btn btn-danger btn-wide pull-right">
+											<a class="fave btn btn-danger btn-wide pull-right" style="margin-top:2%">
 												{{	Auth::user()->favorites()->where('package_id', $package->package_id)->first() ? 
 													Auth::user()->favorites()->where('package_id', $package->package_id)->first()->favorited == 1 ? 
-													'Unfavorite' : 'Favorite' : 'Favorite'}}
+													'Unfavorite' : 'Favorite' : 'Favorite' }}
 											</a>
 										</span>
-
 										<h2 class="font-lg">{{$package->type}} Tour</h2>
-										<label class="text-muted">Categories: {{$package->categories}} </label>
+										<div class="hash-tag-wrapper clearfix mt-20 mb-30">
+											@foreach(explode(',', $package->categories) as $categories) 
+												<a class="hash-tag"># {{$categories}}</a>
+											@endforeach
+										</div>
 
 										<div class="row">
 											<div class="col-xs-12 col-sm-8 col-md-12">
@@ -328,12 +326,14 @@
 											</div>
 											<div class="text-box-h-bb">
 												<div class="row">
-													<div class="col-xs-12 col-sm-4 col-md-3">
+													<div class="col-xs-12 col-sm-4 col-md-12">
 														<h4>Inclusions</h4>
 													</div>
-													<div class="col-xs-12 col-sm-12 col-md-12">
-														<p class="font-md">{{ $package->inclusions }} </p>
-													</div>
+													@foreach(explode(',', $package->inclusions) as $inclusions)
+                                                        <div class="col-xs-12 col-sm-12 col-md-4">
+                                                            <p class="font-md"><i class="fa fa-check-circle "></i> {{ $inclusions }} </p>
+                                                        </div>
+                                                    @endforeach
 												</div>
 											</div>
 											<div class="text-box-h-bb">
@@ -467,6 +467,13 @@
 										</form>
 									</div>
 								</aside><br>
+							</div>
+							<div id="sidebar-sticky" class="col-xs-12 col-sm-12 col-md-4 sticky-mt-70 sticky-mb-0">
+								<h4 class="section-title">Office Address:</h4>
+								<aside class="sidebar-wrapper with-box-shadow">
+									<div id="map"></div>
+									<input type="hidden" class="form-control" id="address" value="{{$agent->office_address}}">
+								</aside>
 							</div>
 						</div>
 					</div>
@@ -669,6 +676,46 @@
 
 @section('js')
 <script type="text/javascript">
+	function initMap(){
+		var lat = {{$agent->lat}};
+		var lng = {{$agent->lng}};
+		var add = $('#address').val();
+
+		console.log(add);
+
+		var map = new google.maps.Map(document.getElementById('map'),{
+			center:{
+				lat: lat,
+				lng: lng
+			},
+			zoom: 15
+		});
+
+		var infowindow = new google.maps.InfoWindow({
+			content: add
+		  });
+		
+		var marker = new google.maps.Marker({
+			position:{
+				lat:lat,
+				lng:lng
+			},
+			map:map
+		});
+		marker.addListener('click', function() {
+			infowindow.open(map, marker);
+			toggleBounce();
+		});
+
+		function toggleBounce() {
+			if (marker.getAnimation() !== null) {
+			  marker.setAnimation(null);
+			}else {
+			  marker.setAnimation(google.maps.Animation.BOUNCE);
+			}
+		}
+	}
+	
 	(function($) {
 		$.ajaxSetup({
 			headers: {
@@ -699,5 +746,9 @@
 			})
 		});
 	}(jQuery));
+</script>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTJOuFQhHjI4jec4gTSD4_x0Ke7cI3bRg&callback=initMap&libraries=places">
 </script>
 @endsection

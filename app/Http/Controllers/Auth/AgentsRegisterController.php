@@ -60,6 +60,9 @@ class AgentsRegisterController extends Controller
             'contact_no' => 'required|string|min:11|max:11',
             'email' => 'required|string|email|max:255|unique:agents',
             'password' => 'required|string|min:6|confirmed',
+            'office_address' => 'required',
+            'lat' => 'required',
+            'lng' => 'required',
         ]);
     }
 
@@ -91,6 +94,10 @@ class AgentsRegisterController extends Controller
             'photo' => $fileName,
             'status' => 'Pending',
             'active' => '0',
+            'office_address' => $data['office_address'],
+            'lat' => $data['lat'],
+            'lng' => $data['lng'],
+            'city' => $data['city'],
         ]);
         
         return $agent;
@@ -103,7 +110,7 @@ class AgentsRegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
         return $this->registered($request, $user)
-            ?: redirect(route('AgentRegister'))->with('successful_signup', 'Sign up request was successfully sent! Please wait for the email from the admin.');
+            ?: redirect(route('AgentsRegister'))->with('successful_signup', 'Sign up request was successfully sent! Please wait for the email from the admin.');
     }
 
 

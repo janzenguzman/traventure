@@ -143,8 +143,8 @@
         
         if(locations.length > 1){
             var map = new google.maps.Map(document.getElementById('map_canvas'), {
-                zoom: 15,
-                center: new google.maps.LatLng(10.3157, 123.8854),
+                zoom: 5,
+                center: new google.maps.LatLng(12.8797, 121.7740),
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 

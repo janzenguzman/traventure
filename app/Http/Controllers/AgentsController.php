@@ -238,7 +238,7 @@ class AgentsController extends Controller
         $days = 0;
         $day = $request->input('day');
         if($request->input('day') == $request->input('no_day')){
-            return redirect('Agent\Packages')->with('packages', $packages)
+            return redirect("Agent/Packages/PackageDetails/".$packages->package_id."")->with('packages', $packages)
                 ->with('updatedItinerary', 'Itinerary Successfully Updated!');
         }else{
             ++$day;
@@ -313,8 +313,7 @@ class AgentsController extends Controller
 
             }
         }
-
-        return redirect('Agent\Packages')->with('updatedPackage', 'Tour Package Successfully Updated!');
+        return redirect("Agent/Packages/PackageDetails/".$package_id."")->with('updatedPackage', 'Tour Package Successfully Updated!');
     }
 
     public function deletePackage(Request $req){
@@ -549,6 +548,11 @@ class AgentsController extends Controller
         $agents->lname = $request->input('lname');
         $agents->job_position = $request->input('job_position');
         $agents->contact_no = $request->input('contact_no');
+        $agents->email = $request->input('email');
+        $agents->office_address = $request->input('office_address');
+        $agents->lat = $request->input('lat');
+        $agents->lng = $request->input('lng');
+        $agents->city = $request->input('city');
         $agents->photo = $fileName;
         $agents->save();
 
@@ -598,6 +602,10 @@ class AgentsController extends Controller
         $user->save();
  
         return redirect()->back()->with("PasswordChanged", "Password changed successfully!");
+    }
+
+    public function showEditProfile(){
+        return view('Agent.EditProfile');
     }
     
 }

@@ -1,4 +1,11 @@
 @extends('layouts.user.login_headlayout')
+<style>
+#map {
+    height: 200px;
+    width: 100%;
+}
+</style>
+    
 <body class="transparent-header">
 	<div id="introLoader" class="introLoading"></div>
 	<div class="container-wrapper">
@@ -59,7 +66,7 @@
                                             </div>
                                         <br><br><h4 class="section-title"></h4>
 										<div class="row">
-										    <form method="POST" action="{{ route ('AgentsRegister') }}" enctype="multipart/form-data">
+										    <form method="POST" action="{{ route ('RegisterAgent') }}" enctype="multipart/form-data">
                                                 {{ csrf_field() }}
 
                                                 <div class="col-sm-12 col-md-12">
@@ -76,9 +83,27 @@
                                                     </div>
                                                 
                                                 </div>
+
+                                                <div class="col-sm-12 col-md-12">
+                                                
+                                                    <div class="form-group"> 
+                                                        <label>Office Address</label>
+                                                        <input id="office_address" type="text" class="form-control" name="office_address" placeholder="Address" required>
+                                                        <input id="lat" type="hidden" class="form-control" name="lat" required>
+                                                        <input id="lng" type="hidden" class="form-control" name="lng" required>
+                                                    </div>
+                                                
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group"> 
+                                                        <input id="locality" type="hidden" class="form-control" name="city" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-12">
+                                                    <div id="map"></div>
+                                                </div><br>
                                                 
                                                 <div class="col-sm-6 col-md-6">
-                                                
                                                     <div class="form-group{{ $errors->has('fname') ? ' has-error' : '' }}"> 
                                                         <label>First Name</label>
                                                         <input id="fname" type="text" class="form-control" name="fname" required autofocus>
@@ -185,6 +210,7 @@
                                                         <button type="submit" class="btn btn-info">Sign Up</button>
                                                     </center>
                                                 </div>
+
                                             </div>
                                         </form>
 						            </div>
@@ -223,5 +249,85 @@
 <!-- end Back To Top -->
  <!-- Core JS -->
 @extends('layouts.user.login_javascriptlayout')
-</html>
+<script type="text/javascript">
+
+    function initMap() {
+        var marker;
+        var autocompleteOptions = {
+            componentRestrictions: {country: "PH"}
+        };
+
+        var componentForm ={
+            locality: 'long_name'
+        };
+
+        var center = {lat: 12.8797, lng: 121.7740};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 5,
+            center: center,
+        });
+
+        var searchBox = document.getElementById('office_address');
+        var office_address = new google.maps.places.Autocomplete(searchBox, autocompleteOptions);
+
+        var marker = new google.maps.Marker();
+        var place;
+
+        google.maps.event.addListener(office_address, 'place_changed', function () {
+            place = office_address.getPlace();
+            placeMarker(place.geometry.location);
+            map.setZoom(16);
+            map.setCenter(marker.getPosition());
+
+            for (var component in componentForm) {
+                document.getElementById(component).value = '';
+                document.getElementById(component).disabled = false;
+            }
+
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+                if (componentForm[addressType]) {
+                    var val = place.address_components[i][componentForm[addressType]];
+                    document.getElementById(addressType).value = val;
+                }
+            }
+    });
+
+        function placeMarker(location)
+        {   
+            var bounds = new google.maps.LatLngBounds();
+            var markers = [];
+            marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                draggable: true
+            });
+
+            markers.push(marker);
+
+            bounds.extend(marker.position);
+            map.fitBounds(bounds);
+
+            var lat = marker.getPosition().lat();
+            var lng = marker.getPosition().lng();
+
+            $('#lat').val(lat);
+            $('#lng').val(lng);
+
+            google.maps.event.addListener(marker, 'position_changed', function(){
+                var lat = marker.getPosition().lat();
+                var lng = marker.getPosition().lng();
+
+                $('#lat').val(lat);
+                $('#lng').val(lng);
+            });
+        }
+    }
+    
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTJOuFQhHjI4jec4gTSD4_x0Ke7cI3bRg&callback=initMap&libraries=places">
+</script>
 </body>
+</html>
+
