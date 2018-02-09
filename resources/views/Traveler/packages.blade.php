@@ -171,7 +171,10 @@
 										@endforeach
 									</div>	
 								</div>
-							</div> 
+							</div>
+							@else
+								<center><h2 class="text-danger">No Packages Yet.</h2></center>
+							@endif
 
 							<div class="pager-wrappper clearfix">
 								<div class="pager-innner">
@@ -187,9 +190,6 @@
 										</div>
 									</div>
 								</div>
-									@else
-										<center><h2 class="text-danger">No Packages Yet.</h2></center>
-									@endif
 							</div>
 					</div>
 				</div>

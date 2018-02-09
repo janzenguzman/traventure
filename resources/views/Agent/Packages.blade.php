@@ -164,7 +164,10 @@
 								</div>
 						@endforeach
 							</div> 
-					</div> 
+					</div>
+					@else
+						<center><h2>No Packages Yet.</h2></center>
+					@endif
 
 					<div class="pager-wrappper clearfix">
 						<div class="pager-innner">
@@ -174,16 +177,13 @@
 									<div class="clearfix">
 										<nav class="pager-center">
 											<ul class="pagination">
-													{{$packages->links()}}
+												{{$packages->links()}}
 											</ul>
 										</nav>
 									</div>
 								</div>
 							</div>
 						</div>
-					@else
-						<center><h2>No Packages Yet.</h2></center>
-					@endif
 					</div>
 				</div>
 			</div>
