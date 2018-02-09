@@ -379,7 +379,7 @@ class AgentsController extends Controller
                     ])
                     ->orderBy('slots.date_from', 'asc')
                     ->get();
-        return View::make('\Agent\PackageDetails', ['packages' => $packages, 
+        return view('Agent.PackageDetails', ['packages' => $packages, 
                                                     'itineraries' => $itineraries, 
                                                     'avg' => $avg,
                                                     'booking' => $booking,
