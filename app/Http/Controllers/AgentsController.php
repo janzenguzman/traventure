@@ -325,7 +325,7 @@ class AgentsController extends Controller
 
     public function cancelPackage($package_id){
         DB::table('packages')->where('package_id', $package_id)->delete();
-        return redirect()->route('Agent.CreatePackage');
+        return redirect()->route('Agent.createPackage');
         
     }
 
@@ -347,7 +347,7 @@ class AgentsController extends Controller
 
     public function createItineraries($package_id, $day){
         $packages = Packages::find($package_id);
-        return view("Agent.CreateItineraries")->with(['packages' => $packages, 'day' => $day]);
+        return view("Agent.createItineraries")->with(['packages' => $packages, 'day' => $day]);
     }
 
     public function viewPackage($package_id){
