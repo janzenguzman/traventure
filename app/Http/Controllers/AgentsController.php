@@ -193,7 +193,7 @@ class AgentsController extends Controller
                     })
                     ->select('comments.*', 'packages.*', DB::raw('AVG(rating) as ratings_average'),
                             DB::raw('count(bookings.booking_id) as count_bookings'))
-                    ->groupBy('comments.package_id', 'bookings.package_id', 'packages.package_id')
+                    ->groupBy('comments.package_id', 'bookings.package_id')
                     ->where([['packages.agent_id', Auth::user()->id], 
                             ['packages.package_name', 'like', '%'.$destination.'%']])
                     ->orderBy('packages.created_at', 'desc')
