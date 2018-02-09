@@ -1,5 +1,5 @@
 <!doctype html>
-<script type="text/javascript" src="{{ asset('js_user/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js_user/jquery-1.11.3.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js_user/core-plugins.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js_user/customs.js') }}"></script>
 

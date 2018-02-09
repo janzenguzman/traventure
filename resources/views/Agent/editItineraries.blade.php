@@ -112,7 +112,7 @@
                                                                                         @if($package->days == 1)
                                                                                             <div class="mb-50 pull-right">
                                                                                                 <div class="mb-25"></div>
-                                                                                                <a href="{{ route('Agent.Packages') }}" class="btn btn-danger btn-wide btn-border">Cancel</a>
+                                                                                                <a href="/Agent/Packages/PackageDetails/{{ $package->package_id }}" class="btn btn-danger btn-wide btn-border">Cancel</a>
                                                                                                 <input type="SUBMIT" name="submit" class="btn btn-wide btn-info" value="submit"/>
                                                                                             </div>
                                                                                             
@@ -120,13 +120,13 @@
                                                                                             @if($day == $package->days)
                                                                                                 <div class="mb-50 pull-right">
                                                                                                     <div class="mb-25"></div>
-                                                                                                    <a href="{{ route('Agent.Packages') }}" class="btn btn-danger btn-wide btn-border">Cancel</a>
+                                                                                                    <a href="/Agent/Packages/PackageDetails/{{ $package->package_id }}" class="btn btn-danger btn-wide btn-border">Cancel</a>
                                                                                                     <input type="SUBMIT" name="submit" class="btn btn-wide btn-info" value="submit"/> 
                                                                                                 </div>
                                                                                             @else
                                                                                                 <div class="mb-50 pull-right">
                                                                                                     <div class="mb-25"></div>
-                                                                                                    <a href="{{ route('Agent.Packages') }}" class="btn btn-danger btn-wide btn-border">Cancel</a>
+                                                                                                    <a href="/Agent/Packages/PackageDetails/{{ $package->package_id }}" class="btn btn-danger btn-wide btn-border">Cancel</a>
                                                                                                     <input type="SUBMIT" name="submit" class="btn btn-wide btn-info" value="next"/> 
                                                                                                 </div>
                                                                                             @endif

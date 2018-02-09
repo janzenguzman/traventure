@@ -261,12 +261,14 @@
                                     </div>
                                     <div class="text-box-h-bb">
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-4 col-md-3">
+                                            <div class="col-xs-12 col-sm-4 col-md-12">
                                                 <h4>Inclusions</h4>
                                             </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                                <p class="font-md">{{ $booking->inclusions }} </p>
-                                            </div>
+                                            @foreach(explode(',', $booking->inclusions) as $inclusions)
+                                                <div class="col-xs-12 col-sm-12 col-md-4">
+                                                    <p class="font-md"><i class="fa fa-check-circle "></i> {{ $inclusions }} </p>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="text-box-h-bb">

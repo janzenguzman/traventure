@@ -112,7 +112,7 @@ jQuery(function($) {
 	});
 	engine.initialize();
 	$('#autocompleteTagging').tokenfield({
-		typeahead: [null, { source: engine.ttAdapter() }],
+		typeahead: [{ source: engine.ttAdapter() }],
 		limit: '4',
 	});
 		

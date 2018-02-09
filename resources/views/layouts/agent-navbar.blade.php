@@ -70,7 +70,7 @@
 							</li>
 						</ul>
 				
-					</div><!--/.nav-collapse -->
+                    </div><!--/.nav-collapse -->
 				
 				</div>
 				
@@ -98,10 +98,20 @@
 										</div>
 										
 										<div class="content">
-                                            <div class="col-sm-12 col-md-12">
+                                            <div class="col-sm-12 col-md-6">
+                                                <span class="labeling">Company Name: </span>
+                                                <h4>{{ Auth::user()->company_name }}</h4>
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-6">
                                                 <span class="labeling">Name: </span>
                                                 <h4>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</h4>
                                             </div>
+
+                                            <div class="col-sm-12 col-md-12">
+                                                    <span class="labeling">Office Address: </span>
+                                                    <h4>{{ Auth::user()->office_address }}</h4>
+                                                </div>
 
                                             <div class="col-sm-6 col-md-6">
                                                     <span class="labeling">Job Position: </span>
@@ -137,89 +147,11 @@
                 </div>
             </div>
             <div class="modal-footer text-center">
-                <a href="#editProfile" type="button" class="btn btn-info btn-sm" data-toggle="modal">Edit</a>
+                <a href="/Agent/EditProfile" type="button" class="btn btn-info btn-sm">Edit</a>
                 <button type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button>
             </div>
             
         </div>
-
-        <!--USER EDIT MODAL-->
-        
-        <div id="editProfile" class="modal fade login-box-wrapper" tabindex="-1" data-width="550" data-backdrop="static" data-keyboard="false" data-replace="true">
-
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title text-center">Edit Profile</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row gap-20">
-                    <div class="user-item-wrapper-01">
-                        <div class="GridLex-gap-20 GridLex-gap-15-mdd GridLex-gap-10-xs">
-                            <div class="GridLex-grid-noGutter-equalHeight GridLex-grid-center">
-                                <div class="GridLex-col-12_sm-4_xs-12_xss-12">
-                                    <div class="user-long-sm-item clearfix">
-                                        <form method="POST" action="{{ route('Agent.UpdateProfile') }}" enctype="multipart/form-data">
-										{{ csrf_field() }}
-                                        <div class="image">
-											<img src="/public/uploads/files/{{ Auth::user()->photo }}" class="img-circle" alt="images" id="profile-img-tag"/>
-										</div>
-										
-										<div class="content">
-                                            <div class="col-sm-6 col-md-6">
-                                                <span class="labeling" style="color:black">First Name: </span>
-                                                <div class="form-group form-group-sm">
-                                                    <input type="text" class="form-control" name="fname" value="{{ Auth::user()->fname }}"/>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                <span class="labeling" style="color:black">Last Name: </span>
-                                                <div class="form-group form-group-sm">
-                                                    <input type="text" class="form-control" name="lname" value="{{ Auth::user()->lname }}"/>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                 <div class="form-group"> 
-                                                    <span class="labeling" style="color:black">Job Postion: </span>
-                                                    <div class="form-group form-group-sm">
-                                                        <input type="text" class="form-control" name="job_position" value="{{ Auth::user()->job_position }}"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="form-group"> 
-                                                    <span class="labeling" style="color:black">Contact Number: </span>
-                                                    <div class="form-group form-group-sm">
-                                                        <input type="text" class="form-control" name="contact_no" value="{{ Auth::user()->contact_no }}"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="form-group"> 
-                                                    <span class="labeling" style="color:black">Change Profile Picture: </span>
-                                                    <div class="form-group form-group-sm">
-                                                        <input type="file" name="photo" id="profile-img"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-										</div>
-									</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer text-center">
-                <input type="submit" class="btn btn-info btn-sm" value="Save">
-                <button type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button>
-            </div>
-            </form>
-        </div>
-
         
         <!--CHANGE PASS MODAL-->
         <div id="changepass_modal" class="modal fade login-box-wrapper">
@@ -275,7 +207,6 @@
     </div>
 @yield('content')
 @yield('script')
-
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) {

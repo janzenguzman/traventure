@@ -36,23 +36,24 @@
                                         <h4 class="section-title">{{ $packages->package_name }}</h4>
                                         <div class="row">
                                             {!!Form::open(array('method' => 'post', 'enctype' => 'multipart/form-data','action' => array('AgentsController@updatePackage', $packages->package_id)))!!}
-                                                <div class="col-md-6 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label>Tour Package Name:</label>       
-                                                        <input type="text" name="package_name" class="form-control" value="{{$packages->package_name}}" />
+                                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Tour Package Name:</label>       
+                                                            <input type="text" name="package_name" class="form-control" value="{{$packages->package_name}}" />
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="col-md-6 col-sm-12">
-                                                    <div class="row gap-20">
-                                                        <div class="form-group form-spin-group">
-                                                            <label>Day/s:</label>       
-                                                            <input type="text" name="days" class="form-control" value="{{$packages->days}}" readonly/>
-                                                            <br />
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="row gap-20">
+                                                            <div class="form-group form-spin-group">
+                                                                <label>Day/s:</label>       
+                                                                <input type="text" name="days" class="form-control" value="{{$packages->days}}" readonly/>
+                                                                <br />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <h4 class="section-title">Service Type</h4>
                                                     @if($packages->type == 'Exclusive')
@@ -77,7 +78,7 @@
                                                                         <div class="row gap-20">
                                                                             <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
                                                                                 <div class="form-group form-spin-group">
-                                                                                    <input type="text" class="form-control form-spin" name="pax1" placeholder="2" value="{{ $packages->pax1 }}">
+                                                                                    <input type="text" class="form-control form-spin" min="0" name="pax1" placeholder="2" value="{{ $packages->pax1 }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
@@ -92,7 +93,7 @@
                                                                         <div class="row gap-20">
                                                                             <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
                                                                                 <div class="form-group form-spin-group">
-                                                                                    <input type="text" class="form-control form-spin" name="pax2" placeholder="5" value="{{ $packages->pax2 }}">
+                                                                                    <input type="text" class="form-control form-spin" min="0" name="pax2" placeholder="5" value="{{ $packages->pax2 }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
@@ -107,7 +108,7 @@
                                                                         <div class="row gap-20">
                                                                             <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
                                                                                 <div class="form-group form-spin-group">
-                                                                                    <input type="text" class="form-control form-spin" name="pax3" placeholder="8" value="{{ $packages->pax3 }}">
+                                                                                    <input type="text" class="form-control form-spin" min="0" name="pax3" placeholder="8" value="{{ $packages->pax3 }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
@@ -137,9 +138,9 @@
                                                             <div class="col-xss-12 col-xs-6 col-sm-6 col-md-12">
                                                                 <div class="radio-block">
                                                                     <input id="type2" name="type" type="radio" class="radio" value="Joined"/>
-                                                                    <label class="" for="type2"><span>Joined Tour</span></label>
+                                                                    <label class="" for="type2"><span>Joined Tour</span></label><br/>
                                                                 </div>
-                                                            </div><br/>
+                                                            </div>
                                                             
                                                             <div id="Joined" class="payment-option-form">
                                                                 <div class="inner">
@@ -199,7 +200,7 @@
                                                                         <div class="row gap-20">
                                                                             <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
                                                                                 <div class="form-group form-spin-group">
-                                                                                    <input type="text" class="form-control form-spin" name="pax1" placeholder="2">
+                                                                                    <input type="text" class="form-control form-spin" min="0" name="pax1" placeholder="2">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
@@ -214,7 +215,7 @@
                                                                         <div class="row gap-20">
                                                                             <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
                                                                                 <div class="form-group form-spin-group">
-                                                                                    <input type="text" class="form-control form-spin" name="pax2" placeholder="5">
+                                                                                    <input type="text" class="form-control form-spin" min="0" name="pax2" placeholder="5">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
@@ -229,7 +230,7 @@
                                                                         <div class="row gap-20">
                                                                             <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
                                                                                 <div class="form-group form-spin-group">
-                                                                                    <input type="text" class="form-control form-spin" name="pax3" placeholder="8">
+                                                                                    <input type="text" class="form-control form-spin" min="0" name="pax3" placeholder="8">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
@@ -302,50 +303,50 @@
                                                     @endif
                                             </div>
                                             
-                                            <div class="mb-30"></div>
-                                            
-                                            <h4 class="section-title">Tour Detail</h4>
                                             <div class="col-xs-12 col-sm-12">
-                                                <div class="form-group">
-                                                    <label>Inclusions:</label>
-                                                    <textarea type="text" name="inclusions" class="form-control" rows="3">{{$packages->inclusions}}</textarea>
+                                                <h4 class="section-title">Tour Detail</h4>
+                                                <div class="col-xs-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Inclusions: <span class="text-muted">(Separate inclusions with a comma)<span></label>
+                                                        <textarea type="text" name="inclusions" class="form-control" rows="3">{{$packages->inclusions}}</textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Additional Information:</label>
+                                                        <textarea type="text" name="add_info" class="form-control" rows="3">{{$packages->add_info}}</textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Reminders:</label>
+                                                        <textarea type="text" name="reminders" class="form-control" rows="3">{{$packages->reminders}}</textarea><br>
+                                                    </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label>Additional Information:</label>
-                                                    <textarea type="text" name="add_info" class="form-control" rows="3">{{$packages->add_info}}</textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Reminders:</label>
-                                                    <textarea type="text" name="reminders" class="form-control" rows="3">{{$packages->reminders}}</textarea><br>
-                                                </div>
-                                            </div>
 
-                                            <div class="mb-40"></div>
-                                            
-                                            <h4 class="section-title">Categories:</h4>
-                                            <div class="col-xs-12 col-sm-12">
-                                                <div class="form-group">
-                                                    <label>Tags: </label>
-                                                    <input type="text" class="form-control" name="categories[]" value="{{ $packages->categories }}" data-role="tagsinput" required/>
-                                                </div>
-                                            </div>
-                                            <div class="mb-40"></div> <br></br>
-                                            
-                                            <div class="mb-25"></div>
-                                            <div class="bb"></div>
-                                            <div class="mb-25"></div>
-
-                                            <div class="mb-50">
+                                                <div class="mb-40"></div>
                                                 
-                                            <div class="mb-25"></div>
-                                            {{Form::file('photo', ['required' => 'required'])}}
-                                            <div class="mb-50 pull-right">
+                                                <h4 class="section-title">Categories:</h4>
+                                                <div class="col-xs-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Tags: </label>
+                                                        <input type="text" class="form-control" name="categories[]" value="{{ $packages->categories }}" data-role="tagsinput" required/>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-40"></div> <br></br>
+                                                
+                                                <div class="mb-25"></div>
+                                                <div class="bb"></div>
+                                                <div class="mb-25"></div>
+                                                    
+                                                <div class="col-xs-12 col-sm-12">
+                                                    {{Form::file('photo', ['required' => 'required'])}}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-6 pull-right">
                                                 <div class="mb-25"></div>
                                                 <a href="{{ route('Agent.Packages') }}" class="btn btn-danger btn-wide btn-border">Cancel</a>
                                                 {{Form::submit('Submit', ['class' => "btn btn-info btn-wide"])}}
                                             </div>
-                                        </div>
                                         {!!Form::close() !!}
+                                    </div>
                                 </div>
                             </div>
                         </div>

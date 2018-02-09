@@ -27,13 +27,13 @@
                                 <div class="form">
                                     <div class="create-tour-inner">
                                         @include('layouts.user.alerts')
-                                        <h4 class="section-title">About this tour</h4>
+                                        <h4 class="section-title">About this tour package</h4>
                                         <div class="row">
                                             {!!Form::open(['action' => 'AgentsController@storePackage', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                                                 <div class="col-xs-12 col-sm-12 col-md-12">    
                                                     <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
                                                         <div class="form-group">
-                                                            <label>Tour Package Name:</label>       
+                                                            <label>Package Name:</label>       
                                                             <input type="text" name="package_name" class="form-control" placeholder="Tour Package Name" required/>
                                                         </div>
                                                     </div>
@@ -72,7 +72,7 @@
                                                                     <div class="row gap-20">
                                                                         <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
                                                                             <div class="form-group form-spin-group">
-                                                                                <input type="text" class="form-control form-spin" name="pax1" placeholder="2">
+                                                                                <input type="text" class="form-control form-spin" min="0" name="pax1" placeholder="2">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
@@ -87,7 +87,7 @@
                                                                     <div class="row gap-20">
                                                                         <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
                                                                             <div class="form-group form-spin-group">
-                                                                                <input type="text" class="form-control form-spin" name="pax2" placeholder="5">
+                                                                                <input type="text" class="form-control form-spin" min="0" name="pax2" placeholder="5">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
@@ -102,7 +102,7 @@
                                                                     <div class="row gap-20">
                                                                         <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
                                                                             <div class="form-group form-spin-group">
-                                                                                <input type="text" class="form-control form-spin" name="pax3" placeholder="8">
+                                                                                <input type="text" class="form-control form-spin" min="0" name="pax3" placeholder="8">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-xsw-12 col-xs-6 col-sm-6 col-md-6">
@@ -183,7 +183,7 @@
 
                                             <div class="col-xs-12 col-sm-12">
                                                 <div class="form-group">
-                                                    <label>Inclusions:</label>
+                                                    <label>Inclusions: <span class="text-muted">(Separate inclusions with a comma)<span></label>
                                                     <textarea type="text" name="inclusions" class="form-control" rows="3" required></textarea>
                                                 </div>
                                                 <div class="form-group">
@@ -218,9 +218,9 @@
                                                 <div class="col-xs-12 col-sm-12">
                                                     <div class="form-group">
                                                         {{Form::file('photo', ['required' => 'required'])}}
-                                                        {{Form::submit('Submit', ['class' => "btn btn-info btn-wide pull-right"])}}
                                                     </div>
                                                 </div><br>
+                                                {{Form::submit('Submit', ['class' => "btn btn-info btn-wide pull-right"])}}
                                             </div>
                                             {!!Form::close() !!}
                                         </div>
