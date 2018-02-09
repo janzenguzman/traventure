@@ -75,8 +75,10 @@
 																<div class="input-group">
 																	<select class="selectpicker form-control block-xs" name="sort">
 																		<option value="rating"> Rating</option>
-																		<option value="joined"> Joined Tour</option>
-																		<option value="exclusive"> Exclusive Tour</option>
+																		<option value="joinedHtoL"> Joined Tour Price High to Low</option>
+																		<option value="joinedLtoH"> Joined Tour Price Low to High</option>
+																		<option value="exclusiveHtoL"> Exclusive Tour Price High to Low</option>
+																		<option value="exclusiveLtoH"> Exclusive Tour Price Low to High</option>
 																	</select>
 																	<span class="input-group-btn">
 																		<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
