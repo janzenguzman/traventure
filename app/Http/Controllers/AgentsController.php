@@ -87,7 +87,7 @@ class AgentsController extends Controller
             }
         }
 
-        return view('\Agent\Bookings')->with('bookings', $bookings);
+        return view('Agent.Bookings')->with('bookings', $bookings);
     }
 
     public function storePackage(Request $request){
@@ -198,7 +198,7 @@ class AgentsController extends Controller
                             ['packages.package_name', 'like', '%'.$destination.'%']])
                     ->orderBy('packages.created_at', 'desc')
                     ->paginate(8);  
-        return view('\Agent\Packages')->with(['packages' => $packages, 'diffHours' => $diffHours]);
+        return view('Agent.Packages')->with(['packages' => $packages, 'diffHours' => $diffHours]);
     }
 
     public function editItineraries($package_id, $day){
@@ -207,7 +207,7 @@ class AgentsController extends Controller
                     ->join('itinerary', 'packages.package_id', '=', 'itinerary.package_id')
                     ->where([['packages.package_id', $package_id], ['itinerary.day', $day]])
                     ->get();
-        return view('\Agent\EditItineraries')->with(['packages' => $packages, 'day' => $day, 'package_id' => $package_id]);
+        return view('Agent.editItineraries')->with(['packages' => $packages, 'day' => $day, 'package_id' => $package_id]);
     }
 
 
@@ -250,7 +250,7 @@ class AgentsController extends Controller
         $packages = Packages::find($package_id);
         $itineraries = Itinerary::find($package_id);
  
-        return view('\Agent\EditPackage')->with(['packages' => $packages, 'itineraries' => $packages]);
+        return view('Agent.editPackage')->with(['packages' => $packages, 'itineraries' => $packages]);
     }
     
     public function updatePackage(Request $request, $package_id){
@@ -342,7 +342,7 @@ class AgentsController extends Controller
     }
 
     public function createPackage(){
-        return view ('\Agent\CreatePackage');
+        return view ('Agent.createPackage');
     }
 
     public function createItineraries($package_id, $day){

@@ -59,18 +59,18 @@ class AdminController extends Controller
         }
 
 
-        return view ('\Admin\HomePage', ['totalAccredited' => $totalAccredited, 'totalActive' => $totalActive,
+        return view ('Admin.HomePage', ['totalAccredited' => $totalAccredited, 'totalActive' => $totalActive,
             'totalInactive' => $totalInactive, 'totalRequests' => $totalRequests, 'chart' => $chart]);
     }
 
     public function showRequestsPage(){
         $totalRequests = DB::table('agents')->where('status', 'Pending')->count();
-        return view ('\Admin\RequestsPage', ['totalRequests' => $totalRequests]);
+        return view ('Admin.RequestsPage', ['totalRequests' => $totalRequests]);
     }
 
     public function showStatusPage(){
         $totalRequests = DB::table('agents')->where('status', 'Pending')->count();
-        return view ('\Admin\StatusPage', ['totalRequests' => $totalRequests]);
+        return view ('Admin.StatusPage', ['totalRequests' => $totalRequests]);
     }
 
     public function requests($id, $action){
