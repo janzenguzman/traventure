@@ -11,10 +11,8 @@
 
 	<!-- Title Of Site -->
 	<title>Traventure</title>
-	<meta name="description" content="HTML template for multiple tour agency, local agency, traveller, tour hosting based on Twitter Bootstrap 3.x.x" />
-	<meta name="keywords" content="tour agency, tour guide, travel, trip, holiday, vocation, relax, adventure, virtual tour, tour planner" />
-	<meta name="author" content="crenoveative">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Web-based and Mobile Responsive Tour and Booking System" />
+    <meta name="author" content="Traventure">
 	
 	<!-- Fav and Touch Icons -->
 	<link rel="shortcut icon" href="{{asset ('uploads/files/icon.png') }}">

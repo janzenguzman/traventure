@@ -267,7 +267,7 @@ class TravelersController extends Controller
     public function book($package_id)
     {
         $packages = Package::find($package_id);
-        return view('Traveler/BookingForm')->with('packages', $packages);
+        return view('Traveler.BookingForm')->with('packages', $packages);
     }
 
     public function showBill()
@@ -278,7 +278,7 @@ class TravelersController extends Controller
                         ->where('traveler_id', $traveler_id)
                         ->orderby('bookings.created_at', 'desc')->first();
                         
-        return view('Traveler/Bill')->with('bookingRequest', $bookingRequest);
+        return view('Traveler.Bill')->with('bookingRequest', $bookingRequest);
     }
 
     public function showBookings(Request $request)

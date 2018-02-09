@@ -23,12 +23,12 @@
 								{{--  <p>Certain but she but shyness why cottage. Gay the put instrument sir entreaties affronting. Pretended exquisite see cordially the you.</p>  --}}
 							</div>
 							
-                                <p>Founded in 2017, the aim of Traventure is to establish an environment where the people can belong when they travel by being linked
+                                <center>Founded in 2017, the aim of Traventure is to establish an environment where the people can belong when they travel by being linked
 										and connected to particular cultures and enjoying unique travel experiences. Its community emporium grants access to thousands of 
-										exclusive, uncommon and particular accommodations that is related to travelling in more than 7,107 islands here in the Philippines.</p>
-                                <p>From beautiful beaches, to astonishing mountains, appealing cities and more, Traventure offers a broad variety of unique
+										exclusive, uncommon and particular accommodations that is related to travelling in more than 7,107 islands here in the Philippines.</center>
+                                <center>From beautiful beaches, to astonishing mountains, appealing cities and more, Traventure offers a broad variety of unique
 								accommodations for your next trip. Whether you're searching a beach for a brief getaway, or astounding mountains to camp and hike to,
-								Traventure can help you find and book what you desire.</p>
+								Traventure can help you find and book what you desire.</center>
 						</div>
 					</div>
 				</div>
