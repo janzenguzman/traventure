@@ -204,7 +204,7 @@ class AgentsController extends Controller
 //                 ->where('packages.agent_id', Auth::user()->id)
 //                 ->orderBy('packages.created_at', 'desc')
 //                 ->paginate(8);
-        return view('\Agent\Packages')->with('packages', $packages);
+        return view('Agent.Packages')->with('packages', $packages);
     }
 
     public function searchPackages(Request $req){
