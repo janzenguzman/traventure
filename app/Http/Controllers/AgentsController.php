@@ -180,21 +180,18 @@ class AgentsController extends Controller
         }else{
             DB::table('agents')->where('id', auth()->user()->id)->update(['active' => 0]);
         }
+      
         $packages = DB::table('packages')
-            ->leftJoin('comments', function($join){
-                $join->on('comments.package_id', '=', 'packages.package_id');
-            })
-            ->leftjoin('bookings', function($join){
-                $join->on('bookings.package_id', '=', 'packages.package_id');
-            })
-            ->select('comments.*', 'packages.*', DB::raw('AVG(rating) as ratings_average'),
-                DB::raw('count(bookings.booking_id) as count_bookings'))
-            ->groupBy('comments.package_id', 'bookings.package_id')
-            ->where('packages.agent_id', Auth::user()->id)
-            ->orderBy('packages.created_at', 'desc')
-            ->paginate(8);
-        dd($packages);
-        return view('\Agent\Packages')->with(['packages' => $packages, 'diffHours' => $diffHours]);
+                ->leftjoin('comments','comments.package_id', '=', 'packages.package_id')
+                ->leftjoin('bookings', 'bookings.package_id', '=', 'packages.package_id')
+                ->select('comments.*', 'packages.*', 'bookings.*', DB::raw('AVG(comments.rating) as ratings_average'),
+                        DB::raw('count(bookings.booking_id) as count_bookings'))
+                ->groupBy('packages.package_id')
+                ->where('packages.agent_id', Auth::user()->id)
+                ->orderBy('packages.created_at', 'desc')
+                ->paginate(8);
+      
+        return view('\Agent\Packages')->with('packages', $packages);
     }
 
     public function searchPackages(Request $req){
