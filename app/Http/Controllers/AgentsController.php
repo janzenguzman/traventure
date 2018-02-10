@@ -170,7 +170,7 @@ class AgentsController extends Controller
         }
     }
     
-    public function showPackages(){
+    public function showPackages(Request $req){
         $lastSignedIn = new Carbon(Auth::guard('agents')->user()->last_signed_in);
         $now = Carbon::now();
         $diffHours = $lastSignedIn->diffInHours($now);
@@ -180,6 +180,7 @@ class AgentsController extends Controller
         }else{
             DB::table('agents')->where('id', auth()->user()->id)->update(['active' => 0]);
         }
+        $destination = $req->input('pname_search');
         $packages = DB::table('packages')
             ->leftJoin('comments', function($join){
                 $join->on('comments.package_id', '=', 'packages.package_id');
@@ -189,12 +190,12 @@ class AgentsController extends Controller
             })
             ->select('comments.*', 'packages.*', DB::raw('AVG(rating) as ratings_average'),
                 DB::raw('count(bookings.booking_id) as count_bookings'))
-            ->groupBy('comments.package_id', 'bookings.package_id')
-            ->where('packages.agent_id', Auth::user()->id)
+            ->groupBy('packages.package_id')
+            ->where('agent_id', '=', auth()->user()->id)
             ->orderBy('packages.created_at', 'desc')
             ->paginate(8);
-        dd($packages);
-        return view('\Agent\Packages')->with(['packages' => $packages, 'diffHours' => $diffHours]);
+        // dd($packages);
+        return view('\Agent\Packages')->with('packages', $packages);
     }
 
     public function searchPackages(Request $req){
@@ -208,7 +209,7 @@ class AgentsController extends Controller
                     })
                     ->select('comments.*', 'packages.*', DB::raw('AVG(rating) as ratings_average'),
                             DB::raw('count(bookings.booking_id) as count_bookings'))
-                    ->groupBy('comments.package_id', 'bookings.package_id')
+                    ->groupBy('packages.package_id')
                     ->where([['packages.agent_id', Auth::user()->id], 
                             ['packages.package_name', 'LIKE', '%'.$destination.'%']])
                     ->orderBy('packages.created_at', 'desc')

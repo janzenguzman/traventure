@@ -98,7 +98,7 @@ Route::prefix('Agent')->group(function(){
     Route::post('/DeleteMessage', 'AgentsController@deleteMessage')->name('Agent.DeleteMessage');
     Route::post('/UpdateProfile', 'AgentsController@updateProfile')->name('Agent.UpdateProfile');
     Route::get('/Packages', 'AgentsController@showPackages')->name('Agent.Packages');
-    Route::any('/Packages', 'AgentsController@searchPackages')->name('Agent.Search');
+    Route::post('/Packages', 'AgentsController@searchPackages')->name('Agent.Search');
     Route::get('/Bookings', 'AgentsController@showBookings')->name('Agent.Bookings');
     Route::get('/Messages', 'AgentsController@showMessages')->name('Agent.ShowMessages');
     Route::get('/Packages/CreatePackage', 'AgentsController@createPackage')->name('Agent.CreatePackage');
