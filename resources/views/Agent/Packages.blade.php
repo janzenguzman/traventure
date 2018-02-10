@@ -34,7 +34,42 @@
 			</div>
 		</div>
 	</div>
-			
+
+	<div class="filter-full-width-wrapper">
+		<div class="filter-full-primary">
+			<div class="container">
+				<div class="filter-full-primary-inner">
+					<div class="form-holder">
+						<div class="row">	
+							<form method="POST" action='Packages' role="search">
+									{{ csrf_field() }}
+								<div class="col-xs-12 col-sm-12 col-md-6">
+									<div class="filter-item bb-sm no-bb-xss">
+										<span><label><i class="fa fa-map-marker"></i> Destination:</label></span>
+										<input type="text" name="pname_search" class="form-control"  placeholder="Search package name">
+									</div>
+								</div>
+								
+								<div class="col-xs-12 col-sm-12 col-md-6">
+									<div class="filter-item-wrapper">
+										<div class="row">
+											<div class="col-xss-12 col-xs-6 col-sm-12 col-md-5">
+												<div class="filter-item mmr">
+													<br>
+													<input type = "submit" class="btn btn-default" value="Search">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<div class="pt-30 pb-50">
 		<div class="container">
 			@include('layouts.user.alerts')
@@ -129,7 +164,10 @@
 								</div>
 						@endforeach
 							</div> 
-					</div> 
+					</div>
+					@else
+						<h2 class="text-danger">No Packages Yet.</h2>
+					@endif
 
 					<div class="pager-wrappper clearfix">
 						<div class="pager-innner">
@@ -139,16 +177,13 @@
 									<div class="clearfix">
 										<nav class="pager-center">
 											<ul class="pagination">
-													{{$packages->links()}}
+												{{$packages->links()}}
 											</ul>
 										</nav>
 									</div>
 								</div>
 							</div>
 						</div>
-					@else
-						<center><h2 class="text-danger">No Packages Yet.</h2></center>
-					@endif
 					</div>
 				</div>
 			</div>

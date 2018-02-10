@@ -38,12 +38,12 @@ class AdminLoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:admin')->except('logout');
+        $this->middleware('guest')->except('logout');
     }
 
     public function showLoginForm()
     {
-        return view('\Admin\Login');
+        return view('Admin.Login');
     }
     
     public function login(Request $request)
@@ -59,7 +59,7 @@ class AdminLoginController extends Controller
                 'password' => $request->password], $request->remember))
         {
             //if successful to the intended location
-            return redirect()->intended(route('Admin.HomePage'));
+            return redirect()->route('Admin.HomePage');
         }
         
         //if unsuccessful redirect back to the login form
@@ -73,6 +73,6 @@ class AdminLoginController extends Controller
     {
         Auth::guard('admin')->logout();
         
-        return redirect()->intended(route('Admin.Login'));
+        return redirect()->route('Admin.Login');
     }
 }

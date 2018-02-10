@@ -86,7 +86,7 @@ class AgentsController extends Controller
             }
         }
 
-        return view('\Agent\Bookings')->with('bookings', $bookings);
+        return view('Agent.Bookings')->with('bookings', $bookings);
     }
 
     public function storePackage(Request $request){
@@ -180,7 +180,7 @@ class AgentsController extends Controller
         }else{
             DB::table('agents')->where('id', auth()->user()->id)->update(['active' => 0]);
         }
-        
+      
         $packages = DB::table('packages')
                 ->leftjoin('comments','comments.package_id', '=', 'packages.package_id')
                 ->leftjoin('bookings', 'bookings.package_id', '=', 'packages.package_id')
@@ -190,7 +190,27 @@ class AgentsController extends Controller
                 ->where('packages.agent_id', Auth::user()->id)
                 ->orderBy('packages.created_at', 'desc')
                 ->paginate(8);
+      
         return view('\Agent\Packages')->with('packages', $packages);
+    }
+
+    public function searchPackages(Request $req){
+        $destination = $req->input('pname_search');
+        $packages = DB::table('packages')
+                    ->leftJoin('comments', function($join){
+                        $join->on('comments.package_id', '=', 'packages.package_id');
+                    })
+                    ->leftjoin('bookings', function($join){
+                        $join->on('bookings.package_id', '=', 'packages.package_id');
+                    })
+                    ->select('comments.*', 'packages.*', DB::raw('AVG(rating) as ratings_average'),
+                            DB::raw('count(bookings.booking_id) as count_bookings'))
+                    ->groupBy('comments.package_id', 'bookings.package_id')
+                    ->where([['packages.agent_id', Auth::user()->id], 
+                            ['packages.package_name', 'LIKE', '%'.$destination.'%']])
+                    ->orderBy('packages.created_at', 'desc')
+                    ->paginate(8);  
+        return view('Agent.Packages')->with('packages', $packages);
     }
 
     public function editItineraries($package_id, $day){
@@ -199,7 +219,7 @@ class AgentsController extends Controller
                     ->join('itinerary', 'packages.package_id', '=', 'itinerary.package_id')
                     ->where([['packages.package_id', $package_id], ['itinerary.day', $day]])
                     ->get();
-        return view('\Agent\EditItineraries')->with(['packages' => $packages, 'day' => $day, 'package_id' => $package_id]);
+        return view('Agent.editItineraries')->with(['packages' => $packages, 'day' => $day, 'package_id' => $package_id]);
     }
 
 
@@ -242,7 +262,7 @@ class AgentsController extends Controller
         $packages = Packages::find($package_id);
         $itineraries = Itinerary::find($package_id);
  
-        return view('\Agent\EditPackage')->with(['packages' => $packages, 'itineraries' => $packages]);
+        return view('Agent.editPackage')->with(['packages' => $packages, 'itineraries' => $packages]);
     }
     
     public function updatePackage(Request $request, $package_id){
@@ -317,7 +337,7 @@ class AgentsController extends Controller
 
     public function cancelPackage($package_id){
         DB::table('packages')->where('package_id', $package_id)->delete();
-        return redirect()->route('Agent.CreatePackage');
+        return redirect()->route('Agent.createPackage');
         
     }
 
@@ -334,12 +354,12 @@ class AgentsController extends Controller
     }
 
     public function createPackage(){
-        return view ('\Agent\CreatePackage');
+        return view ('Agent.createPackage');
     }
 
     public function createItineraries($package_id, $day){
         $packages = Packages::find($package_id);
-        return view("Agent.CreateItineraries")->with(['packages' => $packages, 'day' => $day]);
+        return view("Agent.createItineraries")->with(['packages' => $packages, 'day' => $day]);
     }
 
     public function viewPackage($package_id){
@@ -371,7 +391,7 @@ class AgentsController extends Controller
                     ])
                     ->orderBy('slots.date_from', 'asc')
                     ->get();
-        return View::make('\Agent\PackageDetails', ['packages' => $packages, 
+        return view('Agent.packageDetails', ['packages' => $packages, 
                                                     'itineraries' => $itineraries, 
                                                     'avg' => $avg,
                                                     'booking' => $booking,
