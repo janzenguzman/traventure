@@ -170,7 +170,7 @@ class AgentsController extends Controller
         }
     }
     
-    public function showPackages(Request $req){
+    public function showPackages(){
         $lastSignedIn = new Carbon(Auth::guard('agents')->user()->last_signed_in);
         $now = Carbon::now();
         $diffHours = $lastSignedIn->diffInHours($now);
@@ -181,75 +181,15 @@ class AgentsController extends Controller
             DB::table('agents')->where('id', auth()->user()->id)->update(['active' => 0]);
         }
         
-        $destination = $req->input('pname_search');
-        if($destination != NULL){
-            $packages = DB::table('packages')
-                ->leftJoin('comments', function($join){
-                    $join->on('comments.package_id', '=', 'packages.package_id');
-                })
-                ->leftjoin('bookings', function($join){
-                    $join->on('bookings.package_id', '=', 'packages.package_id');
-                })
-                ->select('comments.*', 'packages.*', DB::raw('AVG(rating) as ratings_average'),
+        $packages = DB::table('packages')
+                ->leftjoin('comments','comments.package_id', '=', 'packages.package_id')
+                ->leftjoin('bookings', 'bookings.package_id', '=', 'packages.package_id')
+                ->select('comments.*', 'packages.*', 'bookings.*', DB::raw('AVG(comments.rating) as ratings_average'),
                         DB::raw('count(bookings.booking_id) as count_bookings'))
-                ->groupBy('comments.package_id', 'bookings.package_id', 'packages.package_id')
-                ->where([['packages.agent_id', Auth::user()->id], 
-                        ['packages.package_name', 'like', '%'.$destination.'%']])
-                ->orderBy('packages.created_at', 'desc')
-                ->paginate(8);
-        }else{
-            $packages = DB::table('packages')
-                ->leftJoin('comments', function($join){
-                    $join->on('comments.package_id', '=', 'packages.package_id');
-                })
-                ->leftjoin('bookings', function($join){
-                    $join->on('bookings.package_id', '=', 'packages.package_id');
-                })
-                ->select('comments.*', 'packages.*', DB::raw('AVG(rating) as ratings_average'),
-                        DB::raw('count(bookings.booking_id) as count_bookings'))
-                ->groupBy('comments.package_id', 'bookings.package_id', 'packages.package_id')
+                ->groupBy('packages.package_id')
                 ->where('packages.agent_id', Auth::user()->id)
                 ->orderBy('packages.created_at', 'desc')
                 ->paginate(8);
-        }
-          
-        return view('\Agent\Packages')->with('packages', $packages);
-    }
-
-    public function searchPackage(Request $req){
-        
-        $destination = $req->input('pname_search');
-        if($destination != NULL){
-            $packages = DB::table('packages')
-                ->leftJoin('comments', function($join){
-                    $join->on('comments.package_id', '=', 'packages.package_id');
-                })
-                ->leftjoin('bookings', function($join){
-                    $join->on('bookings.package_id', '=', 'packages.package_id');
-                })
-                ->select('comments.*', 'packages.*', DB::raw('AVG(rating) as ratings_average'),
-                        DB::raw('count(bookings.booking_id) as count_bookings'))
-                ->groupBy('comments.package_id', 'bookings.package_id', 'packages.package_id')
-                ->where([['packages.agent_id', Auth::user()->id], 
-                        ['packages.package_name', 'like', '%'.$destination.'%']])
-                ->orderBy('packages.created_at', 'desc')
-                ->paginate(8);
-        }else{
-            $packages = DB::table('packages')
-                ->leftJoin('comments', function($join){
-                    $join->on('comments.package_id', '=', 'packages.package_id');
-                })
-                ->leftjoin('bookings', function($join){
-                    $join->on('bookings.package_id', '=', 'packages.package_id');
-                })
-                ->select('comments.*', 'packages.*', DB::raw('AVG(rating) as ratings_average'),
-                        DB::raw('count(bookings.booking_id) as count_bookings'))
-                ->groupBy('comments.package_id', 'bookings.package_id', 'packages.package_id')
-                ->where('packages.agent_id', Auth::user()->id)
-                ->orderBy('packages.created_at', 'desc')
-                ->paginate(8);
-        }
-          
         return view('\Agent\Packages')->with('packages', $packages);
     }
 
