@@ -195,6 +195,15 @@ class AgentsController extends Controller
             ->orderBy('packages.created_at', 'desc')
             ->paginate(8);
         // dd($packages);
+//         $packages = DB::table('packages')
+//                 ->leftjoin('comments','comments.package_id', '=', 'packages.package_id')
+//                 ->leftjoin('bookings', 'bookings.package_id', '=', 'packages.package_id')
+//                 ->select('comments.*', 'packages.*', 'bookings.*', DB::raw('AVG(comments.rating) as ratings_average'),
+//                         DB::raw('count(bookings.booking_id) as count_bookings'))
+//                 ->groupBy('packages.package_id')
+//                 ->where('packages.agent_id', Auth::user()->id)
+//                 ->orderBy('packages.created_at', 'desc')
+//                 ->paginate(8);
         return view('\Agent\Packages')->with('packages', $packages);
     }
 
