@@ -180,19 +180,40 @@ class AgentsController extends Controller
         }else{
             DB::table('agents')->where('id', auth()->user()->id)->update(['active' => 0]);
         }
-          $packages = DB::table('packages')
-              ->leftJoin('comments', function($join){
-                  $join->on('comments.package_id', '=', 'packages.package_id');
-              })
-              ->leftjoin('bookings', function($join){
-                  $join->on('bookings.package_id', '=', 'packages.package_id');
-              })
-              ->select('comments.*', 'packages.*', DB::raw('AVG(rating) as ratings_average'),
-                      DB::raw('count(bookings.booking_id) as count_bookings'))
-              ->groupBy('comments.package_id', 'bookings.package_id', 'packages.package_id')
-              ->where('packages.agent_id', Auth::user()->id)
-              ->orderBy('packages.created_at', 'desc')
-              ->paginate(8);
+        $packages = DB::table('packages')
+            ->leftJoin('comments', function($join){
+                $join->on('comments.package_id', '=', 'packages.package_id');
+            })
+            ->leftjoin('bookings', function($join){
+                $join->on('bookings.package_id', '=', 'packages.package_id');
+            })
+            ->select('comments.*', 'packages.*', DB::raw('AVG(rating) as ratings_average'),
+                DB::raw('count(bookings.booking_id) as count_bookings'))
+            ->groupBy('comments.package_id', 'bookings.package_id')
+            ->where('packages.agent_id', Auth::user()->id)
+            ->orderBy('packages.created_at', 'desc')
+            ->paginate(8);
+        dd($packages);
+        return view('\Agent\Packages')->with(['packages' => $packages, 'diffHours' => $diffHours]);
+    }
+
+    public function searchPackages(Request $req){
+        $destination = $req->input('pname_search');
+        $packages = DB::table('packages')
+                    ->leftJoin('comments', function($join){
+                        $join->on('comments.package_id', '=', 'packages.package_id');
+                    })
+                    ->leftjoin('bookings', function($join){
+                        $join->on('bookings.package_id', '=', 'packages.package_id');
+                    })
+                    ->select('comments.*', 'packages.*', DB::raw('AVG(rating) as ratings_average'),
+                            DB::raw('count(bookings.booking_id) as count_bookings'))
+                    ->groupBy('comments.package_id', 'bookings.package_id')
+                    ->where([['packages.agent_id', Auth::user()->id], 
+                            ['packages.package_name', 'LIKE', '%'.$destination.'%']])
+                    ->orderBy('packages.created_at', 'desc')
+                    ->paginate(8);  
+        return view('Agent.Packages')->with('packages', $packages);
     }
 
     public function editItineraries($package_id, $day){
